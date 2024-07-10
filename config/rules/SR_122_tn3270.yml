@@ -1,0 +1,41 @@
+name: tn3270
+protocol: tcp
+rarity: 8
+payload: \xff\xfb\x18\xff\xfa\x18\x00IBM-3279-4-E\xff\xf0\xff\xfb\x19\xff\xfd\x19\xff\xfb\0\xff\xfd\0
+ports: 23,623,2023,2323
+ssl-ports: "992"
+services:
+    - name: tn3270
+      pattern:
+        regex: ^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0.*?\xff\xfd\x19
+      product: IBM Telnet TN3270
+      info: traditional tn3270
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01\r\n\r\nSunOS UNIX \(([^)]+)\)\r\n\r\0\r\n\r\0login: '
+      product: SunOS telnetd
+      hostname: $1
+      os: SunOS
+      cpes:
+        - o:sun:sunos
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01\r\n\r\nUltrix(?:-32)? V([\d.]+) \(Rev\.? (\d+)\) \(([^)]+)\)\r\n\r\r\n\rlogin: '
+        options: i
+      product: Ultrix telnetd
+      hostname: $3
+      os: Ultrix $1
+      cpes:
+        - o:dec:ultrix:$1:$2
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\xff\xfb\x03\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\x1b\[;H\x1b\[2JTERM=ibm-3279-4-e\r\n         C{10}      hh       YYYY      YYYY {13}\r\n
+      product: ChiYu HandPunch attendance software telnetd
+      cpes:
+        - a:chiyu:handpunch
+fallback-services:
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01
+      product: 2.11BSD-derived telnetd
+      os: Unix

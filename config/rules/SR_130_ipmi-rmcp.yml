@@ -1,0 +1,9 @@
+name: ipmi-rmcp
+protocol: udp
+rarity: 8
+payload: \x06\0\xff\x07\0\0\0\0\0\0\0\0\0\x09\x20\x18\xc8\x81\0\x38\x8e\x04\xb5
+ports: "623"
+fallback-services:
+    - name: asf-rmcp
+      pattern:
+        regex: ^\x06\0\xff\x07\0\0\0\0\0\0\0\0\0\x10

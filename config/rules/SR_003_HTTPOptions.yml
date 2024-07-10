@@ -1,0 +1,985 @@
+name: HTTPOptions
+protocol: tcp
+rarity: 4
+payload: OPTIONS / HTTP/1.1\r\n\r\n
+ports: 80,81,82,83,84,85,631,641,2301,3128,5232,6000,8080,8888,9999,10000,10031,37435,49400
+ssl-ports: 443,4443,8443
+fallbacks: GetRequest
+services:
+    - name: apollo-server
+      pattern:
+        regex: ^0000000001(?:3C|C0)0000$
+      product: Apollo Server database access
+    - name: caldav
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nServer: DavMail Gateway ([\w._-]+)\r\nDAV: 1, calendar-access, calendar-schedule, calendarserver-private-events, addressbook\r\n'
+      product: DavMail CalDAV http gateway
+      version: $1
+      device-type: proxy server
+    - name: dgld
+      pattern:
+        regex: ^OPTI$
+      product: IRIX Distributed GL Daemon
+      os: IRIX
+      cpes:
+        - o:sgi:irix
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nApi-Version: ([\d.]+)\r\nDocker-Experimental: false\r\nOstype: (.+)\r\nServer: Docker/(\d[\w.-]*) \(.*\)\r\nDate: .*\r\nContent-Length: 0\r\n\r\n'
+      product: Docker remote API
+      version: $3
+      info: API $1
+      os: $2
+      cpes:
+        - a:docker:docker:$3
+    - name: ets2
+      pattern:
+        regex: ^\xff\xfe\\\0n\0e\0w\0f\0r\0e\0i\0g\0h\0t\0 \0E\0u\0r\0o\0 \0T\0r\0u\0c\0k\0 \0S\0i\0m\0u\0l\0a\0t\0o\0r\0 \x002\0;([^;]+);
+      product: newfreight Euro Truck Simulator 2
+      info: 'level: $P(1)'
+      cpes:
+        - a:scs_software:euro_truck_simulator_2
+    - name: irc
+      pattern:
+        regex: (^:[-.\w]+) 421 \* OPTIONS :Unknown command\r\n
+      product: Webmaster Conferenceroom IRC server
+      hostname: $1
+    - name: ipp
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: CUPS/([-\w_.]+)'
+        options: s
+      product: CUPS
+      version: $1
+      cpes:
+        - a:apple:cups:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 method not implemented\r\nServer: cgi-httpd\r\n'
+      product: shttpd cgi-httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\r\nServer: WebSphere Application Server/(.+)\r\n'
+      product: IBM WebSphere Application Server
+      version: $1
+      cpes:
+        - a:ibm:websphere_application_server:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Oracle HTTP Server Powered by Apache\r\n'
+        options: s
+      product: Oracle HTTP Server Powered by Apache
+      cpes:
+        - a:oracle:http_server
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\r\nServer: webfs/(\d[-.\w]+)\r\n'
+      product: WebFS httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Microsoft-IIS/([\d.]+)\r\n'
+        options: s
+      product: Microsoft IIS httpd
+      version: $1
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services:$1
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 503 Service Unavailable\r\nContent-Type: text/html\r\nDate: .*\r\nConnection: close\r\nContent-Length: 28\r\n\r\n<h1>Service Unavailable</h1>'
+      product: Microsoft IIS httpd
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 510 Not Extended\r\nDate: .*\r\nServer: CompaqHTTPServer/([\d.]+)\r\n'
+      product: Compaq Diagnostics httpd
+      info: CompaqHTTPServer $1
+      cpes:
+        - a:hp:compaqhttpserver:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Found\r\nDate: .*\r\nServer: CompaqHTTPServer/([\d.]+) HP System Management Homepage/([\d.]+)\r\n'
+      product: HP System Management Homepage
+      version: $2
+      info: CompaqHTTPServer $1
+      cpes:
+        - a:hp:compaqhttpserver:$1
+        - a:hp:system_management_homepage:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Ungueltige Anfrage\r\nServer: Web Sharing\r\n'
+      product: Mac OS Personal Web Sharing
+      info: German
+      os: Mac OS
+      cpes:
+        - o:apple:mac_os
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 405 Method Not Allowed\r\nContent-Type:text/html\r\n\r\n<HTML><HEAD><TITLE>Remote Insight</TITLE></HEAD><BODY>\r\n<H1>Request Error</H1>\r\nHTTP/1\.1 405 Method Not Allowed\r\n</BODY></HTML>\r\n
+      product: HP/Compaq Integrated Lights-Out http config
+      device-type: remote management
+      cpes:
+        - h:hp:integrated_lights-out
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: Web Sharing\r\nContent-type: text/html\r\n\r\n<HTML><TITLE>400 Bad Request</TITLE>The URL you requested could not be understood by the server\.  Do not include double slashes or colon characters in the URL\.</HTML>\r\n\r\n'
+      product: Apple Personal Websharing httpd
+      os: Mac OS
+      cpes:
+        - o:apple:mac_os
+    - name: http
+      pattern:
+        regex: ^Command Not Reconized\r\n$
+      product: Microsiga httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nAllow: GET, HEAD, POST, PUT\r\n\r\n$'
+      product: Lexmark printer http config
+      device-type: printer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405-metode ikke tillatt\r\nTillatt: GET, HEAD, POST, PUT\r\n\r\n$'
+      product: Lexmark printer http config
+      info: Norwegian
+      device-type: printer
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 500 \( Die Anforderung wurde vom HTTP-Filter zur\xc3\xbcckgewiesen\. Wenden Sie sich an den ISA Server-Administrator\.  \)\r\n
+      product: Microsoft ISA server httpd
+      info: German
+      os: Windows
+      cpes:
+        - a:microsoft:isa_server::::de
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d .*\nServer: GemtekBalticHTTPD/(.*)\n'
+      product: Gemtek Systems GemtekBalticHTTPD
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Authorization Required\r\nWWW-Authenticate: Basic realm=\"TiVo-web\"\r\nConnection: close\r\n\r\n'
+      product: TiVoWebPlus Project httpd
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: ELMO Web Server\r\n.*<TITLE>HV-([\w+/-]+)</TITLE>\r\n'
+        options: s
+      product: ELMO $1 Visual Presenter http config
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: HTTPD/[\d.]+\r\n.*<a href=\"/\">Return to Web Management</a>.*<A HREF=\"http://www\.juniper\.net/support/\">HTTPD release ([-\w_.]+) built by'
+        options: s
+      product: Juniper router http config
+      info: HTTPD $1
+      device-type: router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not found\r\nServer: BadBlue/([\d.]+)\r\n'
+      product: BadBlue httpd
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: httpd/1\.00\r\nCache-Control: no-cache\r\nExpires: 0\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H2>501 Not Implemented</H2>\nThe requested method ''OPTIONS'' is not implemented by this server\.\n<HR>\n<I>httpd/1\.00</I></BODY></HTML>\n$'
+      product: Packeteer PacketShaper 4500/ISP httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d .*\r\nServer: SkyX HTTPS ([^\r\n]+)\r\n'
+      product: Packeteer SkyX Accellerator
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nDate: .*<H1>501 Not Implemented</H1>\nPOST to non-script is not supported in Boa\.\n</BODY></HTML>\n'
+        options: s
+      product: Boa httpd
+      cpes:
+        - a:boa:boa
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nDate: .*\r\nServer: HTTPsrv\r\nConnection: close\r\nContent-Type: text/html; charset=ISO-8859-1\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nPOST to non-script is not supported\.\n</BODY></HTML>\n$'
+      product: Boa httpd
+      info: Mega System Technologies NetProbe Lite environmental sensor
+      device-type: specialized
+      cpes:
+        - a:boa:boa
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Oracle-Application-Server-11g\r\nAllow: GET,HEAD,POST,OPTIONS\r\nContent-Length: 0\r\n'
+        options: s
+      product: Oracle Application Server 11g httpd
+      cpes:
+        - a:oracle:application_server:11g
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Unknown or unimplemented http action\r\nMIME-Version: 1\.0\r\nServer: HP-ChaiServer/([\d.]+)\r\nContent-length: \d+\r\nContent-Type: text/html\r\n\r\n<TITLE>Request Not Implemented</TITLE><P><B>Cannot process request, not implemented at server\.</B></P><P>Unknown or unimplemented http action'
+      product: HP JetDirect Card in a LaserJet printer
+      info: HP-ChaiServer Embedded VM $1
+      device-type: printer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: Waveplus HTTPD\r\n'
+        options: s
+      product: Waveplus HTTPD
+      info: Thomson TG508 DSL router
+      device-type: broadband router
+      cpes:
+        - h:thomson:tg508
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nDate: .*\r\nMIME-version: 1\.0\r?\nServer: ZOT-PS-(\d+)/([\w._-]+)\r?\n'
+      product: Zero One Technology $1 httpd
+      version: $2
+      device-type: print server
+      cpes:
+        - h:zero_one_tech:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.[01] \d\d\d .*\r\nServer: micro_httpd\r\n'
+      product: micro_httpd
+      cpes:
+        - a:acme:micro_httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Internal Error\r\nConnection: close\r\nCache-Control: no-cache, no-store\r\n\r\n<html><body><h1>Internal Server Error</h1>Failure\(&quot;No handler table for HTTP method Unknown OPTIONS&quot;\)</body></html>$'
+      product: Citrix Xen Simple HTTP Server
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Found\r\nDate: \w\w\w \w\w\w \d\d \d\d:\d\d:\d\d \d\d\d\d\n GMT\r\nServer: VCS-VideoJet-Webserver\r\nLocation: http://[\w._-]+/xampp/\r\nKeep-Alive: timeout=5, max=100\r\nConnection: Keep-Alive\r\n\r\n'
+        options: s
+      product: VCS-VideoJet-Webserver httpd
+      info: Bosch VIP X1 video encoder http config
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: mini_httpd ([^\r\n]+)\r\n(?:[^\r\n]+\r\n)*?Cache-Control: no-cache,no-store\r\nContent-Type: text/html; charset=%s\r\nConnection: close\r\n'
+        options: s
+      product: mini_httpd
+      version: $1
+      cpes:
+        - a:acme:mini_httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nServer: mini_httpd/([^\r\n]+)\r\nDate: .*\r\nCache-Control: no-cache,no-store\r\nContent-Type: text/html; charset=[\w_-]+\r\nContent-Length: \d+\r\nConnection: close\r\n\r\n'
+      product: mini_httpd
+      version: $1
+      cpes:
+        - a:acme:mini_httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: keyreporter/([\w._-]+)\r\nConnection: Close\r\nContent-Type: text/plain\r\nContent-Length: 20\r\n.*URL is malformatted\n$'
+        options: s
+      product: Sassafras KeyReporter http interface
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\n(?:[^\r\n]+\r\n)*?Content-Type: text/html;charset=[\w._-]+\r\nContent-Language: ([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?Server: Hidden\r\n\r\n<html><head><title>Apache Tomcat/([\w._-]+) - Error report</title>'
+        options: s
+      product: Symantec Endpoint Protection Manager http config
+      info: Apache Tomcat $2; $1
+      device-type: firewall
+      cpes:
+        - a:apache:tomcat:$2
+        - a:symantec:endpoint_protection_manager
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\n(?:[^\r\n]+\r\n)*?Content-Type: text/html;charset=[\w._-]+\r\n(?:[^\r\n]+\r\n)*?Server: Hidden\r\n\r\n<html><head><title>Apache Tomcat/([\w._-]+) - Error report</title>'
+        options: s
+      product: Symantec Endpoint Protection Manager http config
+      info: Apache Tomcat $1
+      device-type: firewall
+      cpes:
+        - a:apache:tomcat:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: 50\r\n\r\n<HTML><BODY><H1>400 Bad Request</H1></BODY></HTML>$'
+      product: VMware Server http config
+      cpes:
+        - a:vmware:server
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?X-Runtime: 2\r\n.*<title>Metasploit Framework Web Console ([\w._-]+)</title>\n'
+        options: s
+      product: Metasploit Framework web console
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/plain\r\nContent-Length: 59\r\nConnection: close\r\n\r\nError 400: Bad Request\nCannot parse HTTP request: \[OPTIONS\]$'
+      product: Mongoose httpd
+      cpes:
+        - a:cesanta:mongoose
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nAllow: GET, POST, HEAD, CONNECT, PUT, DELETE, OPTIONS\r\nDAV: 1\r\n\r\n$'
+      product: Mongoose httpd
+      version: "3.7"
+      cpes:
+        - a:cesanta:mongoose:3.7
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nConnection: close\r\nServer: Android Webcam Server v([\w._-]+)\r\n'
+      product: IP Webcam
+      version: $1
+      info: Android phone
+      os: Android
+      device-type: phone
+      cpes:
+        - o:google:android
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 OK\r\nContent-Length: 0\r\nConnection: Keep-Alive\r\nWWW-Authenticate: Basic realm=\"/\"\r\nContent-Type: text/html; charset=UTF-8\r\nCache-Control: max-age=3600, must-revalidate\r\nEXT: UCoS, UPnP/1\.0, UDI/1\.0\r\nLast-Modified: .*\r\n\r\n'
+      product: Universal Devices Insteon home automation http config
+      os: uCOS
+      device-type: specialized
+      cpes:
+        - o:universal_devices:ucos
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: \d+\r\n\r\n\n\n<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Action not found</title>\n\t\t<link rel=\"shortcut icon\" href=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAlFJREFUeNqUU8tOFEEUPVVdNV3dPe8xYRBnjGhmBgKjKzCIiQvBoIaNbly5Z\+PSv3Aj7DSiP2B0rwkLGVdGgxITSCRIJGSMEQWZR3eVt5sEFBgTb/dN1yvnnHtPNTPG4PqdHgCMXnPRSZrpSuH8vUJu4DE4rYHDGAZDX62BZttHqTiIayM3gGiXQsgYLEvATaqxU\+'
+      product: Graylog2 httpd
+      cpes:
+        - a:graylog:graylog2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nServer: NetQoS-HTTPd/1\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\n'
+      product: CA NetQoS ReporterAnalyzer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\n\r\nHTTP method/URL unsupported: OPTIONS'
+      product: DirecTV Genie
+    - name: kmldonkey
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: KMLDonkey/(\d\S+)'
+      product: KMLDonkey
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: MiniServ/([\d.]+)\r\n.*\r\n<h1>Error - Bad Request</h1>\n'
+        options: s
+      product: MiniServ
+      version: $1
+      info: Webmin httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Page not found\r\nServer: GoAhead-Webs\r\nDate: .*\r\nPragma: no-cache\r\nCache-Control: no-cache\r\nContent-Type: text/html\r\n\r\n<html><head><title>Document Error: Page not found</title></head>'
+      product: GoAhead WebServer
+      info: WAP http config
+      device-type: WAP
+      cpes:
+        - a:goahead:goahead_webserver
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 Ok\r\nCseq: 0\r\nServer: VLC Server\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\nContent-Length: 0\r\n\r\n'
+      product: VLC HTTP streamer
+      cpes:
+        - a:videolan:vlc_media_player
+    - name: http
+      pattern:
+        regex: '^ 200 OK\r\nConnection: close\r\nContent-Type: text/html\r\n.*<B>The request is not Implemented\.</B>'
+        options: s
+      product: Dell 1815dn printer http config
+      device-type: printer
+      cpes:
+        - h:dell:1815dn
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nConnection: close\r\n\r\n<html><head><title>404 Not Found</title></head>\r\n<body><h1>Not Found</h1>The requested URL / was not found on this server\.<p>\r\n</body></html>\r\n$'
+      product: Mono XSP httpd
+      cpes:
+        - a:mono:xsp
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Found\r\nLocation: https?:///home\.htm\r\nContent-Length: 0\r\nWebServer:\r\n\r\n$'
+      product: APC SmartUPS http config
+      device-type: power-device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400\r\nContent-Type: text/html\r\n\r\n<hr><pre><font size=\+2><b>\nError\. Unsupported method\.\n</b></font>'
+      product: Small Home Server httpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: \d+\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request \(ERR_INVALID_REQ\)</TITLE></HEAD><BODY><H1>400 Bad Request</H1><BR>ERR_INVALID_REQ<HR><B>AR7 Webserver</B>'
+      product: AR7 embedded httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: \d+\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request \(ERR_INVALID_REQ\)</TITLE></HEAD><BODY><H1>400 Bad Request</H1><BR>ERR_INVALID_REQ<HR><B>Webserver</B>'
+      product: AVM FRITZ!Box WLAN 7170 WAP http config
+      device-type: WAP
+    - name: http
+      pattern:
+        regex: '^HTTP/[10]\.0 200 OK\nPragma: no-cache\nContent-Type: text/html; charset=iso-8859-1\nContent-Length: 63\n\n<html><body>ERROR ERR_INVALID_REQ<hr>Bad Request</body></html>\n'
+      product: AVM FRITZ!Box 7300-series WAP http config
+      device-type: WAP
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: Cisco AWARE ([\w._-]+)\r\n'
+      product: Cisco ASA AWARE http config
+      version: $1
+      device-type: firewall
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nPragma: no-cache\r\nx-responding-server: ([\w._-]+)\r\nX-dmUser: (.*)\r\nMS-Author-Via: DAV\r\n'
+      product: CrushFTP DAV httpd
+      info: User $2
+      hostname: $1
+      cpes:
+        - a:crushftp:crushftp
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Moved Temporarily\r\nLocation: /login\r\n\r\n$'
+      product: Bizanga IMP Email http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\t\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>Not Implemented</TITLE></HEAD><BODY><h3>Error: HTTP Method Not Implemented</h3></BODY></HTML>$'
+      product: Check Point UTM-1 Edge X firewall or Zonealarm Z100G WAP http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nServer: Cassini/([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?X-AspNet-Version: ([\w._-]+)\r\n.*<title>Runtime Error</title>\r\n        <style>\r\n         body {font-family:\"Verdana\";font-weight:normal;font-size: \.7em;color:black;}'
+        options: s
+      product: Cassini httpd
+      version: $1
+      info: Ateas Security webcam management httpd; ASP.NET $2
+      os: Windows
+      cpes:
+        - a:microsoft:asp.net:$2
+        - a:microsoft:cassini:$1
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 302 \r\nLocation: ,\r\n\r\n$'
+      product: BlackBox LWU0200-POE-M ethernet-optical bridge http config
+      device-type: bridge
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request \r\nContent-Type: text/plain\r\nContent-Length: \d+\r\n\r\n400 Bad Request Cannot parse request\r\n'
+      product: GotoMeeting httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nAllow: GET, HEAD, POST\r\nContent-Length: 0\r\nServer: Allegro-Software-RomPager/([\d.]+)\r\n\r\n$'
+      product: Allegro RomPager
+      version: $1
+      cpes:
+        - a:allegro:rompager:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nContent-type: text/html\r\nDate: .*\r\nConnection: close\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nThe requested method is not recognized\n</BODY></HTML>\n$'
+      product: BusyBox httpd
+      version: "1.13"
+      os: Linux
+      cpes:
+        - a:busybox:busybox:1.13
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nContent-type: text/html\r\nDate: .*\r\nConnection: close\r\n\r\n<HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nThe requested method is not recognized by this server\.\n</BODY>\n$'
+      product: BusyBox httpd
+      os: Linux
+      device-type: media device
+      cpes:
+        - a:busybox:busybox
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nDate: .*\r\nConnection: close\r\nContent-type: text/html\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nThe requested method is not recognized\n</BODY></HTML>\n$'
+      product: BusyBox httpd
+      os: Linux
+      cpes:
+        - a:busybox:busybox
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\nContent-type: text/html\r\nDate: .* GMT\r\nConnection: close\r\n\r\n<HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nThe requested method is not recognized by this server\.\n</BODY>\n$'
+      product: BusyBox http
+      version: "1.01"
+      os: Linux
+      cpes:
+        - a:busybox:busybox:1.01
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nConnection: close\r\nContent-Type: text/plain\r\nTransfer-Encoding: chunked\r\n\r\nB\r\nBad Request\r\n0\r\n\r\n$'
+      product: BusyBox http
+      version: 1.19.4
+      os: Linux
+      cpes:
+        - a:busybox:busybox:1.19.4
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Length: 0\r\n\r\n$'
+      product: Octoshape P2P streaming web service
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 501 Not Implemented\r\nServer: \r\n.*<BODY BGCOLOR=\"#cc9999\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n<H2>501 Not Implemented</H2>\nThe requested method ''OPTIONS'' is not implemented by this server\.'
+        options: s
+      product: i3 micro or Linksys SPA400 VoIP gateway http config
+      device-type: VoIP adapter
+      cpes:
+        - h:linksys:spa400
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Method Not Implemented\r\nServer: qhttpd\r\n'
+      product: qhttpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK \r\nContent-Type: text/html\r\nDate: .*\r\n\r\n<html><head><meta http-equiv=\"content-type\" content=\"text/html; charset=ISO-8859-1\"><title>DIRECTV HTTP server available options</title>'
+      product: DirecTV satellite receiver http interface
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\.\r\nContent-Type: application/json; charset=ISO-8859-1\r\nDate: .* GMT\r\nContent-Length: 142\r\nReason: Only HTTP GET or POST methods are supported\.\r\n\r\n{\"status\": {\n  \"code\": 405,\n  \"commandResult\": 1,\n  \"msg\": \"Method Not Allowed\.Only HTTP GET or POST methods are supported\.\",\n  \"query\": \"\"\n}}'
+      product: DirecTV satellite receiver http interface
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Page not found\r\nServer: GoAhead-Webs\r\nDate: .*\r\nPragma: no-cache\r\nCache-Control: no-cache\r\nContent-Type: text/html; charset=iso-8859-1;\r\n\r\n<html><head><title>Document Error: Page not found</title></head>\r\n        <body><h2>Access Error: Page not found</h2>\r\n        <p>Bad request type</p></body></html>\r\n\r\n$'
+      product: GoAhead WebServer
+      info: Auerswald COMpact 5020 VoIP PBX
+      device-type: PBX
+      cpes:
+        - a:goahead:goahead_webserver
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Apache/x\.x\.x \(Unix\) mod_ssl/x\.x\.x OpenSSL/([\w._-]+)\r\nContent-Length: 0\r\nAllow: GET, HEAD, POST, OPTIONS, TRACE\r\nConnection: close\r\n\r\n$'
+        options: s
+      product: Apache httpd
+      info: Fastora NAS T2 NAS device; OpenSSL $1
+      os: FreeBSD
+      device-type: storage-misc
+      cpes:
+        - a:apache:http_server
+        - a:openssl:openssl:$1
+        - o:freebsd:freebsd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nServer: Virata-EmWeb/R([\d_]+)\r\nContent-Length: 0\r\nAllow: HEAD, GET, OPTIONS\r\n\r\n$'
+      product: Virata-EmWeb
+      version: $SUBST(1,"_",".")
+      info: HP LaserJet 2430 printer http config
+      device-type: printer
+      cpes:
+        - a:virata:emweb:$SUBST(1,"_",".")
+        - h:hp:laserjet_2430
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Length: 111\r\nContent-Type: text/xml\r\n.*<error xmlns=\"http://www\.slingbox\.com\"><code>ObjectNotFound</code><message>Resource Not Found</message></error>$'
+        options: s
+      product: Slingbox remote streaming httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Not Allowed\r\nContent-Type: text/html; charset=utf-8\r\n.*<head><title>405 Not Allowed</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>405 Not Allowed</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n'
+        options: s
+      product: nginx
+      cpes:
+        - a:igor_sysoev:nginx
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nPragma: no-cache\r\nConnection: close\r\nCache-Control: no-cache\r\n\r\n<html><head><title>Error</title></head><body>Error: 405 METHOD NOT ALLOWED</body></html>$'
+      product: Canon imageRUNNER 1025i printer http config
+      device-type: printer
+      cpes:
+        - h:canon:imagerunner_1025i
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nContent-Length: 87\r\nContent-Type: text/html; charset=UTF-8\r\nServer: TornadoServer/([\w._-]+)\r\n\r\n<html><title>405: Method Not Allowed</title><body>405: Method Not Allowed</body></html>$'
+      product: Tornado httpd
+      version: $1
+      cpes:
+        - a:tornadoweb:tornado:$1
+    - name: http
+      pattern:
+        regex: '^<HTML><BODY><H1>nweb Web Server Sorry: Only simple GET operation supported OPTIONS / HTTP/1\.0\*\*\*\*</H1></BODY></HTML>\r\n'
+      product: IBM nweb
+      cpes:
+        - a:ibm:nweb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: httpd_gargoyle/([\w._ -]+)\r\n'
+      product: httpd_gargoyle
+      version: $1
+      info: Gargoyle WAP firmware
+      os: Linux
+      device-type: WAP
+      cpes:
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nDate: .* GMT\r\nServer:  \r\nAllow: GET,HEAD,POST,OPTIONS\r\nVary: Accept-Encoding\r\nContent-Length: 0\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n$'
+      product: Apache httpd
+      version: 2.2.9
+      cpes:
+        - a:apache:http_server:2.2.9
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nContent-Length: 0\r\nConnection: close\r\nAllow: GET, POST\r\nContent-Type: text/html\r\n\r\n$'
+      product: Siemens 315-2PN/DP programmable logic controller http admin
+      device-type: specialized
+      cpes:
+        - h:siemens:315-2pn%2Fdp
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"Arecont Vision\"\r\n\r\n'
+      product: Arecont Vision surveillance camera httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: \r\nContent-Type: text/html\r\nContent-Length: 57\r\n\r\nHTTP/1\.0 400 Bad Request: Invalid or unsupported method\r\n\r\n\r\n$'
+      product: Alcatel/Thomson SpeedTouch ADSL http config
+      device-type: broadband router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nDate: .* GMT\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: 54\r\n\r\n<HTML><BODY><H1>501 Not Implemented</H1></BODY></HTML>$'
+      product: VMware ESXi 4.1 Server httpd
+      cpes:
+        - o:vmware:esxi:4.1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nServer: Membase Server ([\w.-]+)\r\nPragma:'
+      product: Membase Admin httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nServer: Couchbase Server ([\w.-]+)\r\nPragma:'
+      product: Couchbase Admin httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Unsupported method \(''OPTIONS''\)\r\nServer: BaseHTTP/([\w._-]+) Python/([\w._+-]+)\r\n'
+      product: BaseHTTPServer
+      version: $1
+      info: Python $2
+      cpes:
+        - a:python:basehttpserver:$1
+        - a:python:python:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Internal Server Error\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: 148\r\nDate: .* GMT\r\nConnection: close\r\n\r\n500 Internal Server Error\n\nThe server has either erred or is incapable of performing the requested operation\. \n\n ''NoneType'' object is not iterable  $'
+      product: Nicira bridge http admin
+      device-type: bridge
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nServer: \r\n\r\n<html><head><title>404 Not Found</title></head>\n<body><h1>404 Not Found</h1>\n/: <pre>This item has not been found</pre>\n<hr><address><a href=\"http://(BLACKBERRY-[\w._-]+):\d+/\">[\w._-]+:\d+</a></address>\n</body></html>\n$'
+      product: BlackBerry PlayBook QConnDoor httpd
+      hostname: $1
+      cpes:
+        - h:rim:blackberry_playbook_tablet
+        - o:rim:blackberry_playbook_os:2.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nServer: Router\r\nConnection: close\r\nWWW-Authenticate: Basic realm=\"Roteador Intelbras Wireless N 150Mbps\"\r\n'
+      product: Intelbras router httpd
+      device-type: WAP
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nDate: .*\r\nAccept-Ranges: bytes\r\nConnection: close\r\nAllow: GET, HEAD, OPTIONS\r\nContent-Length: 0\r\n\r\n'
+      product: Hiawatha httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\nDate: .*\nServer: Webserver \(Windows\)\nConnection: close\nContent-Type: text/html; charset=ISO-8859-1\nContent-Length: 79\n\n<h1>Wrong URL</h1><h3>The webpage your are trying to access does not exist</h3>'
+      product: American Dynamics IP camera httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"DMP\"\r\n\r\n'
+      product: Cisco Digital Media Player
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 124\r\nConnection: close\r\n\r\n<html><head><title>405 Method Not Allowed</title></head><body><center><h1>405 Method Not Allowed</h1></center></body></html>'
+      product: TP-LINK TD-W8968 http admin
+      device-type: WAP
+      cpes:
+        - h:tp-link:td-w8968
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\nPragma: No-cache\r\nCache-Control: no-cache\r\nExpires: .*? ([A-Z]+)\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: \d+\r\nDate: .*\r\nConnection: close\r\nServer:  \r\n\r\n<html><head><title>Apache Tomcat/([\w._-]+) - Error report</title>'
+      product: Apache Tomcat httpd
+      version: $2
+      info: 'timezone: $1'
+      cpes:
+        - a:apache:tomcat:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nDate: .*? UTC\r\nContent-type: text/html\r\nExpires: Thu, 16 Feb 1989 00:00:00 GMT\r\n\r\n<H1>501 Not Implemented</H1>\r\n\r\n\r\n'
+      product: Cisco IOS httpd
+      os: IOS
+      cpes:
+        - o:cisco:ios
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nConnection: close\r\n(?:Content-Length: 0\r\n)?Access-Control-Allow-Methods: GET, POST, OPTIONS\r\nAccess-Control-Allow-Origin: \r\nAccess-Control-Allow-Credentials: true\r\nAccess-Control-Max-Age: 86400\r\nAccess-Control-Allow-Headers: Content-Type, Authorization\r\nServer: nzbget-([\w._-]+)\r\n\r\n'
+      product: NZBGet httpd
+      version: $1
+      cpes:
+        - a:nzbget:nzbget:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Length: 0\r\nConnection: close\r\n\r\nHTTP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"Securesphere Gateway Authentication\"\r\nContent-Length: 0\r\nConnection: close\r\nSet-Cookie: session_id=\d+; Path=/\r\n\r\n'
+      product: Imperva SecureSphere WAF http admin
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Unsupported method \(''OPTIONS''\)\r\nServer: JiffyServer/([\w._-]+) Python/([\w._-]+)\r\nDate: .*\r\nContent-Type: text/html;charset=utf-8\r\nConnection: close\r\n\r\n'
+      product: Jiffy secure messaging httpd
+      version: $1
+      info: Python $2
+      cpes:
+        - a:python:python:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method not allowed\r\nCache-Control: no-cache\r\nConnection: close\r\nPragma: no-cache\r\nContent-Length: 8\r\nContent-Type: text/html\r\nAccept-Ranges: bytes\r\n\r\nERROR=0\n'
+      product: ACTi NVR3 httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: GateOne\r\nX-Ua-Compatible: IE=edge\r\nAllow: HEAD,GET,POST,OPTIONS\r\nDate: .*\r\nAccess-Control-Allow-Origin: \*\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n{\"applications\": \[([^]]+)\]'
+        options: s
+      product: Gate One http terminal emulator
+      info: 'apps: $1'
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/plain\r\nDate: .*\r\nConnection: close\r\n\r\nCannot OPTIONS /$'
+      product: Express.js httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 not implemented\r\nConnection: close\r\nContent-Length: 20\r\nAllow: GET,HEAD,POST\r\nCache-Control: max-age=0\r\nContent-Type: text/plain\r\nDate: .*\r\nExpires: .*\r\n\r\n501 not implemented\n'
+      product: Bluesound Node http config
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nServer: WindWeb/([\w._-]+)\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<H1>Wind Manage Web Server Error Report:</H1>'
+      product: Wind Manage httpd
+      version: $1
+      cpes:
+        - a:windriver:wind_manage:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 40(?:6 Not Acceptable|5 Method Not Allowed)\r\nContent-Length: 51\r\nContent-Security-Policy: default-src ''self'' ''unsafe-inline''; img-src ''self'' blob:; frame-ancestors ''self''\r\nX-Frame-Options: SAMEORIGIN\r\nContent-Type: text/html; charset=utf-8\r\nDate: .*\r\n\r\n<html><body>HTTP Method not supported</body></html>'
+      product: Greenbone Security Assistant
+      cpes:
+        - a:greenbone:greenbone_security_assistant
+    - name: http
+      pattern:
+        regex: ^<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4\.01 Transitional//EN" "http://www\.w3\.org/TR/html4/loose\.dtd">\r\n<html>\r\n<head>\r\n<link rel="shortcut icon" href="/images/favicon\.ico" type="image/x-icon">\r\n<title>WLC_Control - Error - 400</title>\r\n<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">\r\n\r\n<link rel="stylesheet" type="text/css" href="/css/login\.css">\r\n    </head><body  ><div class="header">\r\n<a href="http://www\.lancom-systems\.de"><img class="headerimg" src="/images/productsvg\.svg" alt="LANCOM Systems Homepage"></a><p class="headerp">LANCOM WLC-([\w._+-]+)</p>
+      product: Lancom WLAN Controller httpd
+      info: 'model: WLC-$1'
+      cpes:
+        - h:lancom:wlc-$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: httpd/2\.0\r\nDate: .* GMT\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY BGCOLOR="#cc9999"><H4>501 Not Implemented</H4>\nThat method is not implemented\.\n</BODY></HTML>\n'
+      product: Acme milli_httpd
+      version: "2.0"
+      info: ASUS RT-AC-series router
+      device-type: broadband router
+      cpes:
+        - a:acme:milli_httpd:2.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nConnection: close\r\n\r\n501 Not Implemented: Only GET and POST supported\r\n'
+      product: Microchip Libraries of Applications TCP/IP Stack httpd
+      cpes:
+        - a:microchip_technology_inc:mla
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Page not found\r\nServer: Go[aA]head(?:-Webs)?/([\d.]+) PeerSec-MatrixSSL/(\d[\w.]+)-OPEN\r\n'
+      product: GoAhead WebServer
+      version: $1
+      info: PeerSec MatrixSSL $2
+      cpes:
+        - a:goahead:goahead_webserver:$1
+        - a:peersec:matrixssl:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:connection: .*\r\n)?(?:content-length: \d+\r\n)?content-type: text/html(?:; charset=UTF-8)?\r\n(?:transfer-encoding: .*\r\n)?\r\n'
+      product: ocaml-cohttp
+      cpes:
+        - a:mirageos:ocaml-cohttp
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nServer: AvigilonOnvifNvt/([\d.]+)\r\n'
+      product: Avigilon webcam ONVIF NVT
+      version: $1
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nHTTP/1\.1\r\nServer: Loxone Miniserver ([\w._-]+)/([\d.]+) UPnP/([\d.]+)\r\n'
+      product: Loxone Miniserver home automation httpd
+      version: $2
+      info: 'name: $1; UPnP $3'
+      device-type: specialized
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 204 \r\ncontent-type: text/html\r\ncontent-length: 0\r\n\r\n'
+      product: Tablo Network TV tuner
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Method Not Implemented\r\nContent-Type: text/plain\r\nContent-Length: 12\r\n\r\nError: 501\r\n'
+      product: Televes CoaxData coax-to-Ethernet bridge
+      device-type: bridge
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 13\r\n\r\n404 Not Found'
+      product: McAfee Agent Common Services httpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 503 Service Unavailable\r\ndate: .*\r\nconnection: close\r\n\r\n<html><body><pre><h1>Service unavailable</h1></pre></body></html>\n'
+      product: HTTP Replicator proxy
+    - name: http-proxy
+      pattern:
+        regex: ^HTTP/1\.1 400 Bad Request\r\n.*This is a WebSEAL error message template file\.
+        options: s
+      product: IBM WebSEAL reverse http proxy
+      device-type: proxy server
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d.*\r\nServer: B[iI][gG]-?IP\r\n'
+        options: s
+      product: F5 BIG-IP load balancer http proxy
+      device-type: load balancer
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r.*\nAllow: GET,HEAD,POST,OPTIONS\r.*\nServer: Oracle-Application-Server-(\w+) Oracle-Web-Cache \('
+        options: s
+      product: Oracle Web Cache http proxy
+      version: $1
+      cpes:
+        - a:oracle:application_server_web_cache:$1
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nContent-Length: 1059\r\nContent-Type: text/html; charset=utf-8\r\n\r\n$'
+      product: XX-Net web proxy tool
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nCache-Control: no-cache\r\nConnection: close\r\nContent-Type: text/html; charset=utf-8\r\nPragma: no-cache\r\nContent-Length: \d+\r\nSet-Cookie: f5[a-z]+=[A-Z]+; HttpOnly; secure\r\n\r\n<html><head><title>Request Rejected</title>'
+      product: F5 BIG-IP load balancer http-proxy
+      device-type: load balancer
+    - name: kerberos-sec
+      pattern:
+        regex: ^\0\0\0[\x50-\x90]~[\x4e-\x8e]0[\x4c-\x8c]\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5\x05\x02\x03...\xa6\x03\x02\x01=\xa9.\x1b.([\w.-]+)\xaa\x1d0\x1b\xa0\x03\x02\x01\0\xa1\x140\x12\x1b\x06kadmin\x1b\x08changepw
+        options: s
+      product: MIT Kerberos
+      info: 'server time: $1-$2-$3 $4:$5:$6Z'
+      hostname: $7
+    - name: monsoon
+      pattern:
+        regex: ^\0\x14\0\x01\xff\xff\xff\xfd\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Monsoon HAVA media streaming
+      device-type: media device
+    - name: msdtc
+      pattern:
+        regex: ^\x10\x1a\x0b\x00\x60\x4d$
+      product: Microsoft Distributed Transaction Coordinator
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: policy
+      pattern:
+        regex: '^action=defer_if_permit Policy Rejection: Invalid data\n\n$'
+      product: Postfix mail policyd
+    - name: pop3
+      pattern:
+        regex: ^\+OK Citadel POP3 server <\d+@([-\w_.]+)>\r\n-ERR Not logged in\.\r\n-ERR Not logged in\.\r\n
+      product: Citadel pop3d
+      hostname: $1
+      cpes:
+        - a:citadel:ux
+    - name: rtsp
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nAllow: DESCRIBE, GET_PARAMETER, PAUSE, PLAY, SETUP, SET_PARAMETER, TEARDOWN\r\n'
+      product: Axis M1054 or P3364 Network Camera rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY\r\nBoard: MIPS\r\nDevCaps: VideoColor,IRLed,LightMode,\r\n\r\n'
+      product: Maygion IPCamera rtspd
+      device-type: webcam
+    - name: sand-db
+      pattern:
+        regex: ^\xff\x02\x04\0\x03\0r\n\x08\0@L\x01\0\x01\x01\0\0\0\0[A-Z]{16}$
+      product: SAND database
+    - name: stingray
+      pattern:
+        regex: ^\x02\x004ComDU2\0\0\0\0\0\0\0\0\0ON\0\x08OPTIONS \0\0\0\0<\x9e\x0e\x08!\x8a6@@\xb2W@\0\0\0\00\xd8\xdd\xbf\xbe\x99\r9@\x0c\xe0\x0b\x08\xb5\xd6\x0f@\xe8\xdd\xbf\xbeh\xa6>@0O\x18\x08\xd4\xb4U@
+      product: StingRay file transfer
+    - name: tgcmd
+      pattern:
+        regex: ^\d+ \d+ \d+,Invalid command\.\n$
+      product: tgcmd.exe support daemon
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 405 METHOD NOT ALLOWED\r\nCache-Control: no-cache\r\nLast-Modified: .*\r\nX-User-Agent: DVArchive\r\nServer: Unknown/0\.0 UPnP/([\d.]+) Virata-EmWeb/R([\d_]+)\r\n'
+      product: Virata-EmWeb
+      version: $SUBST(1,"_",".")
+      info: DVArchive UPnP; UPnP $2
+      os: Linux
+      cpes:
+        - a:virata:emweb:$SUBST(1,"_",".")
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Debian/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: Debian $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:debian:debian_linux:$1
+        - o:linux:linux_kernel
+    - name: vnc-http
+      pattern:
+        regex: '^HTTP/1\.1 200\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nSet-Cookie: UBRWID=[A-F0-9]+\r\nAccess-Control-Allow-Origin: \*\r\nConnection: Keep-Alive\r\n\r\n\xef\xbb\xbf<!DOCTYPE html>\r\n<html>\r\n<head>\r\n<title>ThinVNC</title>\r\n'
+      product: ThinVNC
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nSet-Cookie: mainServerInstance=; path=/(?:; secure)?\r\n(?:Set-Cookie: currentAuth=[^;]*; path=/(?:; secure)?\r\n)?Set-Cookie: CrushAuth=[^;]+; path=/(?:; secure; HttpOnly)?\r\nPragma: no-cache\r\nx-responding-server: ([\w._-]+)\r\nX-dmUser: username\r\nMS-Author-Via: DAV\r\nAllow: '
+      product: CrushFTP httpd
+      hostname: $1
+      cpes:
+        - a:crushftp:crushftp
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: cPanel\r\nPersistent-Auth: false\r\nCache-Control: no-cache[^\r\n]*\r\nConnection: Keep-Alive\r\nVary: Accept-Encoding\r\nAllow: [A-Z, ]+\r\nContent-Length: 0\r\nContent-Type: text/plain\r\nExpires: Fri, 01 Jan 1990 00:00:00 GMT\r\nDAV: 1, 2\r\nKeep-Alive: timeout=15, max=96\r\nMS-Author-Via: DAV\r\n\r\n'
+        options: s
+      product: cPanel webdav
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: websocket
+      pattern:
+        regex: '^HTTP/1\.0 501 Unsupported method \(''OPTIONS''\)\r\nServer: SimpleHTTP/([\w._-]+) Python/([\w._+-]+)\r\nDate: .* GMT\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<head>\n<title>Error response</title>\n</head>\n<body>\n<h1>Error response</h1>\n<p>Error code 501\.\n<p>Message: Unsupported method \(''OPTIONS''\)\.\n<p>Error code explanation: 501 = Server does not support this operation\.\n</body>\n$'
+      product: websockify
+      info: SimpleHTTP $1; Python $2
+      cpes:
+        - a:python:python:$2
+        - a:python:simplehttpserver:$1
+fallback-services:
+    - name: caldav
+      pattern:
+        regex: '^HTTP/1\.[01] 200 OK\r\n.*DAV: [^\r\n]*calendar.*\r\nAllow:'
+        options: s
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.[01] 200 OK.*\r\nDAV: *1.*\r\nAllow:[^\r\n]* PROPFIND'
+        options: s
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.[01] 200 OK.*\r\nAllow:[^\r\n]* PROPFIND.*\r\nDAV: *1'
+        options: s
+

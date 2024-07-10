@@ -1,0 +1,28 @@
+name: SNMPv1public
+protocol: udp
+rarity: 4
+payload: 0\x82\0/\x02\x01\0\x04\x06public\xa0\x82\0\x20\x02\x04\x4c\x33\xa7\x56\x02\x01\0\x02\x01\0\x30\x82\0\x10\x30\x82\0\x0c\x06\x08\x2b\x06\x01\x02\x01\x01\x05\0\x05\0
+ports: 161,260,3401
+services:
+    - name: bittorrent-udp-tracker
+      pattern:
+        regex: ^\x03\0\0\0lic\xa0Connection ID missmatch\.\0
+      product: opentracker UDP tracker
+      cpes:
+        - a:dirk_engling:opentracker
+    - name: snmp
+      pattern:
+        regex: ^0.*\x02\x01\0\x04\x06public\xa2.*\x06\x08\+\x06\x01\x02\x01\x01\x05\0\x04[^\0]([^\0]+)
+        options: s
+      product: SNMPv1 server
+      info: public
+      hostname: $1
+    - name: snmp
+      pattern:
+        regex: ^0.*\x02\x01\0\x04\x06public\xa2
+        options: s
+      product: SNMPv1 server
+      info: public
+    - name: echo
+      pattern:
+        regex: ^0\x82\0/\x02\x01\0\x04\x06public\xa0\x82\0\x20\x02\x04\x4c\x33\xa7\x56\x02\x01\0\x02\x01\0\x30\x82\0\x10\x30\x82\0\x0c\x06\x08\x2b\x06\x01\x02\x01\x01\x05\0\x05\0$

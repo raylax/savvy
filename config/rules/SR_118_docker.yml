@@ -1,0 +1,57 @@
+name: docker
+protocol: tcp
+rarity: 8
+payload: GET /version HTTP/1.1\r\n\r\n
+ports: 2375,2379,2380
+ssl-ports: "2376"
+services:
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nJob-Name: version\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"ApiVersion\":\"([^"]+)\",.*\"KernelVersion\":\"([^"]+)\",.*\"Os\":\"([^"]+)\",.*\"Version\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $4
+      info: API $1; KernelVersion $2
+      os: $3
+      cpes:
+        - a:docker:docker:$4
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nJob-Name: version\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"ApiVersion\":\"([^"]+)\",.*\"Version\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $2
+      info: API $1
+      cpes:
+        - a:docker:docker:$2
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nJob-Name: version\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"Version\":\"([^"]+)\",.*\"ApiVersion\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $1
+      info: API $2
+      cpes:
+        - a:docker:docker:$1
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nServer: Docker.*\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"Version\":\"([^"]+)\",.*\"ApiVersion\":\"([^"]+)\",.*\"Os\":\"([^"]+)\",.*\"KernelVersion\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $1
+      info: API $2; KernelVersion $4
+      os: $3
+      cpes:
+        - a:docker:docker:$1
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nServer: Docker.*\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"Version\":\"([^"]+)\",.*\"ApiVersion\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $1
+      info: API $2
+      cpes:
+        - a:docker:docker:$1
+    - name: docker
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: application/json\r\nJob-Name: version\r\nDate: .*\r\nContent-Length: \d+\r\n\r\n{.*\"Version\":\"([^"]+)\"'
+      product: Docker remote API
+      version: $1
+      info: API 1.11 or older
+      cpes:
+        - a:docker:docker:$1

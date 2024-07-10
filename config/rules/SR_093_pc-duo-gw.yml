@@ -1,0 +1,12 @@
+name: pc-duo-gw
+protocol: udp
+rarity: 8
+payload: \x20\x90\x80\x08\xff\0
+ports: "2303"
+services:
+    - name: pc-duo-gw
+      pattern:
+        regex: ^.........(.*)\0
+        options: s
+      product: Vector PC-Duo Gateway Server
+      info: 'Servername: $1'

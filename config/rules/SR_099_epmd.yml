@@ -1,0 +1,10 @@
+name: epmd
+protocol: tcp
+rarity: 8
+payload: \0\x01\x6e
+ports: "4369"
+services:
+    - name: epmd
+      pattern:
+        regex: ^\0\0\x11\x11
+      product: Erlang Port Mapper Daemon

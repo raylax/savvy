@@ -1,0 +1,5 @@
+name: TRIN00_UNIX_PING
+protocol: udp
+rarity: 9
+payload: png l44adsl
+ports: "27444"

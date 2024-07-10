@@ -1,0 +1,40 @@
+name: ZendJavaBridge
+protocol: tcp
+rarity: 9
+payload: \0\0\0\x1f\0\0\0\0\0\0\0\x0cGetClassName\0\0\0\x02\x04\0\0\0\0\x01\0
+ports: 5000,5001,5002,10001,10002,10003
+services:
+    - name: h.239
+      pattern:
+        regex: ^BadRecord
+      product: Polycom People+Content IP H.239
+      device-type: VoIP phone
+    - name: siemens-logo
+      pattern:
+        regex: ^\x06\x03\x04\0\0\x002
+      product: Siemens LOGO! PLC
+      device-type: specialized
+    - name: mitsubishi-qj71e71
+      pattern:
+        regex: ^\x80\[\0K\xc7P
+      product: Mitsubishi QJ71E71
+      device-type: specialized
+    - name: sybase-adaptive
+      pattern:
+        regex: ^\x04\x01\0\x28\0\0\0\0\xaa\x14\0\xa2\x0f\0\0\x01\x0eLogin failed\.\n\xfd\x02\0\x02\0\0\0\0\0$
+      product: Sybase Adaptive Server
+      os: Windows
+      cpes:
+        - a:sybase:adaptive_server
+        - o:microsoft:windows
+    - name: sybase-monitor
+      pattern:
+        regex: ^\x04\x01\0\x1a\0\0\0\0\xaa\x01\x0eLogin failed\.\n\xfd$
+      product: Sybase Monitor Server
+      os: Windows
+      cpes:
+        - a:sybase:monitor_server
+        - o:microsoft:windows
+    - name: zend-java-bridge
+      pattern:
+        regex: ^\0\0\0\x15\x04\0\0\0\x10java\.lang\.String$

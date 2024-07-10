@@ -1,0 +1,5 @@
+name: UT2K_PING
+protocol: udp
+rarity: 8
+payload: None\0
+ports: "7777"

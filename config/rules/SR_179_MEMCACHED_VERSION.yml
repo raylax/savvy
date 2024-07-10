@@ -1,0 +1,5 @@
+name: MEMCACHED_VERSION
+protocol: udp
+rarity: 9
+payload: \0\x01\0\0\0\x01\0\0version\r\n
+ports: "11211"

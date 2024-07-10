@@ -1,0 +1,327 @@
+name: RPCCheck
+protocol: tcp
+rarity: 4
+payload: \x80\0\0\x28\x72\xFE\x1D\x13\0\0\0\0\0\0\0\x02\0\x01\x86\xA0\0\x01\x97\x7C\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+ports: 81,111,199,514,544,710,711,1433,2049,4045,4999,7000,8307,8333,17007,32750,32751,32752,32753,32754,32755,32756,32757,32758,32759,32760,32761,32762,32763,32764,32765,32766,32767,32768,32769,32770,32771,32772,32773,32774,32775,32776,32777,32778,32779,32780,32781,32782,32783,32784,32785,32786,32787,32788,32789,32790,32791,32792,32793,32794,32795,32796,32797,32798,32799,32800,32801,32802,32803,32804,32805,32806,32807,32808,32809,32810,38978
+services:
+    - name: unicorn-ils
+      pattern:
+        regex: ^\xb5q\x83\x02\x05\xe0\x84\x03\x01\xe1\x82\x85\x03\x04\x93\xe0\x86\x03\x04\x93\xe0\x8c\x01\0\x9fn\x16Unicorn ([\w._-]+) Standard\x9fo\x11SIRSI Corporation\x9fp\x033\.0\xab&\(\$\x81\"Expected CONSTRUCTED PDU not found$
+      product: SirsiDynix Unicorn Integrated Library System
+      version: $1
+    - name: afp
+      pattern:
+        regex: ^\x01\x01\x86\xa0\xff\xff\xecj\0\0\0\0\0\0\0\0
+      product: Mac OS 9 AFP
+      os: Mac OS 9
+      cpes:
+        - o:apple:mac_os:9
+    - name: consul
+      pattern:
+        regex: ^\x82\xa5Error\xb2Handshake required\xa3Seq\0
+      product: HashiCorp Consul RPC
+      cpes:
+        - a:hashicorp:consul
+    - name: airmedia-audio
+      pattern:
+        regex: ^AudioPro\x14\x10\x02\0\0\xacD \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Crestron AirMedia audio data channel
+    - name: exportfs
+      pattern:
+        regex: '^(?:p9sk1@[\w._-]+ )*p9sk1@([\w._-]+)\0/bin/exportfs: auth_proxy: auth_proxy rpc write: : invalid argument\n'
+      product: Plan 9 exportfs
+      hostname: $1
+      os: Plan 9
+      cpes:
+        - o:belllabs:plan_9
+    - name: goldengate
+      pattern:
+        regex: ^\0\+  ERROR\tMGR did not recognize the command\.\0
+      product: Oracle GoldenGate
+      cpes:
+        - a:oracle:goldengate
+    - name: honeywell-confd
+      pattern:
+        regex: ^\0\0\0\0\0\0\+\xc1$
+      product: Honeywell confd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: micro_httpd\r\nCache-Control: no-cache\r\nDate: .*\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n<BODY BGCOLOR=\"#cc9999\"><H4>400 Bad Request</H4>\nNo request found\.\n<HR>\n<ADDRESS><A HREF=\"http://www\.acme\.com/software/micro_httpd/\">micro_httpd</A></ADDRESS>\n</BODY></HTML>\n$'
+      product: micro_httpd
+      cpes:
+        - a:acme:micro_httpd
+    - name: jabber
+      pattern:
+        regex: ^<stream:error xmlns:stream="http://etherx\.jabber\.org/streams"><xml-not-well-formed xmlns="urn:ietf:params:xml:ns:xmpp-streams"/></stream:error>$
+      product: Ignite Realtime Openfire Jabber server
+      version: 3.9.3 or earlier
+      cpes:
+        - a:igniterealtime:openfire
+    - name: jabber
+      pattern:
+        regex: ^<stream:error xmlns:stream="http://etherx\.jabber\.org/streams"><not-well-formed xmlns="urn:ietf:params:xml:ns:xmpp-streams"/></stream:error>$
+      product: Ignite Realtime Openfire Jabber server
+      version: 3.10.0 or later
+      cpes:
+        - a:igniterealtime:openfire
+    - name: kdb
+      pattern:
+        regex: ^'char$
+      product: kdb+
+      cpes:
+        - a:kx_systems:kdb%2b
+    - name: kerberos
+      pattern:
+        regex: ^\0\0\0Q~O0M\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5\x05\x02\x03...\xa6\x03\x02\x01=\xa9\x15\x1b\x13<unspecified realm>\xaa\x0b0\t\xa0\x03\x02\x01\0\xa1\x020\0$
+        options: s
+      product: Heimdal Kerberos
+      info: 'server time: $1-$2-$3 $4:$5:$6Z'
+    - name: kapow-robot
+      pattern:
+        regex: '^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?>\n<!DOCTYPE rql PUBLIC \"-//Kapow Technologies//DTD RoboSuite Robot Query Language ([\w._-]+)//EN\" \"http://www\.kapowtech\.com/robosuite/rql/dtd/robot-query-language_[\w._-]+\.dtd\">\n<rql>\n  <server-error>\n    <message>com\.kapowtech\.robosuite\.api\.java\.rql\.RQLProtocolException: Invalid byte 1 of 1-byte UTF-8 sequence\.</message>'
+      product: Kapow Robot Query Language
+      version: $1
+    - name: kvm
+      pattern:
+        regex: ^\0\0\0\0\0\x84\0\x10\x7c\x9f\xfb\0\0\0\0\0$
+      product: KVM daemon
+    - name: lanrev-agent
+      pattern:
+        regex: ^\x01\0\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01
+      product: LANrev remote administration
+    - name: minecraft
+      pattern:
+        regex: '^\x9a\x01[\x17-\x1a]\x97\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.io\.IOException: Bad packet id 114"\]\}'
+      product: Minecraft game server
+      cpes:
+        - a:minecraft:minecraft
+    - name: minecraft
+      pattern:
+        regex: '^\xbd\x01[\x17-\x1a]\xba\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.lang\.IndexOutOfBoundsException: Index 114 out of bounds for length 1"\]\}'
+      product: Minecraft game server
+      cpes:
+        - a:minecraft:minecraft
+    - name: minecraft
+      pattern:
+        regex: '^\xac\x01[\x19-\x1b]\xa9\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.lang\.IndexOutOfBoundsException: Index: 114, Size: 1"\]\}'
+      product: Minecraft game server
+      cpes:
+        - a:minecraft:minecraft
+    - name: mxie
+      pattern:
+        regex: ^\x80\x00\x00\x0c\x72\xfe\x1d\x13\x00\x00\x00\x01\x00\x00\x00\x02$
+      product: Zultys MXIE VoIP presence server
+    - name: sybase-adaptive
+      pattern:
+        regex: ^\0\x01\0\x08\0\0\x00\0$
+      product: Sybase Adaptive Server
+      os: Windows
+      cpes:
+        - a:sybase:adaptive_server
+        - o:microsoft:windows
+    - name: sybase-backup
+      pattern:
+        regex: ^\0\x01\0\x08\0\0\x01\0$
+      product: Sybase Backup Server
+      os: Windows
+      cpes:
+        - a:sybase:backup_server
+        - o:microsoft:windows
+    - name: syncsort-cmagent
+      pattern:
+        regex: ^\x80\0\0.\x0f\x02\x02\x06\t\x1d\x02\x11m\x04\x15\x17\x01\x06c\x7csww{t\x1b...On\x04\x0f\x1d\x19wE\x0f\x13\x15\x08\x13g\x06\x03\x15\x04\x08\x0f\x13e\x18fm.ug
+      product: Syncsort Backup Express cmagent
+    - name: synobtrfsreplicad
+      pattern:
+        regex: ^\x80\0\0\(r\xfe\x1d\x13\0\0\0\x19
+      product: Synology Snapshot Replication shared folder
+      device-type: storage-misc
+    - name: tandem-print
+      pattern:
+        regex: ^\x01$
+      product: Sharp printer tandem printing
+      device-type: printer
+    - name: drda
+      pattern:
+        regex: ^\0\x15\xd0\x02\xff\xff\0\x0f\x12E\0\x06\x11I\0\x08\0\x05\x11\?\x06$
+      product: IBM DRDA
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\0C..\0\0\xaa\0\0\0/\x0f\xa2\x01\x0e.. Login failed\r\n\x14Microsoft SQL Server\0\0\0\xfd\0\xfd\0\0\0\0\0\x02$
+        options: s
+      product: Microsoft SQL Server
+      version: "6.5"
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:6.5
+        - o:microsoft:windows
+    - name: netman
+      pattern:
+        regex: ^\0\0\0 \0\0\0\x01\xd5\x1f\x0fK\0\0\0\0\x18\?c\0\0\0\0\0\x01\0\0\x00([\w._-]+)   $
+      product: Tivoli Workload Scheduler Netman
+      version: $1
+    - name: nim
+      pattern:
+        regex: ^\0$
+      product: IBM AIX Network Installation Management
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: ossec-agent
+      pattern:
+        regex: ^\xdf\x06\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\x97\|\0\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x10\0\0\0$
+      product: OSSEC Agent
+      cpes:
+        - a:ossec:ossec
+    - name: riverbed-stats
+      pattern:
+        regex: ^a\x0f\x02\x04fiji\x02\x01\0\x02\x01\0\x02\x01\0$
+      product: Riverbed Steelhead Mobile caching proxy statistics
+      device-type: proxy server
+    - name: rpcbind
+      pattern:
+        regex: ^\x80\0\0.\x72\xfe\x1d\x13\0\0\0\x01\0\0\0\0\0\0\0[\x00-\x03\x06]
+    - name: rpcbind
+      pattern:
+        regex: ^\x80\0\0.\x72\xfe\x1d\x13\0\0\0\x01\0\0\0\x01\0\0\0\x00\0\0\0[\x00-\x02]\0\0\0[\x00-\x02]
+    - name: rpcbind
+      pattern:
+        regex: ^\x80\0\0.\x72\xfe\x1d\x13\0\0\0\x01\0\0\0\x01\0\0\0\x01\0\0\0[\x00-\x07]
+    - name: rtdscchcch
+      pattern:
+        regex: ^\x03\x11\0\x02V1\xec\xe7\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xdd\0\x04\0\0
+      product: SIX Market Data Feed (MDF)
+      cpes:
+        - a:six_group:market_data_feed
+    - name: raid-mon
+      pattern:
+        regex: ^\0 \0.{5}\x04\0\0\0\x02\\@
+        options: s
+      product: Promise RAID message agent
+    - name: raid-mon
+      pattern:
+        regex: ^\x02 \0.{5}\x04\0\0\0\x02\\@
+        options: s
+      product: Promise RAID message agent
+    - name: solidworks-remotesolve
+      pattern:
+        regex: ^\0\0\0\0\0\0\0\0T\x01\x04\x80
+      product: SolidWorks Remote Solver for Flow Simulation
+      version: "2009"
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfb\0\xff\xfd\0Username: data_error\r\r\n\(rdata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\n\|'
+      product: Jungo OpenRG telnetd
+      info: Actiontec MI424-WR
+      os: Linux
+      device-type: WAP
+      cpes:
+        - o:linux:linux_kernel
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfb\0\xff\xfd\0Username: data_error\r\n\(rdata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\ndata_error\r\n\|'
+      product: Jungo OpenRG telnetd
+      info: Linksys RV082 WAP
+      os: Linux 2.4
+      device-type: WAP
+      cpes:
+        - h:linksys:rv082
+        - o:linux:linux_kernel:2.4
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfb\0\xff\xfd\0Log level 3\r\r\nUsername: data_error\r\r\n\(rdata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\ndata_error\r\r\n\|'
+      product: Jungo OpenRG telnetd
+      info: Pirelli A125G wireless DSL router
+      os: Linux
+      device-type: WAP
+      cpes:
+        - o:linux:linux_kernel
+    - name: tina
+      pattern:
+        regex: ^\x80\0\0\x0c\0\0\0\x01\0\0\0\x11%\xf5:\0
+      product: Atempo Time Navigator
+    - name: smux
+      pattern:
+        regex: ^A\x01\x02$
+      product: HP-UX smux
+      info: SNMP Unix Multiplexer
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: shell
+      pattern:
+        regex: ^\x01Permission denied\.\n$
+      product: Netapp ONTAP rshd
+      cpes:
+        - a:netapp:data_ontap
+    - name: kshell
+      pattern:
+        regex: '^\x01remshd: connect: Connection refused\n$'
+      product: HP-UX kerberized rsh
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: securetransport
+      pattern:
+        regex: ^\xde\xad\xbe\xef\x04\0\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x1fem\.requestparserparser\.InvError
+      product: Tumbleweed SecureTransport Transaction Manager Non-Secure Port
+    - name: ed2klink
+      pattern:
+        regex: ^\x16\x15\x16\x16\x16\x12XW\]$
+      product: ED2KLink Server
+    - name: sarad
+      pattern:
+        regex: ^NO LOGIN\0$
+      product: British National Corpud sarad
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nConnection: close\r\nContent-Type: text; charset=plain\r\nContent-Length: 16\r\n\r\ninvalid value 0 $'
+      product: VMware hostd httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: \d+\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request \(ERR_INVALID_REQ\)</TITLE></HEAD><BODY><H1>400 Bad Request</H1><BR>ERR_INVALID_REQ<HR><B>Webserver</B>'
+      product: AVM FRITZ!Box WLAN 7170 WAP http config
+      device-type: WAP
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nSERVER: Linux/([\w._+-]+), UPnP/([\w.]+), Intel SDK for UPnP devices ?/([\w._~-]+)\r\n'
+      product: Intel UPnP reference SDK
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nSERVER: Linux/([\w._+-]+), UPnP/([\w.]+), Portable SDK for UPnP devices ?/([\w._~-]+)\r\n'
+      product: Portable SDK for UPnP
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nSERVER: Linux/([\w._+-]+), UPnP/([\w.]+), Portable SDK for UPnP devices ?/([\w._~-]+)\r\n'
+      product: Portable SDK for UPnP
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: virtualgl
+      pattern:
+        regex: ^VGL\x02\x01$
+      product: VirtualGL
+    - name: http
+      pattern:
+        regex: ^<HTML>\n<HEAD>\n<META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n.*HTTP_NOT_IMPLEMENTED<br>
+        options: s
+      product: Fortinet Firewall SSL VPN
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\x00-\x04]\0\x02\x02[\nF\x28]
+fallback-services:
+    - name: jabber
+      pattern:
+        regex: '^<stream:error '

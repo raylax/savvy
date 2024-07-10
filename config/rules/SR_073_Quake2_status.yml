@@ -1,0 +1,14 @@
+name: Quake2_status
+protocol: udp
+rarity: 8
+payload: \xff\xff\xff\xffstatus
+ports: 27910,27911,27912,27913,27914
+services:
+    - name: quake2
+      pattern:
+        regex: ^\xff\xff\xff\xffprint\n.*\\version\\([^\\]* Linux)(?=\\).*\\gamename\\data1(?=\\)
+      product: Alien Arena game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel

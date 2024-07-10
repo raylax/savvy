@@ -1,0 +1,25 @@
+name: UbiquitiDiscoveryv2
+protocol: udp
+rarity: 9
+payload: \x02\x08\0\0
+ports: "10001"
+services:
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x02[\x06\x09\x0b].[^\0].*\x15\0.([\w-]+)\x16\0.([\d.]+)
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v2 protocol, $1 software ver. $2
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x02[\x06\x09\x0b].[^\0].*\x15\0.([\w-]+)
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v2 protocol, $1
+fallback-services:
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x02[\x06\x09\x0b].[^\0].{48}
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v2 protocol

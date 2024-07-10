@@ -1,0 +1,14 @@
+name: Verifier
+protocol: tcp
+rarity: 8
+payload: Subscribe\n
+ports: "1500"
+services:
+    - name: crossmatchverifier
+      pattern:
+        regex: ^(?:Idle|Notify)\r\n$
+      product: Cross Match Verifier E fingerprint control
+    - name: secure-socket
+      pattern:
+        regex: ^\0$
+      product: CA Secure Socket Adapter

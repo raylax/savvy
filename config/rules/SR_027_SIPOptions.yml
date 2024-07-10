@@ -1,0 +1,1165 @@
+name: SIPOptions
+protocol: tcp
+rarity: 5
+payload: 'OPTIONS sip:nm SIP/2.0\r\nVia: SIP/2.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nMax-Forwards: 70\r\nContent-Length: 0\r\nContact: <sip:nm@nm>\r\nAccept: application/sdp\r\n\r\n'
+ports: 406,5060,8081,31337
+ssl-ports: "5061"
+fallbacks: GetRequest,HTTPOptions
+services:
+    - name: atalla
+      pattern:
+        regex: ^<00#020035#0101##>\r\n<00#020035#0101##>\r\n<00#020035#0101##>\r\n
+      product: Atalla Hardware Security Module payment system
+      device-type: specialized
+    - name: essnet
+      pattern:
+        regex: ^\xff\0\x13\0/v\x0f\0\0\0\0\0\0\0\x01\0\xc8\0\t\0/v\x0f\0\x04\x001040025\0\0
+      product: Hyperion Essbase
+    - name: honeypot
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nAllow: OPTIONS, GET, HEAD, POST\r\nContent-Length: 0\r\nConnection: close\r\n\r\n'
+      product: Dionaea Honeypot httpd
+    - name: honeypot
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nContent-Length: 0\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: sip:nm@nm;tag=root\r\nAccept: application/sdp\r\nTo: sip:nm2@nm2\r\nContact: sip:nm2@nm2\r\nCSeq: 42 OPTIONS\r\nAllow: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK\r\nCall-ID: 50000\r\nAccept-Language: en\r\n\r\n'
+      product: Dionaea Honeypot sipd
+    - name: http
+      pattern:
+        regex: '^SIP/2\.0 501 Not Implemented\r\nServer: Embedded HTTP Server ([\d.]+)\r\n'
+      product: Embedded HTTP Server
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal Server Error\r\nServer: Catwalk/([\d.]+)\r\n'
+      product: Catwalk
+      version: $1
+      info: Canon imageRUNNER C5000-series printer http config
+      device-type: printer
+      cpes:
+        - h:canon:imagerunner_c5000
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal Server Error\r\nServer: Catwalk\r\n'
+      product: Catwalk
+      info: Canon imageRUNNER printer http config
+      device-type: printer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Resource not found\r\nServer: Opera/([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: unite-session-id=[0-9a-f]+; Max-Age=2073600; path=/\r\n'
+        options: s
+      product: Opera Unite httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 302 Found\r\nLocation: ([\w:/.-]*)sip:nm\r\nServer: BigIP\r\nConnection: close\r\nContent-Length: 0\r\n\r\n$'
+      product: F5 BIG-IP load balancer httpd
+      info: redirecting to $1
+      device-type: load balancer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Access Denied\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: logintheme=cpanel; path=/; secure; port=\d+\r\n(?:[^\r\n]+\r\n)*?Server: cpsrvd/([\w._-]+)\r\n'
+        options: s
+      product: cPanel httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Access Denied\r\n(?:[^\r\n]+\r\n)*?Set-Cookie: logintheme=cpanel; path=/; HttpOnly; port=\d+\r\n(?:[^\r\n]+\r\n)*?Server: cpsrvd/([\w._-]+)\r\n'
+        options: s
+      product: cPanel httpd
+      version: $1
+      os: Unix
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Moved Temporarily\r\nDate: .*\r\nLocation: https://[\w._-]+sip:nm\r\nConnection: close\r\n\r\n$'
+      product: Asterisk PBX httpd
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Document Follows\r\nContent-Type: text/html\r\nContent-Length: 106\r\n\r\n<HEAD><TITLE>501 Method Not Implemented</TITLE></HEAD>\r\n<BODY><H1>501 Method Not Implemented</H1>\r\n</BODY>$'
+      product: HP StorageWorks MSL2024 tape library httpd
+      device-type: storage-misc
+    - name: http
+      pattern:
+        regex: '^HTTP/2\.0 404 Not Found\r\nDate: .*\r\nServer: Restlet-Framework/([\w._-]+)\r\n.*<title>Status page</title>\n</head>\n<body style=\"font-family: sans-serif;\">\n<p style=\"font-size: 1\.2em;font-weight: bold;margin: 1em 0px;\">Not Found</p>\n<p>The server has not found anything matching the request URI</p>\n'
+        options: s
+      product: Serviio media server http status
+      info: Restlet framework $1
+      cpes:
+        - a:restlet:restlet:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Restlet-Framework/@major-number@\.@minor-number@@release-type@@release-number@\r\n.*<p>The server has not found anything matching the request URI</p>'
+        options: s
+      product: Serviio media server http status
+      version: "1.2"
+      cpes:
+        - a:restlet:restlet
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal Server Error\r\nContent-Length: \d+\r\nContent-Type: text/plain\r\n\r\nTraceback \(most recent call last\):\n  File \"([\w._/-]+/(?:sickbeard|Sick-Beard)/cherrypy)/wsgiserver/__init__\.py\", line \d+, in communicate\n'
+      product: CherryPy
+      info: 'Sick Beard PVR; path: $1'
+      cpes:
+        - a:cherrypy:cherrypy
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Unimplimented\r\nConnection: close\r\nContent-Length: 0\r\n\r\n'
+      product: Huawei HG8245T modem http config
+      device-type: broadband router
+      cpes:
+        - h:huawei:hg8245t
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H1>501 Not Implemented</H1>\nPOST to non-script is not supported in Boa\.\n</BODY></HTML>\n
+        options: s
+      product: Boa httpd
+      cpes:
+        - a:boa:boa
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 302 Moved\r\nDate: .* GMT\r\nServer: cPanel\r\nPersistent-Auth: false\r\nCache-Control: no-cache\r\nConnection: close\r\nLocation: https://([\w.-]+):2078sip:nm\r\nVary: Accept-Encoding\r\nExpires: Fri, 01 Jan 1990 00:00:00 GMT\r\nX-Redirect-Reason: requiressl\r\n\r\n'
+      product: cPanel https redirector
+      hostname: $1
+    - name: imsp
+      pattern:
+        regex: '^VIA: BAD IMSP busy\r\nFROM: BAD IMSP busy\r\nTO: BAD IMSP busy\r\n'
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 405 Method Not Allowed\r\nCSeq: 42\r\n\r\n'
+      product: Lotus Domino Sametime RTSP
+      cpes:
+        - a:ibm:lotus_domino
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 42 OPTIONS\r\nPublic: OPTIONS, DESCRIBE, PLAY, PAUSE, SETUP, TEARDOWN, SET_PARAMETER, GET_PARAMETER\r\nDate: .*\r\n\r\n'
+      product: Hikvision 7513 POE IP camera rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nCSeq: 42\r\nWWW-Authenticate: Digest realm="Login to ([\w._-]+)", nonce="[a-f\d]{32}"\r\n\r\n'
+      product: Lorex IP camera rtspd
+      hostname: $1
+      device-type: webcam
+    - name: telnet
+      pattern:
+        regex: '^login: Login incorrect\nlogin: Login incorrect\nlogin: Login incorrect\nlogin: Login incorrect\nlogin: Login incorrect\n'
+      product: McAfee firewall telnetd
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PolycomSoundStationIP-SSIP_(\d+)-UA/([\d.]+)_(\w+)\r\n'
+        options: s
+      product: Polycom SoundStation $1
+      version: $2
+      info: 'MAC: $3'
+      device-type: VoIP phone
+      cpes:
+        - h:polycom:soundstation_$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PolycomSoundStationIP-SSIP_(\d+)-UA/([\d.]+)\r\n'
+        options: s
+      product: Polycom SoundStation $1
+      version: $2
+      device-type: VoIP phone
+      cpes:
+        - h:polycom:soundstation_$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: PolycomSoundPointIP-SPIP_(\d+)-UA/([\d.]+)_(\w+)\r\n'
+        options: s
+      product: Polycom SoundPoint $1
+      version: $2
+      info: 'MAC: $3'
+      device-type: VoIP phone
+      cpes:
+        - h:polycom:soundpoint_$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: PolycomSoundPointIP-SPIP_(\d+)-UA/([\d.]+)\r\n'
+        options: s
+      product: Polycom SoundPoint $1
+      version: $2
+      device-type: VoIP phone
+      cpes:
+        - h:polycom:soundpoint_$1
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 400 Invalid Contact information\r\n.*received=[\d.]+;ms-received-port=\d+;ms-received-cid=\d+\r\n
+        options: s
+      product: Microsoft Live SIP client
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 400 Invalid Contact information\r\n(?:[^\r\n]+\r\n)*?Via: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+;ms-received-port=\d+;ms-received-cid=[0-9A-F]{8}\r\nms-diagnostics: \d+;reason=\"Parsing failure\";source=\"([\w._-]+)\"\r\nContent-Length: 0\r\n\r\n$'
+        options: s
+      product: Microsoft Office Communications Server
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 501 Not Implemented.*\r\nServer: SJphone/([-\w_.]+) \(SJ Labs\)\r\n'
+        options: s
+      product: SJphone SIP client
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 405 Method Not Allowed.*\r\nServer: SJphone/([-\w_.]+) \(SJ Labs\)\r\n'
+        options: s
+      product: SJphone SIP client
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: Speedport ([\w._ -]+) \('
+        options: s
+      product: T-Com Speedport
+      version: $1
+      device-type: broadband router
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Speedport/([\d.-]+)\r\n'
+        options: s
+      product: T-Com Speedport
+      version: $1
+      device-type: broadband router
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: X-Lite release ([\w._ -]+)\r\n'
+        options: s
+      product: X-Lite SIP phone
+      version: $1
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: X-Lite Beta release ([\w._ -]+)\r\n'
+        options: s
+      product: X-Lite SIP phone
+      version: $1
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Twinkle/([\w._-]+)\r\n'
+        options: s
+      product: Twinkle softphone
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: BT Home Hub\r\n'
+        options: s
+      product: BT HomeHub
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: BT Home Hub (\d+)\r\n'
+        options: s
+      product: BT HomeHub
+      version: $1
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: TANDBERG/81 \(([\w._ -]+)\)\r\n'
+        options: s
+      product: Tandberg MXP VoIP server
+      version: $1
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: TANDBERG/([\w._-]+) \(([\w._ -]+)\)\r\n'
+        options: s
+      product: Tandberg-$1 VoIP server
+      version: $2
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d .*Server: TANDBERG/(?:69|4098|4100) \(([\w._ -]+)\)\r\n'
+        options: s
+      product: Tandberg VCS VoIP server
+      version: $1
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 400 Transport protocol incorrect\r\n
+      product: Microsoft Office Communications Service 2005
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Accept: application/sdp\r\nAccept-Language: en\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REGISTER, SUBSCRIBE, NOTIFY, REFER, INFO\r\nSupported: replaces\r\nAllow-Events: presence, message-summary, tunnel-info\r\n'
+        options: s
+      product: 3CX VoIP PBX
+      os: Windows
+      device-type: PBX
+      cpes:
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 405 Method Not Allowed\r\n(?:[^\r\n]+\r\n)*?User-Agent: ABS ECC\r\n'
+        options: s
+      product: Alcatel-Lucent OmniTouch Unified Communication VoIP gateway
+      device-type: PBX
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Zoiper (rev\.\d+)\r\n'
+        options: s
+      product: Zoiper VoIP software
+      version: $1
+      cpes:
+        - a:securax:zoiper:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([\w._~+-]+)\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO\r\n'
+        options: s
+      product: Asterisk
+      version: $1
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([\w._~+-]+)\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\n'
+        options: s
+      product: Asterisk
+      version: $1
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Asterisk PBX ([\w._~+-]+)\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY, INFO, PUBLISH\r\n'
+        options: s
+      product: Asterisk
+      version: $1
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Glassfish_SIP_([\w._-]+)\r\n'
+        options: s
+      product: Glassfish SIP Server
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?To: <sip:nm2@nm2>;tag=[0-9a-f-]+\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,INFO,NOTIFY,PRACK,MESSAGE\r\n(?:[^\r\n]+\r\n)*?Supported: replaces,timer,100rel\r\nAccept: application/sdp\r\n'
+        options: s
+      product: Cisco 7940 IP Phone
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Telepathy-SofiaSIP/([\w._-]+) sofia-sip/([\w._-]+)\r\n'
+        options: s
+      product: Telepathy-SofiaSIP
+      version: $1
+      info: sofia-sip $2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 503 Service Unavailable\r\n(?:[^\r\n]+\r\n)*?Warning: 399 \"Routing failed: ccbid=997 tcpindex=2 socket=nm:\d+''\r\n(?:[^\r\n]+\r\n)*?To: <sip:nm2@nm2>;tag=\d+\r\n'
+        options: s
+      product: Cisco CallManager 6
+      cpes:
+        - h:cisco:call_manager:6
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: Thomson Inventel / HW_V[\w._-]+ / FW_V[\w._-]+ / SW_V([\w._-]+)\r\n'
+        options: s
+      product: Aladino SIP phone
+      version: $1
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 406 Not acceptable\r\n(?:[^\r\n]+\r\n)*?Server: sipXecs/([\w._-]+) sipXecs/sipxbridge \(Linux\)\r\n'
+        options: s
+      product: SIPfoundry sipXecs PBX
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: VOIP_Agent_001\r\nAllow: INVITE, ACK, BYE, CANCEL, OPTIONS, SUBSCRIBE, REFER, NOTIFY, UPDATE, MESSAGE, SERVICE, INFO, PING\r\n'
+        options: s
+      product: D-Link DVG-5121SP VoIP adapter
+      device-type: VoIP adapter
+      cpes:
+        - h:dlink:dvg-5121sp
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Sipek on PJSUA v([\w._-]+)/win32\r\n'
+        options: s
+      product: Sipek VoIP
+      version: $1
+      info: on PJSUA
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: snom([\w._-]+)/([\w._-]+)\r\n'
+        options: s
+      product: Snom $1 VoIP phone
+      version: $2
+      device-type: VoIP phone
+      cpes:
+        - h:snom:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:[\d.]+:\d+>\r\nAllow: INVITE,ACK,CANCEL,OPTIONS,UPDATE,INFO,NOTIFY,BYE,REFER\r\nAccept: application/sdp,application/media_control\+xml,application/dtmf-relay,application/dtmf,message/sipfrag;version=2\.0\r\nContent-Length: 0\r\n\r\n'
+      product: Tandberg Codian IP GW 3510 VoIP gateway
+      device-type: VoIP adapter
+      cpes:
+        - h:tandberg:codian_ip_gw_3510
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: (AVM FRITZ!Box Fon WLAN [\w._-]+(?: v\d)?) ([\w._-]+ \(\w+ +\d+ \d+\))'
+        options: s
+      product: $1 SIP
+      version: $2
+      device-type: WAP
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: QIP ([\w._ -]+)\r\n'
+        options: s
+      product: QIP instant messenger SIP
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: T-Com-IpPbxSrv/([\w._-]+)\r\n'
+        options: s
+      product: Telekom Netphone VoIP phone SIP
+      version: $1
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 403 Not relaying\r\n(?:[^\r\n]+\r\n)*?Server: kamailio \(([\w._-]+) \(x86_64/linux\)\)\r\n'
+        options: s
+      product: Kamailio
+      version: $1
+      info: x86_64
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 478 Unresolvable destination \(478/SL\)\r\n(?:[^\r\n]+\r\n)*?Server: kamailio \(([\w._-]+) \(x86_64/linux\)\)\r\n'
+        options: s
+      product: Kamailio
+      version: $1
+      info: x86_64
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 405 Method Not Allowed\r\n(?:[^\r\n]+\r\n)*?User-Agent: Patton SN(\w+) 5BIS MxSF v([\w._-]+) [0-9A-F]+ R([\w._-]+) (\d\d\d\d-\d\d-\d\d) H323 SIP BRI\r\n\r\n'
+        options: s
+      product: Patton SmartNode $1 VoIP adapter http config
+      version: $2 $4
+      os: SmartWare $3
+      device-type: VoIP adapter
+      cpes:
+        - h:patton:sn$1
+        - o:patton:smartware:$3
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nFrom: <sip:nm@nm>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n$'
+      product: Nokia N86 phone SIP
+      device-type: phone
+      cpes:
+        - h:nokia:n86
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=foo\r\nCSeq: 42 OPTIONS\r\nAllow: PRACK, INVITE, ACK, BYE, CANCEL, UPDATE, SUBSCRIBE, NOTIFY, REFER, MESSAGE, OPTIONS\r\nAccept: application/sdp, application/pidf\+xml, application/xpidf\+xml, application/simple-message-summary, message/sipfrag;version=2\.0, application/im-iscomposing\+xml, text/plain\r\nSupported: replaces, 100rel, timer, norefersub\r\nAllow-Events: presence, message-summary, refer\r\nUser-Agent: netTALK\r\n'
+      product: netTALK
+      device-type: phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nFrom: <sip:nm@nm>;tag=root\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE,ACK,CANCEL,BYE,OPTIONS,REFER,NOTIFY\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\nv=0\r\no=- \d+ \d+ IN IP4 [\d.]+\r\ns=-\r\nc=IN IP4 [\d.]+\r\nt=0 0\r\nm=audio 0 RTP/AVP 18 4 3 8 0 101\r\na=rtpmap:101 telephone-event/8000\r\n$'
+      product: eyeP Media VoIP phone SIP
+      device-type: VoIP phone
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Aastra (MX-ONE) SN/([\w._-]+)\r\n'
+        options: s
+      product: Aastra $1 PBX SIP
+      version: $2
+      device-type: PBX
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n$'
+      product: Microsoft Outlook Web Access SIP
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 481 Call Leg/Transaction Does Not Exist\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=0-\w+-\w+-\w+-\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nContent-Length: 0\r\n\r\n$'
+      product: Sony PCS-TL50 videoconferencing SIP
+      cpes:
+        - h:sony:pcs-tl50
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not found\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=local-tag\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContact: <sip:nm@nm>\r\nContent-Length: 0\r\n\r\n$'
+      product: Edgewater Networks Edgemarc 4500 series VoIP gateway SIP
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/4\.0\r\nContent-Length: 0\r\n\r\n'
+      product: Microsoft Lync SIP
+      version: "2010"
+      cpes:
+        - a:microsoft:lync:2010
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/5\.0\r\nContent-Length: 0\r\n\r\n'
+      product: Microsoft Lync SIP
+      version: "2013"
+      cpes:
+        - a:microsoft:lync:2013
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 504 Server time-out\r\nms-user-logon-data: RemoteUser\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nServer: RTC/6\.0\r\nContent-Length: 0\r\n\r\n'
+      product: Microsoft Skype for Business SIP
+      version: "2015"
+      cpes:
+        - a:microsoft:skype_for_business:2015
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 403 Non-self Request-URI\r\n(?:[^\r\n]+\r\n)*?Server: Epygi Quadro SIP User Agent/v([\w._-]+) \(QUADRO-([^\)]*)\)\r\n'
+        options: s
+      product: Epygi Quadro $2 PBX SIP
+      version: $1
+      device-type: PBX
+      cpes:
+        - h:epygi:$2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE,ACK,CANCEL,OPTIONS,UPDATE,INFO,NOTIFY,BYE,REFER\r\nAccept: application/sdp,application/media_control\+xml,application/dtmf-relay,application/dtmf,message/sipfrag;version=2\.0\r\n'
+        options: s
+      product: Cisco TelePresence MCU 4505 videoconference system SIP
+      cpes:
+        - h:cisco:telepresence_mcu_4505
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent:Polycom (HDX [\w._ -]+) \(Release - ([\w._-]+)\)\r\n
+        options: s
+      product: Polycom $1 videoconference system SIP
+      version: $2
+      cpes:
+        - h:polycom:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 403 Forbidden\r\nContent-Type: application/X-NECSIPEXT2MLv1\r\nSupported: timer\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nContent-Length: 99\r\n\r\nInd-ErrDsp=nec-code: 1:Non-Registered Access       ,2: \(Retry after    10 sec\)    ,6:1: EXIT  ,10\r\n'
+      product: NEC SL1100 VoIP PBX
+      device-type: PBX
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: SpeedTouch (\w+)\r\nX-Serialnumber: (\w+)\r\n'
+        options: s
+      product: SpeedTouch $1 SIP
+      info: serial $2
+      device-type: broadband router
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: (?:Polycom/[\d.]+ )?PolycomVVX-([\w._]+)-UA/([\d.]+)(?:_[\da-f]+)?\r\n'
+        options: s
+      product: Polycom $SUBST(1,"_"," ") SIP
+      version: $2
+      device-type: VoIP phone
+      cpes:
+        - h:polycom:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Auerswald COMpact VoIP sofia-sip/([\w._-]+)\r\n'
+        options: s
+      product: sofia-sip
+      version: $1
+      info: Auerswald COMpact 5020 VoIP
+      device-type: PBX
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: FRITZ!OS\r\n'
+        options: s
+      product: AVM FRITZ!OS SIP
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:PolycomRealPresenceGroup(\d+)/([\w._-]+)\r\n
+        options: s
+      product: Polycom RealPresence Group $1 SIP
+      version: $2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: BT Home Hub ([\w._-]+) Build ([\w._-]+)\r\nX-Serialnumber: (\w+)\r\n'
+        options: s
+      product: BT Home Hub $1 SIP
+      version: $2
+      info: 'serial: $3'
+      device-type: VoIP adapter
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 400 Invalid Via Port 0\r\n(?:[^\r\n]+\r\n)*?User-Agent: drgos-drg(\d+)-([\w._-]+)\r\n'
+        options: s
+      product: Genexis DRG $1 SIP
+      version: $2
+      device-type: broadband router
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f\d-]{58}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;received=[\d.]+;branch=foo\r\nSupported: gruu-10,replaces,msrtc-event-categories\r\nContent-Length: 0\r\n\r\n'
+      product: LifeSize UVC Multipoint SIP
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 403 Forbidden\r\nAllow: INVITE, ACK, CANCEL, OPTIONS, BYE, REFER, SUBSCRIBE, NOTIFY\r\n(?:[^\r\n]+\r\n)*?User-Agent: Wowza Streaming Engine ([\w._-]+) build(\d+)\r\n'
+        options: s
+      product: Wowza Streaming Engine sipd
+      version: $1 build $2
+      cpes:
+        - a:wowza:wowza_streaming_engine:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 400 Invalid Contact information\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[0-9A-F]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+;ms-received-port=\d+;ms-received-cid=[0-9A-F]+\r\nms-diagnostics: 1018;reason=\"Parsing failure\";source=\"([\w._-]+)\"\r\nContent-Length: 0\r\n\r\n'
+      product: Microsoft Office Communications Server sipd
+      version: 2007 R2
+      hostname: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?User-Agent: AVM FRITZ!Box ([\w._-]+) Cable \(um\) ([\w._-]+) \([\w ]+\)\r\n'
+        options: s
+      product: AVM FRITZ!Box $1 sipd
+      version: $2
+      device-type: broadband router
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: TAU-1M\.IP/([\w._-]+) SN/\w+ sofia-sip/([\w._-]+)\r\n'
+        options: s
+      product: sofia-sip
+      version: $2
+      info: Eltex TAU-1M.IP VoIP gateway, version $1
+      device-type: VoIP adapter
+      cpes:
+        - a:sofia-sip:sofia-sip:$2
+        - h:eltex:tau-1m.ip:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Zoiper for Windows ([\d.]+) (r\d+)\r\n'
+        options: s
+      product: Zoiper for Windows sipd
+      version: $1
+      info: $2
+      os: Windows
+      cpes:
+        - a:securax:zoiper_for_windows:$1
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: CommsMundi Softswitch\r\n'
+        options: s
+      product: Comms Mundi sipd
+      cpes:
+        - a:wireless_mundi:comms_mundi
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent:Polycom HDX (\d+) HD \(Release - ([\d.-]+)\)\r\n
+        options: s
+      product: Polycom HDX $1 videoconferencing system sipd
+      version: $2
+      device-type: webcam
+      cpes:
+        - h:polycom:hdx_$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d .*\r\nServer: TANDBERG/4102 \(X7\.0\.2\)\r\n'
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nAccept: application/sdp, application/dtmf-relay, application/QSIG, application/broadsoft\r\n(?:[^\r\n]+\r\n)*?Server: Patton (\w+) [^\r\n]+ M5T SIP Stack/([\w._-]+)\r\n'
+        options: s
+      product: M5T SIP Client Engine
+      version: $2
+      info: Patton $1
+      device-type: VoIP adapter
+      cpes:
+        - a:media5corp:m5t_sip_client_engine:$2
+        - h:patton:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 Rawr!!\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[\da-f]{32}\.[\da-f]+\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n'
+      product: Kamailio sipd
+      cpes:
+        - a:kamailio:kamailio
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:Mitel-(\d\w+)-SIP-Phone ([\d.]+) [0-9A-F]{12}\r\n
+        options: s
+      product: Mitel SIP phone sipd
+      version: $2
+      info: 'model: $1'
+      cpes:
+        - h:mitel:$1-ip
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent:Mitel-Mitel-SIP-Phone ([\d.]+) [0-9A-F]{12}\r\n
+        options: s
+      product: Mitel SIP phone sipd
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 484 Address Incomplete\r\n(?:[^\r\n]+\r\n)*?Server: SIP Pulse (\d[\w.]+)\r\n'
+        options: s
+      product: SIP Pulse
+      version: $1
+      cpes:
+        - a:sippulse:sippulse:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: FreeSwitch\r\n'
+        options: s
+      product: FreeSwitch sipd
+      cpes:
+        - a:freeswitch:freeswitch
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PJSUA v([\d.]+) Darwin-([\d.]+)/'
+        options: s
+      product: PJSIP pjsua sipd
+      version: $1
+      info: Darwin $2
+      os: OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PJSUA v([\d.]+) Linux-([\d.]+)/(ix[\w_]+)'
+        options: s
+      product: PJSIP pjsua sipd
+      version: $1
+      info: 'arch: $3'
+      os: Linux $2
+      cpes:
+        - o:linux:linux_kernel:$2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: PJSUA v([\d.]+) win32-([\d.]+)/(ix[\w_]+)'
+        options: s
+      product: PJSIP pjsua sipd
+      version: $1
+      info: 'arch: $3'
+      os: Windows $2
+      cpes:
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: MicroSIP/([\d.]+)\r\n'
+        options: s
+      product: MicroSIP sipd
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Tely_v([\d.-]+)\r\n'
+        options: s
+      product: Tely sipd
+      version: $1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: CSipSimple_([^/-]+)[-\d]*/(r\d+)\r\n'
+        options: s
+      product: CSipSimple sipd
+      version: $2
+      info: 'device: $SUBST(1,"_"," ")'
+      cpes:
+        - a:csipsimple:csipsimple:$2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 500 Server Internal Error\r\n(?:[^\r\n]+\r\n)*?User-Agent: Thomson ([\w-]+) Build ([\d.]+)\r\nX-Serialnumber: (\w+)\r\n'
+        options: s
+      product: Thomson $1 router sipd
+      version: $2
+      info: 'serial: $3'
+      device-type: broadband router
+      cpes:
+        - h:thomson:$1
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Softphone/([\d.]+) \(RingCentral(?: \(\d+\))?; (Windows \w+) \((\d\d) bits\)/([\d.]+); revision: \d+\)\r\n'
+        options: s
+      product: RingCentral Softphone
+      version: $1
+      info: 'arch: $3-bit; OS Version $4'
+      os: $2
+      cpes:
+        - a:ringcentral:softphone:$1
+        - o:microsoft:$2
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Yealink (SIP-[\w_]+) ([\d.]+)\r\n'
+        options: s
+      product: Yealink $1 VoIP phone sipd
+      version: $2
+      device-type: VoIP phone
+      cpes:
+        - h:yealink:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?User-Agent: Asterisk PBX ([\w._+-]+)\r\n'
+        options: s
+      product: Asterisk PBX
+      version: $1
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: OpenS[Ee][Rr] \(([\w\d\.-]+) \(([\d\w/]+)\)\)'
+        options: s
+      product: OpenSER SIP Server
+      version: $1
+      info: $2
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Sip EXpress router \(([\w\d\.-]+) \(([\d\w/]+)\)\)'
+        options: s
+      product: SIP Express Router
+      version: $1
+      info: $2
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: SIP Router \(([\w\d\.-]+) \(([\d\w/]+)\)\)'
+        options: s
+      product: SIP Router
+      version: $1
+      info: $2
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: OpenSIPS \(([\w\d\.-]+) \(([\d\w/]+)\)\)'
+        options: s
+      product: OpenSIPS SIP Server
+      version: $1
+      info: $2
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Cisco-SIPGateway/IOS-([-\d\w.]+)\r\n'
+        options: s
+      product: Cisco SIP Gateway
+      info: IOS $1
+      os: IOS
+      device-type: router
+      cpes:
+        - o:cisco:ios
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Sphericall/([\w._-]+) Build/(\d+)\r\n'
+        options: s
+      product: Sphericall VoIP Gateway
+      version: $1 build $2
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: CommuniGatePro/([\w._-]+)\r\n'
+        options: s
+      product: CommuniGatePro VoIP Gateway
+      version: $1
+      cpes:
+        - a:stalker:communigate_pro:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Sip EXpress router \(([\w._-]+) OpenIMSCore \(i386/linux\)\)\r\n'
+        options: s
+      product: OpenIMSCore SIP EXpress router
+      version: $1
+      info: Linux i386
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: FreeSWITCH-mod_sofia/([\w._ +~-]+)\r\n'
+        options: s
+      product: FreeSWITCH mod_sofia
+      version: $1
+      cpes:
+        - a:freeswitch:freeswitch
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Configured by 2600hz!\r\n(?:[^\r\n]+\r\n)*?Accept: application/sdp\r\nAllow: INVITE, ACK, BYE, CANCEL, OPTIONS, MESSAGE, UPDATE, INFO, REGISTER, REFER, NOTIFY, PUBLISH, SUBSCRIBE\r\n'
+        options: s
+      product: FreeSWITCH
+      device-type: PBX
+      cpes:
+        - a:freeswitch:freeswitch
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?\r\nUser-Agent: 3CXPhoneSystem ([\w._-]+)(?: \(\d+\))?\r\n'
+        options: s
+      product: 3CX PhoneSystem PBX
+      version: $1
+      os: Windows
+      cpes:
+        - a:3cx:3cx_phonesystem:$1
+        - o:microsoft:windows
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 503 Remote end of tunnel is not connected\r\n(?:[^\r\n]+\r\n)*?Warning: \d+ \w+ \"Remote end of the bridge is not connected\"\r\n'
+        options: s
+      product: 3CX PhoneSystem PBX
+      info: misconfigured
+      os: Windows
+      device-type: PBX
+      cpes:
+        - o:microsoft:windows
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: ComdasysB2BUA([\w._-]+)\r\n'
+        options: s
+      product: Comdasys SIP Server
+      version: $1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 405 Method Not Allowed\r\n(?:[^\r\n]+\r\n)*?Server: SIParator/([\w._-]+)\r\n'
+        options: s
+      product: Ingate SIParator
+      version: $1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Audiocodes-Sip-Gateway-(Mediant [\w._-]+)/v([\w._-]+)\r\n'
+        options: s
+      product: Audiocodes $1 SIP gateway
+      version: $2
+      device-type: VoIP adapter
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Audiocodes-Sip-Gateway-(MP-[\w._ -]+)/v\.([\w._-]+)\r\n'
+        options: s
+      product: Audiocodes $1 SIP gateway
+      version: $2
+      device-type: VoIP adapter
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?User-Agent: Berofix VOIP Gateway\r\n'
+        options: s
+      product: Berofix VoIP gateway
+      device-type: VoIP adapter
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: HiPath ([\w._-]+) V([\w._ -]+) SIP Stack/([\w._-]+)\r\n'
+        options: s
+      product: Siemens HiPath $1 VoIP gateway
+      version: $2
+      info: SIP stack $3
+      device-type: VoIP adapter
+      cpes:
+        - h:siemens:hipath_$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 503 Service Unavailable\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w+\r\nDate: .*?\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nWarning: \d+ [\w._-]+ \"Unable to find a device handler for the request received on port \d+ from [\d.]+\"\r\nContent-Length: 0\r\n\r\n'
+      product: Cisco Unified Communications Manager
+      cpes:
+        - a:cisco:unified_communications_manager
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 503 Service Unavailable\r\nDate: .*\r\nWarning: \d+ \"Routing failed: ccbid=\d+ tcpindex=\d+ socket=nm:\d+''\r\nFrom: <sip:nm@nm>;tag=root\r\nContent-Length: 0\r\nTo: <sip:nm2@nm2>;tag=\d+\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nCSeq: 42 OPTIONS\r\n\r\n'
+      product: Cisco Unified Communications Manager
+      cpes:
+        - a:cisco:unified_communications_manager
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 100 Trying\r\n(?:[^\r\n]+\r\n)*?Server: Sipwise NGCP Proxy ([\w._-]+)\r\n'
+        options: s
+      product: Sipwise NGCP SIP
+      version: $1
+      device-type: PBX
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: NEC-i SL Series ([\w._-]+)/2\.1\r\n'
+        options: s
+      product: NEC SL-series VoIP PBX
+      version: $1
+      device-type: PBX
+    - name: sip-proxy
+      pattern:
+        regex: ^SIP/2\.0 400 Bad Request - Branch in top Via header has no Magic Cookie\r\nv:SIP/2\.0/TCP nm;branch=foo;received=[\d.]+\r\nf:<sip:nm@nm>;tag=root\r\nt:<sip:nm2@nm2>;tag=to_tag_[\da-f]+\r\ni:50000\r\nCSeq:42 OPTIONS\r\nl:0\r\n\r\n
+        options: s
+      product: Nokia CFX-5000 SIP core controller
+      device-type: PBX
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 403 Forbidden\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=\w{16}\r\nCSeq: 42 OPTIONS\r\nCall-ID: 50000\r\nVia: SIP/2\.0/TCP nm;branch=foo\r\nContent-Length: 0\r\n\r\n'
+      product: Avaya Session Border Controller
+      cpes:
+        - a:avaya:session_border_controller
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Mediant (\d+)/v\.([\d.]+)[\w.]+\r\n'
+        options: s
+      product: AudioCodes Mediant $1 session border controller sipd
+      version: $2
+      cpes:
+        - h:audiocodes:mediant_$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Altitude vBox\r\n'
+        options: s
+      product: Altitude vBox VoIP PBX
+      device-type: PBX
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Asterisk PBX ([\w._+~-]+)\r\n'
+        options: s
+      product: Asterisk PBX
+      version: $1
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: FPBX-([\d.]+)\(([\d.]+)\)\r\n'
+        options: s
+      product: FreePBX
+      version: $1
+      info: Asterisk $2
+      device-type: PBX
+      cpes:
+        - a:digium:asterisk:$2
+        - a:sangoma:freepbx:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Speedport (W \w+)/Version -([\d.]+)\r\n\r\n'
+        options: s
+      product: Telekom Speedport router sipd
+      version: $2
+      info: model $1
+      device-type: broadband router
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 (?:[^\r\n]*\r\n(?!\r\n))*?Server: Mitel SIP-DECT \(SW-Version=([\w._-]+)\)\r\n'
+        options: s
+      product: Mitel SIP DECT OpenMobility Manager sipd
+      version: $1
+      cpes:
+        - a:mitel:openmobility_manager:$1
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 \d\d\d .*\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[^;\n]+;rport=\d+\r\nContact: <sip:[^>]+>;\+sip\.instance="<urn:uuid:[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}>"\r\nAllow: INVITE, ACK, CANCEL, BYE, NOTIFY, INFO, MESSAGE, UPDATE\r\nContent-Length: 0\r\n\r\n'
+      product: IBM Notes sipd
+      cpes:
+        - a:ibm:notes
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 404 Not Found\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f\d]{8}-[a-f\d]{8}\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n'
+      product: Cisco Unified Communications Manager sipd
+      cpes:
+        - a:cisco:unified_communications_manager
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 400 Via transport inconsistent with actual transport\r\nVia: SIP/2\.0/TCP nm:5060;received=[^;]+;branch=foo\r\nCall-ID: 50000\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>\r\nCSeq: 42 OPTIONS\r\nContent-Length: 0\r\n\r\n'
+      product: Cisco Unified Communications Manager sipd
+      cpes:
+        - a:cisco:unified_communications_manager
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=.*\r\nFrom: <sip:nm@nm>;tag=root\r\nTo: <sip:nm2@nm2>;tag=[a-f0-9]{32}\r\nCall-ID: 50000\r\nCSeq: 42 OPTIONS\r\nAllow: INVITE, ACK, BYE, CANCEL, REFER, OPTIONS, INFO, NOTIFY, PRACK, UPDATE\r\nAccept: application/sdp\r\nContent-Type: application/sdp\r\nContent-Length: \d+\r\n\r\n'
+      product: Telos Z/IP ONE sipd
+      device-type: specialized
+    - name: sip-proxy
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\nVia: SIP/2\.0/TCP nm;branch=foo;received=[^;]*;rport=\d+;ingress-zone=(\S+)\r\n(?:[^\r\n]+\r\n)*?Server: Cisco-CUCM([\d.]+)\r\n'
+        options: s
+      product: Cisco Unified Communications Manager sipd
+      version: $2
+      info: 'zone: $1'
+      cpes:
+        - a:cisco:unified_communications_manager:$2
+    - name: ssl/http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nConnection: close\r\nServer: AppWork GmbH HttpServer\r\n\r\n'
+      product: AppWork JDownloader2 httpd
+      cpes:
+        - a:appwork:jdownloader:2
+    - name: irc-proxy
+      pattern:
+        regex: ^Login failed\. Disconnecting\.\r\n$
+      product: psyBNC
+      info: Login Failed
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nConnection: close\r\nServer: UPnP/([\w._-]+), DLNADOC/([\w._-]+), Platinum/([\w._-]+)\r\n\r\n'
+      product: Platinum upnpd
+      version: $3
+      info: XBMC; DLNADOC $2; UPnP $1
+      os: Linux
+      cpes:
+        - a:plutinosoft:platinum:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Length: \d+\r\nContent-Type: text/html\r\nServer: Linux/(\w+) UPnP/([\d.]+) DLNADOC/([\d.]+) Platinum/([\d.]+)\r\n\r\n'
+      product: Platinum unpnd
+      version: $4
+      info: 'arch: $1; UPnP $2; DLNADOC $3'
+      os: Linux
+      cpes:
+        - a:plutinosoft:platinum:$4
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Unimplemented\r\nServer: unspecified, UPnP/([\w._-]+), unspecified\r\nConnection: close\r\nContent-Length: 0\r\n\r\n'
+      product: Cisco-Linksys E4200 WAP upnpd
+      info: UPnP $1
+      cpes:
+        - h:cisco:e4200
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: cPanel\r\nContent-Length: 0\r\nConnection: Keep-Alive\r\nAllow: UNLOCK,HEAD,MOVE,OPTIONS,LOCK,POST,PUT,COPY,MKCOL,GET,DELETE,PROPFIND\r\nContent-Type: httpd/unix-directory\r\nDAV: 1,2,<http://apache\.org/dav/propset/fs/1>\r\nKeep-Alive: timeout=15, max=96\r\nMS-Author-Via: DAV\r\n\r\n'
+        options: s
+      product: cPanel webdav
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: webdav
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: cPanel\r\nPersistent-Auth: false\r\nCache-Control: no-cache[^\r\n]*\r\nConnection: Keep-Alive\r\nVary: Accept-Encoding\r\nAllow: [A-Z, ]+\r\nContent-Length: 0\r\nContent-Type: text/plain\r\nExpires: Fri, 01 Jan 1990 00:00:00 GMT\r\nDAV: 1, 2\r\nKeep-Alive: timeout=15, max=96\r\nMS-Author-Via: DAV\r\n\r\n'
+        options: s
+      product: cPanel webdav
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: xmpp
+      pattern:
+        regex: ^<stream:error><bad-format xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error></stream:stream>$
+      product: Isode M-Link XMPP
+      cpes:
+        - a:isode:m-link
+    - name: yamaha-comm
+      pattern:
+        regex: ^@SYS:INPNAMEMULTICH=MULTI CH\r\n@SYS:INPNAMEPHONO=PHONO\r\n@SYS:INPNAMEAV1=Blu-ray\r\n@SYS:INPNAMEAV2=Dreambox\r\n@SYS:INPNAMEAV3=PS 3\r\n@SYS:INPNAMEAV4=AV4\r\n@SYS:INPNAMEAV5=AV5\r\n@SYS:INPNAMEAV6=AV6\r\n@SYS:INPNAMEAV7=AV7\r\n@SYS:INPNAMEVAUX=V-AUX\r\n@SYS:INPNAMEAUDIO1=TV\r\n@SYS:INPNAMEAUDIO2=AUDIO2\r\n@SYS:INPNAMEAUDIO3=AUDIO3\r\n@SYS:INPNAMEAUDIO4=AUDIO4\r\n@SYS:INPNAMEDOCK=DOCK\r\n@SYS:INPNAMEUSB=USB\r\n@TUN:AVAIL=Not Ready\r\n@MAIN:ZONENAME=Main\r\n
+      product: Yamaha RX-V2067 AV receiver
+      device-type: media device
+      cpes:
+        - h:yamaha:rx-v2067
+    - name: zabbix
+      pattern:
+        regex: ^OK$
+      product: Zabbix Monitoring System
+      cpes:
+        - a:zabbix:zabbix
+    - name: zeiss-axio
+      pattern:
+        regex: '^SIP/2\.0\rID: 50000\rTIONS\r'
+      product: Zeiss Axio Imager microsocope
+fallback-services:
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 ([-\w .]+)\r\n(?:[^\r\n]+\r\n)*?Server: ([-\w /_\.\(\)]{1,80})'
+      product: $2
+      info: 'Status: $1'
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 ([-\w .]+)\r\n(?:[^\r\n]+\r\n)*?User-[Aa]gent: ([-\w /_\.\(\)]{1,80})'
+      product: $2
+      info: 'Status: $1'
+    - name: sip
+      pattern:
+        regex: ^SIP/2\.0 ([-\w .]+)\r\n
+      info: 'SIP end point; Status: $1'

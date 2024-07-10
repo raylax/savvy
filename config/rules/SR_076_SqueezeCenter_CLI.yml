@@ -1,0 +1,13 @@
+name: SqueezeCenter_CLI
+protocol: tcp
+rarity: 8
+payload: serverstatus\r\n
+ports: "9090"
+services:
+    - name: squeezecli
+      pattern:
+        regex: ^serverstatus.*version%3A([\.\d]+) uuid%3A([-\w]+) info%20total%20albums%3A\d+ info%20total%20artists%3A\d+ info%20total%20genres%3A\d+ info%20total%20songs%3A(\d+) player%20count%3A\d+ sn%20player%20count%3A\d+ other%20player%20count%3A\d+\r\n
+        options: s
+      product: SqueezeCenter CLI
+      version: $1
+      info: 'UUID: $2, Total songs: $3'

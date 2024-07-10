@@ -1,0 +1,5 @@
+name: PCANY_STATUS
+protocol: udp
+rarity: 8
+payload: ST
+ports: "5632"

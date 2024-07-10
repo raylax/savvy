@@ -1,0 +1,29 @@
+name: firebird
+protocol: tcp
+rarity: 8
+payload: \0\0\0\x01\0\0\0\x13\0\0\0\x02\0\0\0\x24\0\0\0\x0bservice_mgr\0\0\0\0\x02\0\0\0\x13\x01\x08scanner \x04\x05nmap \x06\0\0\0\0\0\x08\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x02\0\0\0\x0a\0\0\0\x01\0\0\0\x02\0\0\0\x03\0\0\0\x04
+ports: "3050"
+services:
+    - name: firebird
+      pattern:
+        regex: ^\0\0\0\x03\0\0\0\x0a\0\0\0\x01
+      product: Firebird RDBMS
+      version: Protocol version 10
+      cpes:
+        - a:firebirdsql:firebird
+    - name: cisco-smartinstall
+      pattern:
+        regex: ^\0\0\0\x04\0\0\0\0\0\0\0\x04\0\0\0\x04\0\0\0\x01
+      product: Cisco Switch Smart Install
+      os: IOS
+      device-type: switch
+      cpes:
+        - o:cisco:ios
+fallback-services:
+    - name: firebird
+      pattern:
+        regex: ^\0\0\0\x03\0\0\0.\0\0\0.
+        options: s
+      product: Firebird RDBMS
+      cpes:
+        - a:firebirdsql:firebird

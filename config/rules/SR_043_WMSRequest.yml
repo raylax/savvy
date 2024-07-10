@@ -1,0 +1,118 @@
+name: WMSRequest
+protocol: tcp
+rarity: 6
+payload: \x01\0\0\xfd\xce\xfa\x0b\xb0\xa0\0\0\0MMS\x14\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x12\0\0\0\x01\0\x03\0\xf0\xf0\xf0\xf0\x0b\0\x04\0\x1c\0\x03\0N\0S\0P\0l\0a\0y\0e\0r\0/\09\0.\00\0.\00\0.\02\09\08\00\0;\0 \0{\00\00\00\00\0A\0A\00\00\0-\00\0A\00\00\0-\00\00\0a\00\0-\0A\0A\00\0A\0-\00\00\00\00\0A\00\0A\0A\00\0A\0A\00\0}\0\0\0\xe0\x6d\xdf\x5f
+ports: 1549,1755,5001,9090
+services:
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0N........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x05\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2\x05\tDHCAST128.*\x04([\w.]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0N........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\nMacmini3,1\x04\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x05\tDHCAST128.*\x04([\w.]+)\x01oafpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.6; Mac mini'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\x4e........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*MacBookAir\d+,\d+\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS\x0fNo User Authent.*\x1b\$not_defined_in_RFC4178@please_ignore$
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Mac OS X 10.6; MacBook Air'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\x4e........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*MacBookPro\d+,\d+\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS\x0fNo User Authent.*\x1b\$not_defined_in_RFC4178@please_ignore$
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Mac OS X 10.6; MacBook Pro'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: dec-notes
+      pattern:
+        regex: ^\x08\0\0\0\x01\0\x02\x04\0\0\0\0$
+      product: DEC Notes
+      os: VMS
+    - name: hl7-mlp
+      pattern:
+        regex: ^\x0b\x1c\r
+      product: HL7 Minimum Layer Protocol
+    - name: jsonrpc
+      pattern:
+        regex: '^{\n   \"error\" : {\n      \"code\" : -32700,\n      \"message\" : \"Parse error\.\"\n   },\n   \"id\" : 0,\n   \"jsonrpc\" : \"([\w._-]+)\"\n}\n'
+      product: XBMC JSON-RPC
+      version: $1
+      os: Linux
+      device-type: media device
+      cpes:
+        - o:linux:linux_kernel
+    - name: jsonrpc
+      pattern:
+        regex: ^{\"error\":{\"code\":-32700,\"message\":\"Parse error\.\"},\"id\":null,\"jsonrpc\":\"([\w._-]+)\"}
+      product: XBMC JSON-RPC
+      version: $1
+      os: Linux
+      device-type: media device
+      cpes:
+        - o:linux:linux_kernel
+    - name: ms-kms
+      pattern:
+        regex: ^\x05\0\x03#\x10\0\0\0 \0\0\0\x02\0\0\0 \0\0\0\0\0\0\0\x03\0\x01\x1c\0\0\0\0
+      product: vlmcsd KMS server emulator
+    - name: shivahose
+      pattern:
+        regex: ^\x02\x06$
+      info: Shiva network modem access
+    - name: slingbox
+      pattern:
+        regex: ^\x01\x01\0\xfd\xce\xfa\x0b\xb0\xa0\0\0\0\x0f\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x12$
+      product: Slingbox streaming video
+    - name: warcraft
+      pattern:
+        regex: ^\0\0\x09$
+      product: World of Warcraft game server
+    - name: wms
+      pattern:
+        regex: ^\x01\0\0.\xce\xfa\x0b\xb0.\0\0\0MMS .\0{7}.{9}\0\0\0\x01\0\x04\0\0\0\0\0\xf0\xf0\xf0\xf0\x0b\0\x04\0\x1c\0\x03\0\0\0\0\0\0\0\xf0\?\x01\0\0\0\x01\0\0\0\0\x80\0\0...\0.\0\0\0\0\0\0\0\0\0\0\0.\0\0\x00(\d)\0\.\x00(\d)\0\.\x00(\d)\0\.\x00(\d)\x00(\d)\x00(\d)\x00(\d)\0\0\0
+        options: s
+      product: Microsoft Windows Media Services
+      version: $1.$2.$3.$4$5$6$7
+      os: Windows
+      cpes:
+        - a:microsoft:windows_media_services:$1.$2.$3.$4$5$6$7
+        - o:microsoft:windows
+    - name: wms
+      pattern:
+        regex: ^\x01\0\0.\xce\xfa\x0b\xb0.\0\0\0MMS .\0{7}.{9}\0\0\0\x01\0\x04\0\0\0\0\0\xf0\xf0\xf0\xf0\x0b\0\x04\0\x1c\0\x03\0\0\0\0\0\0\0\xf0\?\x01\0\0\0\x01\0\0\0\0\x80\0\0...\0.\0\0\0\0\0\0\0\0\0\0\0.\0\0\x00(\d)\0\.\x00(\d)\x00(\d)\0\.\x00(\d)\x00(\d)\0\.\x00(\d)\x00(\d)\x00(\d)\x00(\d)\0\0\0
+        options: s
+      product: Microsoft Windows Media Services
+      version: $1.$2$3.$4$5.$6$7$8$9
+      os: Windows
+      cpes:
+        - a:microsoft:windows_media_services:$1.$2$3.$4$5.$6$7$8$9
+        - o:microsoft:windows
+fallback-services:
+    - name: slmp
+      pattern:
+        regex: ^\xd4\0MP\x04\0\0\0TNM\x0b\0P\0\0\0.......
+        options: s
+      product: Mitsubishi PLC SLMP
+      device-type: specialized

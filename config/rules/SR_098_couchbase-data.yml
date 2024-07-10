@@ -1,0 +1,19 @@
+name: couchbase-data
+protocol: tcp
+rarity: 8
+payload: \x80\x10\0\0\0\0\0\0\0\0\0\0\x15\xf0\xd1\x62\0\0\0\0\0\0\0\0
+ports: "11210"
+services:
+    - name: couchbase-tap
+      pattern:
+        regex: ^\x81\x10..\0\0\0\0\0\0\0.....\0\0\0\0\0\0\0\0ep_version([._\w]+).*ep_dbname([_\\\/\w\s:]+)
+        options: s
+      product: Couchbase Membase
+      version: $1
+      info: 'DB name: $2'
+    - name: couchbase-tap
+      pattern:
+        regex: ^\x81\x10..\0\0\0\0\0\0\0.....\0\0\0\0\0\0\0\0ep_version([._\w]+)
+        options: s
+      product: Couchbase Membase
+      version: $1

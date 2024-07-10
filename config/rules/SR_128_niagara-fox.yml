@@ -1,0 +1,20 @@
+name: niagara-fox
+protocol: tcp
+rarity: 9
+payload: fox a 1 -1 fox hello\n{\nfox.version=s:1.0\nid=i:1\n};;\n
+ports: "1911"
+ssl-ports: "4911"
+services:
+    - name: niagara-fox
+      pattern:
+        regex: ^fox a 0 -1 fox hello\n\{\nfox\.version=s:([\d.]+)\nid=i:\d+.*\napp\.name=s:Station\napp\.version=s:([\d.]+)\n
+        options: s
+      product: Tridium Niagara
+      version: $2
+      info: fox version $1
+      cpes:
+        - a:tridium:niagara:$2
+fallback-services:
+    - name: niagara-fox
+      pattern:
+        regex: ^fox a 0

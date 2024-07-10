@@ -1,0 +1,11 @@
+name: VerifierAdvanced
+protocol: tcp
+rarity: 8
+payload: Query\n
+ports: "1501"
+services:
+    - name: crossmatchverifier
+      pattern:
+        regex: ^Settings\r\nGain\x20(\d+)\r\nContrast\x20(\d+)\r\nTime\x20(\d+)\r\nIllumination\x20(\d+)\r\nProcessed\r\n$
+      product: Cross Match Verifier E fingerprint advanced control
+      info: 'Gain: $1; Contrast: $2; Time: $3; Illumination: $4'

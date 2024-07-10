@@ -1,0 +1,5 @@
+name: RADIUS_ACCESS
+protocol: udp
+rarity: 8
+payload: \x01\0\0\x14\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+ports: 1645,1812

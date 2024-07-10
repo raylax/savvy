@@ -1,0 +1,12 @@
+name: Ventrilo
+protocol: udp
+rarity: 9
+payload: \x01\xe7\xe5\x75\x31\xa3\x17\x0b\x21\xcf\xbf\x2b\x99\x4e\xdd\x19\xac\xde\x08\x5f\x8b\x24\x0a\x11\x19\xb6\x73\x6f\xad\x28\x13\xd2\x0a\xb9\x12\x75
+ports: "3784"
+services:
+    - name: ventrilo
+      pattern:
+        regex: ^.{111}
+        options: s
+      product: Ventrilo
+      version: 2.1.2+

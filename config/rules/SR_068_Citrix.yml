@@ -1,0 +1,21 @@
+name: Citrix
+protocol: udp
+rarity: 5
+payload: \x1e\0\x01\x30\x02\xfd\xa8\xe3\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+ports: "1604"
+services:
+    - name: icabrowser
+      pattern:
+        regex: ^\x30\0\x02\x31\x02\xfd\xa8\xe3\x02\0\x06\x44
+      product: Citrix MetaFrame
+      cpes:
+        - a:citrix:metaframe
+    - name: ntp
+      pattern:
+        regex: ^\x1e\xc0\x010\x02\0\xa8\xe3\0\0\0\0$
+      product: Digium Switchvox PBX ntpd
+      device-type: PBX
+    - name: openvpn
+      pattern:
+        regex: ^\.\x83&SU\xe3_\xd5V\x01\0\0\0\0\0\x010\x02\xfd\xa8\xe3\0
+      product: SoftEther VPN OpenVPN Clone Function

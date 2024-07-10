@@ -1,0 +1,679 @@
+name: FourOhFourRequest
+protocol: tcp
+rarity: 6
+payload: GET /nice%20ports%2C/Tri%6Eity.txt%2ebak HTTP/1.0\r\n\r\n
+ports: 80,81,82,83,84,85,88,2100,8000,8001,8002,8003,8004,8005,8006,8007,8008,8009,8010,8080,8081,8082,8083,8084,8085,8880,8881,8882,8883,8884,8885,8886,8887,8888,9999,49152
+ssl-ports: 443,4443,8443
+fallbacks: GetRequest
+services:
+    - name: bittorrent-tracker
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Length: \d+\r\nContent-Type: text/plain\r\nPragma: no-cache\r\n\r\nyour file may exist elsewhere in the universe\nbut alas, not here\n'
+      product: BitTornado tracker httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 499 Access Denied\.\r\nContent-Length: \d+\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<HTML><TITLE>Access Denied</TITLE><H2>Navi Error\. Access Denied\.</H2><BODY><P>Please check the typed URL\.</P></BODY></HTML>'
+      product: EMC Clariion CX300 switch http config
+      device-type: switch
+      cpes:
+        - h:emc:clariion_cx300
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\nContent-Type: text/html \n\n<tr>\n<td>\n<img src=\"/clearpixelIcon\?ac=20\" height=\"5\" width=\"0\" border=\"0\" alt=\"\" title=\"\">'
+      product: Perforce p4web http interface
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Type: text/html \r\n\r\n<tr>\n<td>\n<img src=\"/clearpixelIcon\?ac=20\" height=\"5\" width=\"0\" border=\"0\" alt=\"\" title=\"\">'
+      product: Perforce p4web http interface
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404\nContent-Type: text/html\n\n<HTML>\n<HEAD>\n<!-- \(C\) COPYRIGHT IBM CORP\. 1996,2004 -->\n<TITLE>LCFD Error 404</TITLE>\n'
+      product: IBM Tivoli Endpoint httpd
+      cpes:
+        - a:ibm:tivoli_endpoint_manager
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200\r\nContent-type: text/html\r\n\r\nInvalid request$'
+      product: IBM Tivoli Endpoint httpd
+      cpes:
+        - a:ibm:tivoli_endpoint_manager
+    - name: http
+      pattern:
+        regex: '^<html>\n<link rel=stylesheet href=form\.css>\n<body onload=''document\.login\.passwd\.focus\(\)''>\n<form name=login method=POST>\n.*System Name &nbsp; : ([^\r\n]+)\n.*Location Name : ([^\r\n]+)\n.*MAC Address &nbsp;&nbsp; : ([-\w]+)\n\n'
+        options: s
+      product: Allnet/Cameo/D-Link switch http config
+      info: $1@$2; MAC $3
+      device-type: switch
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nContent-Type: text/html\r\nWWW-Authenticate: Digest realm=\"Raid Console\", qop=\"auth\", nonce=\"\w+\"\r\nContent-Length: 0\r\n\r\n'
+      product: Areca RAID-Controller http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\n\r\n404 Not Found: \[/nice ports,/Trinity\.txt\.bak\]$'
+      product: SHTTPD
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 404 Not Found\r\n.*<LINK REL=\"stylesheet\" HREF=\"/style\.css\" TYPE=\"text/css\"></HEAD>\r\n<BODY><H2>URL demand\xe9e introuvable\.</H2>
+        options: s
+      product: Lexmark Optra T610 printer http config
+      info: French
+      device-type: printer
+      cpes:
+        - h:lexmark:optra_t610
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 403 File not found - unknown extension\r\n\r\n
+      product: apt-cache/apt-proxy httpd
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Sorry, not allowed to fetch that type of file: Tri%6Eity\.txt%2ebak\r\n\r\n'
+      product: apt-cache httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 304 Not Modified\r\nContent-Length: 0\r\nServer: Unknown\r\n\r\n'
+      product: McData 4500 fibre switch http config
+      device-type: switch
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: KM-httpd/([-\w_.]+)\r\n.*<em>HTTP Response Code: </em> 404<br><em>From server at: </em> ([-\w_.]+)<br><em>'
+        options: s
+      product: Konica Minolta printer http config
+      version: $1
+      hostname: $2
+      device-type: printer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Object Not Found\r\nContent-Type: text/html\r\n\r\n<body><h1>HTTP/1\.0 404 Object Not Found\r\n</h1></body>'
+      product: Microsoft IIS httpd
+      version: 3.X
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services:3
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Medusa/([\w.]+)\r\n.*<title>Asterisk/DeStar PBX :: Page not found</title>\n'
+        options: s
+      product: Medusa httpd
+      version: $1
+      info: Destar Asterisk PBX http config
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 404 Can't find file\r\n$
+      product: Dynamode/Motorola WAP http config
+      device-type: WAP
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Server: lighttpd/([\d.]+)\r\n'
+        options: s
+      product: lighttpd
+      version: $1
+      cpes:
+        - a:lighttpd:lighttpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Type: text/html\r\nContent-Length: 241\r\n\r\n<html><head><title>POPFile Web Server Error 404'
+      product: POPFile web control interface
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 No any servlet found for serving /\r\ncontent-type: text/html\r\nconnection: keep-alive\r\ncontent-length: \d+\r\nmime-version: [\d.]+\r\n\r\n<HTML><HEAD><TITLE>400 No any servlet found for serving /</TITLE></HEAD><BODY BGCOLOR=\"#F1D0F2\"><H2>400 No any servlet found for serving /</H2><HR><ADDRESS><A HREF=\"http://tjws\.sourceforge\.net\">Rogatkin''s JWS based on Acme\.Serve Version ([\w._-]+), \$Revision: ([\w._-]+) \$'
+      product: Rogatkin's JWS httpd
+      version: $2
+      info: Based on Acme.Serve $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\n  <head>\n    <title>Linksys PAP2 Configuration</title>\r\n'
+      product: Linksys PAP2 VoIP http config
+      device-type: VoIP adapter
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK.*\nServer: HPSMH\n.*\n<title>System Management Homepage</TITLE>'
+        options: s
+      product: HP System Management Homepage
+      os: HP-UX
+      cpes:
+        - a:hp:system_management_homepage
+        - o:hp:hp-ux
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 499 Unauthorized user access\. Check User/Password/Scope\. \r\nContent-Length: \d+\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<HTML><TITLE>Access Denied</TITLE><H2>Navi Error\. Access Denied\.</H2><BODY><P>Please check the typed URL\.</P></BODY></HTML>'
+      product: Dell/EMC CX300 Navisphere http config
+      device-type: storage-misc
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nConnection: close\r\nContent-Length: 0\r\nServer: Indy/([\w._-]+)\r\nSet-Cookie: IDHTTPSESSIONID=\w+; path=/\r\n\r\n$'
+      product: Indy httpd
+      version: $1
+      info: MediaPortal TV-Server http config
+      device-type: media device
+      cpes:
+        - a:indy:httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Indy/([\w._-]+)\r\n'
+        options: s
+      product: Indy httpd
+      version: $1
+      cpes:
+        - a:indy:httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nCache-Control: no-cache\r\nContent-Type:text/html\r\nContent-Length:  +\d+\r\n\r\n.*size=\"2\">VoIP System Embedded \n\t\tWEB Server ([\w._-]+),'
+        options: s
+      product: Perfectone IP301 VoIP phone http config
+      version: $1
+      device-type: VoIP phone
+      cpes:
+        - h:perfectone:ip301
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\nContent-Type: text/html; charset=utf-8\nConnection: close\n\nUnknown operator\.$'
+      product: Arc httpd
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 403 Forbidden\r\n.*\r\n<title>Abilis CPX - 403 forbidden</title>
+        options: s
+      product: Abilis CPX http config
+      device-type: PBX
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nConnection: close\r\nCache-Control: no-cache\r\nServer: WEBCAM\r\nCONTENT-LENGTH:\d+\r\n\r\n\r\nHTTP requested /nice%20ports%2C/Tri%6Eity\.txt%2ebak was not found  UID (\d+) PID (\d+)\n'
+      product: Pixord IP Camera http config
+      info: UID $1; PID $2
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^<html>\n<link rel=stylesheet href=form\.css>\n<body onload=''document\.login\.passwd\.focus\(\)''>\n<form name=login method=POST>\n.*<td bgcolor=#C1D6FF>&nbsp;System Name &nbsp; : ([\w._-]+)\n.*&nbsp;MAC Address &nbsp;&nbsp; : ([\w-]+)\n'
+        options: s
+      product: Web-Smart Gigabit Ethernet Switch http config
+      info: MAC $2
+      hostname: $1
+      device-type: switch
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 404 Not Found\r\n\r\nThis page does not exist or you are not authorized to view it
+      product: Google Search Appliance httpd
+      device-type: specialized
+      cpes:
+        - a:google:search_appliance_software
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Document Follows\r\nContent-Type: text/html\r\nContent-Length: \d+\r\n\r\n<HEAD><TITLE>404 Not Found</TITLE></HEAD>\r\n<BODY><H1>404 Not Found</H1>\r\nUrl ''/NICE%20PORTS%2C\\TRI%6EITY\.TXT%2EBAK'' not found on server<P>\r\n</BODY>'
+      product: HP StorageWorks MSL4048 http config
+      device-type: storage-misc
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Document Follows\r\nContent-Type: text/html\r\nContent-Length: 147\r\n\r\n<HEAD><TITLE>404 Not Found</TITLE></HEAD>\r\n<BODY><H1>404 Not Found</H1>\r\nUrl ''/nice%20ports%2C/Tri%6Eity\.txt%2ebak'' not found on server<P>\r\n</BODY>'
+      product: Crestron automation system httpd
+      device-type: specialized
+      cpes:
+        - h:crestron
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 (?:[^\r\n]*\r\n(?!\r\n))*?Server: WMI (V[\w._-]+)\r\n.*HTTP/1\.1 404 NOT FOUND!<br>Check flash:/s3p03_00\.web , please\.</h1>'
+        options: s
+      product: WMI
+      version: $1
+      info: 3Com 4500 switch http config
+      device-type: switch
+      cpes:
+        - h:3com:4500
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"/webpages\"\r\nServer: DigiSprite\r\n'
+      product: DigiSprite httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 301 Moved Permanently\r\nDate: .*\r\nLocation: https://([\w_.-]+)/nice%20ports%2C/Tri%6Eity\.txt%2ebak\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: 56\r\n\r\n<HTML><BODY><H1>301 Moved Permanently</H1></BODY></HTML>$'
+      product: VMware ESX 4.0 Server httpd
+      hostname: $1
+      cpes:
+        - o:vmware:esx:4.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\n  <head>\n    <title>Sipura SPA Configuration</title>\r\n  </head>\n  <body>\n        <p><font size=\"5\" color=\"#990000\">404 Not Found\r\n!</p>\n</body>\n</head></html>\n$'
+      product: Sipura SPA-2100 VoIP phone http config
+      device-type: VoIP phone
+      cpes:
+        - h:sipura:spa-2100
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403\r\nConnection: close\r\nContent-Type: text/plain\r\n\r\nAccess denied$'
+      product: Vibe Streamer music server httpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nServer: httpd\r\n.*<HTML><HEAD><TITLE>404 Not Found</TITLE></HEAD>\n<BODY BGCOLOR=\"#cc9999\"><H4>404 Not Found</H4>\nFile not found\.\n</BODY></HTML>\n$'
+        options: s
+      product: DD-WRT milli_httpd
+      os: Linux
+      device-type: WAP
+      cpes:
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: HTTP\r\n(?:[^\r\n]+\r\n)*?Content-Type: text/html; charset=utf-8\r\nConnection: close\r\nCache-Control: no-cache\r\n\r\n<HTML><HEAD><TITLE>404 Not Found</TITLE></HEAD>\n<BODY BGCOLOR=\"#fcfcfc\"><H4>404 Not Found</H4>\nFile not found\.\n$'
+        options: s
+      product: Aladino SIP phone http config
+      device-type: VoIP phone
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nContent-Length: 232\r\nCache-Control: max-age=0\r\n.*<address>iNTERFACEWARE Iguana Administration Server</address>\r\n</body>\r\n\r\n</html>\r\n'
+        options: s
+      product: Interfaceware Iguana heathcare management http interface
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: Switch \r\n.*<html dir=ltr>\n<head>.*<h1 style=\"COLOR:000000; FONT: 24pt/30pt \">HTTP/1\.1 404 NOT FOUND!<br>Check flash:/http\.zip , please\.</h1>'
+        options: s
+      product: 3Com switch http config
+      device-type: switch
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not found\r\nDate: .*\r\nServer: Acme\.Serve/v([\w._ -]+)\r\nConnection: close\r\nContent-type: text/html; charset=Cp1252\r\n\r\n'
+      product: Acme.Serve
+      version: $1
+      info: APC PowerChute
+      device-type: power-device
+      cpes:
+        - a:acme:acme.serve:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not found\nDate: .*\nServer: Acme\.Serve/v([\w._ -]+)\nConnection: close\nContent-type: text/html; charset=ISO-8859-1\n\n'
+      product: Acme.Serve
+      version: $1
+      info: APC PowerChute
+      device-type: power-device
+      cpes:
+        - a:acme:acme.serve:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/plain\r\nContent-Length: 35\r\nConnection: close\r\n\r\nError 404: Not Found\nFile not found$'
+      product: Mongoose httpd
+      cpes:
+        - a:cesanta:mongoose
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Length: 35\r\nConnection: close\r\n\r\nError 404: Not Found\nFile not found$'
+      product: Mongoose httpd
+      version: "3.7"
+      cpes:
+        - a:cesanta:mongoose:3.7
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OKContent-Type: text/htmlContent-Length: \d+\r\n\r\nYou have reached Aperio DSC Server running on 0\.0\.0\.0 / \d+\r\n Number of current sessions = \d+\r\n'
+      product: Aperio Digital Slide Conferencing httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Length: 0\r\nConnection: Close\r\nContent-Type: text/html\r\n\r\n$'
+      product: Google Mini search appliance httpd
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 404 Not Found\r\n.*<small>Powered by Jetty://</small>
+        options: s
+      product: Jetty
+      cpes:
+        - a:mortbay:jetty
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: Netwave IP Camera\r\n'
+      product: Netwave webcam http config
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nServer: IP_SHARER WEB ([\w._-]+)\r\nContent-type: text/html\r\nConnection: close\r\n\r\n'
+      product: IP_SHARER WEB
+      version: $1
+      device-type: router
+      cpes:
+        - a:trendnet:ip_sharer_web:$1
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 404 NOT FOUND\r\nContent-Type:text/html\r\n.*<TITLE>\r\n      MiniWeb Client Workbench\r\n    </TITLE>\r\n  </HEAD>\r\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"/CSS/MiniWeb\.css\">\r\n
+        options: s
+      product: Siemens Simatic HMI MiniWeb httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\n<head>\n<title>(SPA\w+) Configuration Utility</title>\n'
+      product: Cisco $1 VoIP phone http config
+      device-type: VoIP phone
+      cpes:
+        - h:cisco:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 ERROR\r\nConnection: keep-alive\r\nContent-Length: 17\r\nContent-Type: text/html\r\n\r\n\r\ninvalid request$'
+      product: uTorrent utserver web interface
+      os: Linux
+      cpes:
+        - a:utorrent:utorrent
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found ?\r\nDate: .*\r\nServer: ZWorld Rabbit\r\nConnection: close\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>404 Not Found</TITLE></HEAD><BODY>404 Not Found</BODY></HTML>\r\n\r\n$'
+      product: Z-World Rabbit microcontroller httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\nContent-Type: text/html\n\n<head><title>File not found</title></head><h1><tt><font color=red>404 / OOPS!</font></tt></h1>\n<i>''File not found''</i>,<br>\nHow dare they say!<br>\nI am here,<br>\njust out of the way\.<br>\n<br>\nHow was I found\?<br>\nA typo\? A mistake\?<br>\nOr were you snooping\?!<br>\n<br>\nNonetheless, we meet at last\.<br>\nI am found - hip hip hooray!<br>\nNevermore can they say:<br>\n<i>''File not found! <a href=index>Back to main page!</a>''</i><br>\n<br>\n<a href=index><img src=\"puretraclogo\.png\" border=0></a>$'
+      product: PureChoice Nose environmental monitor http config
+      cpes:
+        - h:purechoice:nose
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 200 OK\r\n.*<link rel=\"stylesheet\" type=\"text/css\" href=\"/gsa-style\.css\">\n<!--\[if IE 6\]>\n      \n        <link rel=\"stylesheet\" type=\"text/css\" href=\"IE6fixes\.css\"/>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./IE6fixes\.css\"/>\n    <!\[endif\]--><link rel=\"icon\" href=\"/favicon\.gif\" type=\"image/x-icon\">\n<title>Greenbone Security Assistant</title>\n
+        options: s
+      product: Greenbone Security Assistant
+      cpes:
+        - a:greenbone:greenbone_security_assistant
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 200 OK\r\n.*<link rel=\"stylesheet\" type=\"text/css\" href=\"/gsa-style\.css\">\n<!--\[if IE 6\]>\n      \n        <link rel=\"stylesheet\" type=\"text/css\" href=\"IE6fixes\.css\"/>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"\.\./IE6fixes\.css\"/>\n    <!\[endif\]--><link rel=\"icon\" href=\"/favicon\.gif\" type=\"image/x-icon\">\n<title>Greenbone Security Assistant</title>\n
+        options: s
+      product: Greenbone Security Assistant
+      version: 2.0.1
+      cpes:
+        - a:greenbone:greenbone_security_assistant:2.0.1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/html\r\nCache-Control: public\r\nPragma: cache\r\nExpires: .* GMT\r\nDate: .* GMT\r\nLast-Modified: Fri, 12 Aug 2011 00:00:00 GMT\r\nAccept-Ranges: bytes\r\nConnection: close\r\n\r\n<html>\n<head>\n  <title>404 Not Found</title>\n</head>\n<body bgcolor=\"ffffff\">\n  <h2>404 Not Found<h2>\n  <p>\n  \n</body>\n</html>\n$'
+      product: Orange Livebox WAP http config
+      device-type: WAP
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nCache-Control: private, max-age=0, no-cache\r\nContent-Length: 188\r\nContent-Type: text/html\r\n\r\n<P align=\"center\"><STRONG><FONT color=\"#ff3333\">GSCSERVER DEFAULT HANDLER - FILE NOT FOUND</P><BR><P align=\"center\">REQUESTED FILE = nice%20ports%2C/tri%6eity\.txt%2ebak</FONT></STRONG></P>$'
+      product: Geutebrueck GeViControl video surveillance http admin
+      device-type: security-misc
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nConnection: close\r\nServer: Apache\r\nContent-Length: 43\r\n\r\n<h3>No site configured at this address</h3>$'
+      product: Metasploit reverse_http stager
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\n(?:[^\r\n]+\r\n)*?Expires: Thu, 01-Jan-1970 00:00:00 GMT\r\n.*<title>VMware vCloud Director</title>'
+        options: s
+      product: VMware vCloud Director
+      cpes:
+        - a:vmware:vcloud_director
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 [^\r\n]*\r\nContent-Type: text/html;charset=.*<h3>Apache Tomcat/([\d.]+)</h3></body></html>$'
+        options: s
+      product: Apache Tomcat
+      version: $1
+      cpes:
+        - a:apache:tomcat:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 /nice%20ports%2C/Tri%6Eity\.txt%2ebak\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: \d+\r\nDate: .*\r\nConnection: close\r\nServer: wifi-security-server\r\n\r\n<html><head><title>Apache Tomcat - Error report</title>'
+      product: Apache Tomcat
+      cpes:
+        - a:apache:tomcat
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nServer: LG ROAP Server\r\nPragma: no-cache\r\nCache-Control: no-store, no-cache, must-revalidate\r\nConnection: Close\r\nContent-Length: \d+\r\nContent-Type: application/atom\+xml; charset=utf-8\r\n\r\n<\?xml version=\"1\.0\" encoding=\"utf-8\"\?><envelope><ROAPError>401</ROAPError><ROAPErrorDetail>Unauthorized</ROAPErrorDetail></envelope>$'
+      product: LG Smart TV Rights Object Acquisition Protocol
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r.*\nX-Powered-By: (Servlet/[\d.]+ JSP/[\d.]+) \(Oracle GlassFish Server ([\d.]+) Java/Oracle Corporation/([\d.]+)\)\r.*\nX-Powered-By: (JSF/[\d.]+)\r\n'
+        options: s
+      product: Oracle GlassFish application server
+      version: $2
+      info: $1 $4 Java/$3
+      cpes:
+        - a:oracle:glassfish_server:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r.*\nServer: Oracle GlassFish Server ([\d.]+)\r\n'
+        options: s
+      product: Oracle GlassFish application server
+      version: $1
+      cpes:
+        - a:oracle:glassfish_server:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Object Not Found\r\nDate: .*\r\nConnection: close\r\nContent-Type: text/plain\r\n(?:[^\r\n]+\r\n)*?\r\nSorry, file not found\.$'
+        options: s
+      product: Milestone httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type:text/html\r\nExpires: .*\r\nPragma: no-cache\r\nServer: LPC Http Server/V([\d.]+)\r\n\r\n'
+      product: Konica Minolta LPC httpd
+      version: $1
+      device-type: printer
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nServer: ReeCam IP Camera\r\n'
+      product: ReeCam IP Camera httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 301 Moved Permanently\r\nLocation: /error\r\n$'
+      product: Enphase httpd
+      device-type: power-device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nSet-Cookie: sid=[0-9a-f]{128}; path=/; httponly\r\nContent-Type: application/json\r\nDate: .*\r\nConnection: close\r\n\r\n{\"message\":\"Resource Not Found\",\"status\":404}'
+      product: Node.js
+      cpes:
+        - a:nodejs:node.js
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nLast-modified: .*\r\nServer: ESERV-10/([\d.]+)\n'
+      product: Viola ESERV-10 httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 503 DNS error for hostname nice%20ports%2C: Name or service not known\. If nice%20ports%2C refers to a configured cache repository, please check the corresponding configuration file\.\r\nContent-Length: 478\r\nContent-Type: text/html\r\nDate: .*\r\nServer: Debian Apt-Cacher NG/([\w._-]+)\r\nConnection: close\r\n\r\n'
+      product: Debian Apt-Cacher NG
+      version: $1
+      cpes:
+        - a:debian:apt-cacher:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\r\n<head>\r\n<title>(SPA\d\d\d[\w._-]*) Configuration Utility</title>'
+      product: Cisco $1 http config
+      device-type: VoIP phone
+      cpes:
+        - h:cisco:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d \r\n(?:[^\r\n]+\r\n)*?server: CubeCoders-McMyAdmin/IAWS\r\n.*<p id=\"verinfo\">McMyAdmin Enterprise - Web Backend v([\d.]+)</p>'
+        options: s
+      product: CubeCoders McMyAdmin Enterprise Minecraft control panel
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/plain\r\nDate: .*\r\nConnection: close\r\n\r\nCannot GET /nice%20ports%2C/Tri%6Eity\.txt%2ebak'
+      product: Express.js httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nDate: .* GMT\r\nConnection: Keep-Alive\r\nContent-Type: text/html\r\nCACHE-CONTROL: no-cache\r\nContent-Length: \d+\r\n\r\n<html>\n<head>\n<[Mm][Ee][Tt][Aa] http-equiv=\"Content-Type\" content=\"text/html; charset=[Uu][Tt][Ff]-8\"(?: /)?>\r?\n<title>replace</title>\n<body>\n<script language=\"JavaScript\" type=\"text/javascript\">\nvar pageName = ''/'';\n'
+      product: Huawei router http admin
+      device-type: broadband router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nAccept-Ranges: bytes\r\nContent-Length: 0\r\nWww-Authenticate: Basic realm="([^"]+)"\r\nSet-Cookie: com\.apple\.servermgrd=.*\r\nDate: .*\r\n\r\n'
+      product: Apple Server Admin
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 /nice%20ports%2C/Tri%6Eity\.txt%2ebak\r\nX-FRAME-OPTIONS: SAMEORIGIN\r\nContent-Type: text/html;charset=utf-8\r\nContent-Length: \d+\r\nDate: .*\r\nConnection: close\r\nServer: DSM\r\n\r\n<html><head><title>JBoss Web/([\w._-]+) - JBWEB000064: Error report</title>'
+      product: JBoss Web
+      version: $1
+      info: Vormetric Data Security Manager
+      device-type: security-misc
+      cpes:
+        - a:redhat:jboss_enterprise_web_platform:$1
+        - h:vormetric:data_security_manager
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/plain; charset=utf-8\r\nDocker-Distribution-Api-Version: registry/([\d.]+)\r\nX-Content-Type-Options: nosniff\r\nDate: .*\r\nContent-Length: 19\r\n\r\n404 page not found\n'
+      product: Docker Registry
+      info: 'API: $1'
+      cpes:
+        - a:redhat:docker
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nServer: eHTTP v([\w._-]+)\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nCache-Control: no-cache\r\nX-Frame-Options: SAMEORIGIN\r\n\r\n'
+      product: eHTTP
+      version: $1
+      info: HP switch http config
+      device-type: switch
+      cpes:
+        - a:ehttp:ehttp:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\n  <head>\n    <title>Cisco SPA Configuration</title>\r\n'
+      product: Cisco SPA IP phone http config
+      device-type: VoIP phone
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 302 Moved Temporarily\r\nLocation: \.\./index\.html\r\nServer: NET-DK/([\d.]+)\r\nDate: .*\r\nConnection: close\r\nSet-Cookie: sessionToken=\d+; path=/;\r\n\r\n'
+      product: NET-DK httpd
+      version: $1
+      info: Compal CH7465LG-ZG cable modem
+      device-type: broadband router
+      cpes:
+        - h:compal:ch7465lg-zg
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html>\n  <head>\n    <title>Linksys SPA Configuration</title>\r\n  </head>\n  <body>\n        <p><font size="5" color="#990000">404 Not Found\r\n!</p>\n</body>\n</head></html>\n'
+      product: Linksys SPA VoIP phone http config
+      device-type: VoIP phone
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: unknown\r\nContent-Length: 0\r\n\r\n$'
+      product: Ziggo Mediabox XL
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Server error\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: \d+\r\nPragma: no-cache\r\nExpires: .*\r\n\r\n<html><head><script>\r\nfunction IWTop\(\)\{'
+      product: Atozed IntraWeb httpd
+      cpes:
+        - a:atozed:intraweb
+    - name: http-proxy
+      pattern:
+        regex: ^HTTP/1\.0 404 Error\r\n.*<HTML><HEAD><TITLE>Extra Systems Proxy Server</TITLE>
+        options: s
+      product: Extra Systems http proxy
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 502 Bad Gateway\r\nConnection : close\r\n.*\n<title>The requested URL could not be retrieved</title>\n<link href=\"http://passthrough\.fw-notify\.net/static/default\.css\"'
+        options: s
+      product: Astaro firewall http proxy
+      device-type: firewall
+      cpes:
+        - a:astaro:security_gateway_software
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nDate: .*\r\nServer: PanWeb Server/ - \r\n'
+      product: Palo Alto PanWeb httpd
+      device-type: firewall
+      cpes:
+        - a:paloaltonetworks:panweb
+    - name: raop
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nServer: AirTunes/([\w._-]+)\r\nWWW-Authenticate: Digest realm=\"raop\" nonce=\"\w+\"\r\n\r\n$'
+      product: Apple AirTunes RAOP
+      version: $1
+      info: Apple AirPort Express
+      device-type: WAP
+      cpes:
+        - h:apple:airport_express
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: AirTunes/([\w._-]+)\r\n\r\n$'
+      product: Apple AirTunes rtspd
+      version: $1
+      info: Apple TV
+      os: Mac OS X
+      device-type: media device
+      cpes:
+        - a:apple:apple_tv
+        - o:apple:mac_os_x
+    - name: scifinder
+      pattern:
+        regex: ^\0\[T /nic$
+      product: CAS SciFinder
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?SERVER: Linux/([\w._+-]+), UPnP/([\d.]+), Intel UPnP SDK/([\w._~-]+)\r\n'
+        options: s
+      product: Portable SDK for UPnP devices
+      version: $3
+      info: kernel $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d .*\r\nSERVER: (?:TP-LINK )?Wireless (?:N )?(?:Router|AP) ([\w._/-]+)(?:http://www\.tp-link\.com)?, UPnP/([\d.]+)\r\n'
+      product: TP-LINK $1 WAP upnp
+      info: UPnP $2
+      device-type: WAP
+      cpes:
+        - h:tp-link:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: FreeBSD/([\w._-]+), UPnP/1\.0, FUPPES/([\w._-]+)\r\n\r\n'
+        options: s
+      product: Free UPnP Entertainment Service
+      version: $2
+      info: FreeBSD $1
+      os: FreeBSD
+      cpes:
+        - a:ulrich_voelkel:fuppes:$2
+        - o:freebsd:freebsd:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Linux/([\w._-]+), UPnP/1\.0, FUPPES/([\w._-]+)\r\n\r\n'
+        options: s
+      product: Free UPnP Entertainment Service
+      version: $2
+      info: Linux $1
+      os: Linux
+      cpes:
+        - a:ulrich_voelkel:fuppes:$2
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: (\w+)/([\w._-]+), UPnP/1\.0, FUPPES/([\w._-]+)\r\n\r\n'
+        options: s
+      product: Free UPnP Entertainment Service
+      version: $3
+      os: $1 $2
+      cpes:
+        - a:ulrich_voelkel:fuppes:$3
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.[01] \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?SERVER: Linux/(([\d.]+)-[\d.]+) UPnP/([\d.]+) Evolution Media Server DLNADOC/([\d.]+)\r\n'
+        options: s
+      product: Cisco Evolution Media Server upnpd
+      info: UPnP $3; DLNADOC $4; Linux $1
+      os: Linux $2
+      device-type: media device
+      cpes:
+        - a:cisco:evolution_media_server
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nContent-Type: text/plain;charset=UTF-8\r\nContent-Length: [23]\d\d\r\nConnection: close\r\nCache-control: no-cache\r\n\r\n00007\r\n00004\r\n00000\r\n'
+      product: TP-LINK router upnpd
+    - name: vnc-http
+      pattern:
+        regex: ^HTTP/1\.0 404 Not Found\r?\n\r?\n<HTML>\n  <HEAD><TITLE>404 Not Found</TITLE></HEAD>\n  <BODY>\n    <H1>Not Found</H1>\n    The requested file could not be found\.\n  </BODY>\n</HTML>\n
+      product: TightVNC
+      cpes:
+        - a:tightvnc:tightvnc

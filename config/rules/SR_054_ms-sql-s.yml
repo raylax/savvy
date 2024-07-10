@@ -1,0 +1,668 @@
+name: ms-sql-s
+protocol: tcp
+rarity: 7
+payload: \x12\x01\x00\x34\x00\x00\x00\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x0c\x03\x00\x28\x00\x04\xff\x08\x00\x01\x55\x00\x00\x00\x4d\x53\x53\x51\x4c\x53\x65\x72\x76\x65\x72\x00\x48\x0f\x00\x00
+ports: "1433"
+services:
+    - name: iscsi
+      pattern:
+        regex: ^\?\x80\x04\0\0\0\x000\0\0\0\0\0\0\0\0\xff\xff\xff\xff\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\x12\x01\x004\0\0\0\0\0\0\x15\0\x06\x01\0\x1b\0\x01\x02\0\x1c\0\x0c\x03\0\(\0\x04\xff\x08\0\x01U\0\0\0MSSQLServer\0$
+      product: iSCSI Target
+      os: iOS
+      device-type: phone
+      cpes:
+        - o:apple:iphone_os
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x00\xc2
+      product: Microsoft SQL Server 2000
+      version: 8.00.194; RTM
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:gold
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x01\x37
+      product: Microsoft SQL Server 2000
+      version: 8.00.311; RTMa
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x01\x7e
+      product: Microsoft SQL Server 2000
+      version: 8.00.384; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x01\x80
+      product: Microsoft SQL Server 2000
+      version: 8.00.384; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x02\x14
+      product: Microsoft SQL Server 2000
+      version: 8.00.532; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x02\x16
+      product: Microsoft SQL Server 2000
+      version: 8.00.534; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x02\xf8
+      product: Microsoft SQL Server 2000
+      version: 8.00.760; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x02\xfe
+      product: Microsoft SQL Server 2000
+      version: 8.00.766; SP3a
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp3a
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x03\x32
+      product: Microsoft SQL Server 2000
+      version: 8.00.818; SP3+ MS03-031
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x07\xf7
+      product: Microsoft SQL Server 2000
+      version: 8.00.2039; SP4
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x08\x02
+      product: Microsoft SQL Server 2000
+      version: 8.00.2050; SP4+ MS08-040
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x08\x00\x08\x07
+      product: Microsoft SQL Server 2000
+      version: 8.00.2055; SP4+ MS09-004
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2000:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x05\x77
+      product: Microsoft SQL Server 2005
+      version: 9.00.1399; RTM
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:gold
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x05\x7e
+      product: Microsoft SQL Server 2005
+      version: 9.00.1406
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x07\xff
+      product: Microsoft SQL Server 2005
+      version: 9.00.2047; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x08\x7a
+      product: Microsoft SQL Server 2005
+      version: 9.00.2170; SP1+
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0b\xe2
+      product: Microsoft SQL Server 2005
+      version: 9.00.3042; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0b\xee
+      product: Microsoft SQL Server 2005
+      version: 9.00.3054; SP2+
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0b\xfc
+      product: Microsoft SQL Server 2005
+      version: 9.00.3068; SP2+ MS08-040
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0c\x01
+      product: Microsoft SQL Server 2005
+      version: 9.00.3073; SP2+ MS08-052
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0c\x05
+      product: Microsoft SQL Server 2005
+      version: 9.00.3077; SP2+ MS09-004
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0c\x08
+      product: Microsoft SQL Server 2005
+      version: 9.00.3080; SP2+ MS09-062
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0f\xc3
+      product: Microsoft SQL Server 2005
+      version: 9.00.4035; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x0f\xd5
+      product: Microsoft SQL Server 2005
+      version: 9.00.4053; SP3+ MS09-062
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x10\x73
+      product: Microsoft SQL Server 2005
+      version: 9.00.4211; SP3+
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x13\x88
+      product: Microsoft SQL Server 2005
+      version: 9.00.5000; SP4
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x13\xcd
+      product: Microsoft SQL Server 2005
+      version: 9.00.5069; SP4+ MS12-070
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00\x14\xcc
+      product: Microsoft SQL Server 2005
+      version: 9.00.5324; SP4+ MS12-070 cumulative
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x09\x00(..)
+        options: s
+      product: Microsoft SQL Server 2005
+      version: 9.00.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2005
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x04\x33
+      product: Microsoft SQL Server 2008
+      version: 10.00.1075; CTP
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x06\x40
+      product: Microsoft SQL Server 2008
+      version: 10.00.1600; RTM
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:gold
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x06\xfb
+      product: Microsoft SQL Server 2008
+      version: 10.00.1787; Cumulative Update 3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x09\xe3
+      product: Microsoft SQL Server 2008
+      version: 10.00.2531; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x0a\xba
+      product: Microsoft SQL Server 2008
+      version: 10.00.2746; SP1+ Cumulative Update 5
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x0f\xa0
+      product: Microsoft SQL Server 2008
+      version: 10.00.4000; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x0f\xe0
+      product: Microsoft SQL Server 2008
+      version: 10.00.4064; SP2+ MS11-049
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x15\x7c
+      product: Microsoft SQL Server 2008
+      version: 10.00.5500; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x15\x88
+      product: Microsoft SQL Server 2008
+      version: 10.00.5512; SP3+ MS12-070
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x15\xa2
+      product: Microsoft SQL Server 2008
+      version: 10.00.5538; SP3+ MS15-058
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x17\x70
+      product: Microsoft SQL Server 2008
+      version: 10.00.6000; SP4
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00\x18\x61
+      product: Microsoft SQL Server 2008
+      version: 10.00.6241; SP4+ MS15-058
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008:sp4
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x00(..)
+        options: s
+      product: Microsoft SQL Server 2008
+      version: 10.00.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x06\x40
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.1600; RTM
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:gold
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x06\x51
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.1617; RTM+ MS11-049
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x09\xc4
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.2500; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x09\xf6
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.2550; SP1+ MS12-070
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x0f\xa0
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.4000; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x10\xb4
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.4276; SP2+ Cumulative Update 5
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32\x17\x70
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.6000; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0a\x32(..)
+        options: s
+      product: Microsoft SQL Server 2008 R2
+      version: 10.50.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2008_r2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00\x08\x34
+      product: Microsoft SQL Server 2012
+      version: 11.00.2100; RTM
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012:gold
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00\x0b\xb8
+      product: Microsoft SQL Server 2012
+      version: 11.00.3000; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00\x0c\x38
+      product: Microsoft SQL Server 2012
+      version: 11.00.3128; SP1+
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00\x13\xc2
+      product: Microsoft SQL Server 2012
+      version: 11.00.5058; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00\x17\x84
+      product: Microsoft SQL Server 2012
+      version: 11.00.6020; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0b\x00(..)
+      product: Microsoft SQL Server 2012
+      version: 11.00.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2012
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0c\x00\x07\xd0
+      product: Microsoft SQL Server 2014
+      version: 12.00.2000
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2014
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0c\x00\x10\x04
+      product: Microsoft SQL Server 2014
+      version: 12.00.4100; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2014:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0c\x00\x10\x75
+      product: Microsoft SQL Server 2014
+      version: 12.00.4213; SP1+ MS15-058
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2014:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0c\x00\x13\x88
+      product: Microsoft SQL Server 2014
+      version: 12.00.5000; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2014:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0c\x00(..)
+        options: s
+      product: Microsoft SQL Server 2014
+      version: 12.00.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2014
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0d\x00\x06\x41
+      product: Microsoft SQL Server 2016
+      version: 13.00.1601
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2016
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0d\x00\x0f\xa1
+      product: Microsoft SQL Server 2016
+      version: 13.00.4001; SP1
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2016:sp1
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0d\x00\x13\xa2
+      product: Microsoft SQL Server 2016
+      version: 13.00.5026; SP2
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2016:sp2
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0d\x00\x18\x9c
+      product: Microsoft SQL Server 2016
+      version: 13.00.6300; SP3
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2016:sp3
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0d\x00(..)
+      product: Microsoft SQL Server 2016
+      version: 13.00.$I(1,">")
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:2016
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0e\x00\x03\xe8
+        options: s
+      product: Microsoft SQL Server 2017
+      version: 14.00.1000
+      cpes:
+        - a:microsoft:sql_server:2017
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0e\x00\x0c\xb9
+        options: s
+      product: Microsoft SQL Server 2017
+      version: 14.00.3257; CU18
+      cpes:
+        - a:microsoft:sql_server:2017:cu18
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0e\x00(..)
+        options: s
+      product: Microsoft SQL Server 2017
+      version: 14.00.$I(1,">")
+      cpes:
+        - a:microsoft:sql_server:2017
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x0f\x00(..)
+        options: s
+      product: Microsoft SQL Server 2019
+      version: 15.00.$I(1,">")
+      cpes:
+        - a:microsoft:sql_server:2019
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01\x00\x00\x00\x15\x00\x06\x01\x00\x1b\x00\x01\x02\x00\x1c\x00\x01\x03\x00\x1d\x00\x00\xff\x10\x00(..)
+        options: s
+      product: Microsoft SQL Server 2022
+      version: 16.00.$I(1,">")
+      cpes:
+        - a:microsoft:sql_server:2019
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x2b\x00\x00\x00\x00\x00\x00\x1a\x00\x06\x01\x00\x20\x00\x01\x02\x00\x21\x00\x01\x03\x00\x22\x00\x00\x04\x00\x22\x00\x01\xff\x08\x00\x02\x10\x00\x00\x02\x00\x00
+      product: Dionaea honeypot MS-SQL server
+fallback-services:
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00\x25\x00\x00\x01
+      product: Microsoft SQL Server
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server
+        - o:microsoft:windows
+    - name: ms-sql-s
+      pattern:
+        regex: ^\x04\x01\x00[\x25-\x2b]\x00\x00\x01

@@ -1,0 +1,11 @@
+name: rotctl
+protocol: tcp
+rarity: 9
+payload: get_info\n
+ports: "4533"
+services:
+    - name: rotctld
+      pattern:
+        regex: '^get_info: (.*)\nRPRT 0\n'
+      product: Hamlib rotctld
+      info: 'model: $1'

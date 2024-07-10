@@ -1,0 +1,21 @@
+name: tarantool
+protocol: tcp
+rarity: 8
+payload: show info\r\n
+ports: 9001,33015
+services:
+    - name: tarantool
+      pattern:
+        regex: '---\r\ninfo:\r\n  version: \"([^\"]*)\"\r\n  uptime: (\d*)\r\n  pid: (\d*)\r\n  (?:[._\w\s]*: .*\r\n)*  config: \"([^\"]*)\"'
+      product: Tarantool
+      version: $1
+      info: 'Uptime: $2, PID: $3, Config: $4'
+    - name: haproxy-stats
+      pattern:
+        regex: '^Name: HAProxy\nVersion: (\d[\w._~+-]*)\n.*\nUptime: (.+)\n'
+        options: s
+      product: HAProxy stats socket
+      version: $1
+      info: 'uptime: $2'
+      cpes:
+        - a:haproxy:haproxy:$1

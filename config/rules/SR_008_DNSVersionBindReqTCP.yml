@@ -1,0 +1,527 @@
+name: DNSVersionBindReqTCP
+protocol: tcp
+rarity: 3
+payload: \0\x1E\0\x06\x01\0\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+ports: 53,135,512,513,514,543,544,628,1029,2068,2105,2967,5000,5323,5520,5530,5555,5556,6543,7000,7008,13783
+ssl-ports: "853"
+fallbacks: DNSVersionBindReq
+services:
+    - name: ccnet
+      pattern:
+        regex: ^\x01\x01\0\(\0\0\0\0([0-9a-f]{40})
+      info: peer ID $1
+    - name: clementine-remote
+      pattern:
+        regex: ^\0\0\0\x04\x08\x15\x10-
+      product: Clementine Music Player remote control
+      cpes:
+        - a:clementine:clementine
+    - name: exec
+      pattern:
+        regex: ^\x01Login incorrect\.\n$
+    - name: exec
+      pattern:
+        regex: '^\x01rexecd: Login incorrect.?\n$'
+      product: HP-UX rexecd
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: exec
+      pattern:
+        regex: '^\x01rexecd: Couldn''t look up address for your host\n$'
+      product: HP-UX rexecd
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: exec
+      pattern:
+        regex: '^\x01rexecd: [-\d]+ The login is not correct\.\n'
+      product: AIX rexecd
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: exec
+      pattern:
+        regex: '^\x01rexecd: [-\d]+ Connexion incorrecte\.\n'
+      product: AIX rexecd
+      info: French
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: exec
+      pattern:
+        regex: ^\x01INTERnet ACP AUXS failure  Status = %LOGIN-F-NOSUCHUSER\r\n\0$
+      product: OpenVMS execd
+      os: OpenVMS
+      cpes:
+        - o:hp:openvms
+    - name: domaintime
+      pattern:
+        regex: ^\0\x1e\0\x06\x01\0\0\x01......[\xb0-\xff]\x01$
+      product: Greyware Domain Time II
+    - name: goldengate
+      pattern:
+        regex: ^\0&  ERROR\tMGR Did Not Recognize Command\0
+      product: Oracle GoldenGate
+      cpes:
+        - a:oracle:goldengate
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 506 \r\nContent-Type: text/html\r\nServer: JavaWeb/0\r\n\r\n<html><body><h1>506 - IO Error</h1></body></html>$'
+      product: AirDroid httpd
+      os: Android
+      device-type: phone
+      cpes:
+        - a:airdroid:airdroid
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: iscsi
+      pattern:
+        regex: ^\0\x1e\0\x02\0\0\0\x01\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Synology DSM Snapshot Replication iSCSI LUN
+    - name: ixia
+      pattern:
+        regex: '^\0.\x05\x02....\0\x01\x01@\0\0\0\0\0\0\0\0\0.\$Id: //ral_depot/products/IxChariot([\w._-]+)/(?:ENDPOINT|endpoint)/CODE/client\.c#\d+ \$\0\0\0..\0\x02\0\x0ce1_thread\0\0\x18main_process_incoming\0$'
+      product: IxChariot
+      version: $1
+      info: Ixia XR100 performance monitor
+    - name: login
+      pattern:
+        regex: '^\x01Permission denied: Error 0$'
+      product: Digital UNIX login
+      os: Digital UNIX
+      cpes:
+        - o:dec:digital_unix
+    - name: login
+      pattern:
+        regex: '^\0\^A\^@\^@\^@\^@\^@\^@\^Gversion\^Dbind\^@\^@\^P\^@\n\r\n\r\n\r\n\r#################################################\n\r###                                           ###\n\r###  LSI Logic Series 4 SCSI RAID Controller  ###\n\r###      Copyright \d+, LSI Logic Inc\.       ###\n\r###                                           ###\n\r###      Series 4 Disk Array Controller       ###\n\r###        Serial number:  (\w+)         ###\n\r###        Network name:  ([-\w_.]+) *###'
+      product: LSI Logic Series SCSI RAID rlogin
+      info: Serial $1; Network name $2
+    - name: login
+      pattern:
+        regex: '^\0\^A\^@\^@\^@\^@\^@\^@\^Gversion\^Dbind\^@\^@\^P\^@\n\r\n\r\n\r\n\r#####################################################################\n\r###                                                               ###\n\r###               Engenio Series 4, RAID Controller               ###\n\r###  Copyright 2003-2004, Engenio Information Technologies, Inc\.  ###\n\r###                                                               ###\n\r###                Series 4 Disk Array Controller                 ###\n\r###                  Serial number:  (\w+)                   ###\n\r###                     Network name:  ([\w._-]+) *###\n\r'
+      product: IBM DS4400 NAS device rlogin
+      info: Serial $1; Network name $2
+      device-type: storage-misc
+      cpes:
+        - h:ibm:ds4400
+    - name: login
+      pattern:
+        regex: ^\0\r\nSorry, shell is locked\.\r\n$
+      product: FabricOS switch logind
+      device-type: switch
+      cpes:
+        - o:brocade:fabric_os
+    - name: login
+      pattern:
+        regex: '^\0\r\n\nLantronix MSS100 Version V([\d.]+)/\d+\(\d+\)\n\r\nType HELP at the ''Local_\d+> '' prompt for assistance\.\n\r\n\r\n\nUsername> '
+      product: Lantronix MSS100 serial interface logind
+      version: $1
+      device-type: specialized
+    - name: login
+      pattern:
+        regex: '^\[Thread \d+\(INITIAL\)\] at 0x\w+: Segmentation fault \(Stack bottom 0x0\)\n'
+      product: Aficio/NRG/Ricoh printer logind
+      device-type: printer
+    - name: login
+      pattern:
+        regex: '^\x01Winsock RSHD/NT: Protocol negotiation error\.\n\0$'
+      product: Winsock RSHD
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: login
+      pattern:
+        regex: ^\x01Permission denied\.\n$
+      product: Cisco/NetApp logind
+    - name: login
+      pattern:
+        regex: '^\x01Permission denied ?: Error (?:35|0|1)\r?\n?$'
+      product: Tru64 Unix logind
+      os: Tru64 UNIX
+      cpes:
+        - o:compaq:tru64
+    - name: login
+      pattern:
+        regex: ^\x01permission denied\.\n
+      product: Solaris logind
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: login
+      pattern:
+        regex: '^\x01UX:in\.rlogind: Permission denied\.\r\n'
+      product: Siemens HiPath logind
+    - name: login
+      pattern:
+        regex: '^\x01Permission denied : Error \d+\r\n'
+    - name: login
+      pattern:
+        regex: '^\x01rlogind: Acc\xe8s refus\xe9\.\r\n'
+      product: AIX rlogind
+      info: French
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: login
+      pattern:
+        regex: '^\0\^A\^@\^@\^@\^@\^@\^@\^Gversion\^Dbind\^@\^@\^P\^@\n\r\n\r\n\r\n\r#+\n\r### +###\n\r###  LSI Logic Series 4 SCSI RAID Controller  ###.*Serial number:  1T84210104 '
+        options: s
+      product: LSI Series 4 RAID controller logind
+      device-type: storage-misc
+    - name: login
+      pattern:
+        regex: ^\0\r\nEL-(\d+) RealPort Server - US Patent No\. 6,047,319\r\n
+      product: Digi EtherLite $1 RealPort logind
+      device-type: terminal server
+    - name: login
+      pattern:
+        regex: '^\0\n\rSelect access level \(read, write, administer\): \w+ _vxTaskEntry'
+      product: 3Com LANplex switch logind
+      device-type: switch
+    - name: login
+      pattern:
+        regex: '^\0\^A\^@\^@\^@\^@\^@\^@\^Gversion\^Dbind\^@\^@\^P\^@\r\n-> shell restarted\.\r\n\r\n-> '
+      product: ShoreTel VoIP phone logind
+      device-type: VoIP phone
+    - name: login
+      pattern:
+        regex: ^\x01TCPIP RLOGIN Connection refused\0\0$
+      product: OpenVMS logind
+      os: OpenVMS
+      cpes:
+        - o:hp:openvms
+    - name: login
+      pattern:
+        regex: '^\0\r\n-> trcStack aborted: error in top frame\r\ntShell restarted\.\r\n\r\n-> !1 echo_recv: -1\.\r\n'
+      product: ACT VoIP wifi phone logind
+      device-type: VoIP phone
+    - name: login
+      pattern:
+        regex: ^\0\r\nEL-32 EtherLite module\r\n\r\n
+      product: Digi EtherLite32 logind
+    - name: login
+      pattern:
+        regex: '^\x01in\.rlogind: Permission denied\.\r\n'
+      product: Microsoft Windows Services for Unix logind
+      os: Windows
+      cpes:
+        - a:microsoft:windows_services_for_unix
+        - o:microsoft:windows
+    - name: login
+      pattern:
+        regex: '^\x01rlogind: Host name for your address \([\d.]+\) unknown\.\r\n'
+      product: A/UX logind
+      os: A/UX
+      cpes:
+        - o:apple:a_ux
+    - name: login
+      pattern:
+        regex: '^\x01rlogind: Permission denied\.\r\n$'
+    - name: login
+      pattern:
+        regex: '^\0\r\nlogin: '
+      product: Airspan MiMAX WiMAX WAP logind
+      device-type: WAP
+    - name: klogin
+      pattern:
+        regex: '^\x01rlogind: Login Incorrect\.\r\n$'
+      product: HP-UX kerberized rlogin
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: klogin
+      pattern:
+        regex: '^\x01rlogind: Kerberos Authentication not enabled\.\.\r\n'
+      product: HP-UX kerberized rlogin
+      info: disabled
+      os: HP-UX
+      cpes:
+        - o:hp:hp-ux
+    - name: klogin
+      pattern:
+        regex: '^\x01rlogind: Kerberos authentication failed\.\r\n'
+      product: Solaris kerberized rlogin
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: klogin
+      pattern:
+        regex: '^\x01rlogind: Kerberos authentication failed, exiting\.\r\n'
+      product: Solaris kerberized rlogin
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: klogin
+      pattern:
+        regex: '^\x01klogind: Kerberos authentication failed\.\r\n'
+      product: Kerberized rlogin
+    - name: klogin
+      pattern:
+        regex: '^\x01eklogin: Kerberos authentication failed\.\r\n'
+      product: Encrypted Kerberized rlogin
+    - name: klogin
+      pattern:
+        regex: '^\x01eklogind: Kerberos authentication failed\.\r\n'
+      product: Encrypted Kerberized rlogin
+    - name: kshell
+      pattern:
+        regex: '^\x01[kr]shd: Authentication failed: Bad sendauth version was sent\n'
+      product: Solaris kerberised rsh
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: kshell
+      pattern:
+        regex: '^\x01krshd: Kerberos Authentication Failed\.\r\n'
+      product: AIX kerberised rsh
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: kshell
+      pattern:
+        regex: '^\x01krshd: Echec de l''authentification Kerberos\.\r\n\0'
+      product: AIX kerberised rsh
+      info: French
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: kshell
+      pattern:
+        regex: '^\x01kshd: Authentication failed: '
+      product: Kerberized rsh
+      os: Unix
+    - name: ssc-agent
+      pattern:
+        regex: ^\0\x1e\0\x06\0\t\0\0$
+      product: Novell NetWare ssc-agent
+      os: NetWare
+      cpes:
+        - o:novell:netware
+    - name: apcupsd
+      pattern:
+        regex: ^\0\x11Invalid command\n\0\0\0$
+      product: apcupsd
+    - name: kvm
+      pattern:
+        regex: ^BEEF\x83\0\0
+      product: KVM daemon
+    - name: klogin
+      pattern:
+        regex: '^\x01krlogind: Kerberos Authentication Failed\.\r\n\0'
+      product: AIX kerberized rlogin
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: klogin
+      pattern:
+        regex: '^\x01krlogind: Echec de l''authentification Kerberos\.\r\n\0'
+      product: AIX kerberized rlogin
+      info: French
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: klogin
+      pattern:
+        regex: '^\0\0''s Password: $'
+      product: AIX kerberized rlogin
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: kshell
+      pattern:
+        regex: '^\x01rshd ?: [-\d]+ The host name for your address is not known\.\n'
+      product: AIX (kerberized?) rshd
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: kshell
+      pattern:
+        regex: '^\x01rshd ?: [-\d]+ Le nom d''h\xf4te correspondant \xe0 l''adresse est inconnu\.\n'
+      product: AIX (kerberized?) rshd
+      info: French
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: kshell
+      pattern:
+        regex: '^\x01rshd: [-\d]+ The remote user login is not correct\.\n'
+      product: AIX (kerberized?) rshd
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: minecraft
+      pattern:
+        regex: ^\xff\0\x0eProtocol error
+      product: Minecraft game server
+    - name: modbus
+      pattern:
+        regex: ^\0\x1e\0\x06\0\x03\0\x01\0
+      product: Modbus TCP
+    - name: modbus
+      pattern:
+        regex: ^\0\x1e\0\x06\0\x03\0\x80\x01
+      product: Modbus TCP
+    - name: pafserver
+      pattern:
+        regex: ^\0&\xa2\xf4\x04\x97\xbcNp\xe4\xc1\x7cI\xff\xf9\xe8\x0c\xd9\xac\xf1_u\xa0\x1d\x82X\0\xde\xd5\xdd\x19\xce\xc2\xe0\x92yD\xde
+    - name: utrmcd
+      pattern:
+        regex: '^\x01in\.utrcmdd \(remote\): protocol error \(1\)\n\0'
+      product: Sun Ray utrmcdd
+      cpes:
+        - a:sun:ray_server_software
+    - name: vnetd
+      pattern:
+        regex: ^1\0$
+      product: Veritas Netbackup Network Utility
+      cpes:
+        - a:symantec:veritas_netbackup
+    - name: pafserver
+      pattern:
+        regex: ^\0&\xeb\xefTQM\xee\[B
+      product: Sun Cobalt Adaptive Firewall
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: progress
+      pattern:
+        regex: ^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0
+        options: s
+      product: Progress Database
+      cpes:
+        - a:progress:database
+    - name: sdlog
+      pattern:
+        regex: ^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0\x01\0\0\0\0\0\0$
+      product: RSA SecureID Ace Server
+      cpes:
+        - h:rsa:securid
+    - name: freeciv
+      pattern:
+        regex: ^\0\x03\x02\0\.\x01\0\0\0\0Invalid name ''\0\+1\.14\.0 conn_info team\0\0\x03\x03$
+      product: Freeciv
+      version: 1.X
+      cpes:
+        - a:freeciv:freeciv:1
+    - name: freeciv
+      pattern:
+        regex: ^\0\x03X\0.\x01\0\0\0\0Your client is too old\. To use this server please upgrade your client to a CVS version later than 2003-11-28 or Freeciv 1\.15\.0 or later\.\0\0\0\x03\0\0\x03\x01$
+      product: Freeciv
+      version: 2.X
+      cpes:
+        - a:freeciv:freeciv:2
+    - name: freeciv
+      pattern:
+        regex: ^\0\x03X\0.\x01\0\0\0\0Tw\xc3\xb3j klient jest zbyt stary\. Aby wej\xc5\x9b\xc4\x87 na ten serwer musisz u\xc5\xbcywa\xc4\x87 klienta w wersji co najmniej 1\.15\.0\. \(Lub z CVS'a po 18\.11\.2003\)\.\0\0\0\x03\0\0\x03\x01$
+      product: Freeciv
+      version: 2.X
+      info: Polish
+      cpes:
+        - a:freeciv:freeciv:2:::pl
+    - name: freeciv
+      pattern:
+        regex: ^\0\x03X\0.\x01\0\0\0\0Votre client est trop vieux\. Pour utiliser ce serveur veuillez mettre votre client \xc3\xa0 jour avec une version Freeciv 2\.2 ou ult\xc3\xa9rieure\.\0\0\0\x03\0\0\x03\x01$
+      product: Freeciv
+      version: 2.X
+      info: French
+      cpes:
+        - a:freeciv:freeciv:2:::fr
+    - name: freeciv
+      pattern:
+        regex: ^\0(?:\x03\x58\0)?\x6a\x01\0\0\0\0Your client is too old\. To use this server, please upgrade your client to a Freeciv 2\.2 or later\.\0\0\0\x03\0\0\x03\x01$
+      product: Freeciv
+      version: 2.X
+      cpes:
+        - a:freeciv:freeciv:2
+    - name: freeciv
+      pattern:
+        regex: ^\0\x03\x58\0\x16\x01\0\0\0\0Freeciv ([\d.]+)\0\0\0\x03\0\0\x03\x01$
+      product: Freeciv
+      version: $1
+      cpes:
+        - a:freeciv:freeciv:$1
+    - name: imaze-game
+      pattern:
+        regex: ^\0\x18\x82iMaze server JC/HUK ([\d.]+)$
+      product: iMaze game server
+      version: $1
+    - name: msrpc
+      pattern:
+        regex: ^\x05\0\r\x03\x10\0\0\0\x18\0\0\0v\x07\0\0\x04\0\x01\x05\0\0.\0$
+        options: s
+      product: Microsoft RPC
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: mc-nmf
+      pattern:
+        regex: ^\x08Ihttp://schemas\.microsoft\.com/ws/2006/05/framing/faults/UnsupportedVersion
+      product: .NET Message Framing
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ormi
+      pattern:
+        regex: ^\xe3\r\n\r\n\0\x01\0.\0vInvalid protocol verification, illegal ORMI request or request performed with an incompatible version of this protocol
+        options: s
+      product: Oracle Remote Method Invocation
+    - name: arkeia
+      pattern:
+        regex: ^\0\x05\0\0\0\0\0\0$
+      product: Arkeia Network Backup
+    - name: qcheck
+      pattern:
+        regex: '^.*\$Id: //ral_depot/products/current/ENDPOINT/CODE/client\.c'
+        options: s
+      product: Ixia Q-Check network performance tester
+    - name: qmqp
+      pattern:
+        regex: ^58:Dnetstring format error while receiving QMQP packet header,
+      product: Postfix qmqpd
+    - name: sip
+      pattern:
+        regex: ^\x01\x11\0\x18\x01\0\0\x01\0\0\0\0\0\0\x07versi\0\t\0\x12\0\0\x06\0Global Failure\0\0
+      product: Kamailio sipd
+      cpes:
+        - a:kamailio:kamailio
+    - name: sybase-adaptive
+      pattern:
+        regex: ^\x04\x01\0\(\0\0\0\0\xaa\0\x14\0\0\x0f\xa2\x01\x0eLogin failed\.\n\xfd\0\x02\0\x02\0\0\0\0$
+      product: Sybase Adaptive Server
+      os: Windows
+      cpes:
+        - a:sybase:adaptive_server
+        - o:microsoft:windows
+    - name: telecom-misc
+      pattern:
+        regex: ^\0\x1e\x02\x06\x01\0\0\0\0\0\0\xf1\0
+      product: Radio IP MTG gateway
+      device-type: telecom-misc
+    - name: tuya
+      pattern:
+        regex: ^\0\0U\xaa\0\0\0\0\0\0\0.\0\0\0.\0\0\0\x00([\w.]+)\0.*\0\0\xaaU$
+        options: s
+      product: Tuya IoT protocol
+      info: protocol $1
+    - name: warcraft
+      pattern:
+        regex: ^\0\0\x09$
+      product: World of Warcraft game server
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.0 414 Request-URI Too Long\r\nServer: Linux/([\w._-]+) UPnP/([\w._-]+) fbxigdd/([\w._-]+)\r\nConnection: close\r\n\r\n$'
+      product: fbxigdd
+      version: $3
+      info: AliceBox PM203 UPnP; UPnP $2
+      os: Linux $1
+      device-type: WAP
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: xtunnels
+      pattern:
+        regex: ^\0\x03\x04\0\x04$
+      product: XTunnels proxy server
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\x00-\x04]\0\x02\x02[\nF\x28]

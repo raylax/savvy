@@ -1,0 +1,5 @@
+name: RMCP_ASF_PING
+protocol: udp
+rarity: 9
+payload: \x06\0\xff\x06\0\0\x11\xbe\x80\0\0\0
+ports: "623"

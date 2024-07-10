@@ -1,0 +1,12 @@
+name: LibreOfficeImpressSCPair
+protocol: tcp
+rarity: 9
+payload: LO_SERVER_CLIENT_PAIR\nNmap\n0000\n\n
+ports: "1599"
+services:
+    - name: impress-remote
+      pattern:
+        regex: ^LO_SERVER_VALIDATING_PIN\n$
+      product: LibreOffice Impress remote
+      cpes:
+        - a:libreoffice:libreoffice

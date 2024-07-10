@@ -1,0 +1,10 @@
+name: QUIC
+protocol: udp
+rarity: 6
+payload: \r\x89\xc1\x9c\x1c*\xff\xfc\xf1Q999\x00
+ports: 80,443
+fallback-services:
+    - name: quic
+      pattern:
+        regex: ^\r\x89\xc1\x9c\x1c\*\xff\xfc\xf1((?:Q[0-8]\d\d)+)$
+      info: QUIC versions$SUBST(1,"Q",", Q")

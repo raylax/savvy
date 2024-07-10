@@ -1,0 +1,315 @@
+name: NBTStat
+protocol: udp
+rarity: 4
+payload: \x80\xf0\0\x10\0\x01\0\0\0\0\0\0\x20\x43\x4bAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0\x21\0\x01
+ports: "137"
+services:
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0\x81[\x82\x83]\0\x01\0\0\0\0\0\0 ckaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\0\0!\0\x01
+      product: Mikrotik DNS
+      device-type: router
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0\x80\x15\0\0\0\0\0\0\0\0
+      product: Unbound
+      cpes:
+        - a:nlnetlabs:unbound
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...(\w{1,15}) *\0\x04\0(\w{1,15}) *\0\x84\0\w{1,15} *\x03\x04\0\w{1,15} *\x04\0\w{1,15} *\x1e\x84\0\w{1,15} *\x1d\x04\0\x01\x02__MSBROWSE__\x02\x01\x84\0(\w{1,15}) *\x03
+        options: s
+      product: Microsoft Windows XP netbios-ssn
+      info: 'workgroup: $2 user: $3'
+      hostname: $1
+      os: Windows XP
+      cpes:
+        - o:microsoft:windows_xp
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...(\w{1,15}) *\0\x04\0(\w{1,15}) *\0\x84\0\w{1,15} *\x03\x04\0\w{1,15} *\x04\0\w{1,15} *\x1e\x84\0\w{1,15} *\x1d\x04\0\x01\x02__MSBROWSE__\x02\x01\x84\0\0
+        options: s
+      product: Microsoft Windows XP netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows XP
+      cpes:
+        - o:microsoft:windows_xp
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...(\w{1,15}) *\0\x04\0(\w{1,15}) *\0\x84\0\w{1,15} *\x03\x04\0\w{1,15} *\x04\0(\w{1,15}) *\x03\x04\0\w{1,15} *\x1e\x84\0
+        options: s
+      product: Microsoft Windows XP netbios-ssn
+      info: 'workgroup: $2 user: $3'
+      hostname: $1
+      os: Windows XP
+      cpes:
+        - o:microsoft:windows_xp
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...(\w{1,15}) *\0\x04\0(\w{1,15}) *\0\x84\0\w{1,15} *\x03\x04\0\w{1,15} *\x04\0\w{1,15} *\x1e\x84\0
+        options: s
+      product: Microsoft Windows XP netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows XP
+      cpes:
+        - o:microsoft:windows_xp
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0..([\w\-]{1,15}) *\0D\0.*\0([\w\-]{1,15}) *\0\xc4\0
+        options: s
+      product: Microsoft Windows netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0..([\w\-]{1,15}) *\0D\0([\w\-]{1,15}) *\0\xc4\0
+        options: s
+      product: Microsoft Windows netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0...*\0([\w\-]{1,15}) *\0D\0.*\0([\w\-]{1,15}) *\0\xc4\0
+        options: s
+      product: Microsoft Windows netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0...*\0([\w\-]{1,15}) *\0D\0([\w\-]{1,15}) *\0\xc4\0
+        options: s
+      product: Microsoft Windows netbios-ssn
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\x20\x04\0.*?([\w\-]{1,15})[\s]{0,14}\0\x84\0\0\0\0\0\0\0
+        options: s
+      product: Samba nmbd netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      cpes:
+        - a:samba:samba
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\0\x04\0.*?([\w\-]{1,15})[\s]{0,14}\x1e\x84\0\0\0\0\0\0\0
+        options: s
+      product: Samba nmbd netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      cpes:
+        - a:samba:samba
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\0\x04\0.*?[\w\-]{1,15}[\s]{0,14}\0\x84\0.*?([\w\-]{1,15})[\s]{0,14}\x1c\x84\0
+        options: s
+      product: Microsoft Windows netbios-ns
+      info: 'Domain controller: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...[\w\-]{1,15}[\s]{0,14}\0\x84\0.*?([\w\-]{1,15})[\s]{0,14}\0\x04\0.*?([\w\-]{1,15})[\s]{0,14}\x1c\x84\0
+        options: s
+      product: Microsoft Windows netbios-ns
+      info: 'Domain controller: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...[\w\-]{1,15}[\s]{0,14}\0\xc4\0.*?([\w\-]{1,15})[\s]{0,14}\0D\0.*?([\w\-]{1,15})[\s]{0,14}\x1c\xc4\0
+        options: s
+      product: Microsoft Windows 2012 R2 netbios-ns
+      info: 'Domain controller: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows_server_2012:r2
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\0\x04\0.*?([\w\-]{1,15})[\s]{0,14}\0\x84\0
+        options: s
+      product: Microsoft Windows netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\0\x84\0.*?([\w\-]{1,15})[\s]{0,14}\0\x04\0
+        options: s
+      product: Microsoft Windows netbios-ns
+      info: 'workgroup: $1'
+      hostname: $2
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\x20\x04\0.*?([\w\-]{1,15})[\s]{0,14}\x1e\x84\0
+        options: s
+      product: Microsoft Windows 10 netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows_10
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}.*\0([\w\-]{1,15})[\s]{0,14}\0\x84\0
+        options: s
+      product: Microsoft Windows or Samba netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0A\x01([\w\-]{1,15})[\s]{0,14}\0d\0\0\0\0\0\0\0\0\0
+      product: Apple Mac OS X netbios-ns
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0A\x01([\w\-]{1,15})[\s]{0,14}\0d\0[^\0]{6}\0\0\0\0\0\0\0\0\0
+      product: Apple Mac OS X netbios-ns
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0A\x01([\w\-]{1,15})[\s]{0,14}\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Apple Mac OS X netbios-ns
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}\0d\0.*\0([\w\-]{1,15})[\s]{0,14}\0\xe4\0
+        options: s
+      product: Samba nmbd netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      cpes:
+        - a:samba:samba
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0\0/\x00......\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+        options: s
+      product: Microsoft Windows Mobile netbios-ns
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x85\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15}).*\04\0([\w\-]{1,15}) *\x1e\x84\0
+        options: s
+      product: Novell NetWare netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      os: NetWare
+      cpes:
+        - o:novell:netware
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15}).*\0([\w\-]{1,15}) *
+        options: s
+      product: Samba nmbd netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      cpes:
+        - a:samba:samba
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...\0\x80H'y\x86\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: WinCE netbios-ns
+      os: Windows CE
+      cpes:
+        - o:microsoft:windows_ce
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x85\x80\0\x01\0\0\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...\d+\.\d+ \0D\0\0\0
+      product: MikroTik router netbios-ns
+      device-type: router
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\x00\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...\x01\x02__MSBROWSE__\x02\x01\x84\0(MACBOOKPRO-[0-9A-F]{4})\0.*\0([\w._ -]+)\x1d
+        options: s
+      product: Apple Mac OS X netbios-ns
+      info: 'workgroup: $2'
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x85\x80\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]+) *\0\x04\0
+        options: s
+      product: Xerox WorkCentre netbios-ns
+      hostname: $1
+      device-type: printer
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\x04\x93\xe0...([\w-]+)\0D\0......\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+        options: s
+      product: Brother printer netbios-ns
+      hostname: $1
+      device-type: printer
+    - name: ntp
+      pattern:
+        regex: ^\x04\x01\0\0\0\0\0\0\0\0\0\0LOCL....\0\0\0\0AAAAA\0\0!....\0\0\0\0....\0\0\0\0
+      product: Actiontec ntpd
+      device-type: broadband router
+    - name: osu-nms
+      pattern:
+        regex: ^\x08\x02\0\x03\x03\x11\0\0\x03\x03\x12\0\0\x03\x03\x13\0\0\x03\x03\x14\0\0\x06\x03\x15\0\0\0\0\0\x06\x03\x16\0\0\0\0\0\x03\x03\x18\0\0\x04\x03\x19\0\0\0\x06\x03!\0\0\0\0\0\x06\x03\"\0\0\0\0\0\x06\x03#\0\0\0\0\0\x06\x03\$\0\0\0\0\0\x06\x03%\0\0\0\0\0\x06\x03&\0\0\0\0$
+      product: OSU Network Monitoring System
+fallback-services:
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0[\x80\x81][\x02\x12\x82\x92]\0\x01\0\0\0.\0. CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+        options: s
+      info: 'generic dns response: SERVFAIL'
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0[\x80\x81][\x03\x13\x83\x93]\0\x01\0\0\0.\0. CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+        options: s
+      info: 'generic dns response: NXDOMAIN'
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0[\x80\x81][\x05\x15\x85\x95]\0\x01\0\0\0.\0. CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+        options: s
+      info: 'generic dns response: REFUSED'
+    - name: domain
+      pattern:
+        regex: ^\x80\xf0[\x80\x81][\x00\x10\x80\x90]\0\x01\0\0\0.\0. CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+        options: s
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0\x84\0\0\0\0\x01\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01\0\0\0\0...([\w\-]{1,15})[\s]{0,14}
+      product: Unknown netbios-ns
+      hostname: $1
+    - name: netbios-ns
+      pattern:
+        regex: ^\x80\xf0[\x80-\x8f].\0\0\0.\0\0\0\0 CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01

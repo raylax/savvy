@@ -1,0 +1,5 @@
+name: GPRS_GTPv1
+protocol: udp
+rarity: 9
+payload: \x32\x01\0\x04\0\0\x42\0\x13\x37\0\0
+ports: 2123,2152

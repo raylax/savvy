@@ -1,0 +1,27 @@
+name: NessusTPv10
+protocol: tcp
+rarity: 8
+payload: < NTP/1.0 >\n
+ports: "1241"
+ssl-ports: "1241"
+services:
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: squid/([\w._+-]+)\r\n'
+      product: Squid
+      version: $1
+      cpes:
+        - a:squid-cache:squid:$1
+    - name: nessus
+      pattern:
+        regex: ^< NTP/1.0 >\n
+      product: Nessus Daemon
+      info: NTP v1.0
+      cpes:
+        - a:tenable:nessus
+    - name: zabbix
+      pattern:
+        regex: ^NOT OK\n$
+      product: Zabbix Monitoring System
+      cpes:
+        - a:zabbix:zabbix

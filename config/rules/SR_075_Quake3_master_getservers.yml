@@ -1,0 +1,9 @@
+name: Quake3_master_getservers
+protocol: udp
+rarity: 9
+payload: \xff\xff\xff\xffgetservers 68 empty full
+ports: 27950,30710
+services:
+    - name: quake3-master
+      pattern:
+        regex: ^\xff\xff\xff\xffgetserversResponse

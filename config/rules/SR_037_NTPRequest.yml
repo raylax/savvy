@@ -1,0 +1,112 @@
+name: NTPRequest
+protocol: udp
+rarity: 5
+payload: \xe3\x00\x04\xfa\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc5\x4f\x23\x4b\x71\xb1\x52\xf3
+ports: 123,5353,9100
+services:
+    - name: ca-mq
+      pattern:
+        regex: ^\xfa\xfe\0\x10\0\0\x01\0\0\0\0\0\0\0\0\0$
+      product: CA Message Queuing Server
+      cpes:
+        - a:ca:messaging
+    - name: echo
+      pattern:
+        regex: ^\xe3\x00\x04\xfa\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xc5\x4f\x23\x4b\x71\xb1\x52\xf3$
+    - name: ntp
+      pattern:
+        regex: ^[\x24\x64\xa4]\x01..............................................$
+        options: s
+      product: NTP
+      version: v4
+      info: primary server
+    - name: ntp
+      pattern:
+        regex: ^[\x24\x64\xa4][\x02-\x0f]..............................................$
+        options: s
+      product: NTP
+      version: v4
+      info: secondary server
+    - name: ntp
+      pattern:
+        regex: ^\xe4[\0\x10]..............................................$
+        options: s
+      product: NTP
+      version: v4
+      info: unsynchronized
+    - name: ntp
+      pattern:
+        regex: ^\xe4[\x01]..............................................$
+        options: s
+      product: NTP
+      version: v4
+      info: primary server; unsynchronized
+    - name: ntp
+      pattern:
+        regex: ^\xe4[\x01-\x0f]..............................................$
+        options: s
+      product: NTP
+      version: v4
+      info: secondary server; unsynchronized
+    - name: ntp
+      pattern:
+        regex: ^\x1c[\x01-\x0f]..............................................$
+        options: s
+      product: NTP
+      version: v3
+    - name: ntp
+      pattern:
+        regex: ^\xdc[\x00-\x0f]..............................................$
+        options: s
+      product: Microsoft NTP
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ntp
+      pattern:
+        regex: ^\x5c\x03..............................................$
+        options: s
+      product: Microsoft Windows Server 2003 NTP
+      version: v3
+      os: Windows 2003
+      cpes:
+        - o:microsoft:windows_server_2003
+    - name: nameserver
+      pattern:
+        regex: ^help\r\n\r\n\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+      product: Solaris Internet Name Server
+      info: IEN 116
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: mdns
+      pattern:
+        regex: ^\0\0\x84\0\0\0\0\x05\0\0\0\0.Lexmark ([\x20-\x7f]+)\x0c_host-config\x04_udp\x05local\0
+        options: s
+      product: Lexmark $1 printer mdns
+      device-type: printer
+      cpes:
+        - h:lexmark:$1
+    - name: hbn3
+      pattern:
+        regex: ^\0\0\x84\0\0\0\0\x05\0\0\0\0\x15S300-S400 Series \(32\).+ET(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})
+      product: Lexmark S300-S400 series HBN3
+      info: 'MAC: $1:$2:$3:$4:$5:$6'
+      device-type: printer
+    - name: hbn3
+      pattern:
+        regex: ^\0\0\x84\0\0\0\0\x05\0\0\0\0\x15S300-S400 Series.+ET(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})(\w{2})
+      product: Lexmark S300-S400 Series HBN3
+      info: 'MAC: $1:$2:$3:$4:$5:$6'
+      device-type: printer
+    - name: sip
+      pattern:
+        regex: '^SIP/2\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Allow: INVITE, ACK, CANCEL, OPTIONS, BYE, UPDATE, OPTIONS, MESSAGE, NOTIFY, INFO, REFER\r\n(?:[^\r\n]+\r\n)*?User-Agent: SightSpeedClient v\. ([\w._-]+)\r\n'
+        options: s
+      product: SightSpeedClient sipd
+      version: $1
+      info: AVM FRITZ!Box Fon WAP
+fallback-services:
+    - name: mdns
+      pattern:
+        regex: ^\0\0\x84\0\0\0\0\x05\0\0\0\0

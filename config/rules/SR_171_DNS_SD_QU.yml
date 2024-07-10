@@ -1,0 +1,5 @@
+name: DNS_SD_QU
+protocol: udp
+rarity: 8
+payload: \0\0\0\0\0\x01\0\0\0\0\0\0\x09_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\x80\x01
+ports: "5353"

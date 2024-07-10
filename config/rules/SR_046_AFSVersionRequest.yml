@@ -1,0 +1,73 @@
+name: AFSVersionRequest
+protocol: udp
+rarity: 5
+payload: \0\0\x03\xe7\0\0\0\0\0\0\0\x65\0\0\0\0\0\0\0\0\x0d\x05\0\0\0\0\0\0\0\0\0\0
+ports: 1719,7001
+services:
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*OpenAFS\s+([\d\.]+)\s+([^\0]+)\0
+      product: OpenAFS
+      version: $1
+      info: $2
+      cpes:
+        - a:openafs:openafs:$1
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*OpenAFS\s+stable\s+([\d\.]+)\s+([^\0]+)\0
+      product: OpenAFS
+      version: $1
+      info: $2 stable
+      cpes:
+        - a:openafs:openafs:$1
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*OpenAFS([\d\.]{3}[^\s\0]*)\s+([^\0]+)\0
+      product: OpenAFS
+      version: $1
+      info: $2
+      cpes:
+        - a:openafs:openafs:$1
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*OpenAFS([\d\.]{3}[^\s\0]*)\0
+      product: OpenAFS
+      version: $1
+      cpes:
+        - a:openafs:openafs:$1
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*Base\sconfiguration\safs([\d\.]+)\s+[^\s\0\;]+[\0\;]
+      product: Transarc AFS
+      version: $1
+    - name: afs
+      pattern:
+        regex: ^[\d\D]{28}\s*arla-([\d\.]+)\0
+      product: Arla
+      version: $1
+    - name: dtls
+      pattern:
+        regex: ^\x15\xfe\xff\0\0\0\0\0\0\0\0\0\x07\x02\x16\0\0\0\0\0$
+      product: OpenSSL DTLS 1.0
+      cpes:
+        - a:openssl:openssl
+    - name: H.323-gatekeeper-discovery
+      pattern:
+        regex: ^\x04\x80\x03\xe7\0\x08\0D\0E\0U\0G\0K\0......$
+        options: s
+      product: GNU Gatekeeper discovery
+      cpes:
+        - a:gnugk:gnu_gatekeeper
+    - name: H.323-gatekeeper-discovery
+      pattern:
+        regex: ^\x04\x80\x03\xe7\0\x10\0D\0E\0U\0C\0O\0S\0R\0V\x003\0\n\x08\x01\x03\x06\xb7$
+      product: GNU Gatekeeper discovery
+      version: 2.3.2
+      cpes:
+        - a:gnugk:gnu_gatekeeper:2.3.2
+    - name: H.323-gatekeeper-discovery
+      pattern:
+        regex: ^\x06\x80\x03\xe7\x06\0\x08\x91J\0\x05\x12\0G\0A\0T\0E\0K\0E\0E\0P\0E\0R\0......
+      product: Cisco Unified Communications Manager Gatekeeper RAS service
+      cpes:
+        - a:cisco:unified_communications_manager

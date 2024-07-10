@@ -1,0 +1,20 @@
+name: hp-pjl
+protocol: tcp
+rarity: 9
+payload: \x1b%-12345X@PJL INFO ID\x0d\x0a\x1b%-12345X\x0d\x0a
+ports: 9100,9101,9102,9103,9104,9105,9106,9107
+services:
+    - name: hp-pjl
+      pattern:
+        regex: ^@PJL INFO ID\r?\n\"([^"]+)\"\r?\n
+      product: $1
+      device-type: printer
+    - name: hp-pjl
+      pattern:
+        regex: ^@PJL INFO ID ?\r?\n([\w\d _-]+)\r?\n
+      product: $1
+      device-type: printer
+    - name: hp-pjl
+      pattern:
+        regex: '@PJL\x20INFO\x20ID\r?\n\r?\n'
+      device-type: printer

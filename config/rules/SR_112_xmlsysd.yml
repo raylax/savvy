@@ -1,0 +1,16 @@
+name: xmlsysd
+protocol: tcp
+rarity: 9
+payload: init\noff all\non identity version\nsend\nquit\n
+ports: "7887"
+services:
+    - name: xmlsysd
+      pattern:
+        regex: '^Content-Length: [0-9]+\n\n<\?xml version=\"1\.0\"\?>\s*<xmlsysd init=\"1\">\s*<system>\s*<identity>\s*<hostname>([^<]*)</hostname>\s*<hostip>([^<]*)</hostip>\s*</identity>\s*</system>\s*<proc>\s*<version>([^<]*)</version>\s*</proc>\s*</xmlsysd>'
+        options: s
+      product: xmlsysd daemon
+      info: 'IP: $2'
+      hostname: $1
+      os: $3
+      cpes:
+        - a:wulfware:xmlsysd

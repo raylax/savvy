@@ -1,0 +1,14 @@
+name: NessusTPv12
+protocol: tcp
+rarity: 9
+payload: < NTP/1.2 >\n
+ports: "1241"
+ssl-ports: "1241"
+services:
+    - name: nessus
+      pattern:
+        regex: ^< NTP/1.2 >\n
+      product: Nessus Daemon
+      info: NTP v1.2
+      cpes:
+        - a:tenable:nessus

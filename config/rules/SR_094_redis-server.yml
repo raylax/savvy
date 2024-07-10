@@ -1,0 +1,27 @@
+name: redis-server
+protocol: tcp
+rarity: 8
+payload: '*1\r\n$4\r\ninfo\r\n'
+ports: 6379,6380,16379
+ssl-ports: 6380,16379
+services:
+    - name: redis
+      pattern:
+        regex: ^-ERR operation not permitted\r\n
+      product: Redis key-value store
+      cpes:
+        - a:redislabs:redis
+    - name: redis
+      pattern:
+        regex: ^-NOAUTH Authentication required.\r\n
+      product: Redis key-value store
+      cpes:
+        - a:redislabs:redis
+    - name: redis
+      pattern:
+        regex: ^\$\d+\r\n(?:#[^\r\n]*\r\n)*redis_version:([.\d]+)\r\n
+        options: s
+      product: Redis key-value store
+      version: $1
+      cpes:
+        - a:redislabs:redis:$1

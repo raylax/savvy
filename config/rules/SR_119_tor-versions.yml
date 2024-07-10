@@ -1,0 +1,38 @@
+name: tor-versions
+protocol: tcp
+rarity: 8
+payload: \x00\x00\x07\x00\x08\x00\x03\x00\x04\x00\x05\x00\x06
+ssl-ports: 443,9001,9002
+services:
+    - name: tor-orport
+      pattern:
+        regex: ^\x00\x00\x07\x00\x06\x00\x03\x00\x04\x00\x05
+      product: Tor
+      version: 0.3.1.1 or later
+      info: 'supported protocol versions: 3, 4, 5'
+      cpes:
+        - a:torproject:tor
+    - name: tor-orport
+      pattern:
+        regex: ^\x00\x00\x07\x00\x04\x00\x03\x00\x04
+      product: Tor
+      version: 0.2.4.11 - 0.3.1.1
+      info: 'supported protocol versions: 3, 4'
+      cpes:
+        - a:torproject:tor
+    - name: tor-orport
+      pattern:
+        regex: ^\x00\x00\x07\x00\x02\x00\x03
+      product: Tor
+      version: 0.2.3.7 - 0.2.4.11
+      info: 'supported protocol versions: 3'
+    - name: tor-orport
+      pattern:
+        regex: ^\x00\x00\x07\x00\x02\x00\x04
+      product: GoTor
+      info: 'supported protocol versions: 4'
+fallback-services:
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.[01] \d\d\d [\w ]+\r\n'
+        options: s

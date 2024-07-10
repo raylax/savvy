@@ -1,0 +1,9 @@
+name: iperf3
+protocol: tcp
+rarity: 9
+payload: 0000000000000000000000000000000000000\0\0\0\0
+ports: "5201"
+services:
+    - name: iperf3
+      pattern:
+        regex: ^\t$

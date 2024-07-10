@@ -1,0 +1,5 @@
+name: OPENVPN_PKI
+protocol: udp
+rarity: 9
+payload: \x38\x01\x02\x03\x04\x05\x06\x07\x08\0\0\0\0
+ports: "1194"

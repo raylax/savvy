@@ -1,0 +1,14 @@
+name: OpenVPN
+protocol: tcp
+rarity: 9
+payload: \0\x0e87\xa5&\x08\xa2\x1b\xa0\xb1\0\0\0\0\0
+ports: 443,500,1194
+services:
+    - name: openvpn
+      pattern:
+        regex: ^\0\x1a@........\x01\0\0\0\x007\xa5&\x08\xa2\x1b\xa0\xb1\0\0\0\0$
+      product: OpenVPN
+fallback-services:
+    - name: openvpn
+      pattern:
+        regex: ^\0\x1e@........\x02\0\0\0\0\0\0\0\x007\xa5&\x08\xa2\x1b\xa0\xb1\0\0\0\0\0\x0e@........\0\0\0\0\0

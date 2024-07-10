@@ -1,0 +1,15 @@
+name: JMON
+protocol: tcp
+rarity: 9
+payload: CONNECT01 v09\n
+ports: "6715"
+ssl-ports: "6715"
+services:
+    - name: jmon
+      pattern:
+        regex: ^ACKNOWLEDGE
+      product: JMON for zOS (FMID HALG300)
+      os: z/OS
+      cpes:
+        - a:ibm:zos_explorer
+        - o:ibm:z%2fos

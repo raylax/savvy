@@ -1,0 +1,15 @@
+name: ibm-db2-das-udp
+protocol: udp
+rarity: 8
+payload: DB2GETADDR\0SQL08010\0
+ports: "523"
+services:
+    - name: ibm-db2
+      pattern:
+        regex: ^DB2RETADDR\0SQL0(\d)(\d\d)(\d+)\0([^\0]+)\0
+        options: s
+      product: IBM DB2 Database Server
+      version: $1.$2.$3
+      info: 'Hostname: $4'
+      cpes:
+        - a:ibm:db2:$1.$2.$3

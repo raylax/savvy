@@ -1,0 +1,83 @@
+name: Quake3_getstatus
+protocol: udp
+rarity: 8
+payload: \xff\xff\xff\xffgetstatus
+ports: 26000,26001,26002,26003,26004,27960,27961,27962,27963,27964,30720,30721,30722,30723,30724,44400
+services:
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\gamename\\Nexuiz(?=\\).*\\gameversion\\([^\\]*)(?=\\)
+      product: Nexuiz game server
+      version: $1
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* linux-[^\\]*)(?=\\).*\\gamename\\baseoa(?=\\)
+      product: OpenArena game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* freebsd-[^\\]*)(?=\\).*\\gamename\\baseoa(?=\\)
+      product: OpenArena game server
+      version: $1
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\tremulous ([^\\]* linux-[^\\]*)(?=\\)
+      product: Tremulous game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\tremulous ([^\\]* freebsd-[^\\]*)(?=\\)
+      product: Tremulous game server
+      version: $1
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* linux-[^\\]*)(?=\\).*\\gamename\\q3ut4(?=\\)
+      product: Urban Terror game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* freebsd-[^\\]*)(?=\\).*\\gamename\\q3ut4(?=\\)
+      product: Urban Terror game server
+      version: $1
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* Linux)(?=\\).*\\gamename\\Warsow(?=\\)
+      product: Warsow game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* linux-[^\\]*)(?=\\)
+      product: World of Padman game server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: quake3
+      pattern:
+        regex: ^\xff\xff\xff\xffstatusResponse\n.*\\version\\([^\\]* freebsd-[^\\]*)(?=\\)
+      product: World of Padman game server
+      version: $1
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd

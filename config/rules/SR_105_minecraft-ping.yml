@@ -1,0 +1,17 @@
+name: minecraft-ping
+protocol: tcp
+rarity: 8
+payload: \xFE\x01
+ports: "25565"
+services:
+    - name: minecraft
+      pattern:
+        regex: ^\xff\x00.\x00\xa7\x00\x31\x00\x00(.+?)\x00\x00(.+?)\x00\x00(.+?)\x00\x00(.+?)\x00\x00(.+)
+        options: s
+      product: Minecraft
+      version: $P(2)
+      info: 'Protocol: $P(1), Message: $P(3), Users: $P(4)/$P(5)'
+    - name: minecraft-classic
+      pattern:
+        regex: ^\x01\x01\x0eUnhandled message id "254"! {37}
+      product: MCGalaxy Minecraft server

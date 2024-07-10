@@ -1,0 +1,5 @@
+name: NTP_REQ
+protocol: udp
+rarity: 8
+payload: \xd9\0\x0a\xfa\0\0\0\0\0\x01\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xc6\xf1\x5e\xdb\x78\0\0\0
+ports: "123"

@@ -1,0 +1,14 @@
+name: hazelcast-http
+protocol: tcp
+rarity: 9
+payload: GET /hazelcast/rest/cluster HTTP/1.0\r\n\r\n\r\n
+ports: 5701,5702,5703,5704,5705,5706,5707,5708,5709
+services:
+    - name: hazelcast
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Length: \d+\r\n\r\nCluster \[\d+\] {\n\tMember (.*?)}\n\nConnectionCount: (\d+)\nAllConnectionCount: (\d+)\n\r\n$'
+        options: s
+      product: Hazelcast
+      info: ConnectionCount $2; AllConnectionCount $3; $SUBST(1,"\n\tMember",",")
+      cpes:
+        - a:hazelcast:hazelcast

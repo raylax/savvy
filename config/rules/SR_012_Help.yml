@@ -1,0 +1,105 @@
+name: Help
+protocol: udp
+rarity: 3
+payload: help\r\n\r\n
+ports: 7,13,37,42
+services:
+    - name: chargen
+      pattern:
+        regex: '@ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    - name: echo
+      pattern:
+        regex: ^help\r\n\r\n$
+    - name: daytime
+      pattern:
+        regex: ^[A-Z][a-z]{2} [A-Z][a-z]{2} +\d{1,2} +\d\d:\d\d:\d\d (?:19|20)\d\d\n\r$
+      product: Sun Solaris daytime
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: daytime
+      pattern:
+        regex: ^[0-3]\d [A-Z][A-Z][A-Z] 20\d\d \d\d:\d\d:\d\d \S+\r\n
+    - name: daytime
+      pattern:
+        regex: ^\d{1,2}:\d\d:\d\d [AP]M \d{1,2}/\d\d/\d{4}\n$
+      product: Windows small service daytime
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: daytime
+      pattern:
+        regex: ^\d{1,2}:\d\d:\d\d \d{1,2}/\d\d/\d{4}\n$
+      product: Windows daytime
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: daytime
+      pattern:
+        regex: ^\d\d:\d\d:\d\d \d\d.\d\d.20\d\d\n$
+      product: Microsoft Windows International daytime
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: daytime
+      pattern:
+        regex: ^\w\w\w \w\w\w \d\d \d\d:\d\d:\d\d \d\d\d\d\r\n$
+      product: AIX daytime
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: daytime
+      pattern:
+        regex: ^(\w\w\w \w\w\w \d\d \d\d:\d\d:\d\d \w+ \d\d\d\d)\r\n\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0 \0\0\0\x7f\xff\xec0\0\0\0\0\0\0\0\0\0\0\0\0\x04\x01Q\xa0\0\0\0\0\0\x01\0\x15\x90-d\0\0\0\0\0\0\0\0\x1c\0\0\xff\xfe\xff\xff\xff\xff\xc5:H\0\0\x16\xc3\xd8\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xff\xff\xac\x10\x0b\x05\0\xff\0\x06T\xa3\0\0 !\"#\$%&'\(\)\*\+,-\./0123456789:;<=>\?@ABCDEFGHIJKLMNO\xd3\$\x12\xccTUVWOy\x94L\0\r\xd1z\0\0\0\0\x04\x02\x1b`\0\0\0\0\x04\x02\x1b`
+      info: 'time: $1'
+    - name: drweb
+      pattern:
+        regex: ^\x7csrv_realm=([^\x7c]+)\x7csrv_Uuid=[-\da-f]{36}\x7cdws9=\d+\x7cMajorVer=(\d+)\x7cMinorVer=(\d+)\x7c
+      product: DrWeb
+      version: $2.$3
+      info: 'realm: $1'
+      cpes:
+        - a:drweb:drweb:$2.$3
+    - name: time
+      pattern:
+        regex: ^[\xd5-\xef]...$
+        options: s
+      info: 32 bits
+    - name: time
+      pattern:
+        regex: ^[\xd5-\xef]....\0\0\0$
+        options: s
+      info: 64 bits
+    - name: nameserver
+      pattern:
+        regex: ^help\r\n\r\n\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0!\0\x01
+      product: Solaris Internet Name Server
+      info: IEN 116
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: nameserver
+      pattern:
+        regex: ^\x03\x03\x02$
+      product: Solaris Internet Name Server
+      info: IEN 116
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: nameserver
+      pattern:
+        regex: ^\0\x06\x01\0\0\x01\0\0\x03\x03\x02$
+      product: Solaris Internet Name Server
+      info: IEN 116
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: valve-steam
+      pattern:
+        regex: ^\xff\xff\xff\xff!L_\xa0.{28}\0\0\0\x08\x06\x10\x06\x18\x9c\xd3\x01\".([\w.-]+)0\x028
+      product: Valve Steam In-Home Streaming service
+      hostname: $1
+    - name: valve-steam
+      pattern:
+        regex: ^\xff\xff\xff\xff!L_\xa0
+      product: Valve Steam In-Home Streaming service

@@ -1,0 +1,12 @@
+name: pc-duo
+protocol: udp
+rarity: 8
+payload: \0\x80\x80\x08\xff\0
+ports: "1505"
+services:
+    - name: pc-duo
+      pattern:
+        regex: ^.........(.*)\0
+        options: s
+      product: Vector PC-Duo
+      info: 'Servername: $1'

@@ -1,0 +1,5 @@
+name: AMANDA_NOOP
+protocol: udp
+rarity: 8
+payload: Amanda 2.6 REQ HANDLE 000-00000000 SEQ 0\nSERVICE noop\n
+ports: "10080"

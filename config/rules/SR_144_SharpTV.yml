@@ -1,0 +1,9 @@
+name: SharpTV
+protocol: tcp
+rarity: 9
+payload: TVNM1   \rMNRD1   \rSWVN1   \rIPPV1   \r
+ports: "10002"
+services:
+    - name: sharp-remote
+      pattern:
+        regex: ^(?!x)x

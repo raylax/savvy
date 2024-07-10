@@ -1,0 +1,11 @@
+name: AndroMouse
+protocol: udp
+rarity: 9
+payload: AMSNIFF
+ports: "8888"
+services:
+    - name: AndroMouse
+      pattern:
+        regex: ^GOTBACK$
+        options: s
+      product: AndroMouse Android remote mouse server

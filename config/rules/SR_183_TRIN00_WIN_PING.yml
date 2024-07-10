@@ -1,0 +1,5 @@
+name: TRIN00_WIN_PING
+protocol: udp
+rarity: 9
+payload: png []..Ks
+ports: "34555"

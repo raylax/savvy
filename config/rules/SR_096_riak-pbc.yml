@@ -1,0 +1,13 @@
+name: riak-pbc
+protocol: tcp
+rarity: 8
+payload: \0\0\0\x01\x07
+ports: "8087"
+services:
+    - name: riak-pbc
+      pattern:
+        regex: ^....\x08..(riak@[\w._-]+)..([\w._-]+)$
+        options: s
+      product: Basho Riak
+      version: $2
+      hostname: $1

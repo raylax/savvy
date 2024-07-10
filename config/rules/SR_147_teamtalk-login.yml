@@ -1,0 +1,50 @@
+name: teamtalk-login
+protocol: tcp
+rarity: 9
+payload: login\n
+ports: "10333"
+services:
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername="([^"]+)" .* protocol="([\d.]+)"\r\nerror number=2002 message="Invalid user account"\r\n
+      product: BearWare TeamTalk
+      info: 'protocol: $2; servername: $1'
+      cpes:
+        - a:bearware:teamtalk
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername="([^"]+)" .* protocol="([\d.]+)"\r\naccepted .*\r\nserverupdate .* version="([\d.]+)"\r\n
+      product: BearWare TeamTalk
+      version: $3
+      info: 'protocol: $2; servername: $1; no authentication required'
+      cpes:
+        - a:bearware:teamtalk:$2
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername="" .* protocol="([\d.]+)"\r\nerror number=2002 message="Invalid user account"\r\n
+      product: BearWare TeamTalk
+      info: 'protocol: $1'
+      cpes:
+        - a:bearware:teamtalk
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername="" .* protocol="([\d.]+)"\r\naccepted .*\r\nserverupdate .* version="([\d.]+)"\r\n
+      product: BearWare TeamTalk
+      version: $2
+      info: 'protocol: $1; no authentication required'
+      cpes:
+        - a:bearware:teamtalk:$2
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername=\"([^"]+)\" .* protocol=\"([\w._-]+)\"\r\n
+      product: Bearware TeamTalk
+      info: 'servername: $1; protocol: $2'
+      cpes:
+        - a:bearware:teamtalk
+    - name: teamtalk
+      pattern:
+        regex: ^(?:teamtalk|welcome) userid=\d+ servername=\"\" .* protocol=\"([\w._-]+)\"\r\n
+      product: Bearware TeamTalk
+      info: 'protocol: $1'
+      cpes:
+        - a:bearware:teamtalk

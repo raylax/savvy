@@ -1,0 +1,15 @@
+name: pervasive-relational
+protocol: tcp
+rarity: 8
+payload: Client string for PARC version 1 Wire Encryption version 1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+ports: 1583,3351
+services:
+    - name: psql
+      pattern:
+        regex: ^\0{255}
+      product: Pervasive.SQL Server - Relational Engine
+    - name: psql
+      pattern:
+        regex: ^\0Server string for PARC version 1 Wire Encryption version 1\0
+      product: Pervasive.SQL Server - Relational Engine
+      info: encrypted

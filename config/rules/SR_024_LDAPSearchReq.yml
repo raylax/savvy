@@ -1,0 +1,67 @@
+name: LDAPSearchReq
+protocol: tcp
+rarity: 6
+payload: \x30\x84\x00\x00\x00\x2d\x02\x01\x07\x63\x84\x00\x00\x00\x24\x04\x00\x0a\x01\x00\x0a\x01\x00\x02\x01\x00\x02\x01\x64\x01\x01\x00\x87\x0b\x6f\x62\x6a\x65\x63\x74\x43\x6c\x61\x73\x73\x30\x84\x00\x00\x00\x00
+ports: 256,257,389,390,1702,3268,3892,11711
+ssl-ports: 636,637,3269,11712
+services:
+    - name: ldap
+      pattern:
+        regex: ^0\x84\0\0..\x02\x01.*dsServiceName1\x84\0\0\0.\x04.CN=NTDS\x20Settings,CN=([^,]+),CN=Servers,CN=([^,]+),CN=Sites,CN=Configuration,DC=([^,]+),DC=([^,]+)0\x84\0
+        options: s
+      product: Microsoft Windows Active Directory LDAP
+      info: 'Domain: $3.$4, Site: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ldap
+      pattern:
+        regex: ^0\x84\0\0..\x02\x01.*dsServiceName1\x84\0\0\0.\x04.CN=NTDS\x20Settings,CN=([^,]+),CN=Servers,CN=([^,]+),CN=Sites,CN=Configuration,DC=([^,]+),DC=([^,]+),DC=([^,]+)0\x84\0
+        options: s
+      product: Microsoft Windows Active Directory LDAP
+      info: 'Domain: $3.$4.$5, Site: $2'
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ldap
+      pattern:
+        regex: ^0\x82..\x02\x01.*vmwPlatformServicesControllerVersion1\x07\x04\x05([\d.]+)0.\x04.*\nserverName1.\x04.cn=([\w._-]+)
+        options: s
+      product: VMware vCenter or PSC LDAP
+      version: $1
+      hostname: $2
+      cpes:
+        - a:vmware:server
+    - name: ldap
+      pattern:
+        regex: ^0\x82..\x02\x01.*\nserverName1.\x04.cn=([\w._-]+).*vmwPlatformServicesControllerVersion1\x07\x04\x05([\d.]+)0.\x04
+        options: s
+      product: VMware vCenter or PSC LDAP
+      version: $1
+      hostname: $2
+      cpes:
+        - a:vmware:server
+    - name: ldap
+      pattern:
+        regex: ^0\x82..\x02\x01.*\nserverName1c\x04acn=([\w._-]+).*vmw(?:AdministratorDN|DCAccountDN|DCAccountUPN)1
+        options: s
+      product: VMware vCenter or PSC LDAP
+      hostname: $1
+      cpes:
+        - a:vmware:server
+    - name: modbus
+      pattern:
+        regex: ^0\x84\0\0\0\x03\x02\x81[\x01-\x03]
+      product: Modbus TCP
+    - name: modbus
+      pattern:
+        regex: ^0\x84\0\0\0\x03\x02\x81[\x0a\x0b]
+      product: Modbus TCP
+      info: gateway
+fallback-services:
+    - name: ldap
+      pattern:
+        regex: ^0..?\x02\x01\x07e..?\n\x01.\x04\0\x04
+        options: s

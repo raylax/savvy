@@ -1,0 +1,5 @@
+name: NAT_PMP_ADDR
+protocol: udp
+rarity: 8
+payload: \0\0
+ports: "5351"

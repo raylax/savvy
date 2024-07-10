@@ -1,0 +1,5 @@
+name: NFSPROC_NULL
+protocol: udp
+rarity: 8
+payload: \0\0\0\0\0\0\0\0\0\0\0\x02\0\x01\x86\xA3\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+ports: "2049"

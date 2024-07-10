@@ -1,0 +1,108 @@
+name: NotesRPC
+protocol: tcp
+rarity: 6
+payload: \x3A\x00\x00\x00\x2F\x00\x00\x00\x02\x00\x00\x40\x02\x0F\x00\x01\x00\x3D\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x2F\x00\x00\x00\x00\x00\x00\x00\x00\x00\x40\x1F\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00
+ports: 130,427,1352,1972,7171,8728,22001
+services:
+    - name: intersys-cache
+      pattern:
+        regex: ^O\0\0\0\x03\xff\0\0\0\0\0\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0[\0\x01]G\x04\0\x0e\0\x01\0\x0f\0\x0e\0Access Denied$
+      product: InterSystems Cache database
+    - name: intersys-cache
+      pattern:
+        regex: '^r\0\0\0\x03\xff\0\0\0\0\0\0\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0[\0\x01]\x008\0Cache Direct Server Fatal Error: Invalid subfunc code: 0$'
+      product: InterSystems Cache database
+    - name: lotusnotes
+      pattern:
+        regex: ^.\0\0\0.\0\0\0\x03\0\0@\x02\x0f\0.*\x03\0\0\0\0\x02\0/\0.\0\0\0\0\0\0\0.*CN=([-.\w ]+)/O=([-.\w ]+)[^-.\w ]
+        options: s
+      product: Lotus Domino server
+      info: CN=$1;Org=$2
+      cpes:
+        - a:ibm:lotus_domino_server
+    - name: lotusnotes
+      pattern:
+        regex: ^.\0\0\0.\0\0\0\x03\0\0@\x02\x0f\0.*\x03\0\0\0\0\x02\0/\0.\0\0\0\0\0\0\0.*CN=([-.\w ]+)/OU=([-.\w ]+)/O=([-.\w ]+)[^-.\w ]
+        options: s
+      product: Lotus Domino server
+      info: CN=$1;OU=$2;Org=$3
+      cpes:
+        - a:ibm:lotus_domino_server
+    - name: lotusnotes
+      pattern:
+        regex: ^.\0\0\0.\0\0\0\x03\0\0@\x02\x0f\0.*\x03\0\0\0\0\x02\0/\0.\0\0\0\0\0\0\0.*CN=([-.\w ]+)/OU=([-.\w ]+)/OU=([-.\w ]+)/O=([-.\w ]+)
+        options: s
+      product: Lotus Domino server
+      info: CN=$1;OU=$2/$3;Org=$4
+      cpes:
+        - a:ibm:lotus_domino_server
+    - name: megaraid-monitor
+      pattern:
+        regex: ^\x02\0\0\0\0\0\0/\0\0\0\0\0\0\0\0\0@\x1f\0\0\0\0\0\0\0\0\0/\0\0\0\x02\0\0@\x02\x0f\0\x01\0=\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\)\0\0\0<monitorcontrol><error/></monitorcontrol>$
+      product: MegaRaid Monitoring Agent
+    - name: routeros-api
+      pattern:
+        regex: ^\x06!fatal\rnot logged in\0
+      product: MikroTik RouterOS API
+      os: RouterOS
+      cpes:
+        - o:mikrotik:routeros
+    - name: rpcbind
+      pattern:
+        regex: ^\x18\0\x01\x02Invalid packet length\0
+      product: Amanda voicemail system
+      device-type: telecom-misc
+    - name: srvloc
+      pattern:
+        regex: ^\x02\x02\0\0\x12\0\0\0\0\0\0\0\0\x02en\0\x02$
+      product: Apple slpd
+      os: Mac OS
+      cpes:
+        - o:apple:mac_os
+    - name: slp-srvreg
+      pattern:
+        regex: ^\x02\x05\0\0\x12\0\0\0\0\0\0@\0\x02en\xff\xef
+      product: AIX SLP Directory Agent
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: thrift-binary
+      pattern:
+        regex: ^\x04\0\0\0\x11Invalid status 58$
+      product: Hadoop Hive 2
+      cpes:
+        - a:apache:hive
+    - name: tibia
+      pattern:
+        regex: ^V\0\x02\0Your terminal version is too old\.\nPlease get a new version at\nhttp://www\.tibia\.com\.\0$
+      product: Tibia graphical MUD
+    - name: xplorer
+      pattern:
+        regex: Access violation at address \w+ in module 'Xplorer\.exe'\. Read of address
+      product: SoftOne Business Xplorer
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pc-anywhere
+      pattern:
+        regex: \x1bY2\0\x01\x03B\0\0\x01\0\x14....................\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Symantec pcAnywhere
+      cpes:
+        - a:symantec:pcanywhere
+fallback-services:
+    - name: svrloc
+      pattern:
+        regex: ^\x02\x02\0\0.\0\0\0\0\0..\0.\w+
+        options: s
+      product: SLP Service Agent
+    - name: slp-srvreg
+      pattern:
+        regex: ^\x02\x05\0\0.\0\0\0\0\0..\0.\w+
+        options: s
+      product: SLP Directory Agent
+    - name: slmp
+      pattern:
+        regex: ^\xd4\0MP\x04\0\0\0TNM\x0b\0P\0\0\0.......
+        options: s
+      product: Mitsubishi PLC SLMP
+      device-type: specialized

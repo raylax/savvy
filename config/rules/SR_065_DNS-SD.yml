@@ -1,0 +1,64 @@
+name: DNS-SD
+protocol: udp
+rarity: 4
+payload: \0\0\0\0\0\x01\0\0\0\0\0\0\x09_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01
+ports: 53,5353
+services:
+    - name: mdns
+      pattern:
+        regex: ^(?:..)?\0\0\x84\0\0\x01..\0\0\0\0\x09_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01
+        options: s
+      product: DNS-based service discovery
+    - name: hbn3
+      pattern:
+        regex: ^\0\0\x84\0\0\0\0\x01\0\0\0\0.Lexmark (\w+)\x0c_host-config\x04_udp\x05local\0\0\x10\0\x01\0\0\0<\x01\x19.IPADDRESS [\d.]+.IPNETMASK [\d.]+.IPGATEWAY [\d.]+.IPNAME \"([\w._-]+)\"\x15MACLAA \"000000000000\"\x15MACUAA \"([0-9A-F]{12})\"
+        options: s
+      product: Lexmark hbn3 (DNS-SD-like configuration)
+      info: Lexmark $1 printer; MAC $3
+      hostname: $2
+      device-type: printer
+      cpes:
+        - h:lexmark:$1
+    - name: isakmp
+      pattern:
+        regex: ^\0\0\0\0\0\x01\0\0\0\0\0\0\t_servic\x0b\x10\x05\0\0\0\0\0\0\0\0\(\0\0\0\x0c\0\0\0\x01\x01\0\0\x05
+      product: Openswan ISAKMP
+      cpes:
+        - a:openswan:openswan
+    - name: isakmp
+      pattern:
+        regex: ^\0\0\0\0\0\x01\0\0\0\0\0\0\t_servic\) % \0\0\0\0\0\0\0\$\0\0\0\x08\0\0\0\x05
+      product: StrongSwan ISAKMP
+      cpes:
+        - a:strongswan:strongswan
+fallback-services:
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x01\x11\x81\x91]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: FORMERR'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x02\x12\x82\x92]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: SERVFAIL'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x04\x14\x84\x94]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NOTIMP'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x05\x15\x85\x95]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: REFUSED'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x03\x13\x83\x93]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NXDOMAIN'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\0[\x80-\x90][\x00\x10\x80\x90]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: no error'

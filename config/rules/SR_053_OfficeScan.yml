@@ -1,0 +1,11 @@
+name: OfficeScan
+protocol: tcp
+rarity: 9
+payload: GET /?CAVIT HTTP/1.1\r\n\r\n
+ports: "12345"
+fallbacks: GetRequest
+services:
+    - name: http
+      pattern:
+        regex: '^HTTP/1.[01] \d\d\d .*\r\nServer: OfficeScan Client'
+      product: Trend Micro OfficeScan Antivirus http config

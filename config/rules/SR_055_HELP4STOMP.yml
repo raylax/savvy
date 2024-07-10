@@ -1,0 +1,101 @@
+name: HELP4STOMP
+protocol: tcp
+rarity: 8
+payload: HELP\n\n\0
+ports: 6163,61613
+services:
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:270\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.6.0 - 5.7.0 or 5.15.5 - 5.15.9
+      cpes:
+        - a:apache:activemq:5
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:254\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.8.0
+      cpes:
+        - a:apache:activemq:5.8.0
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:241\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.9.0 - 5.9.1
+      cpes:
+        - a:apache:activemq:5.9
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:267\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.10.0
+      cpes:
+        - a:apache:activemq:5.10.0
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:266\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.10.1 - 5.11.1
+      cpes:
+        - a:apache:activemq:5
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:268\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.11.2 - 5.11.4
+      cpes:
+        - a:apache:activemq:5.11
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:269\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.12.0 - 5.15.4
+      cpes:
+        - a:apache:activemq:5
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:270\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.15.5 - 5.15.9
+      cpes:
+        - a:apache:activemq:5.15
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:244\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.15.10 - 5.15.12
+      cpes:
+        - a:apache:activemq:5.15
+    - name: stomp
+      pattern:
+        regex: '^ERROR\ncontent-type:text/plain\nmessage:Unknown STOMP action: HELP\n\norg\.apache\.activemq\.transport\.stomp\.ProtocolException: Unknown STOMP action: HELP\r\n\tat org\.apache\.activemq\.transport\.stomp\.ProtocolConverter\.onStompCommand\(ProtocolConverter\.java:258\)'
+        options: s
+      product: Apache ActiveMQ
+      version: 5.15.13 - 5.18.3
+      cpes:
+        - a:apache:activemq:5
+    - name: stomp
+      pattern:
+        regex: ^ERROR\nmessage:Illegal command\ncontent-type:text/plain\nversion:([\d.,]+)\ncontent-length:\d+\n\nYou must log in using CONNECT first\0\n
+      product: RabbitMQ
+      info: 'versions: $1'
+      cpes:
+        - a:pivotal_software:rabbitmq
+fallback-services:
+    - name: stomp
+      pattern:
+        regex: ^ERROR\n(?:[^\n]+\n)?message:Unknown STOMP action:.+ org\.apache\.activemq\.
+        options: s
+      product: Apache ActiveMQ
+      cpes:
+        - a:apache:activemq

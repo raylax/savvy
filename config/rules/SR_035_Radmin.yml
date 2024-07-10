@@ -1,0 +1,112 @@
+name: Radmin
+protocol: tcp
+rarity: 8
+payload: \x01\x00\x00\x00\x01\x00\x00\x00\x08\x08
+ports: 4899,9001
+services:
+    - name: fcgiwrap
+      pattern:
+        regex: ^\x01\x0b\0\0\0\x08\0\0\0\0\0\0\0\0\0\0$
+      product: fcgiwrap
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x09\x00\x01\x10\x08\x01\x00\x09\x08
+      product: Famatech Radmin
+      version: 2.X
+      info: Windows Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:2
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x0a\x00\x01\x10\x08\x01\x00\x0a\x08
+      product: Famatech Radmin
+      version: 2.X
+      info: Radmin Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:2
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x00\x00\x02\x12\x08\x02\x00\x00\x0a
+      product: Famatech Radmin
+      version: 3.X
+      info: Radmin Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x71\x00\x02\x12\x08\x02\x00\x71\x0a
+      product: Famatech Radmin
+      version: 3.X
+      info: Windows Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x08\x00\x02\x12\x08\x02\x00\x08\x0a
+      product: Famatech Radmin
+      version: 3.X
+      info: Radmin Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x79\x00\x02\x12\x08\x02\x00\x79\x0a
+      product: Famatech Radmin
+      version: 3.X
+      info: Windows Authentication
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x59\x00\x02\x12\x08\x02\x00\x59\x0a
+      product: Famatech Radmin
+      version: "3.3"
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3.3
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25\x04\x00\x02\x12\x08\x02\x00\x04\x0a
+      product: Famatech Radmin
+      version: "3.0"
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3.0
+        - o:microsoft:windows
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x09\x00\x00\x10\x4f\x2f\x10\x00\x00\x04\x00\x00\x00\x1c
+      product: Famatech Radmin
+      version: 3.X
+      info: Source IP blocked
+      os: Windows
+      cpes:
+        - a:famatech:radmin:3
+        - o:microsoft:windows
+    - name: srcds
+      pattern:
+        regex: ^\n\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: srcds game server
+fallback-services:
+    - name: radmin
+      pattern:
+        regex: ^\x01\x00\x00\x00\x25.\x00..\x08.\x00..
+        options: s
+      product: Famatech Radmin
+      os: Windows
+      cpes:
+        - a:famatech:radmin
+        - o:microsoft:windows

@@ -1,0 +1,79 @@
+name: LANDesk-RC
+protocol: tcp
+rarity: 6
+payload: \x54\x4e\x4d\x50\x04\0\0\0\x54\x4e\x4d\x45\0\0\x04\0
+ports: 1761,1762,1763,2701,5709
+services:
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP.\0\0\0TNME.\0\0\0USER.\x08\x04\0\x08\0.{9}\0R\0\x03\0W\0\xff\xff\0.\0\xfd..\0\0\0\0\x02\0\0\0\0\x01\x04\0\0\0\0\0...\0\xb5\x01\xbb\0Desktop Manager (\d\.\d)\0\x02\x04\x01\x02\x01\0\0\W+([-\w]+)\0([-\w]+)\0\0$
+        options: s
+      product: LANDesk RC
+      version: $1
+      info: 'User: $3'
+      hostname: $2
+      cpes:
+        - a:landesk:landesk_management_suite:$1
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP.\0\0\0TNME.\0\0\0USER.\x08\x04\0\x08\0.{9}\0R\0\x03\0W\0\xff\xff\0.\0\xfd..\0\0\0\0\x02\0\0\0\0\x01\x04\0\0\0\0\0...\0\xb5\x01\xbb\0Desktop Manager (\d\.\d)\0\x02\x04\x01\x02\x01\0\0\W+(\w+)\0\0\0$
+        options: s
+      product: LANDesk RC
+      version: $1
+      hostname: $2
+      cpes:
+        - a:landesk:landesk_management_suite:$1
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP.\0\0\0TNME.\0\0\0USER.\x08\x04\0\x08\0.{9}\0R\0\x03\0W\0\xff\xff\0.\0\xfd..\0\0\0\0\x02\0\0\0\0\x01\x04\0\0\0\0\0...\0\xb5\x01\xbb\0Desktop Manager (\d\.\d)\0\x02\x04\x01\x02\x01\0\0\W+([\w.:]+)\W+(\w+)\0(\w+)\0\0$
+        options: s
+      product: LANDesk RC
+      version: $1
+      info: 'User: $4 Controller: $2'
+      hostname: $3
+      cpes:
+        - a:landesk:landesk_management_suite:$1
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP.\0\0\0TNME.\0\0\0USER.\x08\x04\0\x08\0.{9}\0R\0\x03\0W\0\xff\xff\0.\0\xfd..\0\0\0\0\x02\0\0\0\0\x01\x04\0\0\0\0\0...\0\xb5\x01\xbb\0Desktop Manager (\d\.\d)\0\x02\x04\x01\x02\x01\0\0\W+([\w.:]+)\W+(\w+)\0
+        options: s
+      product: LANDesk RC
+      version: $1
+      info: 'Controller: $2'
+      hostname: $3
+      cpes:
+        - a:landesk:landesk_management_suite:$1
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP\x16\0\0\0TNME\x80\0\xfe\xff..([\w.]+):(\d)$
+        options: s
+      product: LANDesk RC
+      info: Busy, From $1 on port 176$2
+      cpes:
+        - a:landesk:landesk_management_suite
+    - name: landesk-rc
+      pattern:
+        regex: ^\0\x04\0
+      product: Novell Zen Remote Desktop
+      version: 4.0.X
+    - name: landesk-rc
+      pattern:
+        regex: ^\0\x06\x05
+      product: Novell Zen Remote Desktop
+      version: 6.5.X
+    - name: landesk-rc
+      pattern:
+        regex: ^TNMP.\0\0\0TNME.\0\0\0USER.\x07\x04\0\x08\0.{9}\0P\0\x03\0U\0\xff\xff\0.*Desktop Manager ([\d.]+)\0
+        options: s
+      product: LANDesk RC
+      version: $1
+      cpes:
+        - a:landesk:landesk_management_suite:$1
+    - name: essnet
+      pattern:
+        regex: ^\xff\0\x13\0/v\x0f\0\0\0\0\0\0\0\x01\0\xc8\0\t\0/v\x0f\0\x04\x001040025\0\0
+      product: Hyperion Essbase
+    - name: spice
+      pattern:
+        regex: ^REDQ\x02\0\0\0\x02\0\0\0[^\0]
+      info: SPICE 2.2

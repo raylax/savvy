@@ -1,0 +1,136 @@
+name: SNMPv3GetRequest
+protocol: udp
+rarity: 4
+payload: \x30\x3a\x02\x01\x03\x30\x0f\x02\x02\x4a\x69\x02\x03\0\xff\xe3\x04\x01\x04\x02\x01\x03\x04\x10\x30\x0e\x04\0\x02\x01\0\x02\x01\0\x04\0\x04\0\x04\0\x30\x12\x04\0\x04\0\xa0\x0c\x02\x02\x37\xf0\x02\x01\0\x02\x01\0\x30\0
+ports: 161,260,3401
+services:
+    - name: echo
+      pattern:
+        regex: ^\x30\x3a\x02\x01\x03\x30\x0f\x02\x02\x4a\x69\x02\x03\0\xff\xe3\x04\x01\x04\x02\x01\x03\x04\x10\x30\x0e\x04\0\x02\x01\0\x02\x01\0\x04\0\x04\0\x04\0\x30\x12\x04\0\x04\0\xa0\x0c\x02\x02\x37\xf0\x02\x01\0\x02\x01\0\x30\0$
+    - name: H.323-gatekeeper-discovery
+      pattern:
+        regex: ^8\x02\x01\x10\0$
+      product: GNU Gatekeeper discovery
+      cpes:
+        - a:gnugk:gnu_gatekeeper
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x00\x00
+        options: s
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x00\x09
+        options: s
+      product: Cisco SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x00\x63
+        options: s
+      product: Cisco SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x00\xfd
+        options: s
+      product: Xerox SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x05\x95
+        options: s
+      product: Scientific Atlanta SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x06\x34
+        options: s
+      product: Brocade SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x06\x7f
+        options: s
+      product: QLogic SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x04\x50
+        options: s
+      product: IBM SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x07\xdb
+        options: s
+      product: Huawei SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x07\xe5
+        options: s
+      product: Lexmark SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x0b\x2f
+        options: s
+      product: Thomson SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x0d\x59
+        options: s
+      product: Blue Coat SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x13\x70
+        options: s
+      product: Canon SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x1f\x88
+        options: s
+      product: net-snmp
+      cpes:
+        - a:net-snmp:net-snmp
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\x80\0\x30\x44
+        options: s
+      product: Fortinet SNMP service
+      device-type: firewall
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x39\xe7
+        options: s
+      product: Aruba Networks SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\0\x75\xcb
+        options: s
+      product: OpenBSD SNMP service
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04.{5,6}\x01\0\x02\x03
+        options: s
+      product: MikroTik router SNMP service
+      device-type: router
+    - name: snmp
+      pattern:
+        regex: ^0\x82\0\x37\x02\x01\0\x04\x06public\xa2\x82\0\x28\x02.{41,43}\nSoftW:\x20([^\0\n]+)\nMCU:\x20([^\0\n]+)\n
+        options: s
+      product: $2
+      info: $1
+    - name: snmp
+      pattern:
+        regex: ^0\x82\0\x37\x02\x01\0\x04\x06public\xa2\x82\0\x28.{20}\x2b\x06\x01\x02\x01\x01\x05\0\x04\nZBR_SPICE0
+        options: s
+      product: Zebra GX430T label printer SNMP service
+      device-type: printer
+      cpes:
+        - h:zebra:gx430t
+    - name: snmp
+      pattern:
+        regex: ^0\x82\0\x3a\x02\x01\0\x04\x06public\xa2\x82\0\x2b.{20}\x06\x08\x2b\x06\x01\x02\x01\x01\x05\0\x04\x0bcfr25657985
+        options: s
+      product: ZyXEL Prestige 660HW ADSL router
+      device-type: broadband router
+      cpes:
+        - h:zyxel:prestige_660hw
+fallback-services:
+    - name: snmp
+      pattern:
+        regex: ^..\x02\x01\x030.\x02\x02Ji\x02.{3,4}\x04\x01.\x02\x01\x03\x04
+        options: s
+      product: SNMPv3 server

@@ -1,0 +1,16 @@
+name: insteonPLM
+protocol: tcp
+rarity: 9
+payload: \x02\x60
+ports: "9761"
+services:
+    - name: insteon-plm
+      pattern:
+        regex: ^\x02\x60...(.).\x9b\x06$
+      product: Insteon SmartLinc PLM
+      info: 'device type: $I(1,">")'
+    - name: insteon-plm
+      pattern:
+        regex: ^\x02\x60...(.).[\x9c\x9d]\x06$
+      product: Insteon Hub PLM
+      info: 'device type: $I(1,">")'

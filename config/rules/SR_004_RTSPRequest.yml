@@ -1,0 +1,720 @@
+name: RTSPRequest
+protocol: tcp
+rarity: 5
+payload: OPTIONS / RTSP/1.0\r\n\r\n
+ports: 80,554,3052,3372,5000,7000,7070,8080,10000
+ssl-ports: "322"
+fallbacks: GetRequest
+services:
+    - name: raop
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Digest realm=\"raop\", nonce=\"[0-9A-F]{40}\"\r\nContent-Length: 0\r\n\r\n$'
+      product: Remote Audio Output Protocol
+      info: Rogue Amoeba Airfoil speakers
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nDate: .*\r\nServer: RealServer Version (\d[-.\w]+) \(win32\)\r\n'
+      product: Realserver RTSP
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: RealMedia EncoderServer Version (\d[-.\w]+) \(win32\)\r\n'
+        options: s
+      product: RealMedia EncoderServer
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: RealServer Version (\d[-.\w]+) \(([-.+\w]+)\)\r\n'
+        options: s
+      product: RealOne Server
+      version: $1
+      info: $2
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Helix [\w ]*Server Version ([\d.]+) \(win32\)\r\n'
+        options: s
+      product: Helix DNA Server
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Helix [\w ]*Server Plus Version ([\d.]+) \(win32\)'
+        options: s
+      product: Helix DNA Server Plus
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Helix [\w ]*Server Version ([\d.]+) \((linux-[^)\r\n]+)\)'
+        options: s
+      product: Helix DNA Server
+      version: $1
+      info: $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Helix [\w ]*Server Version ([\d.]+) \(sunos-([\d.]+)-sparc-server\)'
+        options: s
+      product: Helix DNA Server
+      version: $1
+      info: SunOS $2 sparc
+      os: SunOS
+      cpes:
+        - o:sun:sunos:$2
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Helix Server Version ([\d.]+) \(sunos-([\d.]+)-sparc-server\)'
+        options: s
+      product: Helix DNA Server
+      version: $1
+      info: SunOS $2 sparc
+      os: SunOS
+      cpes:
+        - o:sun:sunos:$2
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: Helix Server Version ([\d.]+) \(win32\)'
+        options: s
+      product: Helix DNA Server
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d .*\r\nServer: DSS/([\d.]+) \(Build/[\d.]+; Platform/Win32'
+      product: Darwin Streaming Server
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d .*\r\nServer: DSS/([\d.]+) \(Build/[\d.]+; Platform/Solaris'
+      product: Darwin Streaming Server
+      version: $1
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d .*\r\nServer: DSS/([\d.]+) \(Build/[\d.]+; Platform/Linux'
+      product: Darwin Streaming Server
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d .*\r\nServer: DSS/([\d.]+) \(Build/[\d.]+; Platform/FreeBSD'
+      product: Darwin Streaming Server
+      version: $1
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 \d\d\d .*\r\nPublic: DESCRIBE, GET_PARAMETER, PAUSE, PLAY, SETUP, TEARDOWN\r\n\r\n'
+      product: Axis 207W Webcam rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nAudio-Jack-Status: connected; type=digital\r\n'
+      product: RogueAmoeba Airfoil rtspd
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: AirTunes/([\w._-]+)\r\nAudio-Jack-Status: connected; type=analog\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET\r\n\r\n'
+      product: RogueAmoeba Airfoil rtspd
+      version: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nAudio-Jack-Status: connected; type=analog\r\nCSeq: \r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER\r\n\r\n'
+      product: Boxee rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: vlc ([\w._-]+)\r\n'
+      product: VideoLAN
+      version: $1
+      cpes:
+        - a:videolan:vlc_media_player:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET\r\nServer: AirTunes/([\w._-]+)\r\n\r\n'
+      product: Apple AirTunes rtspd
+      version: $1
+      info: Apple TV
+      os: Mac OS X
+      device-type: media device
+      cpes:
+        - a:apple:apple_tv
+        - o:apple:mac_os_x
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, FLUSHBUFFERED, TEARDOWN, OPTIONS, POST, GET, PUT\r\nServer: AirTunes/366\.0\r\n\r\n'
+      product: Sonos speaker rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nContent-Length: 0\r\nServer: AirTunes/366\.0\r\nWWW-Authenticate: Digest realm="airplay", nonce="M[Tj][AEIMQUYcgk][\w+/]{33}"\r\n\r\n'
+      product: Sonos speaker rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nContent-Length: 0\r\nServer: AirTunes/\d+\.\d+\.\d+\r\nWWW-Authenticate: Digest realm="airplay", nonce="M[Tj][AEIMQUYcgk][\w+/]{33}"\r\n\r\n'
+      product: Apple AirPlay rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: AirTunes/250.33\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET\r\nAccess-Control-Allow-Origin: \*\r\nContent-Type: text/plain\r\nAccess-Control-Allow-Headers: Content-Type\r\nAccess-Control-Allow-Methods: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET\r\nContent-Length: 0\r\nCSeq: 1\r\n\r\n$'
+      product: Unknown AirPlay service?
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nDate: .* GMT\r\nContent-Length: 0\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET, PUT\r\nServer: AirTunes/(\d+\.\d+\.\d+)\r\n\r\n'
+      product: Apple AirTunes rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET, HEAD, PUT\r\nAudio-Jack-Status: .*\r\nServer: AirTunes/(\d+\.\d+)\r\nDate: .*\d\r\nContent-Length: 0\r\n\r\n'
+      product: Prowise interactive whiteboard AirPlay rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: ^RTSP/1\.0 400 Bad Request\r\n\r\n$
+      product: Apple AirTunes rtspd
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: AirTunes/([\w._-]+)\r\n\r\n'
+      product: Apple AirTunes rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 453 Not Enough Bandwidth\r\nServer: AirTunes/([\w._-]+)\r\n\r\n'
+      product: Apple AirTunes rtspd
+      version: $1
+      info: bandwidth maxed out
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: VLC/([\w._-]+)\r\nContent-Length: 0\r\nPublic: DESCRIBE,SETUP,TEARDOWN,PLAY,PAUSE,GET_PARAMETER\r\n\r\n'
+      product: VLC rtspd
+      version: $1
+      cpes:
+        - a:videolan:vlc_media_player:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/2\.0 200 OK\r\nCSeq: 0\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n\r\n$'
+      product: TwonkyMedia rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: iCanSystem/([\w._-]+)\r\nCseq: \r\nPublic: DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN, OPTIONS\r\n\r\n$'
+      product: iCanSystem rtspd
+      version: $1
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: DESCRIBE, GET_PARAMETER, PAUSE, PLAY, SETUP, SET_PARAMETER, TEARDOWN\r\n\r\n$'
+      product: AXIS 207W or 212 PTZ network camera rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, SET_PARAMETER\r\n\r\n$'
+      product: Avtech MPEG4 DVR control rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nSupported: play\.basic, con\.persistent\r\nCseq: 0\r\nServer: Wowza Media Server ([\w._-]+) build(\d+)\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER\r\n\r\n$'
+      product: Wowza Media Server rtspd
+      version: $1 build $2
+      cpes:
+        - a:wowza:wowza_media_server:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nSupported: play\.basic, con\.persistent\r\nCseq: 0\r\nServer: Wowza Streaming Engine ([\w._-]+) build(\d+)\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER\r\nCache-Control: no-cache\r\n\r\n$'
+      product: Wowza Streaming Engine rtspd
+      version: $1 build $2
+      cpes:
+        - a:wowza:wowza_streaming_engine:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Helix Mobile Server Version ([\w._-]+) \(win32\) \(RealServer compatible\)\r\nPublic: OPTIONS, DESCRIBE, PLAY, PAUSE, SETUP, GET_PARAMETER, SET_PARAMETER, TEARDOWN\r\nTurboPlay: 1\r\nRealChallenge1: [0-9a-f]+\r\nStatsMask: 8\r\n\r\n$'
+        options: s
+      product: Helix Mobile Server rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Server: Helix Mobile Server Version ([\w._-]+) \(win32\) \(RealServer compatible\)\r\nPublic: OPTIONS, DESCRIBE, ANNOUNCE, PLAY, PAUSE, SETUP, GET_PARAMETER, SET_PARAMETER, TEARDOWN\r\nTurboPlay: 1\r\nRealChallenge1: [0-9a-f]+\r\nStatsMask: 8\r\n\r\n$'
+        options: s
+      product: Helix Mobile Server rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCseq: 0\r\nPublic: OPTIONS,DESCRIBE,SETUP,PLAY,PING,PAUSE,TEARDOWN\r\n\r\n$'
+      product: Cisco WVC54GCA webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:cisco:wvc54gca
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: .*\r\nallow: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN\r\n\r\n$'
+      product: ACTi surveillance camera rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: Mango DSP RTSP Stack\r\n\r\n'
+      product: Mango DSP AVS Raven-M video server rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: -1\r\nDate: .* GMT\r\nPublic: OPTIONS, DESCRIBE, PLAY, SETUP, TEARDOWN\r\n\r\n$'
+      product: Vivotek IP7131 or IP7138 webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:vivotek:ip7131
+        - h:vivotek:ip7138
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: -1\r\nDate: .* GMT\r\nPublic: OPTIONS, DESCRIBE, PLAY, SETUP, GET_PARAMETER, SET_PARAMETER, TEARDOWN\r\n\r\n'
+      product: Vivotek FD8134V webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:vivotek:fd8134v
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: OPTIONS, ANNOUNCE, SETUP, RECORD, SET_PARAMETER, GET_PARAMETER, FLUSH, TEARDOWN, POST\r\n\r\n'
+      product: Freebox rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nCSeq: 0\r\nDate: .*\r\nExpires: .*\r\nCache-Control: must-revalidate\r\nWWW-Authenticate: Digest realm=\"NET-i\", nonce=\"000000000000000000000000[0-9A-F]{8}\"\r\n\r\n'
+      product: Samsung SNB-2000 webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:samsung:snb-2000
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK 200\r\n(?:[^\r\n]+\r\n)*?Server: Amino streamer\r\n'
+        options: s
+      product: Amino AmiNET set-top box rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: GM Streaming Server v([\w._-]+)\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n\r\n$'
+      product: GM Streaming Server rtspd
+      version: $1
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nCSeq: 0\r\n\r\n'
+      product: Sanyo VCC-HD2300 webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:sanyo:vcc-hd2300
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nCSeq: 0\r\nWWW-Authenticate: Basic realm=\"Arecont Vision\"\r\n\r\n'
+      product: Arecont Vision surveillance camera rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: .* GMT\r\nAllow: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, GET_PARAMETER, SET_PARAMETER\r\n\r\n'
+      product: D-Link DCS-2130 or Pelco IDE10DN webcam rtspd
+      device-type: webcam
+      cpes:
+        - h:dlink:dcs-2130
+        - h:pelco:ide10dn
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nDate: .*\r\nServer: RealMedia Server Version ([\d.]+) \(([^)]+)\)\r\nPublic: OPTIONS, DESCRIBE, ANNOUNCE, SETUP, GET_PARAMETER, SET_PARAMETER, TEARDOWN\r\nRealChallenge1: '
+      product: RealMedia Server
+      version: $1
+      os: $2
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: .*\r\nAllow: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\n\r\n'
+      product: NUUO IP Surveillance rtpsd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: .*\r\nAllow: OPTIONS, DESCRIBE, SETUP, TEARDOWN, SET_PARAMETER, PLAY\r\n\r\n'
+      product: Planet ICA-HM132 or TRENDnet TV IP302PI rtspd
+      device-type: webcam
+      cpes:
+        - h:planet:ica-hm132
+        - h:trendnet:tv_ip302pi
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: .*\r\nAllow: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, SET_PARAMETER\r\n\r\n'
+      product: Live555 Streaming Server rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nAudio-Jack-Status: .*\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER\r\n\r\n'
+      product: Shairport rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: Optelecom-NKF RTSPServer/([\w._-]+)\r\n\r\n'
+      product: Optelecom-NKF rtspd
+      version: $1
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: HiIpcam/([\w._-]+) VodServer/([\w._-]+)\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY,SET_PARAMETER,GET_PARAMETER\r\n\r\n'
+      product: VODServer rtspd
+      version: $2
+      info: HiIpcam $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Digest realm=\"Hikvision\", nonce=\"[\da-f]{32}\", stale=\"FALSE\"\r\nWWW-Authenticate: Basic realm=\"/\"\r\n\r\n'
+      product: Hikvision DVR rtspd
+      device-type: media device
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER, POST, GET, PUT\r\nServer: AirTunes/([\w._-]+)\r\n\r\n'
+      product: AirTunes rtspd
+      version: $1
+      cpes:
+        - a:apple:airtunes:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nDate: .*\r\nPublic: OPTIONS, DESCRIBE, SETUP, PLAY, PAUSE, TEARDOWN, GET_PARAMETER, SET_PARAMETER\r\n\r\n$'
+      product: TP-LINK WAP rtspd
+      device-type: WAP
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nDate: \d\d\d\d/\d\d?/\d\d?\r\nAllow: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, GET_PARAMETER, SET_PARAMETER\r\n\r\n'
+      product: Monster Digital Villain or Denver AC-5000W MK2 rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: HiIpcam/(V\d+R\d+) VodServer/([\d.]+)\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY\r\n\r\n'
+      product: HiLinux IP camera rtspd
+      version: $1
+      info: VodServer $2
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 401 Unauthorized\r\nWWW-Authenticate: Basic realm="device"\r\nServer: Dahua Rtsp Server\r\nContent-Length: 0\r\n\r\n'
+      product: Dahua IP camera rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 404 Not Found\r\nServer: AvigilonOnvifNvt/([\d.]+)\r\n'
+      product: Avigilon ONVIF camera rtspd
+      version: $1
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: Gordian Embedded([\d\.]+)\r\n(?:[^\r\n]+\r\n)*?Public: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN\r\n'
+        options: s
+      product: Gordian httpd
+      version: $1
+      info: IQinVision IQeye3 webcam rtspd
+      device-type: webcam
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: H264DVR ([\d.]+)\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, GET_PARAMETER,(?: SET_PARAMETER,) PLAY, PAUSE\r\n\r\n'
+      product: H264DVR rtspd
+      version: $1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 403 Forbidden\r\nContent-Length: 0\r\nServer: AirTunes/([\d.]+)\r\n\r\n'
+      product: AirTunes rtspd
+      version: $1
+      cpes:
+        - a:apple:airtunes:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nPublic: OPTIONS, DESCRIBE, SETUP, PLAY, TEARDOWN, PAUSE\r\n\r\n$'
+      product: Hikvision DVR rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nPublic: OPTIONS, DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE,GET_PARAMETER\r\n\r\n$'
+      product: Kodi OSMC rtspd
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: \r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE\r\nServer: HomeMonitor HD Pro\r\n\r\n'
+      product: Y-cam HomeMonitor HD Pro rtspd
+      device-type: webcam
+      cpes:
+        - h:y-cam:homemonitor_hd_pro
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nServer: AirTunes/([\d.]+)\r\nPublic: ANNOUNCE, SETUP, RECORD, PAUSE, FLUSH, TEARDOWN, OPTIONS, GET_PARAMETER, SET_PARAMETER\r\n\r\n'
+      product: Apple AirTunes rtspd
+      version: $1
+      cpes:
+        - a:apple:airtunes:$1
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\nCSeq: 0\r\nServer: Wowza Streaming Engine ([\d.]+) build ?(\d+)\r\nCache-Control: no-cache\r\nPublic: DESCRIBE, SETUP, TEARDOWN, PLAY, PAUSE, OPTIONS, ANNOUNCE, RECORD, GET_PARAMETER\r\n'
+      product: Wowza Streaming Engine rtspd
+      version: $1 build $2
+      cpes:
+        - a:wowza:wowza_streaming_engine:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\nContent-Type: text/html\r\nServer: Allegro-Software-RomPager/([\d.]+).*This object on the APC Management Web Server is protected and requires a secure socket connection\.'
+        options: s
+      product: Allegro RomPager
+      version: $1
+      info: APC http config
+      device-type: power-device
+      cpes:
+        - a:allegro:rompager:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nAllow: GET, HEAD, POST, PUT\r\nContent-Length: 0\r\nServer: Allegro-Software-RomPager/([\d.]+)\r\n\r\n$'
+      product: Allegro RomPager
+      version: $1
+      cpes:
+        - a:allegro:rompager:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nServer: FineGround Performance Server\r\n'
+      product: Fineground performance httpd
+    - name: http
+      pattern:
+        regex: '^RTSP/1\.0 501 Not Implemented\r\nServer: Embedded HTTP Server ([\d.]+)\r\n'
+      product: Embedded HTTP Server
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: Virata-EmWeb/R([\d_]+)\r\nContent-Length: 0\r\n\r\n400 Bad Request\r\n$'
+      product: Virata-EmWeb
+      version: $SUBST(1,"_",".")
+      info: HP printer http config
+      device-type: printer
+      cpes:
+        - a:virata:emweb:$SUBST(1,"_",".")
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nContent-Length: 0\r\n\r\n'
+      product: EMC Navisphere CIM Object Manager httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nPragma: no-cache\r\nCache-Control: no-store\r\nContent-Type: text/html\r\nContent-Length: 229\r\n\r\n<html>\r\n<head>\r\n<title> Error </title>\r\n</head>\r\n<body>\r\n<!-- user defined strings -->\r\nAccess denied due to security policy violation<br><br><!-- reject ID -->\r\nReject ID: [0-9a-f-]+\r\n<br>\r\n<br>\r\n</body>\r\n</html>$'
+      product: Check Point R65 firewall http config
+      device-type: firewall
+      cpes:
+        - h:checkpoint:r65
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 406 Not Acceptable\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nContent-Type: text/html; charset=utf-8\r\nConnection: close\r\nContent-Length: 616\r\n\r\n<HTML><HEAD>\n<TITLE>Request Error</TITLE>'
+      product: Blue Coat proxy server
+      device-type: proxy server
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n$
+      product: nginx
+      cpes:
+        - a:igor_sysoev:nginx
+    - name: http
+      pattern:
+        regex: '^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body(?: bgcolor=\"white\")?>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>openresty</center>\r\n</body>\r\n</html>\r\n$'
+      product: OpenResty web app server
+      cpes:
+        - a:openresty:ngx_openresty
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>nginx/([\w._-]+)</center>\r\n</body>\r\n</html>\r\n$
+      product: nginx
+      version: $1
+      cpes:
+        - a:igor_sysoev:nginx:$1
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body bgcolor=\"white\">\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>cloudflare-nginx</center>\r\n</body>\r\n</html>\r\n$
+      product: cloudflare-nginx
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n</body>\r\n</html>\r\n$
+      product: nginx
+      cpes:
+        - a:igor_sysoev:nginx
+    - name: http
+      pattern:
+        regex: ^<head><title>400 Bad Request</title></head>\r\n<h1>400 Bad Request</h1>\r\n\r\n
+      product: nginx
+      cpes:
+        - a:igor_sysoev:nginx
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 404 Not Found\r\n\r\n$
+      product: XBT BitTorrent tracker http interface
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 400 Bad Request\n\n$
+      product: Adaptec Storage Manager Agent httpd
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 406 Not Acceptable\r\n.*<blockquote>\n<TABLE border=0 cellPadding=1 width=\"80%\">\n<TR><TD>\n<FONT face=\"Helvetica\">\n<big>Request Error \(unsupported_protocol\)</big>\n<BR>\n<BR>\n</FONT>
+        options: s
+      product: Dreambox httpd
+      device-type: media device
+    - name: http-proxy
+      pattern:
+        regex: ^HTTP/1\.1 400 Bad Request \( The data is invalid\.  \)\r\n
+      product: Microsoft ISA Server http proxy
+      os: Windows
+      cpes:
+        - a:microsoft:isa_server
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html; charset=UTF-8\r\nPragma: no-cache\r\nConnection: close\r\nDate: .*\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD>\r\n<BODY><H1>400 Bad Request</H1>\r\nThe request could not be understood by the server due to malformed syntax\r\n</BODY></HTML>$'
+      product: Trend Micro CSC module for Cisco ASA 5510 firewall httpd
+      cpes:
+        - h:cisco:asa_5510
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/plain\r\nConnection: close\r\n\r\nError 400: Bad Request\nCan not parse request: \[OPTIONS\]'
+      product: TomTom httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nDate: .*\r\nConnection: close\r\nServer: Apache\r\n\r\n'
+      product: Apache Tomcat httpd
+      cpes:
+        - a:apache:tomcat
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nContent-Length: 0\r\n\r\n400 Bad Request\r\n'
+      product: Cisco Wireless LAN Controller httpd
+      device-type: remote management
+      cpes:
+        - o:cisco:wireless_lan_controller_software
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nContent-Type: text/html\r\nContent-Length: 166\r\n\r\n<html><head><title>505 HTTP Version Not Supported</title></head><body><h1>HTTP Version Not Supported</h1><p>HTTP versions 1\.0 and 1\.1 are supported\.</p></body></html>'
+      product: Mitel SIP DEC VoIP phone http config
+      device-type: VoIP phone
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/plain\r\nContent-Length: 59\r\nConnection: close\r\n\r\nError 400: Bad Request\nCannot parse HTTP request: \[OPTIONS\]$'
+      product: Mongoose httpd
+      cpes:
+        - a:cesanta:mongoose
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version not supported\r\nContent-Length: 0\r\nDate: .* GMT\r\nConnection: close\r\n\r\n'
+      product: Konica Minolta bizhub C452 OpenAPI
+      device-type: printer
+      cpes:
+        - h:konicaminolta:bizhub_c452
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500\r\nContent-Type: text/html; charset=UTF-8\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nExpires: 0\r\nConnection: close\r\n\r\n<!DOCTYPE html>\n<html>\n<head>\n  <title>Application Firewall Error</title>\n  <style type="text/css" media="screen">\n    body \{ font-family: Arial, Garamond, sans-serif; padding: 40px; background-color: #333333; \}\n'
+      product: Imperva WAF
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nConnection: close\r\nContent-Type: text/html; charset=UTF-8\r\nCache-Control: no-cache\r\nDate: .*\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD>\r\n<BODY><H1>400 Bad Request</H1>\r\n</BODY></HTML>\r\n'
+      product: Trend Micro OfficeScan
+      cpes:
+        - a:trend_micro:officescan
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body bgcolor="white">\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center></center>\r\n</body>\r\n</html>\r\n
+      product: Palo Alto GlobalProtect Gateway httpd
+      cpes:
+        - a:paloaltonetworks:globalprotect
+    - name: http
+      pattern:
+        regex: ^<html>\r\n<head><title>400 Bad Request</title></head>\r\n<body>\r\n<center><h1>400 Bad Request</h1></center>\r\n<hr><center>Microsoft-Azure-Application-Gateway/(v\d+)</center>\r\n</body>\r\n</html>\r\n
+      product: Microsoft Azure Application Gateway
+      version: $1
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 503 Service Unavailable\r\ndate: .*\r\nconnection: close\r\n\r\n<html><body><pre><h1>Service unavailable</h1></pre></body></html>\n'
+      product: HTTP Replicator proxy
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: 103\r\nConnection: close\r\n\r\n<html><body> <h2>Mikrotik HttpProxy</h2>\n\r<hr>\n\r<h2>\n\rError: 400 Bad Request\r\n\r\n</h2>\n\r</body></html>\n\r$'
+      product: MikroTik HttpProxy
+      device-type: router
+    - name: http-proxy
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: PanWeb Server/([\w._-]+)\r\n(?:[^\r\n]+\r\n)*?Keep-Alive: timeout=60, max=2000\r\nContent-Type: text/html\r\nContent-length: 130\r\n\r\n<HTML><HEAD><TITLE>Document Error: Bad Request</TITLE>'
+        options: s
+      product: Palo Alto PanWeb httpd
+      version: $1
+      device-type: proxy server
+      cpes:
+        - a:paloaltonetworks:panweb:$1
+    - name: remote-control
+      pattern:
+        regex: ^\x01\0\0\0\0\0\0$
+      product: Alchemy Lab Remote Control PRO remote management
+      device-type: remote management
+    - name: rtsp-proxy
+      pattern:
+        regex: '^RTSP/1\.0 200 OK\r\n(?:[^\r\n]+\r\n)*?Via: [\d.]+ ([-\w_.]+) \(NetCache NetApp/([\w.]+)\)\r\n\r\n'
+        options: s
+      product: NetApp NetCache rtsp proxy
+      version: $2
+      hostname: $1
+      cpes:
+        - a:netapp:netcache:$2
+    - name: rtsp-proxy
+      pattern:
+        regex: ^RTSP/1\.0 451 Parameter Not Understood\r\n\r\n$
+      product: RTSP Proxy Reference Implementation
+    - name: rtsp-proxy
+      pattern:
+        regex: '^RTSP/1\.0 403 Forbidden: Proxy not licensed\r\nSession: \w+\r\n\r\n'
+      product: Blue Coat rtsp proxy
+      info: Unlicensed
+    - name: sonicmq
+      pattern:
+        regex: ^\x1a\xff\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x08\xff\xff\xff\xf1\0\0\0O$
+      product: Novell Sentinel SonicMQ broker
+    - name: powerchute
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad request\r\nContent-type: text/html\r\n\r\n'
+      product: APC PowerChute Agent
+      version: 6.x|7.x
+      device-type: power-device
+    - name: powerchute
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad request\nContent-type: text/html\n\n'
+      product: APC PowerChute Agent
+      version: 7.X
+      device-type: power-device
+    - name: msdtc
+      pattern:
+        regex: ^ERROR\n$
+        options: s
+      product: Microsoft Distributed Transaction Coordinator
+      info: error
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nServer: Unknown/0\.0 UPnP/([\d.]+) Virata-EmWeb/([-.\w]+)\r\n'
+      product: Virata-EmWeb
+      version: $SUBST(2,"_",".")
+      info: ReplayTV UPnP; UPnP $1
+      cpes:
+        - a:virata:emweb:$SUBST(2,"_",".")
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/html; charset=us-ascii\r\nDate: .*\r\nConnection: close\r\nContent-Length: \d+\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4\.01//EN\"\"http://www\.w3\.org/TR/html4/strict\.dtd\">'
+      product: Microsoft IIS httpd
+      cpes:
+        - a:microsoft:internet_information_services

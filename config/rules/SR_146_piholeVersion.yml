@@ -1,0 +1,20 @@
+name: piholeVersion
+protocol: tcp
+rarity: 9
+payload: '>version\n'
+ports: "4711"
+services:
+    - name: pi-hole-stats
+      pattern:
+        regex: ^version v(\d[\w._-]+)
+      product: pi-hole Telnet API
+      version: $1
+      cpes:
+        - a:pi-hole:pi-hole:$1
+    - name: pi-hole-stats
+      pattern:
+        regex: '^unknown command: .*---EOM---\n\n$'
+        options: s
+      product: pi-hole Telnet API
+      cpes:
+        - a:pi-hole:pi-hole

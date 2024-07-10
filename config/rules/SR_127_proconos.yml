@@ -1,0 +1,16 @@
+name: proconos
+protocol: tcp
+rarity: 9
+payload: \xcc\x01\x00\x0b\x40\x02\x00\x00\x47\xee
+ports: "20547"
+services:
+    - name: proconos
+      pattern:
+        regex: ^\xcc\x01...\x02\x92\0V\d+\.\d+ProConOS V([\d.]+) \w\w\w +\d+ \d+\0+\0([^\0]+)\0+([^\0]+)\0+([^\0]+)\0+([^\0]+)\0
+        options: s
+      product: ProConOS
+      version: $1
+      info: 'PLC: $2; project: $3/$4; source: $5'
+    - name: echo
+      pattern:
+        regex: ^\xcc\x01\0\x0b@\x02\0\0G\xee

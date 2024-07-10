@@ -1,0 +1,12 @@
+name: Murmur
+protocol: udp
+rarity: 9
+payload: \0\0\0\0abcdefgh
+ports: "64738"
+services:
+    - name: murmur
+      pattern:
+        regex: ^\0...abcdefgh............$
+        options: s
+      product: Murmur
+      version: 1.2.X

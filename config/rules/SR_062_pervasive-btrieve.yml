@@ -1,0 +1,11 @@
+name: pervasive-btrieve
+protocol: tcp
+rarity: 8
+payload: \x3c\0\x4b\0\0\0\x20\0\0\0\0\0\0\0\0\0\xff\xff\xff\xff\0\0\x0a\x04\xa0\xbe\x53\x03\x55\x52\0\0\x3c\0\0\0\x05\0\0\0\0\0\0\0\0\0\x1a\0\x3c\0\0\0\0\0\x0a\0\0\0\0\0
+ports: 1583,3351
+services:
+    - name: psql-btrieve
+      pattern:
+        regex: ^A\0K\0\0\0....\0\0\0\0\0\0\xff\xff\xff\xff\0\0\n\x04\xa0
+        options: s
+      product: Pervasive.SQL Server - Btrieve Engine

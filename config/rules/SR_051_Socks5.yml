@@ -1,0 +1,111 @@
+name: Socks5
+protocol: tcp
+rarity: 8
+payload: \x05\x04\x00\x01\x02\x80\x05\x01\x00\x03\x0agoogle.com\x00\x50GET / HTTP/1.0\r\n\r\n
+ports: 199,1080,1090,1095,1100,1105,1109,3128,6588,6660,6661,6662,6663,6664,6665,6666,6667,6668,6669,7777,8000,8008,8010,8080,8088,9481
+services:
+    - name: caldav
+      pattern:
+        regex: '^HTTP/1\.1 503 Service Unavailable\r\nServer: DavMail Gateway ([\w._-]+)\r\nDAV: 1, calendar-access, calendar-schedule, calendarserver-private-events, addressbook\r\n(?:[^\r\n]+\r\n)*?Content-Length: 83\r\n\r\nInvalid header: google\.com\0PGET / HTTP/1\.0, HTTPS connection to an HTTP listener \? '
+        options: s
+      product: DavMail CalDAV http gateway
+      version: $1
+      device-type: proxy server
+    - name: fcp
+      pattern:
+        regex: ^ProtocolError\nFatal=true\nCodeDescription=ClientHello must be first message\nCode=1\nEndMessage\n$
+      product: Freenet Client Protocol 2.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 ERROR\r\nConnection: keep-alive\r\nContent-Length: 17\r\nContent-Type: text/html\r\n\r\n\r\ninvalid requestHTTP/1\.1 400 ERROR\r\nConnection: keep-alive\r\nContent-Length: 17\r\nContent-Type: text/html\r\n\r\n\r\ninvalid request'
+      product: uTorrent http admin
+      version: "3.0"
+      cpes:
+        - a:utorrent:utorrent:3.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Unexpected new line: \x05\x04\0\x01\x02\x3f\x05\x01\0\x03\[CRLF\]\.\r\nContent-Type: text/html\r\nContent-Length: 763\r\nConnection: Close\r\n\r\n<html>\r\n    <head>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n        <title>Unexpected new line: \x05\x04\0\x01\x02\?\x05\x01\0\x03\[CRLF\]\.</title>\r\n    </head>\r\n    <body>\r\n        <h1>500 - Unexpected new line: \x05\x04\0\x01\x02\?\x05\x01\0\x03\[CRLF\]\.</h1>\r\n        <pre>System\.InvalidOperationException: Unexpected new line: \x05\x04\0\x01\x02\?\x05\x01\0\x03\[CRLF\]\.\n  at fp\.bb \(Char A_0\) \[0x00000\] in <filename unknown>:0 \n  at ha\.d \(\) \[0x00000\] in <filename unknown>:0 \n  at ha\.b \(System\.Byte\[\] A_0, Int32 A_1, Int32 A_2\) \[0x00000\] in <filename unknown>:0 \n'
+      product: McMyAdmin Minecraft game admin console
+      version: 2.2.14
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.\r\nContent-Type: text/html\r\nContent-Length: 769\r\nConnection: Close\r\n\r\n<html>\r\n    <head>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n        <title>Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.</title>\r\n    </head>\r\n    <body>\r\n        <h1>500 - Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.</h1>\r\n        <pre>System\.InvalidOperationException: Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.\n  at fp\.ba \(Char A_0\) \[0x00000\] in <filename unknown>:0 \n'
+      product: McMyAdmin Minecraft game admin console
+      version: 2.2.14
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.\r\nContent-Type: text/html\r\nContent-Length: 769\r\nConnection: Close\r\n\r\n<html>\r\n    <head>\r\n        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\r\n        <title>Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.</title>\r\n    </head>\r\n    <body>\r\n        <h1>500 - Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.</h1>\r\n        <pre>System\.InvalidOperationException: Unexpected new line: \x05\x04\0\x01\x02\xef\xbf\xbd\x05\x01\0\x03\[CRLF\]\.\n  at f8\.be \(Char A_0\) \[0x00000\] in <filename unknown>:0 \n'
+      product: McMyAdmin Minecraft game admin console
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Page not found\r\nServer: IPCamera-Web\r\nDate: .* \d\d\d\d\r\nPragma: no-cache\r\nCache-Control: no-cache\r\nContent-Type: text/html\r\n\r\n<html><head><title>Document Error: Page not found</title></head>\r\n\t\t<body><h2>Access Error: Page not found</h2>\r\n\t\t<p>Bad request type</p></body></html>\r\n\r\n'
+      product: Tenvis IP camera admin httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^\x05\x04\0\x01\x02\x80\x05\x01\0\x03\ngoogle\.com\0PGET / HTTP/1\.0\r\n\r\n\0HTTP/1\.0 500 Internal Server Error\r\nContent-Length: 0\r\n\r\n'
+      product: DeviceWISE Enterprise M2M httpd
+      cpes:
+        - a:telit:devicewise_m2m
+    - name: http-proxy
+      pattern:
+        regex: ^<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2\.0//EN\">\n<HTML><HEAD><TITLE>Error</TITLE></HEAD>\n<BODY><h2>400 Can not find method and URI in request</h2>\r\nWhen trying to load <a href=\"smartcache://url-parse-error\">smartcache://url-parse-error</a>\.\n<hr noshade size=1>\r\nGenerated by smart\.cache \(<a href=\"http://scache\.sourceforge\.net/\">Smart Cache ([\w._-]+)</a>\)\r\n</BODY></HTML>\r\n$
+      product: Smart Cache http-proxy
+      version: $1
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\0\0\x01.{6}HTTP
+        options: s
+      info: No authentication required; connection ok
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x01
+      info: No authentication; general failure
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x02
+      info: No authentication; connection not allowed by ruleset
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x03
+      info: No authentication; network unreachable
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x04
+      info: No authentication; host unreachable
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x05
+      info: No authentication; connection refused by destination host
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x06
+      info: No authentication; TTL expired
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x07
+      info: No authentication; command not supported/protocol error
+    - name: socks5
+      pattern:
+        regex: ^\x05\0\x05\x08
+      info: No authentication; address type not supported
+    - name: socks5
+      pattern:
+        regex: ^\x05\x01
+      info: GSSAPI authentication required
+    - name: socks5
+      pattern:
+        regex: ^\x05\x02
+      info: Username/password authentication required
+    - name: socks5
+      pattern:
+        regex: ^\x05\xFF$
+      info: No acceptable authentication method
+    - name: socks5
+      pattern:
+        regex: ^\x05\0$
+      info: No authentication; connection failed
+fallback-services:
+    - name: socks5
+      pattern:
+        regex: ^\x05

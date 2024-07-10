@@ -1,0 +1,10 @@
+name: coap-request
+protocol: udp
+rarity: 9
+payload: '@\x01\x01\xce\xbb.well-known\x04core'
+ports: "5683"
+ssl-ports: "5684"
+fallback-services:
+    - name: coap
+      pattern:
+        regex: ^`E

@@ -1,0 +1,15 @@
+name: OpenVPN
+protocol: udp
+rarity: 8
+payload: 8d\xc1x\x01\xb8\x9b\xcb\x8f\0\0\0\0\0
+ports: 443,500,1194
+services:
+    - name: openvpn
+      pattern:
+        regex: ^@........\x01\0\0\0\0d\xc1x\x01\xb8\x9b\xcb\x8f\0\0\0\0
+        options: s
+      product: OpenVPN
+fallback-services:
+    - name: isakmp
+      pattern:
+        regex: ^................\x0b\x10\x05\0\0\0\0\0\0\0\0\(\0\0\0\x0c\0\0\0\x01\x01\0\0\x05

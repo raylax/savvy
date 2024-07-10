@@ -1,0 +1,10 @@
+name: mqtt
+protocol: tcp
+rarity: 9
+payload: \x10\x10\x00\x04MQTT\x04\x02\x00\x1e\x00\x04nmap
+ports: "1883"
+ssl-ports: "8883"
+services:
+    - name: mqtt
+      pattern:
+        regex: ^\x20\x02\x00.$

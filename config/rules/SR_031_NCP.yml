@@ -1,0 +1,82 @@
+name: NCP
+protocol: tcp
+rarity: 6
+payload: \x44\x6d\x64\x54\0\0\0\x17\0\0\0\x01\0\0\0\0\x11\x11\0\xff\x01\xff\x13
+ports: 524,1200,1217,2000,3000,3001,3002,3003,3004,3005,3006,3031,6802
+services:
+    - name: audioworks
+      pattern:
+        regex: ^\0\0$
+      product: AudioWorks sound server
+      os: IRIX
+      cpes:
+        - o:sgi:irix
+    - name: jute
+      pattern:
+        regex: ^\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\x01\0\0\0\x01\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\x01\0\0\0\x01
+      product: Apache ZooKeeper
+      cpes:
+        - a:apache:zookeeper
+    - name: ncp
+      pattern:
+        regex: ^\x74\x4e\x63\x50\0\0\0\x10\x33\x33
+      product: Novell NetWare NCP
+      cpes:
+        - o:novell:netware
+    - name: srun
+      pattern:
+        regex: ^X\0\0\0$
+      product: Caucho Resin JSP Engine srun
+      cpes:
+        - a:caucho:resin
+    - name: progress
+      pattern:
+        regex: ^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0
+        options: s
+      product: Progress Database
+      cpes:
+        - a:progress:database
+    - name: pigpio
+      pattern:
+        regex: ^DmdT\0\0\0\x17\0\0\0\x01\xa8\xff\xff\xff
+      product: pigpiod
+      cpes:
+        - a:pigpio:pigpiod
+    - name: appleevents
+      pattern:
+        regex: ^DmdT\0\0\0\x17\0\0\0\x01$
+      product: Apple Remote Events
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: resin-watchdog
+      pattern:
+        regex: ^Q$
+      product: Caucho Resin Pro Watchdog
+      cpes:
+        - a:caucho:resin
+    - name: smpp
+      pattern:
+        regex: ^\0\0\0\(\0\0\0\x01\0\0\0\0\0\0\0\x02\0\0\0\x02\0\0.*\0\0\0\0\0\0\0\x03\0\0\0\0\0\0\0\x03\0\0\0\x01
+        options: s
+      product: Apache Zookeeper smpp
+    - name: softplc
+      pattern:
+        regex: ^\x04\xef\xef\xb3\0\0\0\x01\x01\0\xc4\x01\0\0\0\0
+      product: CODESYS SoftPLC
+      cpes:
+        - a:3s-software:codesys_runtime_system
+    - name: tuxedo-wsl
+      pattern:
+        regex: ^\d+SESSIONDENIED&REASON=Protocol violation\n$
+      product: BEA Tuxedo WorkStation Listener
+      cpes:
+        - a:bea:tuxedo
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x98\xff\xfb\x01\xff\xfd\x18\xff\xfd\x98Welcome to UniData Telnet Server\r\nlogin: '
+      product: Rocket UniData RDBMS telnetd
+    - name: textui
+      pattern:
+        regex: ^R:ERROR:6 \"Syntax Error\"\r\n
+      product: Vantage InFusion home automation controller port

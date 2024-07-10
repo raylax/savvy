@@ -1,0 +1,14 @@
+name: sybaseanywhere
+protocol: udp
+rarity: 7
+payload: \x1b\0\0\x3d\0\0\0\0\x12CONNECTIONLESS_TDS\0\0\0\x01\0\0\x04\0\x05\0\x05\0\0\x01\x02\0\0\x03\x01\x01\x04\x08\0\0\0\0\0\0\0\0\x07\x02\x04\xb1
+ports: "2638"
+services:
+    - name: sybaseanywhere
+      pattern:
+        regex: ^\x1b\0\0.\0\0\0\0\x12CONNECTIONLESS_TDS\0\0\0\x01\x01\0\x04\0\x05\0\x05\0.(.*)\0\x01\x02..\x03\x01\x02\x04\x08\0\0\0\0\0\0\0\0\x07\x02\x04\xb1
+        options: s
+      product: Sybase SQL Anywhere
+      info: 'Instance name: $1'
+      cpes:
+        - a:sybase:sql_anywhere

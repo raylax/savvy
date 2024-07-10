@@ -1,0 +1,67 @@
+name: DNSStatusRequestTCP
+protocol: tcp
+rarity: 7
+payload: \0\x0C\0\0\x10\0\0\0\0\0\0\0\0\0
+ports: 53,513,514,6050,41523
+ssl-ports: "853"
+fallbacks: DNSStatusRequest
+services:
+    - name: arcserve
+      pattern:
+        regex: ^\0\0s\0\0\0\0\0$
+      product: ARCserve Client Agent
+      info: backup software
+      cpes:
+        - a:ca:arcserve_client_agent
+    - name: arcserve
+      pattern:
+        regex: ^h\0\0\0\0\0\0\0$
+      product: ARCserve Client Agent
+      info: backup software
+      cpes:
+        - a:ca:arcserve_client_agent
+    - name: arcserve
+      pattern:
+        regex: ^([\w\d_-]+)\0$
+      product: ARCserve Discovery
+      hostname: $1
+      cpes:
+        - a:ca:arcserve_client_agent
+    - name: login
+      pattern:
+        regex: ^\0\r\n\nIQinVision IQeye3 Version ([vV].*)\n\r\nType HELP
+      product: IQinVision IQeye3 logind
+      version: version $1
+      device-type: webcam
+    - name: login
+      pattern:
+        regex: '^\0\r\n\nLantronix ETS16 Version V([\d.]+)/\d+\(\d+\)\n\r\nType HELP at the ''BRTR-ETS16>'' prompt for assistance\.\n\r\nUsername> '
+      product: Lantronix ETS16 logind
+      version: $1
+      device-type: terminal server
+      cpes:
+        - h:lantronix:ets16:$1
+    - name: minecraft
+      pattern:
+        regex: ^\xff\0\x0e\0P\0r\0o\0t\0o\0c\0o\0l\0 \0e\0r\0r\0o\0r$
+      product: Minecraft game server
+    - name: minecraft
+      pattern:
+        regex: '^(?:[\x90-\xdb]\x03|[\x8b-\x8f]\x04)[\x17-\x1a](?:[\x90-\xd8]\x03|[\x8b-\x8f]\x04)\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: com\.viaversion\.viaversion\.exception\.InformativeException: Please'
+      product: Minecraft game server
+      info: ViaVersion plugin
+    - name: minecraft
+      pattern:
+        regex: '^[\xb0-\xdb]\x03[\x17-\x1a][\xad-\xd8]\x03\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: us\.myles\.ViaVersion\.exception\.InformativeException: Please'
+      product: Minecraft game server
+      info: ViaVersion plugin
+    - name: shell
+      pattern:
+        regex: '^\0rsh: \x10: Command not supported\n'
+      product: Ricoh rshd
+      device-type: printer
+    - name: wow
+      pattern:
+        regex: ^\0\0\t.{32}\x01.*?\0\x10..\0\0\0\0......([^\0]+)\x00([\d.]{7,15}:\d+)\0
+      product: World of Warcraft authserver
+      info: 'realm: $1 on $2'

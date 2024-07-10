@@ -1,0 +1,48 @@
+name: xdmcp
+protocol: udp
+rarity: 6
+payload: \0\x01\0\x02\0\x01\0
+ports: "177"
+services:
+    - name: bacnet
+      pattern:
+        regex: ^\x81\n\0\t\x01\0`\x01\t$
+      product: BACnet building automation
+    - name: xdmcp
+      pattern:
+        regex: ^\0\x01\0\x05..\0\0\0.(.+)\0.(.+)
+        options: s
+      product: XDMCP
+      info: 'willing; status: $2'
+      hostname: $1
+      os: Unix
+    - name: xdmcp
+      pattern:
+        regex: ^\0\x01\0\x06..\0.(.+)\0.(.+)
+        options: s
+      product: XDMCP
+      info: 'unwilling; status: $2'
+      hostname: $1
+      os: Unix
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x04Illegal TFTP operation\0
+      product: Windows 2003 Server Deployment Service
+      os: Windows
+      cpes:
+        - o:microsoft:windows_server_2003
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x01File not found\.\0$
+      product: Enistic zone controller tftpd
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x02No such file or directory\0
+      product: Windows 10 IoT tftpd
+      os: Windows 10
+      cpes:
+        - o:microsoft:windows_10
+fallback-services:
+    - name: coap
+      pattern:
+        regex: ^`E

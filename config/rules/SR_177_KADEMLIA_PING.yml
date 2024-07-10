@@ -1,0 +1,5 @@
+name: KADEMLIA_PING
+protocol: udp
+rarity: 8
+payload: \xE4\x60
+ports: 4665,4666,4672,6429

@@ -1,0 +1,100 @@
+name: LPDString
+protocol: tcp
+rarity: 6
+payload: \x01default\n
+ports: 515,2947,3333,19350,32211
+services:
+    - name: http
+      pattern:
+        regex: ^<html><head><title>Error</title></head>\n<body>Your client sent an invalid \x01default request without a\nprotocol version \(assuming HTTP v0\.9\)\.\n<p>The request can not be processed\.</body></html>$
+      product: Polycom VVX VoIP phone http config
+      device-type: VoIP phone
+    - name: fms-core
+      pattern:
+        regex: ^\x01\x01\x14\0\0%\0\0\0\0\0\0\0\x02\0\x08register\0\0\0\0\0\0\0\0\0\x05\x02\0\r_defaultRoot_
+      product: Adobe Flash Media Server core
+      cpes:
+        - a:adobe:flash_media_server
+    - name: printer
+      pattern:
+        regex: ^\0$
+    - name: printer
+      pattern:
+        regex: '^default: unknown printer\n$'
+      product: Solaris lpd
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: printer
+      pattern:
+        regex: ^\x01\x01$
+      product: Microsoft lpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: printer
+      pattern:
+        regex: ^[\x01\x02]$
+    - name: printer
+      pattern:
+        regex: '^[-.\w]+: lpsched: unknown printer\n$'
+      product: SGI IRIX lprsrv
+      os: IRIX
+      cpes:
+        - o:sgi:irix
+    - name: printer
+      pattern:
+        regex: ^Printer default not found \([\w_]+\)\.\n
+      product: print server
+      device-type: print server
+    - name: printer
+      pattern:
+        regex: ^VSE Line Printer Daemon has rejected this request\.\0\0
+      product: VSE lpd
+      os: z/VSE
+      device-type: print server
+      cpes:
+        - o:ibm:z%2fvse
+    - name: printer
+      pattern:
+        regex: ^no queue to check\n\0$
+      product: Wyse Winterm 1200 LE terminal lpd
+      device-type: terminal
+    - name: printer
+      pattern:
+        regex: ^/usr/local/helios/sbin/lpd Printer default doesn't exist! \n$
+      product: Helios lpd
+    - name: printer
+      pattern:
+        regex: ^\0\x01\r\n                     Century LPD Service\r\nUnknown printer 'default'\n$
+      product: Century TinyTERM lpd
+    - name: printer
+      pattern:
+        regex: ^Cirrato printing service \(with PayEx support\)\0
+      product: Cirrato lpd
+      info: with PayEx support
+      cpes:
+        - a:cirrato:cirrato
+    - name: rbnb
+      pattern:
+        regex: ^EXM {EXC \0\x1fcom\.rbnb\.api\.SerializeExceptionMSG \0JUnrecognizable parameter read from input stream\.\nElement read was \x01default}\r\nPNG {}\r\n
+      product: Ring Buffered Network Bus
+      info: http://outlet.creare.com/rbnb/
+    - name: rfactor-monitor
+      pattern:
+        regex: ^\x02rFactorMonitor\x000400\0$
+      product: rFactor game monitor
+    - name: gpsd
+      pattern:
+        regex: ^GPSD,D=\?,E=\?,F=([-\w_./]+),A=\?,U=\?,L=\d ([-\w_.]+) abcdefgiklmnopqrstuvwxyz,T=\?\r\n
+      product: gpsd
+      version: $2
+      info: Serial port $1
+      cpes:
+        - a:gpsd_project:gpsd:$2
+    - name: winlog
+      pattern:
+        regex: ^\xd0\xb7\x07\x01$
+      product: Sielco Sistemi Winlog Pro
+      cpes:
+        - a:sielcosistemi:winlog_pro

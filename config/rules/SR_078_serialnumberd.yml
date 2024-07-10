@@ -1,0 +1,23 @@
+name: serialnumberd
+protocol: udp
+rarity: 8
+payload: 'SNQUERY: 127.0.0.1:AAAAAA:xsvr'
+ports: "626"
+services:
+    - name: serialnumber
+      pattern:
+        regex: ^SNRESPS:127\.0\.0\.1:(0x[0-9A-F]{40}):xsvr:(0x[0-9A-F]{40}):(0x[0-9a-f]{8}):(0x[0-9A-F]{40}):127\.0\.0\.1\0$
+      product: Mac OS X Server serialnumberd
+      info: 'numbers: $1 $2 $3 $4'
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: serialnumber
+      pattern:
+        regex: ^SNRESPS:([\w._-]+):(0x[0-9A-F]{40}):xsvr:(0x[0-9A-F]{40}):(0x[0-9a-f]{8}):(0x[0-9A-F]{40}):[\w._-]+\0$
+      product: Mac OS X Server serialnumberd
+      info: 'numbers: $2 $3 $4 $5'
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x

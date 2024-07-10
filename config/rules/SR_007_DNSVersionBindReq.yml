@@ -1,0 +1,722 @@
+name: DNSVersionBindReq
+protocol: udp
+rarity: 1
+payload: \0\x06\x01\0\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+ports: 53,1967,2967,26198
+services:
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(\d[-\w.+]*?)-RedHat-[-\w._+]+.fc(\d+)
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Fedora Core $2
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:fedoraproject:fedora_core:$2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(\d[-\w.+]*?)-RedHat-[-\w._+]+.el(\d+)
+        options: s
+      product: ISC BIND
+      version: $1
+      info: RedHat Enterprise Linux $2
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:redhat:enterprise_linux:$2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(\d[-\w.+]*?)-RedHat-
+        options: s
+      product: ISC BIND
+      version: $1
+      info: RedHat Linux
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(9[-\w.+]*?)-RH
+        options: s
+      product: ISC BIND
+      version: $1
+      info: RedHat Linux
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(\d[-\w.+]*?)-[Uu]buntu
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Ubuntu Linux
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(?:BIND )?(\d[-\w.+~]*?)-[Dd]ebian
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Debian Linux
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}((\d[\w.]*)[-\w.+~]*?[-+~]\d*deb(\d+)[-\w.+~]*)
+        options: s
+      product: ISC BIND
+      version: $2
+      info: 'Debian $3; pkg version: $1'
+      os: Linux
+      cpes:
+        - a:isc:bind:$2
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(?:BIND )?(\d[-\w.+~]*?)-9\+deb8u[-\w._+~]*?Raspbian
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Raspbian Linux 8.0 (Jessie based)
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}(?:BIND )?(\d[-\w.+~]*?)-Raspbian
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Raspbian Linux
+      os: Linux
+      cpes:
+        - a:isc:bind:$1
+        - o:linux:linux_kernel
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}([89][.\d]+-APPLE(?:-[SPW]\d+)?)
+        options: s
+      product: ISC BIND
+      version: $1
+      info: Mac OS X
+      os: Mac OS X
+      cpes:
+        - a:isc:bind
+        - o:apple:mac_os_x
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03(?:\xc0\x0c|\x07VERSION\x04BIND\0)\0\x10\0\x03.{7}(?:BIND )?([89][.\d]+(?:[ab]\d+)?(?:rc\d)?(?:-REL)?(?:-rpz[\d.]+)?(?:[-+]rl[\d.]+)?(?:-ESV(?:-R\d+)?)?(?:-[SPW][W\d.-]+)?(?:-NOESW)?)(?:\0|\xc0|$)
+        options: s
+      product: ISC BIND
+      version: $1
+      cpes:
+        - a:isc:bind:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Served by Bind - www\.isc\.org/software/bind
+        options: s
+      product: ISC BIND
+      cpes:
+        - a:isc:bind
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x06\0\x03.{6}\xc0\x0c\nhostmaster\xc0\x0c
+        options: s
+      product: ISC BIND
+      cpes:
+        - a:isc:bind
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}dnsmasq-pi-hole-v([-\w. +]+)
+        options: s
+      product: dnsmasq
+      version: $1
+      info: pi-hole
+      cpes:
+        - a:pi-hole:pi-hole
+        - a:thekelleys:dnsmasq:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}dnsmasq-([-\w. +]+)
+        options: s
+      product: dnsmasq
+      version: $1
+      cpes:
+        - a:thekelleys:dnsmasq:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}dnsmasq-ubnt/([\w.-]+)
+        options: s
+      product: dnsmasq
+      version: $1
+      info: Ubiquiti build
+      device-type: WAP
+      cpes:
+        - a:thekelleys:dnsmasq:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03\0\0\0\0\0\x08\x07dnsmasq
+      product: dnsmasq
+      cpes:
+        - a:thekelleys:dnsmasq
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (10\.0\..+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2016
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2016
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.3\.9600.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2012 R2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2012:r2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.2\.9200.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2012
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2012
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.1\.7601.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008 R2 SP1
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008:r2:sp1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.1\.7600.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008 R2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008:r2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0[\x01\x03].{7}Microsoft DNS (6\.0\.6002.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008 SP2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008::sp2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0[\x01\x03].{7}Microsoft DNS (6\.0\.6001.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008 SP1
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008::sp1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0[\x01\x03].{7}Microsoft DNS (5\.2\.3790.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2003 SP2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2003::sp2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (10\.0$)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2016
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2016
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.3)$
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2012 R2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2012:r2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.2)$
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2012
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2012
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x01.{7}Microsoft DNS (6\.1)$
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008 R2
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008:r2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0[\x01\x03].{7}Microsoft DNS (6\.0)$
+        options: s
+      product: Microsoft DNS
+      version: $1
+      info: Windows Server 2008
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows_server_2008
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0[\x01\x03]\xc0\x0c\0\x10\0[\x01\x03].{7}PowerDNS.Authoritative.Server.(\d[\w.-]+)
+      product: PowerDNS Authoritative Server
+      version: $1
+      cpes:
+        - a:powerdns:authoritative:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0[\x01\x03]\xc0\x0c\0\x10\0[\x01\x03].{7}PowerDNS Recursor (\d[\w.-]+)
+        options: s
+      product: PowerDNS Recursor
+      version: $1
+      cpes:
+        - a:powerdns:recursor:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0[\x01\x03]\xc0\x0c\0\x10\0[\x01\x03].{7}PowerDNS Recursor$
+        options: s
+      product: PowerDNS Recursor
+      cpes:
+        - a:powerdns:recursor
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0[\x01\x03]\xc0\x0c\0\x10\0[\x01\x03].{7}Served by PowerDNS - https?://www\.powerdns\.com/?
+        options: s
+      product: PowerDNS
+      version: 3.3 or later
+      cpes:
+        - a:powerdns:powerdns
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0[\x01\x03]\xc0\x0c\0\x10\0[\x01\x03].{7}Served by POWERDNS (\d[-.\w]+)
+        options: s
+      product: PowerDNS
+      version: $1
+      cpes:
+        - a:powerdns:powerdns:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Nominum Vantio (\w+) ([\d\.]+)$
+        options: s
+      product: Nominum Vantio $1
+      version: $2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Nominum Vantio ([\d\.]+)
+        options: s
+      product: Nominum Vantio
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Nominum ANS(?:Premier)? ([\d\.]+)
+        options: s
+      product: Nominum Vantio AuthServ
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}unbound ([\w.-]+)$
+      product: Unbound
+      version: $1
+      cpes:
+        - a:nlnetlabs:unbound:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}unbound$
+        options: i
+      product: Unbound
+      cpes:
+        - a:nlnetlabs:unbound
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}NSD ([-\w.]+)
+        options: s
+      product: NLnet Labs NSD
+      version: $1
+      cpes:
+        - a:nlnetlabs:nsd:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}UltraDNS Resolver
+        options: s
+      product: UltraDNS Resolver
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\x07VERSION\x04BIND\0\0\x10\0\x03.{7}UltraDNS Resolver
+        options: s
+      product: UltraDNS Resolver
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}UltraDNS TLD Platform
+        options: s
+      product: UltraDNS Resolver
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}ZyWALL DNS
+        options: s
+      product: Zyxel ZyWALL dnsd
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Domain Name Server$
+        options: s
+      product: Actiontec router dnsd
+      device-type: broadband router
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}\[SECURED\]$
+        options: s
+      product: TP-LINK router dnsd
+      device-type: broadband router
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}NOS DNS$
+      product: NOS Communications dnsd
+      device-type: broadband router
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}DNSServer\xc0\x0c
+        options: s
+      product: Synology DNS Server
+      cpes:
+        - a:synology:dns
+        - h:synology
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Array SmartDNS\xc0
+        options: s
+      product: Array SmartDNS
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}DraytekDNS-v([\d\.]+)
+        options: s
+      product: Draytek DNS
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}ALU DNS ([\d\.]+) Build (\d+)
+        options: s
+      product: Draytek DNS
+      version: $1 build $2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}gdnsd$
+        options: s
+      product: Brandon Black gdnsd
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Knot DNS ([\d.]+(?:-dev)?)
+        options: s
+      product: cz.nic Knot DNS
+      version: $1
+    - name: domain
+      pattern:
+        regex: '\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}rbldnsd (\d[\w.\/-]+) '
+        options: s
+      product: Michael Tokarev rbldnsd
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}djbdns[\s-](\d.\d+)
+        options: s
+      product: D J Bernstein djbdns
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}djbdns
+        options: i
+      product: D J Bernstein djbdns
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Atlas Anchor ([\d\.]+)
+        options: s
+      product: RIPE Atlas Anchor
+      version: $1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Incognito DNS Commander ([\d.]+) \((built \w{3} \d+ \d{4})\)
+        options: s
+      product: Incognito DNS Commander
+      version: $1
+      info: $2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Incognito DNS Service ([\d.]+) \((built \w{3} \d+ \d{4})\)
+        options: s
+      product: Incognito DNS Service
+      version: $1
+      info: $2
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}not currently available\xc0
+      product: Eero device dnsd
+      device-type: WAP
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x85\0\x01\0\0\0\0\0\x01\x07version\x04bind\0\0\x10\0\x03\x04info\nportmaster\0\0\x10\0\x01\0\0\0\0\0\x13\x12unsupported qclass
+      product: Safing Portmaster DNS
+      cpes:
+        - a:safing:portmaster
+    - name: domain
+      pattern:
+        regex: '\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}Hi:[\w\.=: ]+\d{4}$'
+      product: OzymanDNS DNS tunnel
+    - name: domain
+      pattern:
+        regex: n\x04bind\0\0\x10\0\x03\x07VERSION\x04BIND\0\0\x10\0\x03.{7}Meta IP DNS - BIND V([\d.]+)-REL \(Build (\d+)\)
+      product: Check Point Meta IP ISC BIND
+      version: $1 build $2
+      cpes:
+        - a:isc:bind:$1
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\x07VERSION\x04BIND\0\0\x10\0\x03.{7}Peticion no permitida/Query not allowed
+      product: ZyXEL Prestige 643 dns cache
+      device-type: switch
+    - name: domain
+      pattern:
+        regex: ^\0\x06\x81\x80\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x01\0\x01\0\0\0\x05\0\x04\xa3\xc0\x08\x06$
+      product: ArubaOS 3.3 named
+      os: ArubaOS
+      cpes:
+        - o:arubanetworks:arubaos:3.3
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x85\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: Unbound
+      cpes:
+        - a:nlnetlabs:unbound
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x04\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: Simple DNS Plus
+      os: Windows
+      cpes:
+        - a:jh_software:simple_dns_plus
+        - o:microsoft:windows
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x84\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: Cloudflare public DNS
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x84\0\x01\0\0\0\0\0\x01\x07version\x04bind\0\0\x10\0\x03\0\0\)\x06\0\0\0\0\0\0\0
+      product: dnscrypt-proxy
+      cpes:
+        - a:dnscrypt:dnscrypt-proxy
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x85\x02\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: PowerDNS
+      cpes:
+        - a:powerdns:powerdns
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x05\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: NLnet Labs NSD
+      cpes:
+        - a:nlnetlabs:nsd
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06\x81\x83\0\x01\0\0\0\0\0\0\x07version\x04bind\0\0\x10\0\x03
+      product: dnsmasq
+      cpes:
+        - a:thekelleys:dnsmasq
+    - name: domain
+      pattern:
+        regex: ^(?:\0=)?\0\x06\x85\0\0\x01\0\x01\0\x01\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03\0\0\0\0\0\x05\x04none\xc0\x0c\0\x02\0\x03\0\0\0\0\0\x02\xc0\x0c
+      product: Plesk Onyx BIND
+      cpes:
+        - a:isc:bind
+        - a:parallels:plesk_onyx
+    - name: domain
+      pattern:
+        regex: ^(?:\0\.)?\0\x06\x85\x80\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x01\0\x01\0\0\0\x02\0\x04\0\0\0\0$
+      product: pi-hole FTLDNS
+      cpes:
+        - a:pi-hole:ftldns
+    - name: domain
+      pattern:
+        regex: ^(?:\0\))?\0\x06\x80\x83\0\x01\0\0\0\0\0\x01\x07version\x04bind\0\0\x10\0\x03\0\0\)\x0f\xd0\0\0\0\0\0\0
+      product: dnscrypt-proxy
+      cpes:
+        - a:dnscrypt:dnscrypt-proxy
+    - name: domain
+      pattern:
+        regex: ^(?:\0\))?\0\x06\x80\x80\0\x01\0\0\0\0\0\x01\x07version\x04bind\0\0\x10\0\x03\0\0\)\x10\0\0\0\0\0\0\0
+      product: Apple device dnsd
+    - name: domain
+      pattern:
+        regex: ^(?:\0.)?\0\x06\x85\0\0\x01\0\x01\0\0\0\0\x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03\0\0\0\0\0\x01\0
+      product: D-Link router dnsd
+      device-type: broadband router
+    - name: domain
+      pattern:
+        regex: ^(?:\0.)?\0\x06\x81\x80\0\x01\0\x01\0\0\0\x01\x07version\x04bind\0\0\x10\0\x03\x07version\x04bind\0\0\x10\0\x03\0\x01Q\x80\0\x1b\x1acloudflare-f-root-\d+\0\0\)\x02\0\0\0\x80\0\0\0
+      product: Cloudflare F-Root DNS server
+    - name: dcc
+      pattern:
+        regex: ^(?:..)?\0\x06\xf5\xff\0\0\x01\0
+      product: D-Link Click 'n Connect
+      device-type: broadband router
+    - name: kerberos-sec
+      pattern:
+        regex: ^~[\x60-\x62]\x30[\x5e-\x60]\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5[\x03-\x05]\x02(?:\x03...|\x02..|\x01.)\xa6\x03\x02\x01\x3c\xa9\x04\x1b\x02NM\xaa\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06krbtgt\x1b\x02NM\xab\x16\x1b\x14No client in request
+        options: s
+      product: MIT Kerberos
+      info: 'server time: $1-$2-$3 $4:$5:$6Z'
+      cpes:
+        - a:mit:kerberos
+    - name: symantec-av
+      pattern:
+        regex: ^\0\x06\x01\x01\0\x10..........$
+        options: s
+      product: Symantec rtvscan antivirus
+      cpes:
+        - a:symantec:antivirus
+    - name: tunnel-test
+      pattern:
+        regex: ^\0\x06\x01\0\0\x02\0\0\0\0\0\0$
+      product: Check Point tunnel_test
+    - name: unreal
+      pattern:
+        regex: ^.[\x40\xc0].[\x20\x23\x32\x38].[\x40\xc0].[\x20\x23\x32\x38]
+        options: s
+      product: Unreal Tournament 2004 game server
+    - name: cisco-sla-responder
+      pattern:
+        regex: ^..\0\x08\0\x03[\0\r][\0\n]$
+        options: s
+      product: Cisco SLA Responder
+      os: IOS
+      device-type: router
+      cpes:
+        - o:cisco:ios
+    - name: statd
+      pattern:
+        regex: ^r\xfe\x1d\x13\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x01$
+      product: NFS statd
+    - name: dtls
+      pattern:
+        regex: ^\x15\xfe[\xfd\xff]\0\0\0\0\0\0\0\0..\x02.\0\0\0\0\0
+    - name: chargen
+      pattern:
+        regex: ^ !\"#\$%&'\(\)\*\+,-\./0123456789:;<=>\?@ABCDEFGHIJKLMNOPQRSTUVWXYZ\[\\\]\^_`abcdefg\r\n!\"#\$%&'\(\)\*\+,-\./0123456789
+      product: Windows Vista chargen
+      os: Windows Vista
+      cpes:
+        - o:microsoft:windows_vista
+fallback-services:
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0[\x01\x03].{7}Microsoft DNS (.+)
+        options: s
+      product: Microsoft DNS
+      version: $1
+      os: Windows
+      cpes:
+        - a:microsoft:dns
+        - o:microsoft:windows
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\xc0\x0c\0\x10\0\x03.{7}([^\0\xc0\x0c]+)
+        options: s
+      info: 'unknown banner: $1'
+    - name: domain
+      pattern:
+        regex: \x07version\x04bind\0\0\x10\0\x03\x07VERSION\x04BIND\0\0\x10\0\x03.{7}([^\0\xc0\x0c]+)
+        options: s
+      info: 'unknown banner: $1'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x01\x11\x81\x91]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: FORMERR'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x02\x12\x82\x92]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: SERVFAIL'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x04\x14\x84\x94]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NOTIMP'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x05\x15\x85\x95]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: REFUSED'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x00\x10\x80\x90]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: no error'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x03\x13\x83\x93]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NXDOMAIN'
+    - name: domain
+      pattern:
+        regex: ^(?:..)?\0\x06[\x80-\x90][\x09\x19\x89\x99]\0[\0\x01]\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NOTAUTH'
+    - name: isakmp
+      pattern:
+        regex: ^\0\x06\x01\0\0\x01\0\0\0\0\0\0\x07ver\x0b\x10\x05\0\0\0\0\0\0\0\0\(\0\0\0\x0c\0\0\0\x01\x01\0\0\x05

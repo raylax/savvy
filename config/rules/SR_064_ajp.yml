@@ -1,0 +1,11 @@
+name: ajp
+protocol: tcp
+rarity: 8
+payload: \x12\x34\x00\x01\x0a
+ports: 8008,8009
+services:
+    - name: ajp13
+      pattern:
+        regex: ^\x41\x42\x00\x01\x09$
+      product: Apache Jserv
+      info: Protocol v1.3

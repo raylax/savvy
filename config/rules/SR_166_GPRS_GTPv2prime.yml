@@ -1,0 +1,5 @@
+name: GPRS_GTPv2prime
+protocol: udp
+rarity: 8
+payload: \x4e\x01\0\x04\xde\xfe\xc8\0
+ports: "3386"

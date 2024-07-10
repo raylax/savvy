@@ -1,0 +1,5 @@
+name: CIFS_NS_UC
+protocol: udp
+rarity: 8
+payload: \x01\x91\0\0\0\x01\0\0\0\0\0\0\x20CKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\0\0\x21\0\x01
+ports: "137"

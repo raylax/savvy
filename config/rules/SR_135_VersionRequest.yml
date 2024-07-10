@@ -1,0 +1,12 @@
+name: VersionRequest
+protocol: tcp
+rarity: 8
+payload: VERSION
+ports: "3310"
+services:
+    - name: clam
+      pattern:
+        regex: ^ClamAV ([\w.]+)/(\w+)/(.+)$
+      product: ClamAV
+      version: $1 ($2)
+      info: AV definitions updated on:$3

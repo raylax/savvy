@@ -1,0 +1,35 @@
+name: UbiquitiDiscoveryv1
+protocol: udp
+rarity: 9
+payload: \x01\0\0\0
+ports: "10001"
+services:
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x01\0.[^\0].*\x0c\0\x06AirCam
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v1 protocol, AirCam
+      cpes:
+        - 'h:ubnt:aircam:'
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x01\0.[^\0].*\x0c\0\nAirCamDome
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v1 protocol, AirCamDome
+      cpes:
+        - 'h:ubnt:aircam_dome:'
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x01\0.[^\0].*\x0c\0.([\w-]+)
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v1 protocol, $1
+fallback-services:
+    - name: ubiquiti-discovery
+      pattern:
+        regex: ^\x01\0.[^\0].{48}
+        options: s
+      product: Ubiquiti Discovery Service
+      info: v1 protocol

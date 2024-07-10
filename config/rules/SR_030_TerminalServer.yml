@@ -1,0 +1,171 @@
+name: TerminalServer
+protocol: tcp
+rarity: 6
+payload: \x03\0\0\x0b\x06\xe0\0\0\0\0\0
+ports: 515,1028,1068,1503,1720,1935,2040,3388,3389
+services:
+    - name: activefax
+      pattern:
+        regex: '^ActiveFax Server: Es befinden sich insgesamt'
+      product: ActFax Communication ActiveFax
+      info: German
+    - name: arcserve-gdd
+      pattern:
+        regex: ^\0\0\x0b\x06\xe0\0\0\0\0\0\0\0\0\0\0\0......\0\0\xa0\xf9\x7f\xee\xfb\x7f\0\0
+        options: s
+      product: Arcserve Unified Data Protection Global Deduplication DataStore
+      cpes:
+        - a:arcserve:udp
+    - name: ssl/consul-rpc
+      pattern:
+        regex: ^\x15\x03\x01\0\x02\x02\n
+      product: HashiCorp Consul RPC
+      cpes:
+        - a:hashicorp:consul
+    - name: H.323/Q.931
+      pattern:
+        regex: ^\x03\0\0\x10\x08\x02\x80\0}\x08\x02\x80\xe2\x14\x01\0
+    - name: lineage-ii
+      pattern:
+        regex: ^\x03\0.$
+      product: Lineage II game server
+    - name: lineage-ii
+      pattern:
+        regex: ^G\0\0\x01\0\0\0\xce\x1e\0\0\xce\x1e\0\0\xce\x1e\0\0/\x04\0\x000\0,\x006\0,\x003\x003\x003\x002\0,\x003\x003\x003\x003\0\0\0\x81\x8d\0\0\x81\x8d\0\0\x91\x91\0\0\0\0\0\0\x02\0\0\0
+      product: L2J Lineage II game server
+    - name: printer
+      pattern:
+        regex: ^no entries\n$
+      product: Xerox lpd
+      device-type: printer
+    - name: printer
+      pattern:
+        regex: '^SB06D2F0: \xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe1\xa0 no entries\n$'
+      product: SEH Computertechnik lpd
+      device-type: printer
+    - name: printer
+      pattern:
+        regex: '^ActiveFax Server: There are \d+ entries in the Faxlist\r\n'
+      product: ActiveFax lpd
+    - name: printer
+      pattern:
+        regex: '^Host Name: ([-\w_.]+)\nPrinter Device: hp LaserJet (\w+)\nPrinter Status: ([^\r\n]+)\n\0\0'
+      product: NetSarang Xlpd
+      info: HP LaserJet $2; Status $3
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: printer
+      pattern:
+        regex: ^Fictive printer queue short information\n$
+      product: Canon MF4360-4390 lpd
+      device-type: printer
+    - name: printer
+      pattern:
+        regex: '^414A_Citizen_CLP(\d+): \xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe5\x9f\xf0\x18\xe1\xa0 no entries\n$'
+      product: Citizen CLP-$1 lpd
+      device-type: printer
+    - name: minecraft
+      pattern:
+        regex: '^\xf3\x01\x1a\xf0\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.lang\.IndexOutOfBoundsException: readerIndex: (?:45|14), writerIndex: 3 \(expected: 0 <= readerIndex <= writerIndex <= capacity\(3\)\)"\]\}'
+      product: Minecraft game server
+      cpes:
+        - a:minecraft:minecraft
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x0b\x06\xd0\0\0\x12.\0$
+        options: s
+      product: Microsoft Terminal Service
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x17\x08\x02\0\0Z~\0\x0b\x05\x05@\x06\0\x08\x91J\0\x02X$
+      product: Microsoft Terminal Service
+      info: Used with Netmeeting, Remote Desktop, Remote Assistance
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x11\x08\x02..}\x08\x03\0\0\xdf\x14\x01\x01$
+        options: s
+      product: Microsoft NetMeeting Remote Desktop Service
+      os: Windows
+      cpes:
+        - a:microsoft:netmeeting
+        - o:microsoft:windows
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x0b\x06\xd0\0\0\x03.\0$
+        options: s
+      product: Microsoft NetMeeting Remote Desktop Service
+      os: Windows
+      cpes:
+        - a:microsoft:netmeeting
+        - o:microsoft:windows
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x0b\x06\xd0\0\0\0\0\0
+      product: xrdp
+      cpes:
+        - a:jay_sorg:xrdp
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x0e\t\xd0\0\0\0[\x02\xa1]\0\xc0\x01\n$
+      product: IBM Sametime Meeting Services
+      os: Windows
+      cpes:
+        - a:ibm:sametime
+        - o:microsoft:windows
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x13\x0e\xd0\0\0\0\0\0\x02\x03\x08\0\x02\0\0\0
+      product: GNOME remote desktop
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0\x0b\x06\xd0\0\x004\x12\0
+      product: VirtualBox VM Remote Desktop Service
+      os: Windows
+      cpes:
+        - a:oracle:vm_virtualbox
+        - o:microsoft:windows
+    - name: ms-wbt-server-proxy
+      pattern:
+        regex: '^nmproxy: Procotol byte is not 8\n$'
+      product: nmproxy NetMeeting proxy
+    - name: rtmp
+      pattern:
+        regex: ^\x03.{899,1536}$
+        options: s
+      product: Real-Time Messaging Protocol
+    - name: sybase-monitor
+      pattern:
+        regex: ^\0\x01\0\x08\0\0\x01\0$
+      product: Sybase Monitor Server
+      os: Windows
+      cpes:
+        - a:sybase:monitor_server
+        - o:microsoft:windows
+    - name: trillian
+      pattern:
+        regex: ^.\0\x01.....\0([^\0]+)\0
+        options: s
+      product: Trillian MSN Module
+      info: Name $1
+      os: Windows
+      cpes:
+        - a:trillian:trillian
+        - o:microsoft:windows
+    - name: trustwave
+      pattern:
+        regex: ^control\n   ping\n   endping\nendcontrol\n
+      product: Trustwave SIEM OE
+      cpes:
+        - a:trustwave:siem_oe
+fallback-services:
+    - name: ms-wbt-server
+      pattern:
+        regex: ^\x03\0\0..\xd0\0\0

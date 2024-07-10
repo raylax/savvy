@@ -1,0 +1,15 @@
+name: dominoconsole
+protocol: tcp
+rarity: 8
+payload: '#ST\n'
+ssl-ports: "2050"
+services:
+    - name: dominoconsole
+      pattern:
+        regex: '^([^/]+)/([\w._-]+):([^:]*):([^:]*):'
+      product: Lotus Domino Console
+      info: 'domain: $1; description: "$4"'
+      hostname: $2
+      os: $3
+      cpes:
+        - a:ibm:lotus_domino

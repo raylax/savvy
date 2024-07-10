@@ -1,0 +1,14 @@
+name: pc-anywhere
+protocol: udp
+rarity: 8
+payload: NQ
+ports: "5632"
+services:
+    - name: pc-anywhere
+      pattern:
+        regex: ^NR([^_]*)_*AHM_3___\0$
+        options: s
+      product: Symantec pcAnywhere
+      info: 'Servername: $1'
+      cpes:
+        - a:symantec:pcanywhere

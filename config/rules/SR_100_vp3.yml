@@ -1,0 +1,10 @@
+name: vp3
+protocol: tcp
+rarity: 8
+payload: vp3
+ports: "6666"
+services:
+    - name: vp3
+      pattern:
+        regex: ^ok$
+      product: Voldemort

@@ -1,0 +1,5 @@
+name: TFTP_GET
+protocol: udp
+rarity: 8
+payload: \0\x01r7tftp.txt\0octet\0
+ports: "69"

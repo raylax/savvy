@@ -1,0 +1,4435 @@
+name: GenericLines
+protocol: tcp
+rarity: 1
+payload: \r\n\r\n
+ports: 21,23,35,43,79,98,110,113,119,199,214,264,449,505,510,540,587,616,628,666,731,771,782,1000,1010,1040,1041,1042,1043,1080,1212,1220,1248,1302,1400,1432,1467,1501,1505,1666,1687,1688,2010,2024,2600,3000,3005,3128,3310,3333,3940,4155,5000,5400,5432,5555,5570,6112,6432,6667,6668,6669,6670,7144,7145,7200,7780,8000,8138,9000,9001,9002,9003,9801,11371,11965,13720,15000,15001,15002,18086,19150,26214,26470,30444,31416,34012,56667
+ssl-ports: 989,990,992,995
+services:
+    - name: 3m-sip
+      pattern:
+        regex: '^Invalid request string: Request string is: \"\r\"$'
+      product: Standard Interchange Prototol 2.0
+      info: Integrated Library System authentication; Civica Spydus 7
+    - name: abc
+      pattern:
+        regex: ^Feedback\nError=You need unique ID to command ABC!
+      product: ABC Torrent http interface
+    - name: achat
+      pattern:
+        regex: ^ERROR\r\n$
+      product: AChat chat system
+    - name: adobe-crossdomain
+      pattern:
+        regex: ^<\?xml version='1\.0'\?>\n<cross-domain-policy>\n        <allow-access-from domain=\"([^\"]*)\" to-ports=\"([^\"]*)\" />\n</cross-domain-policy>\n$
+      product: Unity3D game engine webplayer cross-domain policy
+      info: 'domain: $1; ports: $2'
+    - name: airdroid
+      pattern:
+        regex: '^#connected,all connect count: 1{\"event\":\"device_status\",\"data\":{\"wifi_name\":\"([^\"]+)\",\"wifi_signal\":\d+,\"battery\":\d+,\"batterycharging\":\w+,\"gsm_signal\":\d+,\"sms_unread\":\d+,\"sdcard\":\d+,\"updateinfo\":null}}'
+      product: AirDroid status port
+      info: 'Android; wi-fi name: $1'
+      device-type: phone
+      cpes:
+        - a:airdroid:airdroid
+        - o:google:android
+    - name: spectraport
+      pattern:
+        regex: ^\0\x01\0\0\0\x8e\0\x03\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x002\.1\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0([\w._-]+)\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0[\w._-]+\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x02'$
+      product: AirTight SpectraGuard server-to-server communication
+      version: $1
+    - name: antivir
+      pattern:
+        regex: ^\0\0\x80\0$
+      product: drweb anti-virus
+    - name: as-servermap
+      pattern:
+        regex: ^-\0\0\0\0$
+      product: IBM OS/400 as-servermapd
+      os: OS/400
+      cpes:
+        - o:ibm:os_400
+    - name: access-remote-pc
+      pattern:
+        regex: ^\x99\xf3\0\0\0\0\0\0\xff\xff\xff\xff$
+      product: Access Remote PC
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: as-sts
+      pattern:
+        regex: ^\0\0\0\0\0\0\0\x08$
+      product: IBM Service Tool Server AS-STS
+    - name: authpoint
+      pattern:
+        regex: '^\[AUTHPOINT RESPONSE\]\r\nreturn_code=AUTHPOINT ERROR\r\nreturn_code_text=Error response parsed by base message object: Invalid or missing register #\r\nresponse=\r\nidentifier=\r\napproval_code=\r\n$'
+      product: Authpoint payment processing
+    - name: avaya-aom
+      pattern:
+        regex: ^\0\0\0T\0\0\0\x03\0\0\0\0\0\0\0\x01\x1b\xde\x83B\xca\xc0\xf3\?\0\0\0\x06aomSrv\0\0\0\0\0\x01\*\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\r[\d.]+\0\0\0\0\0\0\x04root\0\0\x06\(\0\0\0J$
+      product: Avaya Alarm Origination Manager
+      device-type: firewall
+    - name: avk
+      pattern:
+        regex: ^Unknown command\r\n$
+      product: G Data AVK anti-virus
+    - name: backdoor
+      pattern:
+        regex: ^Can't fork pty, bye!\n$
+      product: PsychoPhobia backdoor
+      info: '**BACKDOOR**'
+    - name: banner-ivu
+      pattern:
+        regex: ^ERROR 10000_EMPTY_FRAME_RECEIVED\r\n
+      product: Banner Engineering iVu Command Channel
+      device-type: specialized
+    - name: biff
+      pattern:
+        regex: ^Message received\n$
+      product: NotifyMail biffd
+    - name: biff
+      pattern:
+        regex: ^Use of uninitialized value in transliteration \(tr///\) at /var/jchkmail/user-filter
+      product: Joe's j-chkmail biffd
+    - name: bigant
+      pattern:
+        regex: ^ERR 0 222\n\n
+      product: BigAnt Messenger server
+    - name: bitdefender-ctrl
+      pattern:
+        regex: ^\(null\) 500 Internal Error\n\(null\) 500 Internal Error\n$
+      product: Bitdefender Remote Admin Console
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: bittorrent-tracker
+      pattern:
+        regex: ^This is not a rootkit or other backdoor, it's a BitTorrent\r\nclient\. Really\.
+      product: Transmission bittorrent tracker
+      cpes:
+        - a:transmissionbt:transmission
+    - name: bnetd
+      pattern:
+        regex: '^BOT or Telnet Connection from \[[\d.]+\]\r\n\r\nEnter your account name and password\.\r\nSorry, there is no guest account\.\r\n\r\nUsername: '
+      product: PvPGN BnetD Mod
+      version: 1.5.0
+    - name: bnetd
+      pattern:
+        regex: '^Connection from \[[\d.]+\]\r\n\r\nEnter your account name and password\.\r\nSorry, there is no guest account\.\r\n\r\nUsername: '
+      product: bnetd
+    - name: bnetd
+      pattern:
+        regex: '^Username: $'
+      product: bnetd open source Blizzard Battlenet server
+    - name: bnetd
+      pattern:
+        regex: '^\r\nEnter your account name and password\.\r\n\r\nUsername:'
+      product: bnetd open source Blizzard Battlenet server
+    - name: boinc
+      pattern:
+        regex: ^<unrecognized/>\n\x03$
+      product: Boinc GUI RPC port
+    - name: boinc
+      pattern:
+        regex: ^<error>unrecognized op</error/>\n\x03$
+      product: Boinc GUI RPC port
+    - name: boinc
+      pattern:
+        regex: ^<boinc_gui_rpc_reply>\n<error>unrecognized op</error>\n</boinc_gui_rpc_reply>\n\x03
+      product: Boinc GUI RPC port
+    - name: boinc
+      pattern:
+        regex: '^<boinc_gui_rpc_reply>\n<error>unrecognized op: \r\n\r</error>\n</boinc_gui_rpc_reply>\n\x03'
+      product: Boinc GUI RPC port
+    - name: boinc
+      pattern:
+        regex: ^<boinc_gui_rpc_reply>\n<client_version>(\d+)</client_version>\n<error>unrecognized op</error>\n</boinc_gui_rpc_reply>\n
+      product: Boinc GUI RPC port
+      version: $1
+    - name: boinc
+      pattern:
+        regex: ^<boinc_gui_rpc_reply>\n<client_version>(\d+)</client_version>\n<unauthorized/>\n</boinc_gui_rpc_reply>\n
+      product: Boinc GUI RPC port
+      version: $1
+    - name: boinc
+      pattern:
+        regex: ^<boinc_gui_rpc_reply>\n<major_version>(\d+)</major_version>\n<minor_version>(\d+)</minor_version>\n<release>(\d+)</release>
+      product: Boinc GUI RPC port
+      version: $1.$2.$3
+    - name: boinc
+      pattern:
+        regex: ^<boinc_gui_rpc_reply>\n<unauthorized/>\n</boinc_gui_rpc_reply>\n\x03
+      product: Boinc GUI RPC port
+      info: Unauthorized
+    - name: bru
+      pattern:
+        regex: ^0\nBad hex string for A from client\n
+      product: Tolis BRU Server
+    - name: bzr
+      pattern:
+        regex: '^error\x01Generic bzr smart protocol error: bad request ''\\r''\n$'
+      product: Bazaar VCS bzr serve
+    - name: caldav
+      pattern:
+        regex: '^HTTP/1\.1 503 Service Unavailable\r\nServer: DavMail Gateway ([\w._-]+)\r\nDAV: 1, calendar-access, calendar-schedule, calendarserver-private-events, addressbook\r\n(?:[^\r\n]+\r\n)*?Content-Length: 32\r\n\r\njava\.util\.NoSuchElementException$'
+        options: s
+      product: DavMail CalDAV http gateway
+      version: $1
+      device-type: proxy server
+    - name: cassandra-native
+      pattern:
+        regex: ^.\0\0\0\0\0\0\0.\0\0\0\n\0[eE]Invalid or unsupported protocol version \(13\); the lowest supported version is (\d+) and the greatest is (\d+)
+      product: Apache Cassandra
+      version: 3.0.0 - 3.9
+      info: native protocol version $1-$2
+      cpes:
+        - a:apache:cassandra:3
+    - name: cassandra-native
+      pattern:
+        regex: ^.\x10\0\0\0\0\0\0.\0\0\0\n\0\\Invalid or unsupported protocol version \(13\); supported versions are \((\d+[^)]+)\)
+      product: Apache Cassandra
+      version: 3.10 or later
+      info: native protocol versions $1
+      cpes:
+        - a:apache:cassandra:3
+    - name: cisco-lm
+      pattern:
+        regex: ^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?><LicXmlDoc><MessageType><ParamValue>RESPONSE</ParamValue></MessageType><OperationCode><ParamValue>4923</ParamValue></OperationCode></LicXmlDoc>$
+      product: Cisco CallManager license manager
+      version: "6"
+      cpes:
+        - h:cisco:call_manager:6
+    - name: ciscopsdm
+      pattern:
+        regex: ^\xc0\0\x01\0....\0\0\0\x03
+        options: s
+      product: Cisco PIX Secure Database Manager
+      os: IOS
+      device-type: firewall
+      cpes:
+        - o:cisco:ios
+    - name: cisco7200sim
+      pattern:
+        regex: ^200-At least a module and a command must be specified\r\n200-At least a module and a command must be specified\r\n
+      product: Cisco 7200 Simulator
+    - name: citrix-licensing
+      pattern:
+        regex: ^WW\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Citrix Licensing Server
+    - name: clickhouse
+      pattern:
+        regex: '^\x02e\0\0\0\x10DB::NetException/DB::NetException: Unexpected packet from client..0\. clickhouse-server\(StackTrace::StackTrace\(\)\+0x16\) \[0x[0-9a-f]+\]\n'
+      product: ClickHouse DBMS
+      cpes:
+        - a:yandex:clickhouse
+    - name: computone-intelliserver
+      pattern:
+        regex: ^\nWelcome to the Computone IntelliServer `([\w._-]+)'\nRunning cnx kernel release ([\w._, -]+)\n\npt-ses day time  owner         command\n
+      product: Computone IntelliServer serial port terminal server
+      version: $2
+      hostname: $1
+      os: cnx
+      device-type: bridge
+    - name: crossmatchverifier
+      pattern:
+        regex: ^Idle\r\n$
+      product: Cross Match Technologies Verifier fingerprint capture control port
+    - name: cmae
+      pattern:
+        regex: ^_err=refused%20by%20workers\r\n$
+      product: Cloudmark cmae_server antispam
+    - name: conserver
+      pattern:
+        regex: ^ok\r\nunknown command\r\nunknown command\r\n$
+      product: conserver serial console daemon
+      device-type: specialized
+    - name: crestron-control
+      pattern:
+        regex: ^INVALID_COMMAND\r
+      product: TiVo DVR Crestron control server
+      device-type: media device
+    - name: cso
+      pattern:
+        regex: ^598:\(null\):Command not recognized\.\n
+      product: Columbia University QIL Gateway
+      info: Qi to LDAP
+    - name: csync
+      pattern:
+        regex: ^Expecting SSL \(optional\) and CONFIG as first commands\.\n
+      product: csync2
+    - name: daap
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\n(?:Date: .*\r\n)?DAAP-Server: iTunes/(\d[-.\w]+) \((.*)\)\r\n'
+      product: Apple iTunes DAAP
+      version: $1
+      os: $2
+      cpes:
+        - a:apple:itunes:$1
+    - name: datamaxdb
+      pattern:
+        regex: ^X01\r\nX01\r\n$
+      product: MailMax DataMaxDB
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: desktop-central
+      pattern:
+        regex: ^Invalid FT GWADDR / START protocol\n$
+      product: ManageEngine Desktop Central DesktopCentralServer
+      device-type: remote management
+      cpes:
+        - a:zohocorp:manageengine_desktop_central
+    - name: desktop-central
+      pattern:
+        regex: ^Invalid GWADDR / START protocol\n$
+      product: ManageEngine Desktop Central DesktopCentralServer
+      device-type: remote management
+      cpes:
+        - a:zohocorp:manageengine_desktop_central
+    - name: desktop-central
+      pattern:
+        regex: ^\x10\0\0\0\t\xe7\xa0o\xde&\xdc\xfec\xbf\xb91\xef\xc3\?\xc9\x10\0\0\0\xd9\xe1\x14\xed\xb2\x7f\xccGc\xbf\xb91\xef\xc3\?\xc9\x08\0\xe4\xd0\xdfAl\xf7\x88y
+      product: ManageEngine Desktop Central DesktopCentralServer
+      device-type: remote management
+      cpes:
+        - a:zohocorp:manageengine_desktop_central
+    - name: digi-usb
+      pattern:
+        regex: ^\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0\xff\x14Port is out of range\0
+      product: Digi USB-over-TCP bridge
+      device-type: specialized
+    - name: dps-shell
+      pattern:
+        regex: ^\+-{26}\+\r\n\x7c {6}Welcome to use {6}\x7c\r\n\x7c >Destiny DPS Mini shell< \x7c\r\n\+-{9}\+-{16}\+\r\n\x7c Author  \x7c TimesWu {8}\x7c\r\n\+-{9}\+-{16}\+\r\n\x7c Version \x7c V([\d.]+) {10}\x7c\r\n\+-{9}\+-{16}\+\r\n
+      product: Destiny DPS Mini shell
+      version: $1
+      info: Ricoh printer
+      device-type: printer
+    - name: drb
+      pattern:
+        regex: ^\0\0\0\x03\x04\x08F\0\0\x03.\x04\x08o:\x16DRb::DRbConnError\x07:\x07bt\[.\"/(/usr/lib/ruby/([\w._-]+)/drb)/drb\.rb:573
+      product: Ruby DRb RMI
+      info: Ruby $2; path $1
+      cpes:
+        - a:ruby-lang:ruby:$2
+    - name: hpdss
+      pattern:
+        regex: ^(?:53 client not logged in\.\r\n)+$
+      product: HP Digital Sender client
+      cpes:
+        - a:hp:digital_sending_software
+    - name: dusk
+      pattern:
+        regex: ^\x03Not a valid name\. This may because you left it blank or used invalid symbols\. Please try again\.\n
+      product: Dusk Java-based game
+    - name: ecopy
+      pattern:
+        regex: ^e\0C\0o\0p\0y\0V\x004\x000\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x006\x007\0 \x004\x000\x002\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x000\0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \0 \x000\0F\0a\0i\0l\0e\0d\0 \0t\0o\0 \0r\0e\0t\0r\0i\0e\0v\0e\0 \0a\0 \0f\0u\0l\0l\0 \0e\0C\0o\0p\0y\0 \0T\0c\0p\0H\0e\0a\0d\0e\0r\0:\0 \0o\0n\0l\0y\0 \0\[\x004\0\]\0 \0b\0y\0t\0e\0s\0 \0r\0e\0c\0e\0i\0v\0e\0d\0!\0$
+      product: eCopy Agent
+    - name: elm-agent
+      pattern:
+        regex: ^ELM Manager Agent ([\w._-]+)\r\nCopyright \xa9 \d+-\d+ TNT Software, Inc\.\r\n
+      product: TNT ELM log agent
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: elm-manager
+      pattern:
+        regex: ^ELM Enterprise Manager ([\w._-]+)\r\nCopyright \xa9 \d+-\d+ TNT Software, Inc\.\r\n
+      product: TNT ELM log manager
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: eggdrop
+      pattern:
+        regex: ^\r\nNickname\.\r\nSorry, that nickname format is invalid\.\r\n$
+      product: Eggdrop irc bot console
+      cpes:
+        - a:eggheads:eggdrop
+    - name: eggdrop
+      pattern:
+        regex: \r\nSorry, that nickname format is invalid\.\r\n$
+      product: Eggdrop irc bot console
+      cpes:
+        - a:eggheads:eggdrop
+    - name: eggdrop
+      pattern:
+        regex: ^\r\nSurnom\.\r\nSorry, that nickname format is invalid\.\r\n$
+      product: Eggdrop irc bot console
+      info: French
+      cpes:
+        - a:eggheads:eggdrop::::fr
+    - name: emc-pp-mgmtsvc
+      pattern:
+        regex: ^<EMCP_Len\d+><\?xml version=\"1\.0\" encoding=\"iso-8859-1\"\?>\n<pp_mgmt_packet>.*<version_protocol_major>(\d+)</version_protocol_major>\n\t<version_protocol_minor>(\d+)</version_protocol_minor>.*<host_name>([\w._-]+)</host_name>.*<host_pp_version>(([\d.]+)[^<]*)</host_pp_version>.*<host_os_version>([^<]+)</host_os_version>
+        options: s
+      product: EMC PowerPath
+      version: $4
+      info: protocol $1.$2
+      hostname: $3
+      os: $6
+      cpes:
+        - a:emc:powerpath:$5
+    - name: etrayz-setup
+      pattern:
+        regex: ^\r\n\r\n\0\0\0\0\x26\x84\0\x04\0\0\0\0$
+      product: eTRAYz NAS device setup port
+      device-type: storage-misc
+    - name: extron-serial
+      pattern:
+        regex: ^\r\n\(c\) Copyright 2\d\d\d, Extron Electronics, ([^,]+), V([\d.]+)\r\n
+      product: Extron $1 serial port
+      version: $2
+      cpes:
+        - h:extron:$1
+    - name: finger
+      pattern:
+        regex: ^Gathering system data\.\.\.\nUsername Real name                      Idletime TTY Remote console location\n
+      product: Cfingerd
+    - name: finger
+      pattern:
+        regex: ^Punix version ([\d./()]+) - Current Time \(since boot\) \d+:\d\d:\d\d\r\nName        pid    stat   pc       cpusec    stack    pr/sy   idle    tty\r\n
+      product: Lantronix ETS16 fingerd
+      info: Punix $1
+      os: Punix
+      device-type: terminal server
+      cpes:
+        - o:christopher_williams:punix:$1
+    - name: finger
+      pattern:
+        regex: ^Finger online user list request denied\.\r\n
+      product: SLMail fingerd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: finger
+      pattern:
+        regex: ^Username Real name                      Idletime TTY Remote console location\n
+      product: Configurable Finger-Query Daemon
+      os: Unix
+    - name: finger
+      pattern:
+        regex: ^Login     Name       Tty      Idle  Login Time   Office     Office Phone\r\n
+      product: Debian fingerd
+      os: Linux
+      cpes:
+        - o:debian:debian_linux
+        - o:linux:linux_kernel
+    - name: finger
+      pattern:
+        regex: '^\r\nIntegrated port\r\nPrinter Type: Dell Laser Printer ([-\w+.]+)\r\nPrint Job Status: (.*)\r\n'
+      product: Dell $1 laser printer fingerd
+      info: 'Status: $2'
+      device-type: printer
+    - name: finger
+      pattern:
+        regex: '^\r\nIntegrated port\r\nPrinter Type: Dell ([-\w+.]+) Laser Printer\r\nPrint Job Status: (.*)\r\n'
+      product: Dell $1 laser printer fingerd
+      info: 'Status: $2'
+      device-type: printer
+    - name: finger
+      pattern:
+        regex: ^This is finger server\r\n\r\nPlease use username@domain format\.\r\n
+      product: ArGoSoft Mail fingerd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: finger
+      pattern:
+        regex: ^This is ([-\w_.]+) finger server\.\r\n\r\nPlease use username@domain format\.\r\n
+      product: ArGoSoft Mail fingerd
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: finger
+      pattern:
+        regex: '^\r\nIntegrated port\r\nPrinter Type: Lexmark ([^\r\n]+)\r\n'
+      product: Lexmark $1 printer fingerd
+      device-type: printer
+      cpes:
+        - h:lexmark:$1
+    - name: finger
+      pattern:
+        regex: '^finger: /var/adm/lastlog open error\nNo one logged on\r\n'
+      product: Solaris 10 fingerd
+      info: Nobody logged in
+      os: Solaris
+      cpes:
+        - o:sun:sunos:5.10
+    - name: finger
+      pattern:
+        regex: '^finger: /var/adm/lastlog open error\nLogin       Name'
+      product: Solaris 10 fingerd
+      info: Somebody logged in
+      os: Solaris
+      cpes:
+        - o:sun:sunos:5.10
+    - name: finger
+      pattern:
+        regex: '^finger: /usr/adm/lastlog open error\nLogin +Name +TTY Idle +When +Office\r\n'
+      product: OSF/1 fingerd
+      os: OSF/1
+      cpes:
+        - o:dec:osf_1
+    - name: finger
+      pattern:
+        regex: '^\r\nUSB port \d+\r\nPrinter Type:  Photo AIO Printer (\w+)\r\nPrint Job Status: ([^\r\n]+)\r\n'
+      product: Dell Photo AIO $1 printer fingerd
+      info: Status $2
+      device-type: printer
+      cpes:
+        - h:dell:photo_aio_$1
+    - name: finger
+      pattern:
+        regex: ^\nDebian GNU/Linux      Copyright \(c\) 1993-1999 Software in the Public Interest\n\n                 Your site has been rejected for some reason\.\n\n         This may be caused by a missing RFC 1413 identd on your site\.\n\n
+      product: Debian Cfingerd
+      os: Linux
+      cpes:
+        - a:debian:cfingerd
+        - o:debian:debian_linux
+        - o:linux:linux_kernel
+    - name: finger
+      pattern:
+        regex: ^Debian GNU/Linux      Copyright \(C\) 1993-1999 Software in the Public Interest\n.*You haven't specified a user\.\n\n               A general listing is not provided to the public\.
+        options: s
+      product: Debian Cfingerd
+      os: Linux
+      cpes:
+        - a:debian:cfingerd
+        - o:debian:debian_linux
+        - o:linux:linux_kernel
+    - name: finger
+      pattern:
+        regex: '^\r\nPrinter Type: Lexmark Optra LaserPrinter\r\n'
+      product: Lexmark Optra LaserPrinter fingerd
+      device-type: printer
+    - name: finger
+      pattern:
+        regex: '^MSS485 Version V([\w._/-]+)\(([\w._-]+)\) - Time Since Boot:'
+      product: Lantronix MSS485 serial to ethernet bridge fingerd
+      version: $1 $2
+      device-type: bridge
+    - name: finger
+      pattern:
+        regex: ^Login     Name                Tty      Idle  Login Time   Office     Office Phone\n
+      product: xfingerd
+    - name: finger
+      pattern:
+        regex: ^Please supply a username\r\n$
+      product: BSD fingerd
+      cpes:
+        - a:bsd:fingerd
+    - name: finger
+      pattern:
+        regex: ^\nHello [\w.@-]*,\nusers currently logged in are:\n\nNAME       LINE         TIME             IDLE          PID COMMENT\n\n\r\n
+      product: efingerd
+      info: who -uHw
+      cpes:
+        - a:radovan_garabik:efingerd
+    - name: finger
+      pattern:
+        regex: ^\nHello [\w.@-]*,\nusers currently logged in are:\n\n
+      product: efingerd
+      cpes:
+        - a:radovan_garabik:efingerd
+    - name: finger
+      pattern:
+        regex: '^Site: (.+)\n\nLogin     Name\n'
+      product: MiamiDx fingerd
+      info: 'site: $1'
+      os: AmigaOS
+    - name: ftp
+      pattern:
+        regex: ^220 Welcome to Stupid-FTPd server\.\r\n422 Too busy to play with you\.\r\n
+      product: Stupid-FTPd
+      cpes:
+        - a:cinek:stupid-ftpd
+    - name: ftp
+      pattern:
+        regex: ^220 Service ready\.\r\n501 Syntax Error\.\r\n
+      product: Hay Systems HSL 2.75G Femtocell ftpd
+      device-type: WAP
+      cpes:
+        - o:hay_systems:hsl_2.75g_femtocell
+    - name: ftp
+      pattern:
+        regex: ^220 Welcome to TBS FTP Server\.\r\n(?:202 Command not implemented, superfluous at this site\.\r\n){2}
+      product: TBS embedded ftpd
+      device-type: broadband router
+    - name: ftp
+      pattern:
+        regex: ^220 Service ready for new user\r\n500 '\r\n\r\n':command not understood\.\r\n
+      product: Power Shield UPS ftpd
+      device-type: power-device
+    - name: ftp
+      pattern:
+        regex: ^220 Hello!\r\n502 Invalid command ""\r\n502 Invalid command ""\r\n
+      product: FTP Server for 3DS
+      device-type: media device
+      cpes:
+        - a:mtheall:ftpd
+    - name: medcart
+      pattern:
+        regex: ^PAR1\.750800000002B123456\?;\?\?;\?\?;\?\?;\?\?;\?08AC
+      product: Howard Medical Med Display
+      version: 1.5.4.298
+    - name: modbus
+      pattern:
+        regex: ^\r\n\r\n\0\x03[\0\x01]\x80[\x01-\x03]
+      product: Modbus TCP
+    - name: modbus
+      pattern:
+        regex: ^\r\n\r\n\0\x03[\0\x01]\x80[\x0a\x0b]
+      product: Modbus TCP
+      info: gateway
+    - name: mon
+      pattern:
+        regex: ^520 invalid command\n$
+      product: mon service monitoring daemon
+    - name: mysql
+      pattern:
+        regex: ^\x10\0\0\x01\xff\x13\x04Bad handshake$
+      product: MySQL
+      cpes:
+        - a:mysql:mysql
+    - name: ndv
+      pattern:
+        regex: ^NDV_([\d.]+) (?:[0-9a-f][0-9a-f]:){5}[0-9a-f][0-9a-f]\n
+      product: Neocoretech NDV
+      version: $1
+      cpes:
+        - a:neocoretech:ndv:$1
+    - name: netbackup
+      pattern:
+        regex: ^\xea\xdd\xbe\xef\0\0\0\x05\0\0\x000\0\0\x000\0\0..\0\0\0\x08\0a\0f\0f\0s\0p\0r\0n\0g\0\0\0\0\0\0\0\0$
+        options: s
+      product: Veritas Netbackup Professional
+    - name: nimp
+      pattern:
+        regex: ^V([\d.]+)\r\nERROR 0\r\n$
+      product: Linux NetworX Network ICE Management Protocol
+      version: $1
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: nsi
+      pattern:
+        regex: ^%NSI\x91\xceWb\0\x08\x02\x04\x0f\x05\0\0
+      product: Cisco Network Spectrum Interface
+    - name: ftp
+      pattern:
+        regex: ^220 Inactivity timer = \d+ seconds\. Use 'site idle <secs>' to change\.\r\n221 Goodbye \(badly formated command seen\)\.  You uploaded 0 and downloaded 0 kbytes\.\r\n221 Goodbye \(badly formated command seen\)\.  You uploaded 0 and downloaded 0 kbytes\.\r\n$
+      product: Alcatel Speedtouch ADSL router ftpd
+      device-type: broadband router
+    - name: ftp
+      pattern:
+        regex: '^220 \r\n500 Unknown command: \"\"\r\n500 Unknown command: \"\"\r\n$'
+      product: Bftpd
+      cpes:
+        - a:jesse_smith:bftpd
+    - name: ftp
+      pattern:
+        regex: ^220 Service ready\r\n500 Unsupported command\r\n$
+      product: Multitech MultiVoip 410 VoIP gateway ftpd
+      device-type: VoIP adapter
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n530 access denied\.\r\n
+      product: Intel NetportExpress print server ftpd
+      device-type: print server
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n501 Command not supported\.\r\n$
+      product: D-Link Printer Server ftpd
+      device-type: print server
+    - name: ftp
+      pattern:
+        regex: ^220 ([-.\w]+) FTP server ready\.\r\n530 Please login with USER and PASS\.\r\n530 Please login with USER and PASS\.\r\n$
+      product: Solaris ftpd
+      hostname: $1
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: ftp
+      pattern:
+        regex: '^220 ([-.\w]+) FTP Server ready \.\.\.\r\n530 \r  : User not logged in\. Please login with USER and PASS first\.\r\n530 \r  : User not logged in\. Please login with USER and PASS first\.\r\n$'
+      product: Bulletproof ftp server
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 ftp\r\n$
+      product: Bulletproof ftp server
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n200 NOOP command successful\.\r\n
+      product: Tektronix Phaser ftpd
+      device-type: printer
+    - name: ftp
+      pattern:
+        regex: ^220 \"Welcome to Bot FTP service\.\"\r\n331 Please specify the password\.\r\n230 Login successful\. Have fun\.\r\n
+      product: Unknown trojan ftpd
+    - name: ftp
+      pattern:
+        regex: ^220 OK\n226 OK\n
+      product: Sasser worm minimal ftpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 FTPd ([\d.]+)\r\n500 Bad command\r\n
+      product: Generic WAP ftpd
+      version: $1
+      device-type: WAP
+    - name: ftp
+      pattern:
+        regex: ^220 Telindus FTP server ready\.\r\n502 Command not implemented\.\r\n502 Command not implemented\.\r\n
+      product: Telindus ftpd
+      device-type: router
+    - name: ftp
+      pattern:
+        regex: '^220 Server ready\r\n500 ''\r'': command not understood\.\r\n500 ''\r'': command not understood\.\r\n'
+      product: Welltech Wellgate VoIP adapter ftpd
+      device-type: VoIP adapter
+    - name: ftp
+      pattern:
+        regex: ^220 muddleftpd \(([\d.]+)\) server ready\. Enter Username\.\r\n500 Only one command at a time\.\r\n
+      product: Muddleftpd
+      version: $1
+    - name: ftp
+      pattern:
+        regex: ^220 .*\r\n500 Only one command at a time\.\r\n
+      product: Muddleftpd
+    - name: ftp
+      pattern:
+        regex: ^220 OK\r\n500 Syntax error, command unrecognized\.\r\n
+      product: NcFTPd
+      info: Banner masking
+    - name: ftp
+      pattern:
+        regex: '^220 ([\w._-]+) FTP server ready\.\r\n502 '''': command not understood\.\r\n502 '''': command not understood\.\r\n'
+      product: lukemftpd
+      hostname: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: ftp
+      pattern:
+        regex: '^220 ([\w._-]+) FTP server ready\.\r\n500 '''': command not understood\.\r\n500 '''': command not understood\.\r\n'
+      product: OpenBSD ftpd
+      hostname: $1
+      cpes:
+        - a:openbsd:ftpd
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n500 \?\r\n500 \?\r\n
+      product: Kiss DP-558 PVR ftpd
+      device-type: media device
+    - name: ftp
+      pattern:
+        regex: '^220 ICS FTP Server ready\r\n500 ''\r'': command not understood\.\r\n500 ''\r'': command not understood\.\r\n'
+      product: berretz.de mini-ftpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 Welcome to pyftpd\. Happy downloading\.\r\n500 I'm gonna ignore this command\.\.\. maybe later\.\.\.\r\n
+      product: pyftpd
+    - name: ftp
+      pattern:
+        regex: ^220 Ready\r\n502 Not implemented\r\n$
+      product: Global Cache GC-100 ftpd
+      device-type: media device
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n530 Please login with USER and PASS\.\r\n$
+      product: TRENDnet/Hawking webcam ftpd
+      device-type: webcam
+    - name: ftp
+      pattern:
+        regex: ^220 ([\w._-]+) server ready\.\r\n502 command  not implemented\.\r\n502 command  not implemented\.\r\n
+      product: Konica Minolta bizhub printer smtpd
+      hostname: $1
+      device-type: printer
+    - name: ftp
+      pattern:
+        regex: '^220 Ftp firmware update utility\r\n500 Unknown command: \"\"\r\n500 Unknown command: \"\"\r\n'
+      product: D-Link or USRobotics ADSL router firmware update ftpd
+      device-type: broadband router
+    - name: ftp
+      pattern:
+        regex: ^220 Adtec .* FTP server, ready \r\n530 Login failed, check Username/Password\.\r\n
+      product: Adtec broadcast video ftpd
+      device-type: media device
+    - name: ftp
+      pattern:
+        regex: ^220 FTP Server Ready\r\n530 Authentication required\.\r\n530 Authentication required\.\r\n
+      product: HP LaserJet P4014 printer ftpd
+      device-type: printer
+      cpes:
+        - h:hp:laserjet_p4014
+    - name: ftp
+      pattern:
+        regex: ^230 FTP Server Ready\r\n530 Authentication required\.\r\n530 Authentication required\.\r\n
+      product: HP FTP Print Server
+      version: "3.0"
+      info: HP LaserJet 4250 printer
+      device-type: printer
+      cpes:
+        - a:hp:ftp_print_server:3.0
+        - h:hp:laserjet_4250
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n530 USER and PASS required\r\n530 USER and PASS required\r\n
+      product: VBrick 4300 video encoder ftpd
+      device-type: media device
+    - name: ftp
+      pattern:
+        regex: ^220 FTP server ready\.\r\n510 command not supported\.\r\n
+      product: Panasonic DP-1820E printer ftpd
+      device-type: printer
+      cpes:
+        - h:panasonic:dp-1820e
+    - name: ftp
+      pattern:
+        regex: '^220 ftp server ready\.\r\n500 Unknown command: \"\"\r\n500 Unknown command: \"\"\r\n'
+      product: Linksys WRT54Gv5 WAP ftpd
+      device-type: WAP
+      cpes:
+        - h:linksys:wrt54gv5
+    - name: ftp
+      pattern:
+        regex: ^220 Connection established\.\r\n502  command not recognized\.\r\n502  command not recognized\.\r\n
+      product: Canon imageRUNNER C2880 printer ftpd
+      device-type: printer
+      cpes:
+        - h:canon:imagerunner_c2880
+    - name: ftp
+      pattern:
+        regex: ^550 Access is denied\.\r\n550 Access is denied\.\r\n220 ProFTPD ([\w._-]+) Server \(([\w._-]+)\)
+      product: ProFTPD
+      version: $1
+      hostname: $2
+      cpes:
+        - a:proftpd:proftpd:$1
+    - name: ftp
+      pattern:
+        regex: ^220 UnleashX FTP ready\.\r\n503 Login with USER first\.\r\n
+      product: UnleashX Xbox shell ftpd
+      device-type: game console
+    - name: ftp
+      pattern:
+        regex: ^220 BBPS3FTP ready\r\n500 command not recognized\r\n
+      product: Blackbox PlayStation 3 ftpd
+      device-type: game console
+    - name: ftp
+      pattern:
+        regex: ^220 IronPort WSA ready\.\r\n500 Syntax error, command unrecognized\.\r\n
+      product: IronPort WSA firewall ftpd
+      device-type: firewall
+    - name: ftp
+      pattern:
+        regex: '^220 \r\n500-''\r\n500  '': command not understood\.\r\n500-''\r\n500  '': command not understood\.\r\n'
+      product: Microsoft FTP Service
+      os: Windows
+      cpes:
+        - a:microsoft:ftp_service
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 ps2ftpd ready\.\r\n500 Not understood\.\r\n
+      product: ps2ftpd
+      device-type: game console
+    - name: ftp
+      pattern:
+        regex: ^220-Authenticate for FTP Access\. \r\n220 \r\n500-Syntax error -- unknown command\r\n500 \r\n500-Syntax error -- unknown command\r\n500 \r\n
+      product: Microsoft Forefront TMG firewall ftpd
+      os: Windows
+      device-type: firewall
+      cpes:
+        - a:microsoft:forefront_threat_management_gateway
+        - o:microsoft:windows
+    - name: ftp
+      pattern:
+        regex: ^220 ZBR-79071 Version V([\w._-]+) ready\.\r\n500 Syntax error, command unrecognized or malformed\r\n500 Syntax error, command unrecognized or malformed\r\n
+      product: Zebra GK420d or GX430T printer ftpd
+      version: $1
+      device-type: printer
+    - name: ftp
+      pattern:
+        regex: ^220 \r\n502 No command sent\r\n
+      product: Fortigate appliance ftpd
+      os: FortiOS
+    - name: ftp
+      pattern:
+        regex: ^220 File Manager ready \r\n550 Unsupported command\r\n550 Unsupported command\r\n
+      product: File Manager+ ftpd
+      os: Android
+      cpes:
+        - a:alphainventor:filemanager
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: ftp
+      pattern:
+        regex: ^220 .*\r\n530 Please login with USER and PASS\.\r\n530 Please login with USER and PASS\.\r\n
+      product: vsftpd (before 2.0.8) or WU-FTPD
+      cpes:
+        - a:vsftpd:vsftpd
+    - name: ftp-proxy
+      pattern:
+        regex: ^220 .*FTP Proxy\r\n500 Syntax error, command unrecognized\.\r\n
+      product: Cisco Web Security ftp proxy
+      cpes:
+        - h:cisco:web_security_appliance
+    - name: flashconnect
+      pattern:
+        regex: ^FlashCONNECT ([\d.]+) invalid message\.\n$
+      product: Raining Data FlashCONNECT
+      version: $1
+    - name: gearman
+      pattern:
+        regex: ^ERR UNKNOWN_COMMAND Unknown\+server\+command\r\nERR UNKNOWN_COMMAND Unknown\+server\+command\r\n$
+      product: Gearman Job Queue System
+    - name: genetec-directory
+      pattern:
+        regex: ^\xde\xad\xad\xde\x0f\x03\0\0\xeed\xab\x99\x01\x05\x06\x05\x07Content}\x02\0\0\x01\0=Genetec\.Net,
+      product: Genetec Security Center directory connection service
+      cpes:
+        - a:genetec:security_center
+    - name: geovision-control
+      pattern:
+        regex: ^..\0\0\xff\xff\xff\xff$
+        options: s
+      product: Geovision webcam control
+      device-type: webcam
+    - name: geovision-audio
+      pattern:
+        regex: ^\$\0\0\0\xd4\x17\0\0\x01\0\0\0\x05\0\0\0\x01\0\0\0\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Geovision webcam audio
+      device-type: webcam
+    - name: gipc
+      pattern:
+        regex: '^gipc....................HTTP/1\.0 503 Service Unavailable\r\nHost: ([^\r\n]+)\r\nServer: GPnPD/([\d.]+)\r\n\r\n'
+      product: Oracle Grid Plug and Play daemon
+      version: $2
+      hostname: $1
+    - name: gntp
+      pattern:
+        regex: '^GNTP/1\.0 -ERROR NONE\r\nError-Code: 301\r\nError-Description: Growl does not recognize the protocol beginning with \r\n\r\n\r\nOrigin-Software-Name: Growl\r\nOrigin-Software-Version: ([\d.]+)\r\nOrigin-Platform-Version: ([\d.]+)\r\nOrigin-Machine-Name: (.*)\r\nOrigin-Platform-Name: Mac OS X\r\n\r\n\r\n'
+      product: Growl notification platform
+      version: $1
+      hostname: $3
+      os: Mac OS X $2
+      cpes:
+        - a:growl:growl:$1
+        - o:apple:mac_os_x:$2
+    - name: gopro-json
+      pattern:
+        regex: '^\{"rval": -7, "param_size": 0 \}\0'
+      product: GoPro or similar camera json service
+      device-type: webcam
+    - name: go-login
+      pattern:
+        regex: ^\xff\xff\x80\x80\+\]\0\0
+      product: GraphOn GO-Global
+      cpes:
+        - a:graphon:go-global
+    - name: control-gc-ports
+      pattern:
+        regex: ^unknowncommand 14\r$
+      product: Global Cache GC-100 config
+      device-type: media device
+    - name: h2
+      pattern:
+        regex: ^\0\0\0\0\0\0\0\x05\x009\x000\x000\x004\x007\0\0\0[A-B]\0V\0e\0r\0s\0i\0o\0n\0 \0m\0i\0s\0m\0a\0t\0c\0h\0,\0 \0d\0r\0i\0v\0e\0r\0 \0v\0e\0r\0s\0i\0o\0n\0 \0i\0s\0 \0\"\x000\0\"\0 \0b\0u\0t\0 \0s\0e\0r\0v\0e\0r\0 \0v\0e\0r\0s\0i\0o\0n\0 \0i\0s\0 \0\"([\d\0]+)\"\xff\xff\xff\xff
+      product: H2 database
+      info: TCP protocol version $P(1)
+      cpes:
+        - a:h2database:h2
+    - name: halfd
+      pattern:
+        regex: ^{type INIT} {up \d+} {auth \d+} {name {([^}]+)}} {ip [\d.]+} {max \d+} {port (\d+)}\r\n
+      product: halfd Half-Life admin
+      info: Name $1; HL port $2
+    - name: hasp-lm
+      pattern:
+        regex: ^\xf2\xfa\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\xf2\0\0\0\0\0\0\0\0$
+      product: Aladdin NetHASP license manager
+    - name: hpssd
+      pattern:
+        regex: ^msg=messageerror\nresult-code=5\n
+      product: HP Services and Status Daemon
+      os: Linux
+      cpes:
+        - a:hp:linux_imaging_and_printing_project
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nCache-control: no-cache\r\nServer: Ubicom/(\d[-.\w ]+)\r\n'
+      product: Ubicom httpd
+      version: $1
+      cpes:
+        - a:ubicom:httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nExpires: Mon, 1 Jan 2001 12:00:01 GMT\r\nCache-control: no-cache\r\nServer: Ubicom/([\w._-]+)\r\nContent-Length: 11\r\nConnection: close\r\n\r\nBad RequestHTTP/1\.1 500 Server Error\r\n\r\nConnection: close\r\n$'
+      product: Ubicom httpd
+      version: $1
+      info: CradlePoint MBR1000 WAP http config
+      device-type: WAP
+      cpes:
+        - a:ubicom:httpd:$1
+    - name: http
+      pattern:
+        regex: ^<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 3\.2//EN\">\n<html>\n<head>\n<title>GoodTech Systems Telnet Server Administration Login</title>\n
+      product: GoodTech Systems telnet server http config
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nConnection: close\r\nContent-Type: text/html\r\nContent-Length: 50\r\n\r\n<HTML><BODY><H1>400 Bad Request</H1></BODY></HTML>$'
+      product: VMware Server http config
+      cpes:
+        - a:vmware:server
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nConnection: close\r\nContent-type: text/html; charset:UTF-8\r\n\r\n.*<TITLE>SQLite Book</TITLE>'
+        options: s
+      product: SQLite Book database frontend
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 .*\r\nServer: Microsoft-IIS/(\d[-.\w]+)\r\n'
+      product: Microsoft IIS httpd
+      version: $1
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services:$1
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Authentication Required\r\nWWW-Authenticate: Basic realm=\"Icecast2 Server\"\r\n\r\nYou need to authenticate\r\n'
+      product: Icecast streaming media server
+      cpes:
+        - a:xiph:icecast
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 400 Bad request\r\n\r\n$
+      product: Network Flight Recorder IDS
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: thttpd/(\d[-.\w ]+)\r\n'
+      product: thttpd
+      version: $1
+      device-type: WAP
+      cpes:
+        - a:acme:thttpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: pks_www/([-\w+.]+)\r\nContent-type: text/html\r\n\r\n<HEAD><TITLE>400 Bad Request</TITLE></HEAD><BODY></BODY>\r\n'
+      product: OpenPGP Public Key Server
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nConnection: close\r\nContent-Length: \d+\r\nContent-Type: text/html\r\nWWW-Authenticate: Basic realm=\"osiris\"\r\n'
+      product: osiris host IDS web interface
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nCache-Control: no-cache, must-revalidate, max-age=0\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Length: \d+\r\nConnection: close\r\n\r\n<html><body><h1>Not Implemented</h1>Whatever the heck you just requested, I can''t generate\.</body></html>'
+      product: darkstat network analyzer httpd
+      os: Unix
+    - name: http
+      pattern:
+        regex: ^\xff\xf0 400 Bad Request\r\n\r\n<HEAD><TITLE>400 Bad Request</TITLE></END>\r\n<BODY><H1>400 Bad Request</H1></BODY>
+      product: HP JetDirect printer embedded httpd
+      device-type: printer
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 400 Bad Request\r\n.*This is a WebSEAL error message template file\.
+        options: s
+      product: Tivoli Access Manager WebSEAL httpd
+      cpes:
+        - a:ibm:tivoli_access_manager_for_e-business
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\nServer: thttpd\r\n.*<HTML>\n\t<HEAD><TITLE>Error</TITLE><LINK REL=\"stylesheet\" TYPE=\"text/css\" HREF=\"/std\.css\">.*Your request has bad syntax or is inherently impossible to satisfy'
+        options: s
+      product: thttpd
+      info: Linksys NSLU2 http config
+      device-type: storage-misc
+      cpes:
+        - a:acme:thttpd
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 400 Bad Request\r\n.*<h2>400 Bad Request<h2>\n  <p>\n  Your request has bad syntax or is inherently impossible to satisfy\.\n
+        options: s
+      product: thttpd
+      cpes:
+        - a:acme:thttpd
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\nServer: unknown HTTP server\r\nContent-Type: text/html; charset=iso-8859-1\r\n.*<BODY BGCOLOR=\"#cc9999\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n<H2>400 Bad Request</H2>\nYour request has bad syntax or is inherently impossible to satisfy\.\n'
+        options: s
+      product: thttpd
+      info: IDIS surveillance DVR
+      device-type: media device
+      cpes:
+        - a:acme:thttpd
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\nServer: thttpd/([\w.]+) \w+\r\n'
+      product: thttpd
+      version: $1
+      cpes:
+        - a:acme:thttpd:$1
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\n(?:[^\r\n]+\r\n)*?Content-Type: text/html\r\n.*<H2>400 Bad Request</H2>\nYour request has bad syntax or is inherently impossible to satisfy\.\n'
+        options: s
+      product: thttpd
+      cpes:
+        - a:acme:thttpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-type: text/html; charset=iso-8859-1\r\nAccept-Ranges: bytes\r\nConnection: close\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n<BODY BGCOLOR=\"#cc9999\"><H2>400 Bad Request</H2>\n<HR>\nYour request has bad syntax or is inherently impossible to satisfy\.\n</BODY></HTML>\n$'
+      product: thttpd
+      cpes:
+        - a:acme:thttpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: UnrealEngine UWeb Web Server Build (\d+)\r\n'
+        options: s
+      product: Unreal Tournament http admin
+      version: Build $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 405 Method Not Allowed\r\nAllow: GET, HEAD\r\n\r\n405 Method Not Allowed\r\n\r\n'
+      product: D-Link printer/webcam http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: WDaemon/([\d.]+)\r\n'
+      product: World Client WDaemon httpd
+      version: $1
+      info: Alt-N MDaemon webmail
+      os: Windows
+      cpes:
+        - a:altn:mdaemon
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d .*\nAccept: text/html\nConnection: close\n\n<html>\n<body text=#FFFFFF bgcolor=#000000>\n<center><b><hr height=4 width=400 color=#FF0000>\n<font size=5>PunkBuster Server WebTool for ([-\w_.]+)</font>'
+      product: PunkBuster http config
+      info: 'Game: $1'
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: MpSconServer/([\d.]+)\r\n'
+      product: ZebraNet print server httpd
+      info: MpSconServer $1
+      device-type: print server
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 \d\d\d .*var l1=\"([^"]+)\"\n.*document\.write\(\"D-Link DI-\"\+l1\)
+        options: s
+      product: D-Link DI-$1 router http config
+      device-type: router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 bad http request\r\ndate: .*\r\nserver: SAP Web Application Server\r\n'
+      product: SAP Web Application Server
+      cpes:
+        - a:sap:netweaver
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-type: text/html; charset=UTF-8\r\nPragma: no-cache\r\nWindow-target: _top\r\n'
+      product: Symantec AntiVirus Scan Engine http config
+      cpes:
+        - a:symantec:antivirus_scan_engine
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: QTSS ([\d.]+) Admin Server/([\d.]+)\r\n'
+      product: QTSS Admin Server httpd
+      version: $2
+      info: QTSS $1
+      cpes:
+        - a:apple:quicktime_streaming_server:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request 2\r\nContent-Type: text/html\r\n\r\n<body><h1>HTTP/1\.0 400 Bad Request 2</h1></body>\r\n$'
+      product: WatchGuard Firebox http config
+      device-type: firewall
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<title>400 Bad Request</title><body>400 Bad Request</body>$'
+      product: Generic router http config
+      device-type: router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\nWWW-Authenticate: Basic realm=\"Anti-Spam SMTP Proxy \(ASSP\) Configuration\"\nContent-type: text/html\n\n<html><body><h1>Unauthorized</h1>\n</body></html>\n'
+      product: ASSP Anti-Spam Proxy http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nConnection: close\r\nServer: HttpServer/([\d.]+)\r\nDate: .*\r\nContent-Type: text/html\r\n\r\nError:<HR>\n<H1>Server Error: 400 Bad Request</H1>\r\n<P><HR><H2>URL parsing error</H2><P>'
+      product: Cisco ONS MSPP httpd
+      info: HttpServer $1
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 500 no query\r\n\r\n$
+      product: pkspxy
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 400 msg=Bad%20Request&rc=%00%00%03%1b\r\n
+      product: TimesTen httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400  Bad  request\r\nContent-Type: text/html; charset=ISO-8859-1\r\n\r\n<body><h1>HTTP/1\.1 400  Bad  request <h1></body>'
+      product: XOSoft WanSync http config
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/\*\.\* 400 Bad Request\r\nDate: .*\r\nContent-Type:text/plain\r\nContent-Length:61\r\n\r\nThe received request is either NULL or invalid/wrong format\r\n'
+      product: Kaba application server httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\nContent-Type: text/xml\r\n\r\n<\?xml version=''1\.0'' encoding=''UTF-8'' \?><autnresponse><action>NONE</action><response>The action you attempted is forbidden by your client</response></autnresponse>'
+      product: Veritas backup exec continuous protection httpd
+      cpes:
+        - a:symantec:veritas_backup_exec
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\nContent-Type: text/xml\n\n<ACTION>GETSTATUS</ACTION><RESPONSE>The action you attempted is forbidden by your client</RESPONSE>'
+      product: Veritas backup exec continuous protection httpd
+      cpes:
+        - a:symantec:veritas_backup_exec
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-type: text/html\r\n\r\n\n\nCONNECTION NOT AUTHORIZED\n\n\n'
+      product: Veritas backup exec continuous protection httpd
+      info: unauthorized
+      cpes:
+        - a:symantec:veritas_backup_exec
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\nContent-type: text/plain\n\n\nConnection refused\.\nInvalid IP Address\n'
+      product: Veritas backup exec continuous protection httpd
+      info: unauthorized
+      cpes:
+        - a:symantec:veritas_backup_exec
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d .*\r\nContent-Length: \d+\r\nContent-Type: text/html\r\nConnection: close\r\nServer: Fastream IQ Web/FTP Server\r\n\r\n'
+      product: Fastream IQ reverse http proxy
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 -1 Internal Server Error\r\n\r\n
+      product: Panasonic webcam http config
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Authorization Required\nServer: JBidWatcher/([\d.]+) \(Java\)\nWWW-Authenticate: Basic realm=\"JBidWatcher\"\n'
+      product: JBidWatcher httpd
+      version: $1
+      info: Java
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 R\r\nContent-Type: text/html\r\n\r\nNot Implemented'
+      product: D-Link router/Airlink NAS http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal server error\r\nContent-Length: 7\r\n\r\nBummah\.'
+      product: Sendmail Mailstream Manager http config
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: IngrianManagementConsole\r\n'
+      product: Ingrian Management Console httpd
+      device-type: security-misc
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nDate: .*<title>400 Bad Request</title></head>\n<body>\n<h3>400 Bad Request</h3>\nCan''t parse request\.\n</body>\n</html>\n'
+        options: s
+      product: m0n0wall http portal
+      os: FreeBSD
+      device-type: firewall
+      cpes:
+        - o:freebsd:freebsd
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: \r\nDate: .*<TITLE>400 Bad Request</TITLE></HEAD>\n<BODY BGCOLOR=\"white\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n<H4>400 Bad Request</H4>\nCan''t parse request\.\n</BODY>\n</HTML>\n'
+        options: s
+      product: Netgear WNDR3300 WAP http config
+      device-type: WAP
+      cpes:
+        - h:netgear:wndr3300
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request protocol\r\nServer: httpd\r\n.*<TITLE>400 Bad Request protocol</TITLE></HEAD>\n<BODY BGCOLOR=\"#FFFFFF\"><H4>400 Bad Request protocol</H4>\nCan''t parse request\.\n</BODY></HTML>\n$'
+        options: s
+      product: Cisco WRV210 WAP http config
+      device-type: WAP
+      cpes:
+        - h:cisco:wrv210
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: AEWS/([\w._-]+)\r\n.*<TITLE>400 Bad Request</TITLE></HEAD>\n<BODY BGCOLOR=\"#cc9999\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n<H4>400 Bad Request</H4>\nCan''t parse request\.\n'
+        options: s
+      product: AEWS
+      version: $1
+      info: Avocent Mergepoint KVM switch
+      cpes:
+        - h:emerson:network_power_avocent_mergepoint_unity_2016
+    - name: http
+      pattern:
+        regex: '^\(null\) 302 Found\r\nServer: \r\nDate: .*\r\nLocation: /index\.cgi\r\nContent-Type: text/html; charset=%s\r\nCache-Control: max-age=0\r\n'
+      product: Intel/Acer/FlaconStor storage device http config
+      device-type: storage-misc
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: mini_httpd/([\w._ -]+)\r\n'
+      product: mini_httpd
+      version: $1
+      cpes:
+        - a:acme:mini_httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 Server Error\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<HTML><BODY>\n<TITLE>505 Internal Server Error</TITLE><H1>Internal Server Error: Invalid request</H1>\n<BR><BR>Internal Error\.\n</BODY></HTML>\n'
+      product: Google Desktop Search for Linux Beta httpd
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^<HTML><HEAD><TITLE>400 Malformed request line</TITLE></HEAD><BODY.*http://tjws\.sourceforge\.net\">Rogatkin''s JWS based on Acme\.Serve Version ([-\w_.]+), .Revision: ([-\w_.]+)'
+        options: s
+      product: TJWS httpd
+      version: $2
+      info: Based on Acme.Serve $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal Server Error\r\nContent-Length: \d+\r\n\r\nTraceback \(most recent call last\):\n  File \"/usr/share/deluge/plugins/WebUi/gtk_cherrypy_wsgiserver\.py\"'
+      product: Deluge bittorrent http interface
+      info: CherryPy httpd
+      cpes:
+        - a:cherrypy:cherrypy
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Invalid Request\r\nContent-Type: text/html\r\nContent-Length: 31\r\n\r\n<title>Invalid Request</title>\n$'
+      product: opentracker BitTorrent tracker
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\r\nServer: HP Web Jetadmin (\d[-.\w]+)\r\n'
+      product: HP Web Jetadmin print server http config
+      version: $1
+      device-type: print server
+      cpes:
+        - a:hp:web_jetadmin:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 \r\n.*<ns1:stackTrace xmlns:ns1=\"http://xml\.apache\.org/axis/\">java\.io\.IOException: Cannot handle non-GET, non-POST, non-HEAD request\n\tat org\.globus\.wsrf\.container\.ServiceThread\.parseHeaders\(ServiceThread\.java:855\)'
+        options: s
+      product: Globus Web Service httpd
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 511 Not Implemented\r\n\r\n$
+      product: SMC Barricade/Netgear http config
+      device-type: broadband router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\n.*document\.write\(document\.nxp\.skin\.getProductName\(\)\);\n      document\.write\(''Security Console :: Error</title>''\);\n'
+        options: s
+      product: Rapid7 NeXpose http config
+      device-type: security-misc
+      cpes:
+        - a:rapid7:nexpose
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 400 Bad Request\r\n.*<link rel=\"shortcut icon\" href=\"/style/image/favicon\.ico\" type=\"image/vnd\.microsoft\.icon\"></link>\n   <script type=\"text/javascript\" src=\"/scripts/controller\.js\"></script>\n   <script type=\"text/javascript\" src=\"/scripts/sarissa\.js\"></script>
+        options: s
+      product: Rapid7 NeXpose http config
+      device-type: security-misc
+      cpes:
+        - a:rapid7:nexpose
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nServer: peerguardnf/([\w._-]+) \(Unix\)\r\nX-Powered-By: You need to wind it\r\n'
+      product: Phoenix Labs PeerGuardian httpd
+      version: $1
+      os: Unix
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Internal Server Error\r\n.*<h2>Error parsing HTTP header</h2><pre>\njava\.net\.ProtocolException: Cannot handle non-GET, non-POST, non-HEAD request\n\tat org\.globus\.wsrf\.container\.ServiceThread\.parseHeaders\(ServiceThread\.java:1103\)\n'
+        options: s
+      product: Globus Toolkit Java Container httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/html\r\n\r\n<HTML><HEAD><TITLE>HTTP 404 File not found</TITLE></HEAD><BODY TEXT=BLACK BGCOLOR=WHITE>The requested file was not found</BODY></HTML>'
+      product: Websense Block Message httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nDate: .*\r\nServer: cPanel\r\nConnection: close\r\nWWW-Authenticate: Basic realm=\"cPanel WebDisk\"\r\n\r\n'
+      product: cPanel httpd
+      info: unauthorized
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: micro_httpd\r\n'
+      product: micro_http
+      cpes:
+        - a:acme:micro_httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nConnection: close\r\nContent-Type: text/html\r\nServer: SNARE\r\nWWW-Authenticate: Basic realm=\"SNARE\"\r\n\r\n.*<ADDRESS>Snare Server Remote Control facility</ADDRESS>'
+        options: s
+      product: InterSect Alliance SNARE http config
+      cpes:
+        - a:intersectalliance:system_intrusion_analysis_and_reporting_environment
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nServer: SNARE/1\.0\r\nMIME-version: 1\.0\r\nContent-type: text/html\r\n\r\n<html><body><center><h2>Page Not Found</h2></center></body></html>'
+      product: InterSect Alliance SNARE http config
+      info: no password
+      cpes:
+        - a:intersectalliance:system_intrusion_analysis_and_reporting_environment
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nExpires: 0\r\ncharset: UTF8\r\nContent-Type: text/html\r\n\r\n.*<title>MONyog</title>'
+        options: s
+      product: MONyog MySQL http admin
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: ATL Server - CounterSpyAgentSoapService\r\n.*<SOAP:Envelope xmlns:SOAP=\"http://schemas\.xmlsoap\.org/soap/envelope/\">\r\n  <SOAP:Body>\r\n   <SOAP:Fault>\r\n     <faultcode>SOAP:Client</faultcode>\r\n     <faultcode>Invalid Request</faultcode>\r\n     <detail>Not a recognized HTTP Verb &amp;Empty URL &amp;Not a recognized HTTP Version \(only 1\.1 is supported\) &amp;</detail>\r\n   </SOAP:Fault>\r\n  </SOAP:Body>\r\n</SOAP:Envelope>'
+        options: s
+      product: Sunbelt Software CounterSpy Agent antimalware SOAP over HTTP
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Internal error\r\nContent-Length: 49\r\nContent-Type: text/plain\r\n\r\nMethod not allowed \(must be POST HTTP/1\.0 or 1\.1\)$'
+      product: SoftPerfect Bandwidth Manager httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\nServer: Dorgem/([\w._-]+)\r\n'
+      product: Dorgem webcam server http
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad request version \(crypto mismatch\?\)\r\nServer: ShadowBot/([\d.]+)\r\n'
+      product: ShadowBot
+      version: $1
+      info: HP Opsware
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: \r\n.*<HTML>\n            <HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n            <BODY BGCOLOR=\"#cc9999\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n            <H4>400 Bad Request</H4>\nCan''t parse request\.\n            <HR>\n            <ADDRESS><A HREF=\"\"></A></ADDRESS>\n            </BODY>\n            </HTML>\n$'
+        options: s
+      product: mini_httpd
+      info: Linksys RVS4000 router
+      device-type: router
+      cpes:
+        - a:acme:mini_httpd
+        - h:linksys:rvs4000
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: Extent/([\d.]+)\r\n\r\n<HTML><HEAD>\n<TITLE>Error</TITLE>\n</HEAD>\n<BODY>\n<H2>400 Bad Request</H2></BODY>\n</HTML>\n$'
+      product: Alepo Extent
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"esecsrva\"\r\n\r\n\0{829,}'
+      product: IBM Director wmicimserver httpd
+      cpes:
+        - a:ibm:director
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"esecsrva\"\r\n\r\n$'
+      product: IBM Director wmicimserver httpd
+      cpes:
+        - a:ibm:director
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nWWW-Authenticate: Basic realm=\"ANLYX2\"\r\n\r\n\0*$'
+      product: IBM Director wmicimserver httpd
+      cpes:
+        - a:ibm:director
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Document Follows\r\nContent-Type: text/html\r\nContent-Length: 106\r\n\r\n<HEAD><TITLE>501 Method Not Implemented</TITLE></HEAD>\r\n<BODY><H1>501 Method Not Implemented</H1>\r\n</BODY>$'
+      product: HP StorageWorks AG118A tape autoloader http config
+      device-type: storage-misc
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\nServer: mini_httpd/([\w._ -]+)\r\n'
+      product: mini_httpd
+      version: $1
+      cpes:
+        - a:acme:mini_httpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 404 Not Found\r\nContent-Type: text/html\r\n\r\n$'
+      product: JBoss service httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\n(?:[^\r\n]+\r\n)*?Server: PeopleSoft PSRENSRV/([\w._-]+)\r\n.*<I>PeopleSoft PSRENSRV/[\w._-]+ on http://([\w._-]+):\d+</I>'
+        options: s
+      product: PeopleSoft Remote Event Notification Server httpd
+      version: $1
+      hostname: $2
+    - name: http
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: HT5XX ht\r\n'
+        options: s
+      product: Grandstream HT502 VoIP router http config
+      device-type: VoIP adapter
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\n(?:[^\r\n]+\r\n)*?Server: sw-cp-server/([\w._-]+)\r\n.*<title>400 - Bad Request</title>'
+        options: s
+      product: sw-cp-server httpd
+      version: $1
+      info: Parallels Plesk WebAdmin version
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d [\w ]+\r\nServer: GRISOFT-AVG TCP Server/(\d[-.\w]+) .*\r\n'
+      product: Grisoft AVG TCP Server
+      version: $1
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 200 OK\r\n.*<title>Netflix Application</title>.*<em>Generated by version ([\w._-]+) </em>
+        options: s
+      product: Netflix Application httpd
+      version: $1
+      os: iOS
+      cpes:
+        - o:apple:iphone_os
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: SonicWALL (SSL-VPN [\w._-]+) Web Server\.\r\n.*POST to non-script is not supported\.\n'
+        options: s
+      product: Boa httpd
+      info: SonicWALL $1 http proxy
+      device-type: proxy server
+      cpes:
+        - a:boa:boa
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nServer: icecast/(\d[-.\w]+)\r\n'
+      product: Shoutcast/Icecast streaming audio
+      version: $1
+      cpes:
+        - a:xiph:icecast:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-length: 0\r\n\r\nIBM Tivoli Identity Manager - ADK Version ([\w._-]+)\r\n\r\n'
+      product: IBM Tivoli Identity Manager httpd
+      version: $1
+      cpes:
+        - a:ibm:tivoli_identity_manager:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Type: text/html\r\n\r\n<html><head><title>mongodb ([\w._-]+):\d+ </title>.*<pre>db version v([\w._-]+), pdfile version ([\w._-]+)\ngit hash: ([0-9a-f]{40})\nsys info: Linux [\w._-]+ ([\w._-]+) .* BOOST_LIB_VERSION=([\w._-]+)\n\ndbwritelocked:  \d+ \(initial\)\nuptime:    ([^\n]+)\n'
+        options: s
+      product: MongoDB http console
+      version: $2
+      info: git version $4; pdfile $3; Boost $SUBST(6,"_","."); uptime $7
+      hostname: $1
+      os: Linux $5
+      cpes:
+        - a:mongodb:mongodb:$2
+        - o:linux:linux_kernel:$5
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Type: text/html\r\n\r\n<html><head><title>mongodb ([\w._-]+):\d+ </title>.*<pre>db version v([\w._-]+), pdfile version ([\w._-]+)\ngit hash: nogitversion\nsys info: Linux [\w._-]+ ([\w._-]+) .* BOOST_LIB_VERSION=([\w._-]+)\n\ndblocked:  \d+ \(initial\)\nuptime:    ([^\n]+)\n'
+        options: s
+      product: MongoDB http console
+      version: $2
+      info: pdfile $3; Boost $SUBST(5,"_","."); uptime $6
+      hostname: $1
+      os: Linux $4
+      cpes:
+        - a:mongodb:mongodb:$2
+        - o:linux:linux_kernel:$4
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nServer: sfcHttpd\r\nContent-Length: 0\r\nConnection: close\r\n\r\nHTTP/1\.1 400 Bad Request\r\nServer: sfcHttpd\r\nContent-Length: 0\r\nConnection: close\r\n\r\n'
+      product: sfcHttpd
+      info: SuperMicro IPMI Small Footprint CIM Broker
+      cpes:
+        - o:supermicro:intelligent_platform_management_firmware
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nServer: sfcHttpd\r\nContent-Length: 0\r\n\r\nHTTP/1\.1 400 Bad Request\r\nServer: sfcHttpd\r\nContent-Length: 0\r\n\r\n'
+      product: sfcHttpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\n(?:[^\r\n]+\r\n)*?Server: CleanMail Service ([\w._-]+)\r\n'
+        options: s
+      product: CleanMail antispam http admin
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: lighttpd/([\w._-]+).*<\?xml version=\"1\.0\" encoding=\"iso-8859-1\"\?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1\.0 Transitional//EN\"\n         \"http://www\.w3\.org/TR/xhtml1/DTD/xhtml1-transitional\.dtd\">\n<html xmlns=\"http://www\.w3\.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n <head>\n  <title>\d\d\d - [\w ]+</title>'
+        options: s
+      product: lighttpd
+      version: $1
+      cpes:
+        - a:lighttpd:lighttpd:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nAllow: GET,HEAD\r\nDate: .*\r\nServer: Genetic Lifeform and Distributed Open Server ([\w._-]+)\r\n'
+      product: Hentai@Home httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: nexg_httpd\r\nDate: .*\r\nCache-Control: no-cache,no-store\r\nContent-Type: text/html; charset=UTF-8\r\nConnection: keep-alive\r\nKeep-Alive: timeout=10, max=30\r\n\r\n'
+      product: nexg_httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nConnection: close\r\nContent-Length: 0\r\ntv2-auth-digest: [\w=]+\r\n\r\n$'
+      product: T-Home Entertain set-top box httpd
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\n(?:[^\r\n]+\r\n)*?Server: doubleTwist Sync \(Android\)\r\n'
+        options: s
+      product: doubleTwist httpd
+      info: Android phone
+      os: Linux
+      device-type: phone
+      cpes:
+        - o:google:android
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 501 Unimplemented\r\nContent-Type: text/plain\r\nContent-Length: 17\r\n\r\n501 Unimplemented$'
+      product: NetApp DFM httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Type: text/html\r\nConnection: close\r\nDate: .*\r\nContent-Length: 134\r\n\r\n<HTML><HEAD>\n<TITLE>400 Bad Request</TITLE>\n</HEAD><BODY>\n<H1>Method Not Implemented</H1>\nInvalid method in request<P>\n</BODY></HTML>\n$'
+      product: Transmission BitTorrent management httpd
+      cpes:
+        - a:transmissionbt:transmission
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html\r\nCache-Control: public,max-age=86400\r\nPragma: cache\r\nExpires: .*\r\nDate: .*\r\nLast-Modified: .*\r\nAccept-Ranges: bytes\r\nConnection: close\r\n\r\n<html>\n<head>\n  <title>400 Bad Request</title>\n</head>\n<body bgcolor=\"ffffff\">\n  <h2>400 Bad Request<h2>\n  <p>\n  \n</body>\n</html>\n$'
+      product: Transmission BitTorrent management httpd
+      version: "2.52"
+      cpes:
+        - a:transmissionbt:transmission:2.52
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nServer: UBServer ([\w._-]+)\r\nConnection: close\r\n\r\n$'
+      product: UBServer
+      version: $1
+      info: NBS smart card printer
+    - name: http
+      pattern:
+        regex: ^SAS/IntrNet Application Server Release ([\w._-]+) \((build \d+)\)\n\n$
+      product: SAS/IntrNet
+      version: $1 $2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: Aimetis-InfoService/([\w._-]+)\r\n'
+      product: Aimetis InfoService httpd
+      version: $1
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/([\w._-]+)\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\nHTTP/0\.0 400 Bad request\r\nServer: Aos HTTP Server/[\w._-]+\r\n'
+      product: A2 httpd
+      version: $1
+      os: A2
+      cpes:
+        - o:eth:a2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nCONNECTION: close\r\n\r\n$'
+      product: Panasonic GT30 TV http admin
+      os: FreeBSD 8.0
+      device-type: media device
+      cpes:
+        - o:freebsd:freebsd:8.0
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Length: 0\r\nCache-Control: no-cache,no-store,no-cache\r\nContent-Type: application/json\r\nPragma: no-cache,no-cache\r\n\r\nHTTP/1\.1 404 Not Found\r\nContent-Length: 0\r\nCache-Control: no-cache,no-store,no-cache\r\nContent-Type: application/json\r\nPragma: no-cache,no-cache\r\n\r\n$'
+      product: Microsoft Windows Live Mesh
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nServer: Technicolor WebServer/([\w._-]+)\r\nContent-Type: text/html\r\nContent-Length: 42\r\n\r\nHTTP/1\.0 400 Bad Request: Missing method\r\n\r\n\r\n$'
+      product: Technicolor TG787 VoIP gateway http admin
+      version: $1
+      device-type: VoIP adapter
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501 Not implemented\r\nDate: .*\r\nServer: NetTalk-WebServer/([\d.]+)\r\n'
+      product: CapeSoft NetTalk WebServer
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r.*\nServer: ([^,]+), (UPnP/[\d.]+ DLNADOC/[\d.]+), Serviio/([\d.]+)\r\n'
+        options: s
+      product: Serviio media server httpd
+      version: $3
+      info: $2
+      os: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404\r\nServer: NT-ware-EmbeddedTcpServer-HttpDevice/([\d.]+)\r\n'
+      product: NT-ware uniFLOW/MOM httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.[01] \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: WEBrick/([\d.]+) \(Ruby/([\d.]+)/([-\d]+)\)\r\n'
+        options: s
+      product: WEBrick httpd
+      version: $1
+      info: Ruby $2 ($3)
+      cpes:
+        - a:ruby-lang:ruby:$2
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.1 404 Not Found\r\n\r\n$
+      product: SAGE EAS Digital Endec remote audio monitor/level meter
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: \r\nDate: .*\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n'
+      product: Arris TG862G http config
+      device-type: WAP
+      cpes:
+        - h:arris:tg862g
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401 Unauthorized\r\nConnection: close\r\nContent-Type: text/html\r\nServer: SNARE\r\nWWW-Authenticate: Digest realm=\"SNARE\", qop=\"auth\", nonce=\"[a-f0-9]+\", opaque=\"[a-f0-9]+\"\r\n\r\n'
+      product: InterSect SNARE Server
+      device-type: security-misc
+      cpes:
+        - a:intersectalliance:system_intrusion_analysis_and_reporting_environment
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: Piolink Switch\r\n'
+      product: Piolink ADC
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 501\r\nX-AV-Server-Info: av=\"5\.:0\"; cn=\"Sony Corporation\"; mn=\"([^"]+)\"; mv=\"([^"]+)\"\r\nX-AV-Physical-Unit-Info: pa=\"\1\"\r\nConnection: close\r\n'
+      product: Sony $1 AV receiver http info
+      version: $2
+      device-type: media device
+      cpes:
+        - h:sony:$1:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\nContent-Type: text/html; charset=UTF-8\nContent-Length: \d+\n\n<html>\n<!--\n \* WiFi Keyboard - Remote Keyboard for Android\.\n \* Copyright \(C\) 2011 Ivan Volosyuk\n'
+      product: WiFi Keyboard for Android
+      os: Android
+      device-type: phone
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nConnection: Keep-Alive\r\nContent-Length: \d+\r\nContent-Type: application/octet-stream\r\nDate: .*\r\nKeep-Alive: timeout=15; max=19\r\n\r\n\0\0\0\x03\0\0\0\x06error\0\0\0\0\0\0\0\x01\0\0\0\x05\0\0\0\x11no_save_password\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\x08pencore'
+      product: SoftEther VPN httpd
+      cpes:
+        - a:university_of_tsukuba:softether_vpn
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401\r\nWWW-Authenticate: Digest realm=\"mongo\", nonce=\"abc\", algorithm=MD5, qop=\"auth\" \r\n\r\nnot allowed\n$'
+      product: MongoDB simple REST interface
+      version: 1.5.0 or older
+      cpes:
+        - a:mongodb:mongodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401\r\nWWW-Authenticate: Digest realm=\"mongo\", nonce=\"abc\", algorithm=MD5, qop=\"auth\" \r\nContent-Type: text/plain\r\n\r\nnot allowed\n$'
+      product: MongoDB simple REST interface
+      version: 1.5.0 - 1.9.0
+      cpes:
+        - a:mongodb:mongodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401\r\nWWW-Authenticate: Digest realm=\"mongo\", nonce=\"abc\", algorithm=MD5, qop=\"auth\" \r\nContent-Type: text/plain;charset=utf-8\r\n\r\nnot allowed\n$'
+      product: MongoDB simple REST interface
+      version: 1.9.0 or later
+      cpes:
+        - a:mongodb:mongodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 401\r\nWWW-Authenticate: Digest realm=\"mongo\", nonce=\"abc\", algorithm=MD5, qop=\"auth\" \r\nContent-Type: text/plain;charset=utf-8\r\nConnection: close\r\nContent-Length: 12\r\n\r\nnot allowed\n'
+      product: MongoDB simple REST interface
+      version: 3.1.1 or later
+      cpes:
+        - a:mongodb:mongodb
+    - name: http
+      pattern:
+        regex: '^ 400 Invalid request\r\nPragma: no-cache\r\nCache-Control: no-cache\r\nContent-Length: 15\r\n\r\nInvalid request'
+      product: Acutenix WVS Scheduler
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.[01] 400 Bad Request\r\nConnection: close\r\nContent-length: 0\r\n\r\n$'
+      product: Ajenti http control panel
+      cpes:
+        - a:ajenti:ajenti
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nCache-Control: no-cache\r\nPragma: no-cache\r\nExpires: 0\r\ncharset: UTF8\r\nContent-Type: text/html\r\n\r\n{\"STATUS\": \"REDIRECT\", \"RESPONSE\": \"mlicense\.html\"}'
+      product: MONyog MySQL Monitor and Advisor
+      cpes:
+        - a:webyog:monyog
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Server Error\r\nContent-Length: 42\r\nConnection: close\r\n\r\nError 500: Server Error\nBad request: \[\r\n\r\]'
+      product: Mongoose httpd
+      cpes:
+        - a:cesanta:mongoose
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 401 Unauthorized\r\nWWW-Authenticate: Digest realm=\"Web UI Access\", nonce=\"[0-9a-f]{32}\", opaque=\"[0-9a-f]{32}\", stale=\"false\", algorithm=\"MD5\", qop=\"auth\"\r\ncontent-length: 0\r\n\r\n$'
+      product: qBittorrent Web UI
+      cpes:
+        - a:qbittorrent:qbittorrent
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .* GMT\r\nConnection: Keep-Alive\r\nKeep-Alive: timeout=300\r\nServer: MSOS/([\d.]+) mawebserver/([\d.]+)\r\n'
+      product: Patton mawebserver httpd
+      version: $2
+      info: MSOS $1
+      device-type: VoIP adapter
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .* GMT\r\nConnection: close\r\nServer: RStudio\r\n\r\n$'
+      product: RStudio IDE httpd
+      cpes:
+        - a:rstudio:rstudio
+    - name: http
+      pattern:
+        regex: '^\(null\) 400 Bad Request\r\nServer: \r\n.*<HTML>\n *<HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n *<BODY BGCOLOR=\"#cc9999\" TEXT=\"#000000\" LINK=\"#2020ff\" VLINK=\"#4040cc\">\n *<H4>400 Bad Request</H4>\nCan''t parse request\.\n'
+        options: s
+      product: mini_httpd
+      cpes:
+        - a:acme:mini_httpd
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nServer: ArangoDB\r\nConnection: Close\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Length: 0\r\n\r\n'
+      product: ArangoDB admin httpd
+      cpes:
+        - a:arangodb:arangodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nServer: ArangoDB\r\nConnection: Close\r\nContent-Type: application/json; charset=utf-8\r\nContent-Length: 0\r\n\r\n'
+      product: ArangoDB admin httpd
+      version: 3.0 or 3.1
+      cpes:
+        - a:arangodb:arangodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 505 HTTP Version Not Supported\r\nX-Content-Type-Options: nosniff\r\nServer: ArangoDB\r\nConnection: Keep-Alive\r\nContent-Type: application/json; charset=utf-8\r\nContent-Length: 0\r\n\r\n'
+      product: ArangoDB admin httpd
+      version: 3.2 or later
+      cpes:
+        - a:arangodb:arangodb
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\ndate: .*\r\npragma: no-cache\r\nconnection: close\r\ncontent-length: \d+ *\r\ncontent-type: text/html\r\n\r\n<html><head><title>Application Server Error</title>'
+      product: SAP WebDispatcher
+      cpes:
+        - a:sap:web_dispatcher
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\nContent-Type: text/plain\r\nCache-Control: no-cache\r\nConnection: \r\nDate: .* GMT\r\nServer: DT-UMESHKAL\r\nAccept-Ranges: None\r\nContent-Length: 4\r\n\r\n\r\n\r\n'
+      product: Seagull BarTender printer driver httpd
+      cpes:
+        - a:seagull:bartender
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Length: 22\r\nContent-Type: text/plain\r\n\r\nMalformed Request-Line'
+      product: CherryPy wsgiserver
+      cpes:
+        - a:cherrypy:cherrypy
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\nServer: Gateway Web Server/1\.0\nDate: .*\n\n'
+      product: Mirasys WebClient server
+      device-type: media device
+      cpes:
+        - a:mirasys:webclient
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 413 Request Entity Too Large\r\nDate: .*\r\nServer: pyLime/([\w._-]+)\r\nContent-Type: text/html\r\n\r\n'
+      product: pyLime httpd
+      version: $1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nConnection: close\r\nContent-Length: 0\r\n\r\n$'
+      product: Thomson DSL router TR-069
+      device-type: broadband router
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\ndate: .* GMT\r\npragma: no-cache\r\nconnection: close\r\ncontent-length: \d+ *\r\ncontent-type: text/html\r\nserver: SAP NetWeaver Application Server ([\d.]+) / ICM ([\d.]+)\r\n\r\n'
+      product: SAP NetWeaver Application Server Internet Communication Manager httpd
+      version: $1
+      info: ICM $2
+      cpes:
+        - a:sap:netweaver:$1
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: 22\r\nContent-Type: text/plain; charset=US-ASCII\r\nConnection: Close\r\n\r\nInvalid request line: '
+      product: Amazon FireTV Stick
+      device-type: media device
+    - name: http
+      pattern:
+        regex: ^HTTP/1\.0 400 Fail\r\n\r\n$
+      product: Amazon FireTV Stick
+      device-type: media device
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-type: text/html\r\n\r\n<HTML><HEAD><TITLE>400 Bad Request</TITLE></HEAD><BODY><H1>400 Bad Request</H1><PRE>HTTP-E-ENOURL-Request not followed by a URL\.\n\r\n</PRE></BODY></HTML>\n'
+      product: EMC Smarts broker
+      cpes:
+        - a:emc:smarts
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 500 Internal Server Error\r\nConnection: close\r\nServer: NetData Embedded HTTP Server\r\n'
+      product: NetData embedded httpd
+      cpes:
+        - a:firehol:netdata
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 404 Not Found\r\nContent-Type: application/soap\+xml; charset=utf-8\r\nConnection: close\r\n\r\n$'
+      product: Hosafe ONVIF camera SOAP httpd
+      device-type: webcam
+    - name: http
+      pattern:
+        regex: ^HTTP1\.1 405 Method Not Allowed\r\n$
+      product: Cisco DPC3828S WiFi cable modem
+      device-type: WAP
+      cpes:
+        - h:cisco:dpc3828s
+    - name: http
+      pattern:
+        regex: '^\r\n\r\n\0HTTP/1\.0 500 Internal Server Error\r\nContent-Length: 0\r\n\r\n'
+      product: DeviceWISE Enterprise M2M httpd
+      cpes:
+        - a:telit:devicewise_m2m
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*\r\nExpires: .*\r\nServer: PulsarCoreEmbeddedPlantServer/1\.0\r\nConnection: close\r\nCache-Control: public, max-age=2592000\r\nContent-Encoding: utf-8\r\nContent-Length: 28\r\nContent-Type: text/html\r\n\r\nIncorrect first header line '
+      product: ThinKnx web ui
+      device-type: specialized
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: \d+\r\n\r\n\r\n<!doctype html>\r\n<html>\r\n<head>\r\n    <meta charset=''utf8''>\r\n    <meta http-equiv=''x-ua-compatible'' content=''ie=edge''>\r\n    <title>Octopus Tentacle</title>'
+      product: Octopus Tentacle
+      cpes:
+        - a:octopus:tentacle
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 403 Forbidden\r\nDate: .*\r\nServer: This is for PRTG Probes\r\n'
+      product: PRTG remote probes httpd
+      cpes:
+        - a:paessler:prtg
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Length: 16\r\nContent-Type: text/plain\r\n\r\n400 Bad Request\n'
+      product: Neato Botvac Connected
+      device-type: specialized
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Length: 0\r\n\r\n'
+      product: FRITZ!Box TR-069 service
+      device-type: broadband router
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html\r\nPragma: no-cache\r\nConnection: close\r\nContent-Type: text/html; charset=(?:utf-8|us-ascii)\r\n\r\n<html><body>Invalid request<P><HR><i>This message was created by WinRoute Proxy</i></body></html>'
+      product: WinRoute http proxy
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: http-proxy
+      pattern:
+        regex: ^HTTP/1\.0 400 Bad Request\r\n.*<html><body>\t\t<i><h2>Invalid request:</h2></i><p><pre>Bad request format\.\n</pre><b>\t\t</b><p>Please, check URL\.<p>\t\t<hr>\t\tGenerated by Oops\.\t\t</body>\t\t</html>$
+        options: s
+      product: Oops! http proxy
+      device-type: proxy server
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 503 Internal error\r\nServer: awarrenhttp/([\w._-]+)\r\nContent-Type: text/html\r\nConnection: close\r\n\r\n<html> <head> <title> Internal Error </title> </head> <body> <hr> <p> An internal server error occurred while processing your request\. Please contact administrator\.\n<BR> <BR> Reason: Could not relay request </p> </body> </html>$'
+      product: awarrenhttp http proxy
+      version: $1
+      info: Cyberoam CR200 proxy server
+      device-type: proxy server
+    - name: http-proxy
+      pattern:
+        regex: ^<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD>\n<BODY><H2>501 Not Implemented</H2>\nThe requested method '' is not implemented by this server\.\n<HR>\n<I>httpd/1\.00</I></BODY></HTML>\n$
+      product: thttpd
+      info: Blue Coat PacketShaper 3500 firewall
+      device-type: firewall
+      cpes:
+        - a:acme:thttpd
+        - h:bluecoat:packetshaper_3500
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.[01] (?:[^\r\n]*\r\n(?!\r\n))*?Server: Mikrotik HttpProxy\r\n'
+        options: s
+      product: MikroTik http proxy
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Type: text/html\r\nPragma: no-cache\r\nConnection: close\r\nContent-Type: text/html; charset=utf-8\r\n\r\n<html><body>[^<]+<P><HR><i>[^<]*Kerio Control[^<]*?</i></body></html> {100}'
+      product: Kerio Control http proxy
+      cpes:
+        - a:kerio:control
+    - name: hp-problemdiagnostics
+      pattern:
+        regex: ^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?>\n<NETPATH_PROBE version=\"[\w._-]+\">\n\t<SOURCE device_type=\"HOST\">\n\t\t<DNS>([\w._-]+)</DNS>\n\t\t<IP_OUT>[\d.]+</IP_OUT>\n\t</SOURCE>\n\t<DESTINATION name=\"\" arguments=\"\">\n\t\t<ERROR code=\"3\">\n\t\t\t<MESSAGE>No destination specified</MESSAGE>\n\t\t</ERROR>\n\t</DESTINATION>\n</NETPATH_PROBE>\n\n$
+      product: HP Problem Diagnostics
+      hostname: $1
+    - name: icontrolav2
+      pattern:
+        regex: ^E04\r\nR\r\n
+      product: Pioneer iControlAV2 control port
+      device-type: media device
+    - name: ident
+      pattern:
+        regex: '^0, 0: ERROR: UNKNOWN-ERROR\n$'
+      product: slident
+    - name: ident
+      pattern:
+        regex: ^0,0:ERROR:UNKNOWN-ERROR\r\n$
+      product: mlidentd or bqidentd
+    - name: ident
+      pattern:
+        regex: '^2 , 0 : ERROR : UNKNOWN-ERROR\r\n$'
+    - name: ident
+      pattern:
+        regex: '^0 , 0 : ERROR : UNKNOWN-ERROR\r\n$'
+    - name: ident
+      pattern:
+        regex: '^0 , 0 : ERROR : INVALID-PORT\r\n$'
+      product: FreeBSD identd
+      os: FreeBSD
+      cpes:
+        - o:freebsd:freebsd
+    - name: ident
+      pattern:
+        regex: '^ : ERROR : UNKNOWN-ERROR\r\n$'
+      product: pidentd
+    - name: ident
+      pattern:
+        regex: '^0, 0 : ERROR : X-INVALID-REQUEST\r\n$'
+      product: Minidentd or fakeidentd
+    - name: ident
+      pattern:
+        regex: '^0 , 0 : ERROR : INVALID-PORT\r\n0 , 0 : ERROR : INVALID-PORT\r\n$'
+      product: Ident2
+    - name: ident
+      pattern:
+        regex: '^0, 0 : ERROR : INVALID-PORT\r\n'
+      product: midentd
+    - name: ident
+      pattern:
+        regex: '^0,0 : ERROR : INVALID-PORT\r\n'
+      product: midentd
+    - name: ident
+      pattern:
+        regex: '^0 , 0 : ERROR :INVALID-PORT\r\n'
+      product: authd
+    - name: ident
+      pattern:
+        regex: '^: USERID : UNIX : CacheFlow Server\r\n'
+      product: CacheFlow identd
+      os: CacheOS
+      cpes:
+        - o:bluecoat:cacheos
+    - name: ident
+      pattern:
+        regex: ^:USERID:OTHER:\d+-ident-is-a-completely-pointless-protocol-that-offers-no-security-or-traceability-at-all-so-take-this-and-log-it!\r\n
+      product: Fake identd
+    - name: ident
+      pattern:
+        regex: '^ : USERID : UNIX : ([-\w_]+)$'
+      product: Klient identd
+      info: IRC Nick $1
+    - name: ident
+      pattern:
+        regex: '^\r\n: ERROR : HIDDEN-USER\r\n$'
+      product: Borderware Firewall identd
+      device-type: firewall
+    - name: ident
+      pattern:
+        regex: '^ : USERID : UNIX : [a-z]{4,8}\r\n$'
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: ident
+      pattern:
+        regex: '^1 , 1 : USERID : OTHER : chuck-the-bsd-deamon\r\n$'
+      product: widentd
+    - name: ident
+      pattern:
+        regex: '^,  : USERID : UNIX : [^\r\n]+\r\n$'
+      product: FTPRush FTP client identd
+      os: Windows
+      cpes:
+        - a:ftprush:ftprush
+        - o:microsoft:windows
+    - name: ident
+      pattern:
+        regex: '^0 , 0 : ERROR : FORMAT-ERROR\r\n$'
+      product: GTA GB-Ware firewall identd
+      device-type: firewall
+    - name: ident
+      pattern:
+        regex: '^,  : USERID : UNIX : ([-\w_]+)\r\n,  : USERID : UNIX : (?:[-\w_]+)\r\n$'
+      product: Snak IRC client identd
+      info: 'username: $1'
+    - name: ident
+      pattern:
+        regex: '^ : ERROR : INVALID-PORT\r\n'
+      product: Quassel IRC
+      cpes:
+        - a:quassel:quassel
+    - name: ident
+      pattern:
+        regex: ^0,0:ERROR:INVALID-PORT\r\n
+      product: NetBSD identd
+      os: NetBSD
+      cpes:
+        - o:netbsd:netbsd
+    - name: ident
+      pattern:
+        regex: '^rc \(tcp113\): null list in concatenation\n'
+      product: Plan 9 identd
+      os: Plan 9
+      cpes:
+        - o:belllabs:plan_9
+    - name: imap
+      pattern:
+        regex: ^\* OK IMAP4 1\.0 server ready\r\n\* BAD Argument\r\n
+      product: Cisco VPN Concentrator 3000-series imapd
+      device-type: terminal server
+    - name: imond
+      pattern:
+        regex: ^ERR password required\r\nERR password required\r\n
+      product: imond fli4l router config
+      device-type: router
+    - name: imond
+      pattern:
+        regex: ^ERR administrator password required\r\nERR administrator password required\r\n$
+      product: imond fli4l router config
+      device-type: router
+    - name: imond
+      pattern:
+        regex: ^ERR\r\nERR\r\n$
+      product: imond fli4l router config
+      device-type: router
+    - name: inetd
+      pattern:
+        regex: '^<\d+>[A-Z][a-z][a-z] +\d+ \d+:\d+:\d+ inetd\[\d+\]: execv (/[-.\\/\w]+): (\w[\s\w.,-]+)$'
+      product: inetd
+      info: 'failed to exec $1: $2'
+    - name: intow
+      pattern:
+        regex: ^<status><code>9999</code><result>App\.Version is out of date please update your version of InTow Mobile</result>
+      product: InTow Mobile
+      info: out of date
+      os: iOS
+      cpes:
+        - o:apple:iphone_os
+    - name: asf-rmcp
+      pattern:
+        regex: ^\0\0\0\x02\t\0\0\0\x01\0\0\0\0\0\0\0\0$
+      product: SuperMicro IPMI RMCP
+      cpes:
+        - o:supermicro:intelligent_platform_management_firmware
+    - name: ircbot
+      pattern:
+        regex: ^ \r\nSorry, that nickname format is invalid\.\r\r\n$
+      product: Diverse IRC bot
+    - name: irc
+      pattern:
+        regex: ^:([-\w_.]+) 421 \r\n\r\n :\r\n\r\n unimplemented protocol request\r\n:[-\w_.]+ 421 \r\n\r\n :\r\n\r\n unimplemented protocol request\r\n
+      product: Crackalaka ircd
+      hostname: $1
+    - name: irc
+      pattern:
+        regex: '^:([-\w_.]+) 421  : Unknown command\r\n:[-\w_.]+ 421  : Unknown command\r\n'
+      product: Free Lightweight IRC Program ircd
+      hostname: $1
+      cpes:
+        - a:freenet:flip
+    - name: irc-proxy
+      pattern:
+        regex: ^\+OK \r\n-ERR XXX authorization first\r\n$
+      product: muh irc proxy
+    - name: irr
+      pattern:
+        regex: ^% No search key specified\n\n
+      product: Merit Internet Routing Registry
+    - name: istat
+      pattern:
+        regex: ^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?><isr athrej=\"1\"></isr>$
+      product: istatd server for iStat iPhone app
+    - name: isymphony-status
+      pattern:
+        regex: '^Error: Invalid command\.\nError: Invalid command\.\n$'
+      product: iSymphony call manager Status API
+    - name: itach
+      pattern:
+        regex: ^ERR 001\rERR 001\r
+      product: Global Cache iTach API
+      device-type: bridge
+    - name: jd-gui
+      pattern:
+        regex: ^\t$
+      product: JD-GUI Java decompiler
+      version: 0.3.3
+    - name: jrpgt
+      pattern:
+        regex: ^<<jrpgt!>>\x7c$
+      product: JRPGT game server
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: jtag
+      pattern:
+        regex: ^\x55\x0a\x04\x0d\xe5$
+      product: Macraigor mpDemon JTAG debugger
+      device-type: specialized
+    - name: kerberos-sec
+      pattern:
+        regex: ^\x00\x00\x00.~.0.\xa0\x03\x02\x01\x05\xa1\x03\x02\x01\x1e\xa4\x11\x18\x0f(\d\d\d\d)(\d\d)(\d\d)(\d\d)(\d\d)(\d\d)Z\xa5[\x03-\x05]\x02(?:\x03...|\x02..|\x01.)\xa6\x03\x02\x01=\xa9.\x1b.([\w._-]+)\xaa
+        options: s
+      product: MIT Kerberos
+      info: 'server time: $1-$2-$3 $4:$5:$6Z'
+      hostname: $7
+      cpes:
+        - a:mit:kerberos:5
+    - name: keyence-pc
+      pattern:
+        regex: ^ER,,02\rER,,02\r
+      product: Keyence EtherNet/IP module
+      device-type: specialized
+    - name: labtech-redirector
+      pattern:
+        regex: ^\x02\0\0\x01B\t\0\0\x01B$
+      product: Labtech
+      cpes:
+        - a:labtech_software:labtech
+    - name: laserfiche
+      pattern:
+        regex: '^HLO 0 0 \. 0 71\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\nLRNP/1\.1\r\n\r\nlistener\r\nEND\r\nERR 0 1 \. 71 80\r\nContent-type: application/vnd\.laserfiche\.lrnp\r\n\r\n451 0 Invalid message \(-2001\)\r\nEND\r\n'
+      product: Laserfiche document service
+    - name: lastfm
+      pattern:
+        regex: '^ERROR: Command doesn''t seem to be followed by a space followed by arguments\n$'
+      product: Last.fm client
+      cpes:
+        - a:last:last.fm
+    - name: lexlm
+      pattern:
+        regex: ^.\x08\0\0$
+        options: s
+      product: Lexmark language monitor
+    - name: linuxconf
+      pattern:
+        regex: '^500 access denied: Check networking/linuxconf network access\r\n$'
+      product: Linuxconf
+      info: Access denied
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: linuxconf
+      pattern:
+        regex: '^500 access denied: Check config/networking/misc/linuxconf network access\r\n<p>\r\nBy default,'
+      product: Linuxconf
+      info: Access denied
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: lirc
+      pattern:
+        regex: ^BEGIN\n\r\nERROR\nDATA\n1\nbad send packet\nEND\nBEGIN\n\r\nERROR\nDATA\n1\nbad send packet\nEND\n
+      product: LIRC infrared receiver daemon
+    - name: loglogic
+      pattern:
+        regex: ^\x02\x02$
+      product: LogLogic protocol
+      device-type: security-misc
+    - name: memcached
+      pattern:
+        regex: ^ERROR\r\nERROR\r\n$
+      product: Memcached
+      cpes:
+        - a:memcached:memcached
+    - name: minecraft
+      pattern:
+        regex: ^\x0eYou need to log in!                                             $
+      product: Minecraft game server
+    - name: multicraft
+      pattern:
+        regex: ^>ERROR - client not authorized\n>ERROR - client not authorized\n
+      product: Bitnami Multicraft
+    - name: netapp-filer
+      pattern:
+        regex: ^\x0b\0\0\0$
+      product: NetApp filer data transfer
+    - name: netasq-admin
+      pattern:
+        regex: ^200 code=00100200 msg=\"[^"]+\"\r\n200 code=00100200 msg=\"[^"]+\"\r\n$
+      product: Netasq firewall admin
+      device-type: firewall
+    - name: netbios-ssn
+      pattern:
+        regex: ^\x82\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Nepenthes honeypot netbios-ssn
+    - name: netsaint
+      pattern:
+        regex: ^Unknown command\n$
+      product: Netsaint Status Daemon
+    - name: netsaint
+      pattern:
+        regex: ^ERROR No function requested from client\.
+      product: Nagios Statd Server
+      cpes:
+        - a:nagios:nagios
+    - name: netsaint
+      pattern:
+        regex: '^ERROR: Unknown request number\.'
+      product: NC_Net nagios server
+      cpes:
+        - a:nagios:nagios
+    - name: nsclient
+      pattern:
+        regex: ^ERROR:Wrong password$
+      product: Netsaint Windows Client
+    - name: nsclient
+      pattern:
+        regex: '^ERROR: Invalid password\.\nERROR: Invalid password\.\n$'
+      product: NSClient++
+      cpes:
+        - a:nsclient:nsclient%2b%2b
+    - name: nsclient
+      pattern:
+        regex: '^ERROR: No command specified\.\nERROR: No command specified\.\n$'
+      product: NSClient++
+      cpes:
+        - a:nsclient:nsclient%2b%2b
+    - name: olsrd-txtinfo
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\nContent-type: text/plain\n\nTable: Links\nLocal IP\tRemote IP\tHyst\.\tLQ\tNLQ\tCost\n[\w._-]+\t[\w._-]+\t[\d.]+\t[\d.]+\t[\d.]+\t[\d.]+\t\n'
+      product: olsrd txtinfo plugin
+      version: 0.6.3
+    - name: olsrd-txtinfo
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\0Content-type: text/plain\n\0Table: Links\nLocal IP\tRemote IP\tHyst\.\tLQ\tNLQ\tCost\0[\w._-]+\t[\w._-]+\t[\d.]+\t[\d.]+\t[\d.]+\t[\d.]+\t\n'
+      product: olsrd txtinfo plugin
+      version: 0.6.7
+    - name: omniback
+      pattern:
+        regex: '^HP OpenView OmniBack II ([-.\w]+): INET, '
+      product: HP OpenView OmniBackII
+      version: $1
+      cpes:
+        - a:hp:omniback_ii:$1
+    - name: omniinet
+      pattern:
+        regex: ^H\0P\0 \0D\0a\0t\0a\0 \0P\0r\0o\0t\0e\0c\0t\0o\0r\0 \0A\0\.\x00[0\0]*([\0\w._-]+):\0 \0I\0N\0E\0T\0,\0 \0i\0n\0t\0e\0r\0n\0a\0l\0 \0b\0u\0i\0l\0d\0 \x00([\0\d]+),\0 \0b\0u\0i\0l\0t\0 \0o\0n\0 \0.*\n\0\0\0$
+      product: HP Data Protector
+      version: $P(1)
+      info: build $P(2)
+      cpes:
+        - a:hp:data_protector:$P(1)
+    - name: opentable-listener
+      pattern:
+        regex: ^OpenTable Listener Version ([\w._-]+)\r\n\r\nerror=Bad request\r\n\r\nOTRequestHandler ([\w._-]+) WebRequest\r\n\r\n\0$
+      product: OpenTable restaurant reservation listener
+      version: $1
+      info: request handler version $2
+    - name: opentable
+      pattern:
+        regex: ^\xc1\x02\0\0\x14\0\0\0\0\0\0\0\0\0\0\0\x44\x28\0\0$
+      product: OpenTable restaurant reservation system
+    - name: oracle-db-rmi
+      pattern:
+        regex: ^\0\0\xfa\xda\0\x02$
+      product: Oracle Database Lite RMI
+      cpes:
+        - a:oracle:database_lite
+    - name: paromed
+      pattern:
+        regex: '^PCS-[\w._-]+,V([\w._-]+),OK\nERROR:102: ENERROR:102: EN'
+      product: Paromed milling machine
+      version: $1
+      device-type: specialized
+    - name: pathfinder-xml
+      pattern:
+        regex: ^<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?> <FatalError><Reason>Invalide XML!</Reason></FatalError>\r\n<\?xml version=\"1\.0\" encoding=\"UTF-8\"\?> <FatalError><Reason>Invalide XML!</Reason></FatalError>\r\n
+      product: Avaya Scopia Pathfinder XML API
+    - name: pbs-maui
+      pattern:
+        regex: ^\+2\+15\+15056\+\d+\+\d+
+      product: PBS/Maui Roll
+      info: Rocks Cluster
+      device-type: specialized
+    - name: pbs
+      pattern:
+        regex: ^\+2\+(\d)5\+15058\+0\+72\+56Bad DIS based Request Protocol MSG=cannot decode message
+      product: Portable Batch System
+      version: 2.$1
+    - name: pmcd
+      pattern:
+        regex: ^\0\0\0\x14\0\0p\0\0\0\x03.\xff\xff\xfc\x11\x02\0..$
+        options: s
+      product: SGI performance metrics collector daemon
+      os: IRIX
+      cpes:
+        - o:sgi:irix:6.5
+    - name: icy
+      pattern:
+        regex: ^OK2\r\nicy-caps:\d+\r\n\r\nOK\r\n$
+      product: Peercast
+    - name: icy
+      pattern:
+        regex: '^HTTP/1\.0 200 OK\r\nContent-type: application/ogg\r\nicy-br:(\d+)\r\nicy-description:VirtualDJ Direct Broadcast\r\nicy-genre:\r\nicy-name:VirtualDJ\r\nicy-pub:0\r\nicy-url:http://www\.virtualdj\.com/\r\nServer: VirtualDJ\r\n\r\n'
+      product: VirtualDJ streaming audio
+      info: Bitrate $1
+    - name: pgbouncer
+      pattern:
+        regex: ^E\0\0\0&SERROR\0C08P01\0Mbad packet header\0\0
+      product: PgFoundry PgBouncer PostgreSQL connection pooler
+      version: 1.5.2 or earlier
+    - name: pgbouncer
+      pattern:
+        regex: '^E\0\0\x002SERROR\0C08P01\0Mbad packet header: ''0d0a0d0a''\0\0'
+      product: PgFoundry PgBouncer PostgreSQL connection pooler
+      version: 1.5.3 or later
+    - name: ph-addressbook
+      pattern:
+        regex: ^598::Command not recognized\.\r\n598::Command not recognized\.\r\n$
+      product: Mercury/32 PH addressbook server
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 ([-.+\w]+) v(\d[-.\w]+) server ready\r\n
+      product: ipop3d
+      version: $2
+      hostname: $1
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 \[([-.+\w]+)\] (\d[-.\w]+) server ready\r\n
+      product: ipop3d
+      version: $2
+      hostname: $1
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 \[([-.\w]+)\] v(200[-.\w]+) server ready\r\n-ERR Null command\r\n-ERR Null command\r\n
+      product: ipopd
+      version: $2
+      hostname: $1
+    - name: pop3
+      pattern:
+        regex: ^\+OK Solid POP3 server ready\r\n-ERR unknown command\r\n-ERR unknown command\r\n$
+      product: Solid POP3d
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 server ready\r\n-ERR invalid command\r\n$
+      product: IBM OS 400 pop3d
+      os: OS/400
+      cpes:
+        - o:ibm:os_400
+    - name: pop3
+      pattern:
+        regex: ^\+OK pop server ready\r\n$
+      product: MailGate pop3d
+      os: Windows
+      cpes:
+        - a:mailgate:mailgate
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 server ready <[-\w]+>\r\n-ERR Invalid command\r\n$
+      product: SmarterMail pop3d
+      os: Windows
+      cpes:
+        - a:smartertools:smartermail
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3\r\n-ERR Invalid command in current state\.\r\n
+      product: hMailServer pop3d
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK XXX Private Mail server\r\n-ERR Invalid command in current state\.\r\n
+      product: hMailServer pop3d
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK ([\w._-]+)\r\n-ERR Invalid command in current state\.\r\n-ERR Invalid command in current state\.\r\n
+      product: hMailServer pop3d
+      hostname: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK .*\r\n-ERR Invalid command in current state\.\r\n-ERR Invalid command in current state\.\r\n
+      product: hMailServer pop3d
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: pop3
+      pattern:
+        regex: ^\+OK ([\w._-]+) Welcome\r\n-ERR Invalid command \(\) \(\) p1=\(\)\r\n-ERR Invalid command \(\) \(\) p1=\(\)\r\n
+      product: SurgeMail pop3d
+      hostname: $1
+      cpes:
+        - a:netwin:surgemail
+    - name: pop3
+      pattern:
+        regex: ^-ERR Invalid command\.\r\n-ERR Invalid command\.\r\n
+      product: cPanel Courier pop3d
+    - name: pop3
+      pattern:
+        regex: ^\+OK POP3 ready\r\n-ERR invalid command\r\n
+      product: Zimbra Collabration Suite pop3d
+      cpes:
+        - a:zimbra:zimbra_collaboration_suite
+    - name: pop3
+      pattern:
+        regex: ^\+OK DavMail POP ready at [^\r\n]*\r\n-ERR unknown command\r\n-ERR unknown command\r\n
+      product: DavMail pop3d
+    - name: pop3
+      pattern:
+        regex: ^\+OK ([\w.-]+) POP3 ready\r\n-ERR Unkown command\r\n-ERR Unkown command\r\n
+      product: cbdev cmail pop3d
+      hostname: $1
+      cpes:
+        - a:cbdev:cmail
+    - name: pop3
+      pattern:
+        regex: ^\+OK IBM Notes POP3 server version Release ([\d.]+)FP(\d+) HF(\d+) ready on ([^/]+)/(.+)\.\r\n
+      product: IBM Notes pop3d
+      version: $1 FP$2 HF$3
+      info: 'domain: $5'
+      hostname: $4
+      cpes:
+        - a:ibm:notes:$1:fp$2
+    - name: pop3
+      pattern:
+        regex: ^\+OK IBM Notes POP3 server version Release ([\d.]+)FP(\d+) ready on ([^/]+)/(.+)\.\r\n
+      product: IBM Notes pop3d
+      version: $1 FP$2
+      info: 'domain: $4'
+      hostname: $3
+      cpes:
+        - a:ibm:notes:$1:fp$2
+    - name: pop3
+      pattern:
+        regex: ^\+OK IBM Notes POP3 server version Release ([\d.]+) ready on ([^/]+)/(.+)\.\r\n
+      product: IBM Notes pop3d
+      version: $1
+      info: 'domain: $3'
+      hostname: $2
+      cpes:
+        - a:ibm:notes:$1
+    - name: pop3
+      pattern:
+        regex: ^\+OK [^\r\n]*\r\n-ERR Unknown command\.\r\n-ERR Unknown command\.\r\n
+      product: Dovecot pop3d
+      cpes:
+        - a:dovecot:dovecot
+    - name: pop3-proxy
+      pattern:
+        regex: ^\+OK POP3 Ready ([-\w_.]+) \w+\r\n-ERR Null command, mate\r\n
+      product: Perdition pop3 proxy
+      hostname: $1
+      cpes:
+        - a:horms:perdition
+    - name: pop3-proxy
+      pattern:
+        regex: ^\+OK POP3 perditon ready on ([\w._-]+) \w+\r\n-ERR Null command, mate\r\n
+      product: Perdition pop3 proxy
+      hostname: $1
+      cpes:
+        - a:horms:perdition
+    - name: pop3-proxy
+      pattern:
+        regex: ^\+OK POP3Proxy ready\r\n-ERR Unknown command\r\n-ERR Unknown command\r\n
+      product: Astaro firewall pop3 proxy
+      device-type: firewall
+      cpes:
+        - a:astaro:security_gateway_software
+    - name: pop3-proxy
+      pattern:
+        regex: ^\+OK POP3Proxy ready on node \d+\r\n-ERR Unknown command\r\n-ERR Unknown command\r\n
+      product: Astaro firewall pop3 proxy
+      device-type: firewall
+      cpes:
+        - a:astaro:security_gateway_software
+    - name: postgresql
+      pattern:
+        regex: ^EInvalid packet length\0$
+      product: PostgreSQL DB
+      cpes:
+        - a:postgresql:postgresql
+    - name: postgresql
+      pattern:
+        regex: '^EFATAL 1:  invalid length of startup packet\n\0'
+      product: PostgreSQL DB
+      cpes:
+        - a:postgresql:postgresql
+    - name: postgresql
+      pattern:
+        regex: '^EFATAL:  ung\xfcltige L\xe4nge des Startpakets\n\0'
+      product: PostgreSQL DB
+      info: German
+      cpes:
+        - a:postgresql:postgresql::::de
+    - name: postgresql
+      pattern:
+        regex: ^E\0\0\09SFATAL\0MExpecting a startup message, but received \r\0\0
+      product: Postgres-XC
+      version: "1.1"
+    - name: printer
+      pattern:
+        regex: ^\xff$
+      product: Panasonic mfpscdl.exe service
+    - name: printeron
+      pattern:
+        regex: ^\xc4\t$
+      product: PrinterOn mobile print server
+      device-type: print server
+    - name: priv-print
+      pattern:
+        regex: ^\xc0\0\x12Data field missing$
+      product: AXIS 560 print server
+      device-type: print server
+      cpes:
+        - h:axis:560
+    - name: qmqp
+      pattern:
+        regex: ^58:Dnetstring format error while receiving QMQP packet header,$
+      product: Postfix qmqpd
+      info: Quick Mail Queueing Protocol
+      cpes:
+        - a:postfix:postfix
+    - name: qnap-transcode
+      pattern:
+        regex: ^\x01\0\0\0client's request is accepted\0{868}
+      product: QNAP NAS Transcoding Service
+      device-type: storage-misc
+    - name: rethinkdb-client
+      pattern:
+        regex: '^ERROR: This is the rdb protocol port! \(bad magic number\)\n$'
+      product: RethinkDB client driver
+      version: 1.5.2 or earlier
+    - name: rethinkdb-client
+      pattern:
+        regex: '^ERROR: this is the rdb protocol port \(bad magic number\)\n$'
+      product: RethinkDB client driver
+      version: 1.6.0 -
+    - name: rethinkdb-client
+      pattern:
+        regex: '^ERROR: This is the rdb protocol port \(bad magic number\).\n$'
+      product: RethinkDB client driver
+      version: 1.13.0
+    - name: rethinkdb-client
+      pattern:
+        regex: '^ERROR: Received an unsupported protocol version\. This port is for RethinkDB queries\. Does your client driver version not match the server\?\n\0?'
+      product: RethinkDB client driver
+      version: 1.13.2 or newer
+    - name: realport
+      pattern:
+        regex: ^\xff\x17Access to unopened port.$
+        options: s
+      product: Digi EtherLite 16 or 32 RealPort
+      device-type: terminal server
+    - name: realport
+      pattern:
+        regex: ^\xf0\xff\x14Port is out of range\0
+      product: Digi RealPort
+      device-type: terminal server
+    - name: redcarpet
+      pattern:
+        regex: '^Status: 400 Bad Request\r\nContent-Length: 0\r\n\r\n'
+      product: Ximian Red Carpet Daemon
+    - name: rlm
+      pattern:
+        regex: ^\x01\0\x0c\0LYEfffffff0\0\0\0
+      product: Reprise License Manager
+    - name: rsa-authmgr
+      pattern:
+        regex: '^-ERR Invalid command: \r\n-ERR Invalid command: \r\n'
+      product: RSA Authentication Manager node manager
+      cpes:
+        - a:rsa:authentication_manager
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 Bad Request\r\nServer: AirTunes/([\w._-]+)\r\nAudio-Jack-Status: connected; type=analog\r\n\r\n'
+      product: RogueAmoeba Airfoil rtspd
+      version: $1
+      os: Mac OS X
+      cpes:
+        - o:apple:mac_os_x
+    - name: rtsp
+      pattern:
+        regex: '^RTSP/1\.0 400 CSeq required\r\nContent-Length: 0\r\n\r\n'
+      product: BlueCherry DVR rtspd
+      device-type: media device
+    - name: s2-emerge
+      pattern:
+        regex: ^resolutions=\"4CIF\",\"2CIF\",\"CIF\",\"QCIF\"&mpeg_enabled=\"TRUE\"&jpeg_enabled=\"TRUE\"&alarms=\d+&relays=\d+&audio_in\[\]=0x3,0x0&audio_out=\[\]0x3,0x0\0{375,}
+      product: S2 eMerge Door Access Controller
+    - name: samsung-twain
+      pattern:
+        regex: ^\xa8\x08C\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Samsung TWAIN
+      info: SCX-4x28 series printer
+      device-type: printer
+    - name: saprouter
+      pattern:
+        regex: '^\0\0\0.NI_RTERR\0.\0\0\xff\xff\xff\xa3\0\0\0.\*ERR\*\x001\0Network packet too big\0-93\0NI \(network interface\)\x00\d+\x00\d+\0nibuf\.cpp\x00\d+\0NiBufIIn: message length 218762506 exceeds max \(10024\)\0([^\0]*)\0\0\0\x00\d+\0SAProuter ([\d.]+) \(SP(\d+)\) on ''([^'']+)''\0\0\0\0\0\*ERR\*\0\0\0\0\0'
+      product: SAProuter
+      version: $2 SP$3
+      info: 'local time: $1'
+      hostname: $4
+      cpes:
+        - a:sap:network_interface_router:$2:sp$3
+    - name: saprouter
+      pattern:
+        regex: '^\0\0\0.NI_RTERR\0.\0\0\xff\xff\xff\xa3\0\0\0.\*ERR\*\x001\0Network packet too big\0-93\0NI \(network interface\)\x00\d+\x00\d+\0nibuf\.cpp\x00\d+\0NiBufIIn: message length 218762506 exceeds max \(10024\)\0([^\0]*)\0\0\0\x00\d+\0SAProuter ([\d.]+) on ''([^'']+)''\0\0\0\0\0\*ERR\*\0\0\0\0\0'
+      product: SAProuter
+      version: $2
+      info: 'local time: $1'
+      hostname: $3
+      cpes:
+        - a:sap:network_interface_router:$2
+    - name: sdcomm
+      pattern:
+        regex: ^ERR 27$
+      product: RSA SecureID Ace Server
+      cpes:
+        - h:rsa:securid
+    - name: scmm
+      pattern:
+        regex: ^MMcS\xff\xff\xff\xff\0\0\0\0
+      product: SerComm manufacturer backdoor
+      device-type: broadband router
+    - name: seagull-lm
+      pattern:
+        regex: ^\xf1\xf8\xf2\xf6\xf3\xf3\xf0\xf0\xf3\xf8\xf7\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xe2\xf6\xf5\xf6\xf9\xc5\xf9\xc3\0\xf0\xf0\xf3\xf1\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0\xf0$
+      product: BlueZone Seagull license manager
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: bindshell
+      pattern:
+        regex: '^bash: line 1: \$''\\r'': command not found\nbash: line 2: \$''\\r'': command not found\n'
+      product: Bash shell
+      info: '**BACKDOOR**'
+      cpes:
+        - a:gnu:bash
+    - name: bindshell
+      pattern:
+        regex: '^bash: line 1: \r: command not found\nbash: line 2: \r: command not found\n'
+      product: Bash shell
+      info: '**BACKDOOR**'
+      cpes:
+        - a:gnu:bash
+    - name: bindshell
+      pattern:
+        regex: '\r: bad character in file name: ''/bin/\r''\n$'
+      product: Plan 9 rc shell
+      info: '**BACKDOOR**'
+      os: Plan 9
+      cpes:
+        - o:belllabs:plan_9
+    - name: textui
+      pattern:
+        regex: '^\r\n <{5}-{35}>{5}\r\n <{5}    CipherLab  Ethernet Cradle {5}>{5}\r\n <{5}-{35}>{5}\r\n {10}\[Press ''Enter'' to continue\.\]\r\nKernel Version: Kernel-([\w._-]+)\r\nLib Version: Ethernet Cradle-([\w._-]+)\r\nMACID: ([\dA-F:]+)\r\nIP: [\d.]+\r\nLocal Name: ([^\r\n]+)\r\n\r\n'
+      product: CipherLab Ethernet Cradle command shell
+      version: $2
+      info: 'Kernel-$1; MAC: $3'
+      hostname: $4
+      device-type: specialized
+    - name: smtp
+      pattern:
+        regex: ^220 ([\w._-]+) ESMTP ready\r\n500 5\.5\.1 Command unrecognized\r\n500 5\.5\.1 Command unrecognized\r\n
+      product: Kerio MailServer smtpd
+      hostname: $1
+    - name: smtp
+      pattern:
+        regex: '^220 ([\w._-]+) ESMTP I2PNet Mailservice\r\n500 5\.5\.2 Error: bad syntax\r\n500 5\.5\.2 Error: bad syntax\r\n'
+      product: I2P smtpd
+      hostname: $1
+    - name: solfe
+      pattern:
+        regex: ^\x02\0\x01\xfb\xff\xfb\xff\xff\xff\xff\xffNOSUP
+      product: HP PNM Solid FlowEngine
+    - name: softros-im
+      pattern:
+        regex: ^none\r\n$
+      product: Softros LAN Messenger instant messaging
+    - name: spamassassin
+      pattern:
+        regex: '^SPAMD/1\.0 76 Bad header line: \r\n'
+      product: SpamAssassin spamd
+      cpes:
+        - a:apache:spamassassin
+    - name: sqlmonitor
+      pattern:
+        regex: ^\0\0\0\0\0$
+      product: Red-Gate SQL Monitor
+      os: Windows
+      cpes:
+        - a:red-gate:sql_monitor
+        - o:microsoft:windows
+    - name: starbound
+      pattern:
+        regex: ^\0\x08\0\0\x02\x9c
+      product: Starbound game server
+    - name: stargazer
+      pattern:
+        regex: ^ERHD$
+      product: Stargazer Billing System
+    - name: sstp
+      pattern:
+        regex: ^SSTP/([\d.]+) 400 Bad Request\r\n\r\n\0$
+      product: Sakura Script Transfer Protocol
+      info: Protocol $1
+    - name: smux
+      pattern:
+        regex: ^A\x01\x02$
+      product: Linux SNMP multiplexer
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+    - name: sphereicall
+      pattern:
+        regex: ^\x01\0\0\0z\0\0\x003,DBServer,\d+,Restarts,\d+,\d+,UpTime,\d+,\d+,MediaServer
+      product: Sphericall DBServer MediaServer VoIP
+    - name: t-doc-2000
+      pattern:
+        regex: ^READY \r\nERROR 10000 \"Unknown command\. Write HELP to get help\.\" \[Unknown\]\r\nERROR 10000 \"Unknown command\. Write HELP to get help\.\" \[Unknown\]\r\n
+      product: Getinge T-DOC 2000 hospital instrument management system
+    - name: talesofpirates-gate
+      pattern:
+        regex: ^\0\x02\0\x02\0\x02\0\x02\0\x02$
+      product: Tales of Pirates game gate server
+    - name: telemecanique
+      pattern:
+        regex: ^220 Service ready on ([\w._-]+) system Version:([\w._:-]+) Subsystem:([\w._:-]+)\r\n500 Unsupported command\r\n
+      product: Telemecanique Magelis XBTGT 7340 industrial control
+      version: $2
+      info: Subsystem $3; Name $1
+      device-type: specialized
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfc\"\r\n\r\n\n\rauthentication failed!\n\rpassword: '
+      product: Effekta MH 6000 UPS telnetd
+      device-type: power-device
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfc\"\xff\xfb\x01\r\nPassword: \r\nbad password\r\n'
+      product: Campbell Scientific NL-100/105 Ethernet-to-serial bridge telnetd
+      device-type: bridge
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfd\x03\xff\xfb\x01\r\nUsername: \r\nPassword: \r\nAccess Denied\r\n'
+      product: InterSystems CTELNETD
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfe\x01\xff\xfb\x01\xff\xfb\x1f\xff\xfb\x03\xff\xfd\x03\xff\xfe'\xff\xfc'\xff\xfc\"\xff\xfd\x1f\xff\xfa\x18\x01\xff\xf0\0\r\nWelcome to ([\w._-]+), please identify yourself\r\n\r\nuser:\r\r\npass:\*ReactOS Operating System \[Version ([\w._-]+)\]\r\n\(C\) Copyright [\d-]+ ReactOS Team\.\r\n\r\nC:\\ReactOS\\System32>
+      product: ReactOS telnetd
+      version: $2
+      info: no authentication
+      hostname: $1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\nUser:\r\n\r\nUser:\r\n\r\nUser:'
+      product: Dell PowerConnect M6220-series switch telnetd
+      device-type: switch
+      cpes:
+        - h:dell:powerconnect_m6220
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfb\x01\r\r\nUsername:\r\r\nError: Username must be non-NULL\r\r\nUsername:\r\r\nError: Username must be non-NULL\r\r\nUsername:'
+      product: Enterasys 1H582-25 switch telnetd
+      device-type: switch
+      cpes:
+        - h:enterasys:1h582-25
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\n\r \r\nlogin: \r\n'
+      product: Embedded Data Systems HA7Net Ethernet adapter telnetd
+      device-type: bridge
+    - name: telnet
+      pattern:
+        regex: ^RGC011001002\r\nAST000200000000000000001111110110000\r\nR\r\nR\r\nR\r\nR\r\n
+      product: Pioneer VSX-2020 video receiver telnetd
+      device-type: media device
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfd!\r\n\r\n\d+:\d+:\d+  \d+ \w+ \d+\r\nEnter your user id: \x07'
+      product: TigerLogic D3 Database telnetd
+    - name: telnet
+      pattern:
+        regex: '^\n\rTA-004-PSTN-122M : CLI\n\rLogin : Login Incorrect\n\r\n\rLogin : Login Incorrect\n\r\n\rLogin : '
+      product: Minitar MVA11A VoIP gateway telnetd
+      device-type: VoIP adapter
+      cpes:
+        - h:minitar:mva11a
+    - name: telnet
+      pattern:
+        regex: ^NAK COMMAND\r\n
+      product: Pollin AVR-NET-IO Ethernet module telnetd
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfd\x03\xff\xfb\x03\xff\xfd\x18\xff\xfd\x17Please wait\. The connection to your station is still in the process of being established\. Your last input has been discarded\.\r\nPlease wait\. The connection to your station is still in the process of being established\. Your last input has been discarded\.\r\n
+      product: Burroughs MCP telnetd
+      os: Burroughs MCP
+      cpes:
+        - o:burroughs:mcp
+    - name: telnet
+      pattern:
+        regex: '^\n\rUser Name : \n\rPassword :\n\r\r\n\*\*\* Incorrect User Name or Password \*\*\*\r\n\n\rUser Name : '
+      product: Konica Minolta printer telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfd\x03\xff\xfb\x01\xff\xfb\x03\r\nWelcome to MonarchNet2\r\nEnter Password:'
+      product: Avery Dennison MonarchNet2 printer management system
+    - name: telnet
+      pattern:
+        regex: ^Enter PIN>\nBAD PIN\n
+      product: Gigaset telnetd
+      device-type: VoIP phone
+    - name: telnet
+      pattern:
+        regex: '^\xff\r\nLogin: \r\nPassword: \r\n\r\nLogin incorrect\.\r\nPlease input Login ID again\.\r\n\r\nLogin: '
+      product: Samsung CLP-315W telnetd
+      device-type: printer
+      cpes:
+        - h:samsung:clp-315w
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x18\xff\xfa\x18\x01\xff\xf0\xff\xfb\x03\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x05\xff\xfd!\xff\xfb\x01TELNET_SERVER V([\d.]+) RTOS-UH \(c\)IEP,1995-\d\d\d\d ready\r\nUsername:'
+      product: RTOS-UH telnetd
+      version: $1
+      os: RTOS-UH
+      cpes:
+        - o:universitathanover:rtos-uh
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03login as: \r\n\r\n''s password: \x1b\[H\x1b\[J\r\nLogin failed, please check ''username'', ''password'' again\. If Caps-Lock enabled\?\r\n\r\nlogin as: '
+      product: EnGenius telnetd
+      device-type: WAP
+    - name: telnet
+      pattern:
+        regex: '^LOGIN: \r\nlogin incorrect\r\n\r\nLOGIN: \r\nlogin incorrect\r\n\r\nLOGIN: '
+      product: Lutron HomeWorks telnetd
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01\xff\xfd\x18\r\0\r\nPassword: \x1b\[2J\x1b\[1;1H\x1b\[0m\x1b\[7m {25}\x1b\[0m +DS ([\w-]+) '
+      product: Infortrend EonStor DS iSCSI host telnetd
+      info: 'model: $1'
+      device-type: storage-misc
+      cpes:
+        - h:infortrend:esds_$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\0\xff\xfb\x01\xff\xfe\0\xff\xf9 \x1b\[1;36m Welcome to the \x1b\[1;31m LEDI NETWORK ITS 2\x1b\[1;36m Telnet Configuration Utility \r\n\r\nSerial Number:\t\t\x1b\[1;37m(\d+)\r\n\x1b\[1;36mMAC address:\t\t\x1b\[1;37m([\dA-F:]{17})\r\n\xff\xf9\r\nlogin: \xff\xf9\xff\xf9Password: \xff\xf9\xff\xf9\r\nLogin incorrect \(hit <C/R> to continue\)\r\n'
+      product: LEDY Network ITS 2 telnet configuration utility
+      info: 'serial: $1; MAC: $2'
+      device-type: specialized
+      cpes:
+        - h:gorgy-timing:ledi_network_its_2
+    - name: telnet
+      pattern:
+        regex: '^Password: $'
+      product: SmartThings hub telnetd
+      cpes:
+        - h:smartthings:hub
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\nPowerAlert TelNet Console: ([\d.]+)\r\nSerial Number:\t(\w+)\r\n\r\n\r \r\nlogin: \r\n'
+      product: Tripp Lite PowerAlert telnetd
+      version: $1
+      info: 'sn: $2'
+      cpes:
+        - a:tripp_lite:poweralert:$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nLANIER Maintenance Shell\.   \n\rUser access verification\.\n\rPassword:'
+      product: Lanier printer maintenance telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^login: password: bad login\r\nlogin: \0'
+      product: Lutron RadioRA 2 home control system telnetd
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x18\xff\xfb\x01\r\nAccount:\r\nAccount:'
+      product: DrayTek Vigor router telnetd
+      device-type: broadband router
+    - name: textui
+      pattern:
+        regex: ^dubbo>$
+      product: Alibaba Dubbo remoting telnetd
+      cpes:
+        - a:alibaba:dubbo
+    - name: textui
+      pattern:
+        regex: '^\n\rCMI Genus Setup\n\rProgram: *([\d-]+)\n\rVersion Info: *([\d.]+)\n\rMAC Address: *([A-F\d:]{17})\n\r\n\rPress <ENTER> to go into setup mode\.\n\r\n\rWelcome to Genus Setup\n\r\n\*{40}\n\rGENUS SETTINGS\n\rHost Name: *([\w.-]+)\n\r'
+      product: CMI Genus timekeeper $1 setup
+      version: $2
+      info: 'MAC: $3'
+      hostname: $4
+    - name: textui
+      pattern:
+        regex: ^too many clients, shut down int 15 seconds\n
+      product: Vizio television textui
+      device-type: media device
+    - name: tor-control
+      pattern:
+        regex: ^514 Authentication required\.\r\n$
+      product: Tor control port
+      info: Authentication required
+      cpes:
+        - a:torproject:tor
+    - name: univention-json
+      pattern:
+        regex: '^RESPONSE/None/53/application/json:  \n\{"status": 554, "message": "Unparsable message body"\}'
+      product: Univention Management Console
+      os: Linux
+      cpes:
+        - a:univention:univention_corporate_server
+        - o:linux:linux_kernel
+    - name: uucp
+      pattern:
+        regex: '^login: Please enter user name: Password: $'
+      product: Solaris uucpd
+      os: Solaris
+      cpes:
+        - o:sun:sunos
+    - name: uucp
+      pattern:
+        regex: '^login: Password: Login incorrect\.$'
+      product: SunOS uucpd
+      os: SunOS
+      cpes:
+        - o:sun:sunos
+    - name: uucp
+      pattern:
+        regex: '^login: login: login: $'
+      product: NetBSD uucpd
+      os: NetBSD
+      cpes:
+        - o:netbsd:netbsd
+    - name: uucp
+      pattern:
+        regex: '^login: uucpd: \d+-\d+ The user is not known\.\n'
+      product: AIX uucpd
+      os: AIX
+      cpes:
+        - o:ibm:aix
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nSERVER: Unspecified, UPnP/1\.0, Unspecified\r\nCONTENT-LENGTH: 50\r\nCONTENT-TYPE: text/html\r\n\r\n<html><body><h1>400 Bad Request</h1></body></html>'
+      product: Belkin WeMo upnpd
+      device-type: power-device
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Net-OS (\d+)\.xx UPnP/([\d.]+)\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD><BODY><H1>Not Implemented</H1>The HTTP Method is not implemented by this server\.</BODY></HTML>\r\n'
+      product: Digi NET+OS UPnPd
+      info: UPnP $2
+      os: NET+OS $1
+      cpes:
+        - o:digi:net%2bos:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDATE: .*\r\nConnection: Keep-Alive\r\nServer: Sky Router UPnP\r\nContent-Length: 0\r\nContent-Type: text/xml; charset="utf-8"\r\nEXT:\r\n\r\n'
+      product: Sky Home Hub SR102 upnpd
+      device-type: broadband router
+    - name: ups
+      pattern:
+        regex: ^32\r $
+      product: Cyber Power PowerPanelPlus UPS Server
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: whois
+      pattern:
+        regex: '^Process query: ''''\nQuery recognized as IP(?:v4)?\.\nQuerying ([\w\d_.-]+):(\d+) with whois\.\n\n'
+      product: gwhois
+      info: Uses $1:$2
+    - name: whois
+      pattern:
+        regex: '^Process query: ''''\nQuery recognized as IP\.\n'
+      product: gwhois
+    - name: whois
+      pattern:
+        regex: ^%rwhois V-[\w:.-]+ ([-\w_.]+) \(by Network Solutions, Inc\. V-([\d.]+)\)\n
+      product: rwhois
+      version: $2
+      hostname: $1
+    - name: whois
+      pattern:
+        regex: ^Query may not be an empty string\n
+      product: Public Interest Registry whois server
+    - name: whois
+      pattern:
+        regex: ^WHOIS LIMIT EXCEEDED - SEE WWW\.PIR\.ORG/WHOIS FOR DETAILS\n
+      product: Public Interest Registry whois server
+    - name: whois
+      pattern:
+        regex: '^ -{62}\n \| UNINET WHOIS Server {40}\|\n \| Created by i-DNS\.net\t\t\t\t\t      \|\n.* INFO: This domain name has not been registered\.\n'
+        options: s
+      product: Uninet whois
+    - name: irr
+      pattern:
+        regex: ^%  No entries found for the selected source\(s\)\.\n$
+      product: Merit Internet Routing Registry whoisd
+    - name: wincomm
+      pattern:
+        regex: ^128 System Incompatible Windows Communicator client or server version\r\n128 System Incompatible Windows Communicator client or server version\r\n
+      product: Windows Communicator
+    - name: zebedee
+      pattern:
+        regex: ^\x02\x01$
+      product: Zebedee encrypted tunnel
+    - name: bmc-perform-service
+      pattern:
+        regex: ^SDPACK$
+      product: BMC Perform Service Daemon
+    - name: nntp
+      pattern:
+        regex: ^200 Coruscant BBS News \(Synchronet NNTP Service v(\d[-.\w ]+)\)\r\n
+      product: Synchronet NNTP Service
+      version: $1
+      cpes:
+        - a:rob_swindell:synchronet:$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\n\rSSH service name not present in rcvd msg\n\rSSH Session task 0x\w+: Version Exchange Failed\n\r\n\r\n\rSSH service name not present in rcvd msg\n\r'
+      product: Cisco Aironet 350-series WAP telnetd
+      device-type: WAP
+      cpes:
+        - a:cisco:telnet
+        - o:cisco:aironet_350
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfe\"\xff\xfb\x01\xff\xfb\x03User : \r\n\r?SpeedTouch \(([-\w]+)\)\r\n\r?Password : Invalid Password\r\n\r?Closing connection\r\n'
+      product: Alcatel SpeedTouch DSL router
+      info: MAC $1
+      device-type: router
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfe\x01\xff\xfd\x03\xff\xfd\x18\xff\xfd\x1f\xff\xfb\x03\xff\xfb\x01\r\nAccount Name: \r\nPassword: \r\nThis copy of the Ataman Telnetd Server is registered as licensed to:\r\n\t(.+)\r\n\r\nLogin failed: unknown user name, password or privilege incorrect\.\r\n'
+      product: Ataman telnetd
+      info: Registerd to $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: telnet
+      pattern:
+        regex: ^Password:\xff\xfb\x01\n\rTry again, you polio:\n\n\rTry again, you polio:\n
+      product: VLC Player telnetd
+      cpes:
+        - a:videolan:vlc_media_player
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\n\r\n\r\n +-+\r\n +\| Cyclades-PR4000: CyROS  V_([\d.]+)  \(.*\)     \|\r\n'
+      product: Cyclades PR4000 router telnetd
+      version: $1
+      device-type: router
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\n\r\nLogin: \r\n\r\nYou must supply a username\r\n\r\nLogin: \r\n\r\nYou must supply a username\r\n\r\nLogin: '
+      product: Billion or D-Link ADSL router telnetd
+      device-type: router
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01$
+      product: SMC SMC2870W Wireless Ethernet Bridge
+      device-type: bridge
+    - name: telnet
+      pattern:
+        regex: ^\r\n\r\nThis is a FirstClass system, from Open Text Corporation\.\r\n\r\n\r\nFirstClass is an e-mail and conferencing system with a graphical user interface\.\r\n\r\n\r\nThe Command Line Interface is not available on this sy
+      product: FirstClass telnetd
+      info: CLI disabled
+      cpes:
+        - a:opentext:firstclass
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\r\nPassword:\r\nLogged in as guest\r\n
+      product: Linkstar Comsat router telnetd
+      device-type: router
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01Login: \r\nLogin: \r\nLogin: '
+      product: Lingo VoIP config telnetd
+      device-type: VoIP adapter
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfd\x18\xff\xfd\x1f\r\nuser: \r\npassword: \r\n\r\nuser: '
+      product: KIRK Wireless Server 600 telnetd
+      device-type: VoIP adapter
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\n\r-> \n\r-> \n\r-> '
+      product: Coresma Phazer Docsis USB cable modem telnetd
+      device-type: broadband router
+    - name: telnet
+      pattern:
+        regex: ^bad password\r\n$
+      product: Cybersitter CLI
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\"\xff\xfb\x01SSE version ([\d.]+)\r\nCopyright [\d, ]+ by Motorola\r\nUsername:'
+      product: Motorola Canopy WAP telnetd
+      info: SSE $1
+      device-type: telecom-misc
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\n\r\n\[ORiNOCO-AP-[-\w]+\]> Please enter password: \r\nIncorrect Password\r\n\r\n\[ORiNOCO-AP-[-\w]+\]> Please enter password: \r\n'
+      product: ORiNOCO wireless router telnetd
+      device-type: router
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01Password\? \r\n500 Configuration error\. Disconnecting!\n
+      product: Tru64 UNIX gated
+      os: Tru64 UNIX
+      cpes:
+        - o:compaq:tru64
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\r\n\r\nlogin: \r\n\r\n\r\r\npassword: $'
+      product: Welltech Wellgate VoIP adapter telnetd
+      device-type: VoIP adapter
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfb\x01\xff\xfb\x1f\xff\xfd\x18Avocent CPS-810 S/W Version ([\d.]+)\r\nUsername: \r\nPassword: \r\nInvalid Login\r\nUsername: '
+      product: Avocent CPS-810 serial port server telnetd
+      version: $1
+      device-type: specialized
+      cpes:
+        - h:avocent:cps-810
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nGestetner Maintenance Shell\.   \n\rUser access verification\.\n\rPassword:'
+      product: Gestetner DSm622 maintenance telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nNRG Maintenance Shell\.   \n\rUser access verification\.\n\rPassword:'
+      product: NRG maintenance telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nNRG Maintenance Shell\.   \n\rUser access verification\.\n\rlogin:'
+      product: NRG maintenance telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\xff\xfb\x03\nRICOH Maintenance Shell\.   \n\rUser access verification\.\n\r
+      product: Ricoh maintenance telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nRICOH Maintenance Shell\.   ([\w:]+)\n\rUser access verification\.\n\rPassword:'
+      product: Ricoh maintenance telnetd
+      info: MAC $1
+      device-type: print server
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\xff\xfb\x03\nSAVIN Maintenance Shell\.   \n\rUser access verification\.\n\r
+      product: SAVIN printer telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nTOSHIBA Maintenance Shell\.   \n\rUser access verification\.\n\rlogin:'
+      product: Toshiba print server telnetd
+      device-type: print server
+    - name: telnet
+      pattern:
+        regex: '^\r\nPress return:\*\*\*\*\r\nEnter Password:'
+      product: IPSentry telnetd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\xff\xfb\x03\xff\xfd\x03\r\0\n\r\0\n\r\0\n\r\0\n- NetQue AppleTalk/NetWare/TCP/LAT Printer Server
+      product: EMULEX NetQue print server telnetd
+      device-type: print server
+    - name: telnet
+      pattern:
+        regex: '^\r\n\r\nUser Access Verification\r\n\r\nPassword: \r\nPassword: \r\nPassword: \r\n% Bad passwords\r\n'
+      product: Cisco telnetd
+      os: IOS
+      device-type: router
+      cpes:
+        - a:cisco:telnet
+        - o:cisco:ios
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfe\"\xff\xfe\0\xff\xfd\x03\xff\xfd\x18\xff\xfd\x1f\r\n\r\n\r\nlogin: '
+      product: freeSSHd telnetd
+      os: Windows
+      cpes:
+        - a:freesshd:freesshd
+        - o:microsoft:windows
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\x1b\[7l\x1b\[\?1l\x1b\[0m\x1b\[2JUsername: \x1b\[7l\x1b'
+      product: CyberSwitching Dualcom power device rabbit 2000 embedded telnetd
+      device-type: power-device
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfd\x01\xff\xfd\x1f\xff\xfd!\xff\xfb\x01\xff\xfb\x03\r\r\nRead /disclaimer\.txt and have fun with yadi on your Nokia D-BOX2 - Kernel ([-\w_.]+) \(
+      product: Nokia D-BOX2 telnetd
+      info: Linux $1
+      os: Linux
+      device-type: media device
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfd\x01\xff\xfd\x1f\xff\xfd!\xff\xfb\x01\xff\xfb\x03\r\r\nPhilips D-BOX2 - Kernel ([\w._-]+) \(
+      product: Philips D-BOX2 telnetd
+      info: Linux $1
+      os: Linux
+      device-type: media device
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\n\rLogin: \n\r\n\r\n\rLogin: \n\rLogin: '
+      product: Nortel Extranet Contivity Secure IP Services telnetd
+      device-type: security-misc
+      cpes:
+        - h:nortel:contivity
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x01\xff\xfd\x1f\xff\xfd!\xff\xfb\x01\xff\xfb\x03\r\r\n\r\n\rlogin: \r\n\r\nLogin incorrect\r\n\r\nlogin: '
+      product: Cisco Intrusion Prevention System telnetd
+      os: IOS
+      device-type: security-misc
+      cpes:
+        - a:cisco:telnet
+        - o:cisco:ios
+    - name: telnet
+      pattern:
+        regex: ^ 105 Access denied\.\r\n 105 Access denied\.\r\n 105 Access denied\.\r\n 105 Access denied\.\r\n
+      product: ShroudBNC telnet config
+    - name: telnet
+      pattern:
+        regex: '^User Name: \r\r\nPassword: \r\r\nRemote MAC address: '
+      product: Airaya WAP diagnostics telnetd
+      device-type: WAP
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\r\nAP11G login: \r\n\r\nPassword: '
+      product: OfficeConnect AP11G WAP telnetd
+      device-type: WAP
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03Welcome to the Windows CE Telnet service on ([-\w_.]+)\r\n\r\nlogin: \n\r\nPassword:'
+      product: Windows CE telnetd
+      hostname: $1
+      os: Windows CE
+      cpes:
+        - o:microsoft:windows_ce
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfb\x01\xff\xfd\x03\xff\xfb\x03\x1b\[2J\x1b\[H \n\r\0\x1b\[H\x1b\[JPASSaPORT CS-(\d+)  SW V([-\w_.]+) , HW V([-\w_.]+)\r\n\r\n
+      product: RADLINX PASSaPORT CS terminal server telnetd
+      info: $1 ports; SW $2; HW $3
+      device-type: terminal server
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\r\nlogin: \r\npassword: \r\nLogin incorrect!\r\n$'
+      product: Netgear GS108T switch telnetd
+      device-type: switch
+      cpes:
+        - h:netgear:gs108t
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfb\x1fError2 negotiated with client \d+ and get 1 char is a a d\. \n\r\n\r\*+\n\r\*\* +\*\*\n\r\*\* IP Phone firmware +V([\w._-]+) '
+      product: Thomson VoIP phone telnetd
+      version: $1
+      device-type: VoIP phone
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfb\x01\xff\xfb\x01\xff\xfb\x03\r\nLogin: \r\r\nPassword: \r\r\n\r\r\nLogin failed\r\r\n\r\r\nLogin: '
+      product: Siemens SANTIS WAP telnetd
+      device-type: WAP
+    - name: telnet
+      pattern:
+        regex: '^Password: \xff\xfb\x01\r\nWrong password\.\r\nPassword: \r\nWrong password\.\r\nPassword: '
+      product: VLC media player telnetd
+      cpes:
+        - a:videolan:vlc_media_player
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfd\x01\xff\xfe\x01\xff\xfd WxGoos-(\d+) v([\w._-]+) '
+      product: WxGoos-$1 Climate Monitor telnetd
+      version: $2
+      device-type: specialized
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\0\xff\xfd\x03\xff\xfb\0\xff\xfb\x03\xff\xfb\x01\x03\x04\r\nPassword: \r\n\n\rComtrol DeviceMaster RTS   ModelID: (\d+) \n\r\rNS-Link ([\w._-]+) \n\rBuilt: .*\n\rIP Addr: [\d.]+  Mask: [\d.]+ Gateway: [\d.]+ \n\rMAC Addr: ([\w ]+) \n\r\n\r\r\n\rdm> \r\nInvalid Command\r\n\rdm>'
+      product: Comtrol DeviceMaster RTS ethernet to serial telnetd
+      info: Model $1; NS-Link $2; MAC $3
+      device-type: specialized
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\xff\xfd\x01\xff\xfd\x18\r\0\r\nPassword: \r\nPassword incorrect\r\n'
+      product: Sun StorEdge 3511 telnetd
+      device-type: storage-misc
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfd\x01\xff\xfd!\xff\xfb\x01\xff\xfb\x03AH4222\r\nLogin: \r\n\r\nPassword: '
+      product: Club-Internet telnetd
+      device-type: broadband router
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfe\x01\xff\xfb\x01\xff\xfc\"\xff\xfd\x1flogin: \r\nlogin: \r\nlogin: '
+      product: GigaVUE-420 switch telnetd
+      device-type: switch
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x03\xff\xfb\x01\xff\xfe\x01-> \n\r-> \n\r-> '
+      product: ser2net telnetd
+    - name: telnet
+      pattern:
+        regex: '^\x1b\[24;1HUsername: \x1b\[\?25h\x1b\[24;1H\x1b\[\?25h\x1b\[24;11H\x1b\[24;11H\x1b\[\?25h\x1b\[24;11H\x1b\[24;1H\r\n\r\x1b\[\?25h\x1b\[24;11H\xff\xfd\x18\xff\xfb\x01\x1b\[2J\x1b\[\?7l\x1b\[3;23r\x1b\[\?6l\x1b\[1;1H\x1b\[\?25l\x1b\[1;1HProCurve (\w+) Switch (\w+)\r\n\rSoftware revision ([\w.]+)\r\n'
+      product: HP ProCurve Switch $2 telnetd
+      version: $3
+      info: JetDirect $1
+      device-type: switch
+      cpes:
+        - h:hp:procurve_switch_$2
+        - o:hp:procurve_switch_software:$3
+    - name: telnet
+      pattern:
+        regex: ^\xff\xfd\x18\xff\xfb\x01\x1b\[2J\x1b\[\?7l\x1b\[4;23r\x1b\[\?6l\x1b\[1;1H\x1b\[\?25l\x1b\[1;1HCopyright \(C\) 1991-\d\d\d\d Hewlett-Packard Co\..*\x1b\[1;1HHP ProCurve Switch ([\w-]+)\x1b
+        options: s
+      product: HP ProCurve Switch $1 telnetd
+      device-type: switch
+      cpes:
+        - h:hp:procurve_switch_$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\r\nConfiguration Login: \r\n\r\n\r\nConfiguration Login: \r\nConfiguration Login: $'
+      product: HP E1200 storage telnetd
+      device-type: storage-misc
+    - name: telnet
+      pattern:
+        regex: '^\r\nEnter Password: \r\nInvalid Password\.\r\nEnter Password: \r\nInvalid Password\.\r\nEnter Password: '
+      product: WPI Network Power Switch (remote reboot) telnetd
+      device-type: remote management
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\nWelcome to IFBD-HE05/06 TELNET Utility\.\r\nCopyright\(C\) 2005 Star Micronics co\., Ltd\.\r\n\r\n<< Connected Device >>\r\n    Device Model: (\w+) \(STR_T-001\)\r\n    NIC Product : IFBD-HE05/06\r\n    MAC Address : ([0-9A-F:]+)\r\n\r\n\r \r\nlogin: \r\n'
+      product: Star Micronics $1 printer telnetd
+      info: 'MAC address: $2'
+      device-type: printer
+      cpes:
+        - h:starmicronics:$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01Username: \n\rPassword: \n\rUsername: '
+      product: 3Com 8760 WAP telnetd
+      device-type: WAP
+      cpes:
+        - h:3com:8760
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\nLANIER Maintenance Shell\.   \n\rUser access verification\.\n\rlogin:'
+      product: Ricoh Aficio printer telnetd
+      device-type: printer
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\r\nUser Name : \r\nUser Name : \r\nUser Name : '
+      product: APC AP9630 network management telnetd
+      device-type: power-device
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x03\r\n\r\nWelcome to VIP-X ([\w._-]+) from [\w._-]+\r\nTLS invalid record length\r\n\r\n\r\n\r\ninvalid username\r\n\r\nTLS version 0300 not supported\r\nenter username  -> '
+      product: Bosch VIP X1 video encoder telnetd
+      hostname: $1
+      device-type: webcam
+    - name: telnet
+      pattern:
+        regex: '^\r\nUser ID:Password:\r\nUser ID:'
+      product: NEC SL-series debug terminal
+      device-type: VoIP phone
+    - name: telnet
+      pattern:
+        regex: '^Commands: \n\t\[\x1b\[1;32m:d\x1b\[0m\]isable \[ category \x7c module \x7c all \]\n\t\[\x1b\[1;32m:e\x1b\[0m\]nable \[ category \x7c module \x7c all \]\n\t\[\x1b\[1;32m:s\x1b\[0m\]tatus\n\t\[\x1b\[1;32m:h\x1b\[0m\]elp\n\t\[\x1b\[1;32m:q\x1b\[0m\]uit\n\x1b\[1;31m\[E\]\[EncoderSrv\] /home/leonwang/platform/([\w._-]+)/Application_IPCAM/'
+      product: Climax IP camera text UI
+      info: 'model: $1'
+      cpes:
+        - h:climax_technology:$1
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x01Connected to EPSON Network Image Express !!!\r\n\r\nPassword: \r\n\r\nLogin successful \r\n'
+      product: Epson Network Image Express telnetd
+      info: no password
+    - name: telnet
+      pattern:
+        regex: '^\xff\xfb\x01\xff\xfb\x01Connected to EPSON Network Image Express !!!\r\n\r\nPassword: \r\n'
+      product: Epson Network Image Express telnetd
+    - name: transbase
+      pattern:
+        regex: ^\0\0\+\x04\0\0\0@TransBase Multiplexer error report:\nIllegal request
+      product: Transbase Database
+    - name: tsd
+      pattern:
+        regex: '^unknown command: \.  Try `help''\.\nunknown command: \.  Try `help''\.\n'
+      product: OpenTSDB TSD
+      info: also http
+      cpes:
+        - a:opentsdb:opentsdb
+    - name: tsdns
+      pattern:
+        regex: ^[\d.]+:\$PORT$
+      product: TeamSpeak domain name server
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Tomato UPnP/([\w.]+) MiniUPnPd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Tomato firmware; UPnP $1
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: UPnP/Tomato ([\d.-]+) ([-\w_ ]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $4
+      info: Tomato $1 $2 firmware; UPnP $3
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$4
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: (RT-\w+) UPnP/([\w.]+) MiniUPnPd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Asus $1 WAP; UPnP $2
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - h:asus:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: AsusWRT/([\d.]+) UPnP/([\w.]+) MiniUPnPd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: AsusWRT $1; UPnP $2
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:asus:asuswrt:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: DrayTek/Vigor([\w._-]+) UPnP/([\w.]+) miniupnpd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: DrayTek Vigor $1 router; UPnP $2
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - h:draytek:vigor_$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Green Packet WiMax/([\w._-]+) UPnP/([\w.]+) miniupnpd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Green Packet WiMax $1 router; UPnP $2
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: ZTE/1.0 UPnP/([\w.]+) miniupnpd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: ZTE broadband router; UPnP $1
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/kamikaze UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: OpenWrt Kamikaze; UPnP $1
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/OpenWRT/Backfire__(r\d+)_ UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: OpenWrt Backfire $1; UPnP $2
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/OpenWRT/Backfire__unknown_ UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: OpenWrt Backfire; UPnP $1
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/OpenW[Rr][Tt]/Attitude_Adjustment__(r\d+)_ UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: OpenWrt Attitude Adjustment $1; UPnP $2
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/OpenWrt/Barrier_Breaker__(r\d+)_ UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: OpenWrt Barrier Breaker $1; UPnP $2
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: OpenWRT/OpenWrt/Chaos_Calmer__(r\d+)_ UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: OpenWrt Chaos Calmer $1; UPnP $2
+      os: Linux
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: FedoraCore/(\d+) UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Fedora Core $1; UPnP $2
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:fedoraproject:fedora_core:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Netgear/[\w._-]+ UPnP/([\w._-]+) miniupnpd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Netgear DG834G or WNDR3300 WAP; UPnP $1
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - h:netgear:dg834g
+        - h:netgear:wndr3300
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Arris/[\w._-]+ UPnP/([\w._-]+) miniupnpd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Arris TG862G WAP; UPnP $1
+      device-type: WAP
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - h:arris:tg862g
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: neufbox/neufbox UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Neufbox; UPnP $1
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: ASUSTeK UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Asus; UPnP $1
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Debian/([\w.]+) UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Debian $1; UPnP $2
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:debian:debian_linux:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Debian/([\w.]+) UPnP/([\w._-]+) miniupnpd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Debian $1; UPnP $2
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:debian:debian_linux:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Tenda UPnP/([\w._-]+) miniupnpd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Tenda broadband router; UPnP $1
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Ubuntu/([\w._-]+) UPnP/([\w._-]+) miniupnpd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Ubuntu $1; UPnP $2
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:canonical:ubuntu_linux:$1
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Compal Broadband Networks, Inc/Linux/(\d[\w._-]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Compal Broadband Networks; UPnP $2
+      os: Linux $1
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Linux/(([234]\.[\d.]+)[\w._-]+) UPnP/([\w._-]+) [Mm]ini[Uu][Pp]n[Pp]d/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $4
+      info: Linux $1; UPnP $3
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$4
+        - o:linux:linux_kernel:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: \d+\r\nServer: Linux/BHR4 UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+      product: MiniUPnP
+      version: $2
+      info: Verizon FiOS BHR4 router; UPnP $1
+      device-type: broadband router
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - h:verizon:bhr4
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: SmoothWall Express/([\d.]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: SmoothWall Express $1; UPnP $2
+      device-type: firewall
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:smoothwall:smoothwall:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: MF60/([\d.]+) UPnP/([\d.]+) miniupnpd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: ZTE MF60 $1; UPnP $2
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - h:zte:mf60
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: UPnP/([\w._-]+) MiniUPnPd/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: UPnP $1
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: UPnP/([\w._-]+) MiniUPnPd\r\n'
+        options: s
+      product: MiniUPnP
+      info: UPnP $1
+      cpes:
+        - a:miniupnp_project:miniupnpd
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: miniupnpd/([\w._-]+) UPnP/([\w._-]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: UPnP $1
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD><BODY><H1>Not Implemented</H1>The HTTP Method is not implemented by this server\.</BODY></HTML>\r\n'
+      product: MiniDLNA
+      cpes:
+        - a:minidlna:minidlna
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Debian/([\w._/-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: Debian $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:debian:debian_linux:$1
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: RedHatEnterpriseServer/([\w._/-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: RHEL $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:linux:linux_kernel
+        - o:redhat:enterprise_linux:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Fedora/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: Fedora $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:fedoraproject:fedora:$1
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: RAIDiator/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: RAIDiator $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:linux:linux_kernel
+        - o:netgear:raidiator:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Ubuntu/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: Ubuntu $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:canonical:ubuntu_linux:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Gentoo/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: Gentoo $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:gentoo:linux:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: SUSE LINUX/n/a DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $3
+      info: SUSE Linux; DLNADOC $1; UPnP $2
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$3
+        - o:suse:suse_linux
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Linux/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: DLNADOC $2; UPnP $3
+      os: Linux $1
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: (?:Linux )?(([234]\.[\d.]+)[\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $5
+      info: Linux $1; DLNADOC $3; UPnP $4
+      os: Linux
+      cpes:
+        - a:minidlna:minidlna:$5
+        - o:linux:linux_kernel:$2
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: OpenWrt Linux/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: OpenWrt; DLNADOC $2; UPnP $3
+      os: Linux $1
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: FreeBSD/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: DLNADOC $2; UPnP $3
+      os: FreeBSD $1
+      cpes:
+        - a:minidlna:minidlna:$4
+        - o:freebsd:freebsd:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer:  ?DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $3
+      info: DLNADOC $1; UPnP $2
+      cpes:
+        - a:minidlna:minidlna:$3
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: ([^/ ]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) MiniDLNA/([\w._-]+)\r\n'
+      product: MiniDLNA
+      version: $4
+      info: 'OS: $1; DLNADOC $2; UPnP $3'
+      cpes:
+        - a:minidlna:minidlna:$4
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: RAIDiator/([\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) ReadyDLNA/([\w._-]+)\r\n'
+      product: ReadyDLNA
+      version: $4
+      info: RAIDiator $1; DLNADOC $2; UPnP $3
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel
+        - o:netgear:raidiator:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: Linux[ /]([\d.]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) ReadyDLNA/([\w._-]+)\r\n'
+      product: ReadyDLNA
+      version: $4
+      info: DLNADOC $2; UPnP $3
+      os: Linux $1
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: ([\d._-]+)ReadyNAS DLNADOC/([\w._-]+) UPnP/([\w._-]+) ReadyDLNA/([\w._-]+)\r\n'
+      product: ReadyDLNA
+      version: $4
+      info: ReadyNAS; DLNADOC $2; UPnP $3
+      os: Linux $1
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: (?:Linux )?(([234]\.[\d.]+)[\w._-]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) ReadyDLNA/([\w._-]+)\r\n'
+      product: ReadyDLNA
+      version: $5
+      info: Linux $1; DLNADOC $3; UPnP $4
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$2
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nContent-Type: text/html\r\nConnection: close\r\nContent-Length: 149\r\nServer: ([^/ ]+) DLNADOC/([\w._-]+) UPnP/([\w._-]+) ReadyDLNA/([\w._-]+)\r\n'
+      product: ReadyDLNA
+      version: $4
+      info: 'OS: $1; DLNADOC $2; UPnP $3'
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\nConnection: close\r\nContent-type: text/html\r\n\r\n<HTML><HEAD><TITLE>501 Not Implemented</TITLE></HEAD><BODY><H1>Not Implemented</H1>The HTTP Method is not implemented by this server\.</BODY></HTML>\r\n$'
+      product: MiniUPnP
+      cpes:
+        - a:miniupnp_project:miniupnpd
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: Linux Mips ([\w._-]+) UPnP/([\w.]+) MiniUPnPd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Linux $1 (MIPS); UPnP $2
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: SmoothWall Express/([\w._-]+) UPnP/([\w.]+) miniupnpd/([\w.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: SmoothWall Express $1; UPnP $2
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r.*\nServer: SDK ([\d.]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Netgear SDK $1; UPnP $2
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r.*\nServer: SDK ([\d.]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)_MTK_v([\d_]+)\r\n\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: Linksys/Belkin WiFi range extender; SDK $1; UPnP $2; MTK $SUBST(4,"_",".")
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r.*\nServer: RedHatEnterpriseServer/([\d.]+) UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $3
+      info: RHEL $1; UPnP $2
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$3
+        - o:linux:linux_kernel
+        - o:redhat:enterprise_linux:$1
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r.*\nServer: EXOS/OpenWrt UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: Calix EXOS; UPnP $1
+      os: Linux
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+        - o:linux:linux_kernel
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDATE: .*\r\nConnection: Keep-Alive\r\nServer: UPnP/([\d.]+)\r\nContent-Length: 0\r\nContent-Type: text/xml; charset=\"utf-8\"\r\nEXT:\r\n\r\n$'
+      product: UPnP
+      version: $1
+      device-type: broadband router
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?Server: *Linux/([-\w_.]+), UPnP/([-\w_.]+), TwonkyVision UPnP SDK/([-\w_.]+)\r\n'
+        options: s
+      product: TwonkyMedia UPnP
+      info: Linux $1; UPnP $2; SDK $3
+      os: Linux
+      cpes:
+        - a:packetvideo:twonky
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad request\r\nServer: Reciva UPnP/([\w._-]+) Radio/([\w._-]+) DLNADOC/([\w._-]+)\r\nContent-length: 0\r\nConnection: close\r\n\r\n$'
+      product: dnt IPdio radio UPnP
+      version: $2
+      info: UPnP $1; DLNADOC $3
+      device-type: media device
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nServer: ([\w._-]+) \d+/Service Pack (\d+), UPnP/([\d.]+), TVersity Media Server\r\n'
+      product: TVersity Media Server UPnP
+      version: $1 SP $2
+      info: UPnP $3
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nServer: Windows/([\w._-]+\.2600)/Service Pack (\d+), UPnP/([\d.]+), TVersity Media Server/([\w._-]+)\r\n'
+      product: TVersity Media Server UPnP
+      version: $4
+      info: UPnP $3; Windows build $1
+      os: Windows XP
+      cpes:
+        - o:microsoft:windows_xp::sp$2
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nServer: Windows/([\w._-]+)\.6001/Service Pack (\d+), UPnP/([\d.]+), TVersity Media Server/([\w._-]+)\r\n'
+      product: TVersity Media Server UPnP
+      version: $4
+      info: UPnP $3; Windows build $1
+      os: Windows Vista
+      cpes:
+        - o:microsoft:windows_vista::sp$2
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nServer: ([\w._-]+) 2/, UPnP/([\w._-]+), TVersity Media Server\r\n'
+        options: s
+      product: TVersity Media Server UPnP
+      version: $1
+      info: UPnP $2
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\r\nDATE: .*\r\nConnection: Keep-Alive\r\nServer: LINUX/([\w._-]+) UPnP/([\d.]+) BRCM400/([\d.]+)\r\n'
+      product: Belkin/Linksys wireless router UPnP
+      info: UPnP $2; BRCM400 $3
+      os: Linux $1
+      device-type: router
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 \d\d\d .*\r\nDATE: .*\r\nConnection: Keep-Alive\r\nServer: LINUX/([\w._-]+) UPnP/([\d.]+) ZyXEL-UPnP/([\w._-]+)\r\n'
+      product: ZyXEL wireless router UPnP
+      info: UPnP $2; ZyXEL-UPnP $3
+      os: Linux $1
+      device-type: router
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nServer: Symbian/([\w._-]+) UPnP/([\d.]+)\r\nContent-Length: 151\r\n\r\n<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2\.0//EN\">\n<html><head>\n<title>400 Bad Request</title>\n</head><body>\n<h1>Bad Request</h1>\n<hr />\n</body></html>$'
+      product: Nokia N85 media share
+      info: SymbianOS $1; UPnP $2
+      os: Symbian
+      device-type: phone
+      cpes:
+        - o:symbian:symbian
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 200 OK\r\n(?:[^\r\n]+\r\n)*?SERVER: XboxUpnp/([\w._-]+) UPnP/([\w._-]+) Xbox/2\.0\.(\d+)\.0\r\n'
+        options: s
+      product: Microsoft Xbox 360 upnpd
+      version: $1
+      info: UPnP $2; Xbox Dashboard 2.0.$3.0
+      os: Xbox 360
+      cpes:
+        - h:microsoft:xbox_360_kernel:$3
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 400 Bad Request\r\nSERVER: Linux/([\w._-]+) UPnP/([\w._-]+) SKY DLNADOC/([\w._-]+)\r\n\r\n'
+      product: BSkyB router upnpd
+      info: UPnP $2; DLNADOC $3
+      os: Linux $1
+      device-type: broadband router
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDATE: .*\r\nServer: LINUX/([\w._-]+) UPnP/([\d.]+) CenturyLink-TR064/([\d.]+)\r\nContent-Length: 0\r\nContent-Type: text/xml; charset=\"utf-8\"\r\nEXT:\r\n\r\n'
+      product: CenturyLink DSL modem upnpd
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDATE: .*\r\nConnection: Keep-Alive\r\nServer: LINUX/([\w._-]+) UPnP/([\d.]+) CenturyLink-UPnP/([\d.]+)\r\nContent-Length: 0\r\nContent-Type: text/xml; charset=\"utf-8\"\r\nEXT:\r\n\r\n'
+      product: CenturyLink DSL modem upnpd
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nCONTENT-TYPE: text/xml; charset="utf-8"\r\nDATE: .*\r\nEXT: \r\nSERVER: UPnP/([\d.]+) AwoX/([\d.]+)\r\nCONTENT-LENGTH: 0\r\n'
+      product: AwoX upnpd
+      version: $2
+      info: UPnP $1
+    - name: upnp
+      pattern:
+        regex: '^HTTP/1\.1 501 Not Implemented\r\n(?:[^\r\n]+\r\n)*?Server: ([34][\d.]+)(?:-generic)? Microsoft-Windows/[\d.]+ Windows-Media-Player-DMS/[\d.]+ DLNADOC/([\d.]+) UPnP/([\d.]+) QNAPDLNA/([\d.]+)\r\n'
+        options: s
+      product: QNAP DLNA
+      version: $4
+      info: DLNADOC $2; UPnP $3
+      os: Linux $1
+      cpes:
+        - o:linux:linux_kernel:$1
+    - name: uptime-agent
+      pattern:
+        regex: ^ERR\n$
+      product: up.time server monitor
+    - name: uptime-agent
+      pattern:
+        regex: ^ERR - Command '\xe0\xb6VU\xd8\xbaVU' not found\n
+      product: up.time server monitor
+    - name: unreal-media
+      pattern:
+        regex: ^\xb1\x36\x00\x00\x19\x00\x00\x00\x30\x05\xff\x8f\x00\x00\x00\x00\x88\xff.\x03.\xef.\x00$
+        options: s
+      product: Unreal Media Server
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: signiant
+      pattern:
+        regex: '^dds_pc: _ms=([\w._-]+)\xfe_si=Process controller\xfe_mid=9010\xfe_sev=0\xfe_dt=\d+/\d+/\d+\xfe_tm=\d+:\d+:\d+\xfe_pkg=\xfe\n\n'
+      product: Signiant Media Exchange
+      hostname: $1
+    - name: spy-net
+      pattern:
+        regex: ^tentarnovamente\|\r\ntentarnovamente\|\r\n
+      product: Spy-Net or CyberGate backdoor
+      info: '**BACKDOOR**'
+    - name: vizio-tv
+      pattern:
+        regex: ^ERROR\x7c101\x7cUnknown Message Type\x7cEND
+      product: Vizio Smart TV unknown service
+      device-type: media device
+    - name: vnc
+      pattern:
+        regex: ^0\x82\x01\n\x02\x82\x01\x01\0
+      product: Ultr@VNC
+      version: 1.0.8.0
+      os: Windows
+      cpes:
+        - a:ultravnc:ultravnc:1.0.8.0
+        - o:microsoft:windows
+    - name: bitkeeper
+      pattern:
+        regex: ^ERROR-Try help\nERROR-Try help\n$
+      product: Bitkeeper
+    - name: webcache
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nExpires: .*\r\nContent-Type: text/html\r\n\r\n<html>\n<head><title>Bad formed request or url</title>\n'
+      product: webcache
+    - name: zenimaging
+      pattern:
+        regex: ^\xff\xff\xfb&$
+      product: Novell ZENworks Imaging Proxy
+      cpes:
+        - a:novell:zenworks_desktops
+    - name: ajp12
+      pattern:
+        regex: '^Status: 400 Bad Request\r\nServlet-Error: Malformed data sent to JServ\r\n\r\n$'
+      product: Apache Jserv
+    - name: nuttcp
+      pattern:
+        regex: '^KO\nnuttcp-t: v([\d.]+): error scanning parameters\nmay be using older client version than server\n\r\nKO\n'
+      product: nuttcp network throughput tester
+      version: $1
+    - name: backdoor
+      pattern:
+        regex: '^sh-2\.05b\$ '
+      product: r0nin rootkit backdoor
+    - name: upsd
+      pattern:
+        regex: ^ERR UNKNOWN-COMMAND\nERR UNKNOWN-COMMAND\n$
+      product: Network UPS Tools upsd
+      version: 2.6.1
+      info: Synology DS209 NAS device
+      device-type: storage-misc
+      cpes:
+        - h:synology:ds209
+    - name: websense-eim
+      pattern:
+        regex: ^\0\x0c\r\n\0\x01\0\x01\0\0\0\0$
+      product: Websense EIM
+      cpes:
+        - a:websense:websense
+    - name: websocket
+      pattern:
+        regex: '^HTTP/1\.1 400 \r\nServer: WebSocket\+\+/([\d.]+)\r\n\r\n'
+      product: WebSocket++
+      version: $1
+      cpes:
+        - a:zaphoyd:websocketpp:$1
+    - name: websocket
+      pattern:
+        regex: '^HTTP/1\.1 404 WebSocket Upgrade Failure\r\nContent-Type: text/html\nServer: TooTallNate Java-WebSocket\r\n'
+      product: Java-WebSocket
+      cpes:
+        - a:tootallnate:java-websocket
+    - name: wesnoth
+      pattern:
+        regex: ^\0\0\0.\0\0\0\x1f\x02version\0\x04([\d.]+)\0\0\x02mustlogin\0\x05\x01\0
+        options: s
+      product: Battle For Wesnoth game server
+      version: $1
+    - name: wesnoth
+      pattern:
+        regex: ^\0\0\0.\0\0\0.\x1f\x8b\x08\0\0\0\0\0\0\xff\x8b\.K-\*\xce\xcc\xcf\x8b\xe5\x8a\xd6\x873\x01 \xbc\x17\x06\x15\0\0\0
+      product: Battle For Wesnoth game server
+    - name: workrave
+      pattern:
+        regex: ^\0\x26\x02\0\0\x06\0.[\d.]+:\d+\0\x01\0\x11\0\x04\0\x01\0\x03\0\xaa\x02\0\0\x06\0.[\d.]+:\d+\0\x01\0\x10\0\x88\0\x03\0\x0bmicro_pause\0\x20\x4c\xa4\x86\x8e\0\0\0\xb4\0\0\0\x01\0\0\0\0\0\0\0\0L\xa4\x86\x8d\0\0\0\xb4\0\0\0\x0arest_break\0
+        options: s
+      product: Workrave
+    - name: wrproxy
+      pattern:
+        regex: '^error wrproxy: Error parsing command line\0'
+      product: Wind River wrproxy
+      cpes:
+        - a:windriver:workbench
+    - name: wtam
+      pattern:
+        regex: ^WTAM/1\.0 401 Unrecognized Command\n\n$
+      product: Webtrends WTAM
+    - name: wub-command
+      pattern:
+        regex: '^Command Shell\r\n\r\n% \r\n% '
+      product: Wub httpd command console
+    - name: xboxdebug
+      pattern:
+        regex: ^201- connected\r\n407- unknown command\r\n$
+      product: Microsoft XBox Debugging Kit
+      device-type: game console
+    - name: xns
+      pattern:
+        regex: ^HELLO XBOX!$
+      product: Relax XBOX file server
+      device-type: game console
+    - name: zabbix
+      pattern:
+        regex: ^ZBXD\x01.\0\0\0\0\0\0\0ZBX_NOTSUPPORTED
+        options: s
+      product: Zabbix Monitoring System
+      cpes:
+        - a:zabbix:zabbix
+    - name: zmodem
+      pattern:
+        regex: ^\*\*\x18B0100000023be50\r\x8a\x11$
+      product: ZMODEM
+fallback-services:
+    - name: adobe-crossdomain
+      pattern:
+        regex: ^Goodbye\r\n
+      product: Unknown Adobe Flash socket policy daemon
+    - name: clam
+      pattern:
+        regex: ^UNKNOWN COMMAND\n$
+      product: Clam AV
+      cpes:
+        - a:clamav:clamav
+    - name: gkrellm
+      pattern:
+        regex: ^<error>\nBad connect string!
+      product: GKrellM System Monitor
+    - name: gopher
+      pattern:
+        regex: ^i\t?[\x20-\x7f]+\tfake\t\(NULL\)\t0\r\n
+      product: Pygopherd or Phricken
+    - name: gopher
+      pattern:
+        regex: ^[0-9ghisIT](?:\t?[\x20-\x7f]+\t){3}[0-9]+\r\n
+    - name: haproxy-stats
+      pattern:
+        regex: '^Unknown command\. Please enter one of the following commands only :\n  '
+      product: HAProxy stats socket
+      cpes:
+        - a:haproxy:haproxy
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 405 Method Not Allowed\r\nContent-Length: 0\r\nConnection: close\r\nAccept-Ranges: bytes\r\nDate: .* GMT\r\n\r\n'
+      product: 1Password Agent or Daylite Server Admin caldav
+    - name: http
+      pattern:
+        regex: '^UNKNOWN 400 Bad Request\r\nServer: Check Point SVN foundation\r\n'
+      product: Check Point SVN foundation
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\r\nContent-Length: 40\r\nContent-Type: text/plain; charset=UTF-8\r\nDate: .*\r\n\r\nMultiple leading empty lines not allowed'
+      product: Calibre Content Server httpd
+      cpes:
+        - a:kovid_goyal:calibre
+    - name: insteon-plm
+      pattern:
+        regex: ^\x15$
+      product: Insteon PLM
+    - name: sharp-remote
+      pattern:
+        regex: ^ERR\rERR\rERR\rERR\r
+      product: Sharp TV remote control
+      device-type: media device
+    - name: upnp
+      pattern:
+        regex: '^ 501 Not Implemented\r.*\nServer: [^\r\n]*UPnP/([\d.]+) MiniUPnPd/([\d.]+)\r\n'
+        options: s
+      product: MiniUPnP
+      version: $2
+      info: UPnP $1
+      cpes:
+        - a:miniupnp_project:miniupnpd:$2
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.[01] \d\d\d [\w ]+\r\n'
+        options: s

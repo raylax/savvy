@@ -1,0 +1,45 @@
+name: teamspeak-tcpquery-ver
+protocol: tcp
+rarity: 9
+payload: ver\r\n
+ports: 9998,51234
+services:
+    - name: teamspeak-tcpquery
+      pattern:
+        regex: ^\[TS\]\r\n([\w._-]+) Win32 ([\w._-]+)\r\nOK\r\n$
+      product: TeamSpeak 2 TCPQuery
+      version: $1
+      info: $2
+      os: Windows
+      cpes:
+        - a:teamspeak:teamspeak2:$1
+        - o:microsoft:windows
+    - name: teamspeak-tcpquery
+      pattern:
+        regex: ^\[TS\]\r\n([\w._-]+) Linux ([\w._-]+)\r\nOK\r\n$
+      product: TeamSpeak 2 TCPQuery
+      version: $1
+      info: $2
+      os: Linux
+      cpes:
+        - a:teamspeak:teamspeak2:$1
+        - o:linux:linux_kernel
+    - name: uptime-agent
+      pattern:
+        regex: ^up.time agent ([\d.]+) \(build (\d+)\) linux\n
+      product: Idera Uptime Infrastructure Monitor
+      version: $1
+      info: build $2
+      os: Linux
+      cpes:
+        - a:idera:uptime_infrastructure_monitor:$1
+        - o:linux:linux_kernel
+    - name: uptime-agent
+      pattern:
+        regex: ^up.time agent ([\d.]+) \(build (\d+)\) ([\w._-]+)\n
+      product: Idera Uptime Infrastructure Monitor
+      version: $1
+      info: build $2
+      os: $3
+      cpes:
+        - a:idera:uptime_infrastructure_monitor:$1

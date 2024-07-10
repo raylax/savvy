@@ -1,0 +1,76 @@
+name: adbConnect
+protocol: tcp
+rarity: 8
+payload: CNXN\0\0\0\x01\0\x10\0\0\x07\0\0\0\x32\x02\0\0\xbc\xb1\xa7\xb1host::\0
+ports: "5555"
+services:
+    - name: adb
+      pattern:
+        regex: ^CNXN[\0\x01]\0\0\x01\0\x10\0\0........\xbc\xb1\xa7\xb1(\w+)::ro.product.name=([^;]+);ro.product.model=([^;]+);ro.product.device=([^;]+);\0$
+        options: s
+      product: Android Debug Bridge $1
+      info: 'name: $2; model: $3; device: $4'
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: adb
+      pattern:
+        regex: ^CNXN[\0\x01]\0\0\x01\0\x10\0\0........\xbc\xb1\xa7\xb1(\w+)::ro.product.name=([^;]+);ro.product.model=([^;]+);ro.product.device=([^;]+);features=([^\0]+)$
+        options: s
+      product: Android Debug Bridge $1
+      info: 'name: $2; model: $3; device: $4; features: $5'
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: adb
+      pattern:
+        regex: CNXN\0\0\0\x01\0\x10\0\0\t\0\0\0\xe4\x02\0\0\xbc\xb1\xa7\xb1device::\0$
+      product: Android Debug Bridge device
+      info: no auth
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: adb
+      pattern:
+        regex: ^AUTH\x01\0\0\0\0\0\0\0........\xbc\xb1\xa7\xb1
+        options: s
+      product: Android Debug Bridge
+      info: token auth required
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: adb
+      pattern:
+        regex: ^AUTH\x01\0\0\0\0\0\0\0........\xbe\xaa\xab\xb7
+        options: s
+      product: Android Debug Bridge
+      info: token auth required
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+    - name: adb
+      pattern:
+        regex: ^AUTH(.)\0\0\0\0\0\0\0........\xbc\xb1\xa7\xb1
+        options: s
+      product: Android Debug Bridge
+      info: 'auth required: $I(1,"<")'
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel
+fallback-services:
+    - name: adb
+      pattern:
+        regex: ^CNXN\0\0\0\x01\0\x10\0\0........\xbc\xb1\xa7\xb1(\w+):[^:]*:[^\0]+\0$
+        options: s
+      product: Android Debug Bridge $1
+      info: no auth
+      os: Android
+      cpes:
+        - o:google:android
+        - o:linux:linux_kernel

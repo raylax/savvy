@@ -1,0 +1,78 @@
+name: Sqlping
+protocol: udp
+rarity: 6
+payload: \x02
+ports: 1434,19131,19132,19133
+services:
+    - name: ms-sql-m
+      pattern:
+        regex: ^\x05..ServerName;([\w\-]+);InstanceName;[\w\-]+;IsClustered;\w{2,3};Version;([\d\.]+);np;.+;tcp;(\d{1,5});
+      product: Microsoft SQL Server
+      version: $2
+      info: 'ServerName: $1; TCPPort: $3'
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:$2
+        - o:microsoft:windows
+    - name: ms-sql-m
+      pattern:
+        regex: ^\x05..ServerName;([\w\-]+);InstanceName;[\w\-]+;IsClustered;\w{2,3};Version;([\d\.]+);tcp;(\d{1,5});np;.+;$
+      product: Microsoft SQL Server
+      version: $2
+      info: 'ServerName: $1; TCPPort: $3'
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:$2
+        - o:microsoft:windows
+    - name: ms-sql-m
+      pattern:
+        regex: ^\x05..ServerName;([\w\-]+);InstanceName;[\w\-]+;IsClustered;\w{2,3};Version;([\d\.]+);tcp;(\d{1,5});;
+      product: Microsoft SQL Server
+      version: $2
+      info: 'ServerName: $1; TCPPort: $3'
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:$2
+        - o:microsoft:windows
+    - name: ms-sql-m
+      pattern:
+        regex: ^\x05..ServerName;([\w\-]+);InstanceName;[\w\-]+;IsClustered;\w{2,3};Version;([\d\.]+);;
+      product: Microsoft SQL Server
+      version: $2
+      info: 'ServerName: $1'
+      os: Windows
+      cpes:
+        - a:microsoft:sql_server:$2
+        - o:microsoft:windows
+    - name: minecraft-pe
+      pattern:
+        regex: ^\x1c................\0\xff\xff\0\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78..MCCPP;Demo;([^;]+)
+        options: s
+      product: Minecraft Pocket Edition server
+      version: pre-0.11
+      info: 'Server Name: $P(1)'
+      cpes:
+        - a:mojang:minecraft_pocket_edition
+    - name: minecraft-pe
+      pattern:
+        regex: ^\x1c................\0\xff\xff\0\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78..MCPE;([^;]+);\d+;([^;]+);(\d+);(\d+)
+        options: s
+      product: Minecraft Pocket Edition server
+      version: $2
+      info: 'Server Name: $P(1); $3/$4 players'
+      cpes:
+        - a:mojang:minecraft_pocket_edition:$2
+    - name: minecraft-pe
+      pattern:
+        regex: ^\x1c................\0\xff\xff\0\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78..MCPE;;\d+;([^;]+);(\d+);(\d+)
+        options: s
+      product: Minecraft Pocket Edition server
+      version: $1
+      info: $2/$3 players
+      cpes:
+        - a:mojang:minecraft_pocket_edition:$1
+fallback-services:
+    - name: minecraft-pe
+      pattern:
+        regex: ^\x1c................\0\xff\xff\0\xfe\xfe\xfe\xfe\xfd\xfd\xfd\xfd\x12\x34\x56\x78
+      product: Minecraft Pocket Edition server

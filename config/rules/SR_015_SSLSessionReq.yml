@@ -1,0 +1,708 @@
+name: SSLSessionReq
+protocol: tcp
+rarity: 1
+payload: \x16\x03\0\0S\x01\0\0O\x03\0?G\xd7\xf7\xba,\xee\xea\xb2`~\xf3\0\xfd\x82{\xb9\xd5\x96\xc8w\x9b\xe6\xc4\xdb<=\xdbo\xef\x10n\0\0(\0\x16\0\x13\0\x0a\0f\0\x05\0\x04\0e\0d\0c\0b\0a\0`\0\x15\0\x12\0\x09\0\x14\0\x11\0\x08\0\x06\0\x03\x01\0
+ports: 261,271,322,324,443,444,448,465,548,563,585,636,684,853,989,990,992,993,994,995,1241,1311,1443,2000,2221,2252,2376,2443,3443,4433,4443,4444,4911,5061,5349,5443,5550,5868,5986,6251,6380,6443,6679,6697,7000,7210,7272,7443,8009,8181,8194,8443,8531,8883,9001,9443,10443,14443,15002,16379,44443,60443
+fallbacks: GetRequest
+services:
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0J\x02\0\0F\x03\0
+      product: OpenSSL
+      info: SSLv3
+      cpes:
+        - a:openssl:openssl
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0..\x02\0\0F\x03\0
+        options: s
+      product: Microsoft IIS SSL
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services
+        - o:microsoft:windows
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0:\x02\0\x006\x03\0
+      product: Novell NetWare SSL
+      os: NetWare
+      cpes:
+        - o:novell:netware
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03\0\xd10:\xbd\\\x8e\xe3\x15\x1c\x0fZ\xe4\x04\x87\x07\xc0\x82\xa9\xd4\x0e\x9c1LXk\xd1\xd2\x0b\x1a\xc6/p\0\0\n\0\x16\x03\0\x026\x0b\0\x022\0
+      product: Cisco IDS SSL
+      device-type: firewall
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\+\x02\0\0'\x03\0...\?
+        options: s
+      product: PGP Corporation product SSL
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03\0\?
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\x01\x00]\0\x02\x01\0$
+      product: multi-vendor SSL
+    - name: ssl
+      pattern:
+        regex: ^}\0\x02\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Oracle https
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03\0\0\x02\x02\(31666:error:1408A0C1:SSL routines:SSL3_GET_CLIENT_HELLO:no shared cipher:s3_srvr\.c:881:\n
+      product: Webmin SSL Control Panel
+    - name: ssl
+      pattern:
+        regex: ^20928:error:140760FC:SSL routines:SSL23_GET_CLIENT_HELLO:unknown protocol:s23_srvr\.c:565:\n
+      product: qmail-pop3d behind stunnel
+      cpes:
+        - a:djb:qmail
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03\0B
+      product: Tor over SSL
+      cpes:
+        - a:torproject:tor
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03.*IOS-Self-Signed-Certificate
+        options: s
+      product: Cisco IOS ssl
+      device-type: router
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03.*\nCalifornia.*\tPalo Alto.*\x0cVMware, Inc\..*\x1bVMware Management Interface
+        options: s
+      product: VMware management interface SSLv3
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03.*\x0edropbox-client0
+        options: s
+      product: Dropbox client SSLv3
+      cpes:
+        - a:dropbox:dropbox
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03.*vCenterServer_([\w._-]+)
+        options: s
+      product: VMware ESXi Server httpd
+      version: $1
+      cpes:
+        - o:vmware:esxi:$1
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\x00-\x03]\0\x02\x02[F\x28]
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\x00-\x03]\0\x02\x01\x00
+    - name: ssl/sophos
+      pattern:
+        regex: ^\x16\x03\0.*Router\$([a-zA-Z0-9_-]+).*Sophos EM Certification Manager
+        options: s
+      product: Sophos Message Router
+      hostname: $1
+    - name: ssl/sophos
+      pattern:
+        regex: ^\x16\x03\0.*Sophos EM Certification Manager
+        options: s
+      product: Sophos Message Router
+    - name: ssl/openvas
+      pattern:
+        regex: ^\x16\x03\x01\0J\x02\0\0F\x03\x01
+      product: OpenVAS server
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\x03..\x02...\x03\x03
+        options: s
+      product: TLSv1.2
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\x02..\x02...\x03\x02
+        options: s
+      product: TLSv1.1
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\x01..\x02...\x03\x01
+        options: s
+      product: TLSv1.0
+    - name: ssl
+      pattern:
+        regex: ^\x16\x03\0..\x02...\x03\0
+        options: s
+      product: SSLv3
+    - name: ssl
+      pattern:
+        regex: ^\x15\x03[\0-\x04]\0\x02[\x01\x02].$
+        options: s
+    - name: adabas
+      pattern:
+        regex: ^,\0,\0\x03\x02\0\0G\xd7\xf7\xbaO\x03\0\?\x05\0\0\0\0\x02\x18\0\xfd\x0b\0\0<=\xdbo\xef\x10n \xd5\x96\xc8w\x9b\xe6\xc4\xdb$
+      product: ADABAS database
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x80\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x05\x06AFPX03\x06AFP2\.2\x0eAFPVersion 2\.1\x0eAFPVersion 2\.0\x0eAFPVersion 1\.1.\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 2.2; Mac OS X 10.1.*'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.1
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x06\x06AFP3\.1\x06AFPX03\x06AFP2\.2\x0eAFPVersion 2\.1\x0eAFPVersion 2\.0\x0eAFPVersion 1\.1.\tDHCAST128.*[\x04\x05]([\w.-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.1; Mac OS X 10.2.*'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.2
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x06\x06AFP3\.1\x06AFPX03\x06AFP2\.2\x0eAFPVersion 2\.1\x0eAFPVersion 2\.0\x0eAFPVersion 1\.1.\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.1; Mac OS X 10.2.*'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.2
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x03\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\x06Recon1\rClient Krb v20\0.*[\x04\x05]([\w.-]+)\x01.afpserver/([\w.@-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; afpserver: $3; protocol 3.1; Mac OS X 10.2.*'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.2
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x03\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver/([\w.@-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; afpserver: $3; protocol 3.1; Mac OS X 10.3.*'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.3
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x03\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.1; Mac OS X 10.3.*'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.3
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x83\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x03\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.1; Mac OS X 10.3.*'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.3
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfa.([^\0\x01]+)[\0\x01].*\tMacintosh\x01\x06AFP3\.1.\tDHCAST128
+        options: s
+      product: Apple Airport Extreme AFP
+      info: 'name: $1; protocol 3.1'
+      device-type: WAP
+      cpes:
+        - h:apple:airport_extreme
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x04\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver/([-\w_.@]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; afpserver: $3; protocol 3.2; Mac OS X 10.3 - 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x04\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.2; Mac OS X 10.3 - 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x04\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.2; Mac OS X 10.3 - 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x04\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\x06Recon1\rClient Krb v2\x0fNo User Authent\0.*[\x04\x05]([\w.-]+)\x01.afpserver/([-\w_.@]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; afpserver: $3; protocol 3.2; Mac OS X 10.5 Server'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x_server:10.5
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh.\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.5
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh.\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.5
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x04\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5 - 10.6; $2'
+      hostname: $3
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.5
+        - o:apple:mac_os_x:10.6
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x04\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03.\tDHCAST128.*[\x04\x05]([\w.-]+)\0\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.6; $2'
+      hostname: $3
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.6
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\x80........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x04\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5 - 10.6; $2'
+      hostname: $3
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.5
+        - o:apple:mac_os_x:10.6
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\x80........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh.\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128.*[\x04\x05]([\w.-]+)\x01.afpserver
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.3; Mac OS X 10.5'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.5
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*AirPort.*AFP3\.2
+        options: s
+      product: Apple Airport Extreme/Time Capsule AFP
+      info: 'name: $1; protocol 3.2 WAP'
+      cpes:
+        - h:apple:airport_extreme
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*TimeCapsule.*AFP3\.3\x06AFP3\.2\x06AFP3\.1.\tDHCAST128.*[\x04\x05]([\w.-]+)\0
+        options: s
+      product: Apple Time Capsule AFP
+      info: 'name: $1; protocol 3.3'
+      hostname: $2
+      device-type: storage-misc
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*TimeCapsule.*AFP3\.3\x06AFP3\.2\x06AFP3\.1.\tDHCAST128
+        options: s
+      product: Apple Time Capsule AFP
+      info: 'name: $1; protocol 3.3'
+      device-type: storage-misc
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tVMware7,1\x04\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03.\tDHCAST128\x04DHX2\x06Recon1\rClient\x20Krb\x20v2\0\0.*[\x04\x05]([\w.-]+)\x01.afpserver/([\w.@-]+)\0
+        options: s
+      product: Apple AFP
+      info: 'name: $1; afpserver: $3; protocol 3.1; Mac OS X 10.6.3'
+      hostname: $2
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x8f\xfb.([^\0\x01]+)[\0\x01].*\tMacintosh\x04\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06AFP2\.2.\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.2; Mac OS X 10.3 - 10.5'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xf3.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; OS X 10.9 - 10.11; $2'
+      os: OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.10
+        - o:apple:mac_os_x:10.11
+        - o:apple:mac_os_x:10.9
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xf3.([^\0\x01]+).*?VMware(\d+),(\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; VMware $2.$3'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS\x0fNo User Authent.*\x1b\$not_defined_in_RFC4178@please_ignore$
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Mac OS X 10.6 - 10.8; $2'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.6
+        - o:apple:mac_os_x:10.7
+        - o:apple:mac_os_x:10.8
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x05\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS.*\x1b\$not_defined_in_RFC4178@please_ignore
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Mac OS X 10.6 - 10.8; $2'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.6
+        - o:apple:mac_os_x:10.7
+        - o:apple:mac_os_x:10.8
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*VMware(\d+),(\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x06\tDHCAST128\x04DHX2\x06Recon1\rClient Krb v2\x03GSS\x0fNo User Authent.*\x1b\$not_defined_in_RFC4178@please_ignore$
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Mac OS X 10.6; VMware $2.$3'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*Xserve\d+,\d+\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x05\tDHCAST128
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; Xserve'
+      os: Mac OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0........\x9f\xfb.([^\0\x01]+)[\0\x01].*?(i?Mac(?:mini|Pro|Book(?:Air|Pro)?)?\d+,\d+)\x05\x06AFP3\.4\x06AFP3\.3\x06AFP3\.2\x06AFP3\.1\x06AFPX03\x05\tDHCAST128\x04DHX2\x06Recon1\x03GSS\x0fNo User Authent
+        options: s
+      product: Apple AFP
+      info: 'name: $1; protocol 3.4; OS X 10.8; $2'
+      os: OS X
+      cpes:
+        - a:apple:afp_server
+        - o:apple:mac_os_x:10.8
+    - name: ajp13
+      pattern:
+        regex: ^AB\0N\x04\x01\x94\0\x06/cccb/\0\0\x02\0\x0cContent-Type\0\0\x17text/html;charset=utf-8\0\0\x0eContent-Length\0\0\x03970\0AB\x03
+      product: Apache Jserv
+    - name: cpu
+      pattern:
+        regex: ^unsupported auth method\0
+      product: Plan 9 cpu
+      os: Plan 9
+      cpes:
+        - o:belllabs:plan_9
+    - name: decomsrv
+      pattern:
+        regex: ^\x02\0\0\x01\x03\0U\xd0DSQ\x02\0\0\x01\x03\0U\xd0DSQ$
+      product: Lotus Domino decommission server
+      info: decomsrv.exe
+      cpes:
+        - a:ibm:lotus_domino
+    - name: dsr-video
+      pattern:
+        regex: ^\0\0\0\0\0\x84\0\x10\x01\xa3{\x10\0\0\0\0$
+      product: Avocent KVM DSR video
+    - name: ftp
+      pattern:
+        regex: ^220 \r\n451 The parameter is incorrect\. \r\n
+      product: IIS ftpd
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services
+        - o:microsoft:windows
+    - name: h.239
+      pattern:
+        regex: ^BadRecord
+      product: Polycom People+Content IP H.239
+      device-type: VoIP phone
+    - name: h323q931
+      pattern:
+        regex: ^\x03\0\x000\x08\x02\0\0}\x08\x02\x80\xe2\x14\x01\0~\0\x1d\x05\x08 \x19\0\x06\0\x08\x91J\0\x05\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Polycom ViewStation H.323
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 500 Internal Server Error\r\nConnection: Close\r\nContent-Type: text/html\r\n.*<p>java\.lang\.Exception: Invalid request: \x16\x03'
+        options: s
+      product: Dell PowerEdge OpenManage Server Administrator httpd
+      os: Windows
+      cpes:
+        - a:dell:openmanage_server_administrator
+        - o:microsoft:windows
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.0 400 Bad Request\nContent-type: text/html\r\nDate: .*\r\nConnection: close\r\n\r\n<HEAD><TITLE>400 Bad Request</TITLE></HEAD>\n<BODY><H1>400 Bad Request</H1>\nUnsupported method\.\n</BODY>\n'
+      product: Brivo EdgeReader access control http interface
+      device-type: security-misc
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nContent-Length: 30\r\nContent-Type: text/plain\r\n\r\nHTTP requires CRLF terminators'
+      product: CherryPy wsgiserver
+      cpes:
+        - a:cherrypy:cherrypy
+    - name: http
+      pattern:
+        regex: ^<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2\.0//EN">\n<html><head>\n<title>501 Method Not Implemented</title>\n</head><body>\n<h1>Method Not Implemented</h1>\n<p>\x16\x03 to /[^ ]* not supported\.<br />\n</p>\n<hr>\n<address>IBM_HTTP_Server at ([\w.-]+) Port \d+</address>\n</body></html>\n
+      product: IBM HTTP Server
+      hostname: $1
+      cpes:
+        - a:ibm:http_server
+    - name: http
+      pattern:
+        regex: '^HTTP/1\.1 400 Bad Request\r\nDate: .*<center>nginx</center>\r\n</body>\r\n</html>\r\n$'
+        options: s
+      product: nginx
+      info: reverse proxy
+      cpes:
+        - a:igor_sysoev:nginx
+    - name: http
+      pattern:
+        regex: ^<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2\.0//EN">\n<html><head>\n<title>501 Method Not Implemented</title>\n</head><body>\n<h1>Method Not Implemented</h1>\n<p>\x16\x03 to /[^ ]* not supported\.<br />\n</p>\n<hr>\n<address>Apache Server at ([\w.-]+) Port \d+</address>\n</body></html>\n
+      product: Apache httpd
+      hostname: $1
+      cpes:
+        - a:apache:http_server
+    - name: http-proxy
+      pattern:
+        regex: '^ 400 badrequest\r\nVia: 1\.0 ([\w.-]+) \(McAfee Web Gateway ([\w._-]+)\)\r\nConnection: Close\r\n'
+      product: McAfee Web Gateway
+      version: $2
+      info: Via $1
+      cpes:
+        - a:mcafee:web_gateway:$2
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.1 400\r\nConnection: close\r\n\r\nBad request syntax \(''\\x16\\x03\\x00\\x00S\\x01\\x00\\x00O\\x03\\x00\?G\\xd7\\xf7\\xba,\\xee\\xea\\xb2`~\\xf3\\x00\\xfd\\x82\{\\xb9\\xd5\\x96\\xc8w\\x9b\\xe6\\xc4\\xdb<=\\xdbo\\xef\\x10n\\x00\\x00\(\\x00\\x16\\x00\\x13\\x00''\)'
+      product: XX-Net web proxy tool
+    - name: http-proxy
+      pattern:
+        regex: '^HTTP/1\.0 414 Request URI too long\r\nContent-Type: text/html\r\nContent-Length: 23\r\nExpires: now\r\nPragma: no-cache\r\nCache-control: no-cache,no-store\r\n\r\nRequest URI is too long'
+      product: Pound http reverse proxy
+      cpes:
+        - a:apsis:pound
+    - name: ilo-vm
+      pattern:
+        regex: ^\"\0\x03\0$
+      product: HP Integrated Lights-Out Virtual Media
+      cpes:
+        - h:hp:integrated_lights-out
+    - name: iperf3
+      pattern:
+        regex: ^\t$
+    - name: login
+      pattern:
+        regex: '^\0\r\nlogin: \^W\^@\^@\^@\^'
+      product: VxWorks logind
+      os: VxWorks
+      cpes:
+        - o:windriver:vxworks
+    - name: maxdb
+      pattern:
+        regex: ^.Rejected bad connect packet\0$
+        options: s
+      product: SAP MaxDB
+    - name: minecraft
+      pattern:
+        regex: '^\x98\x01[\x17-\x1b]\x95\x01\{"translate":"disconnect\.genericReason","with":\["Internal Exception: io\.netty\.handler\.codec\.DecoderException: java\.io\.IOException: Bad packet id 3"\]\}'
+      product: Minecraft game server
+      cpes:
+        - a:minecraft:minecraft
+    - name: msexchange-logcopier
+      pattern:
+        regex: ^\x15\x01\0\0\x08\0\0\0\0\x80\t\x03\x08$
+      product: Microsoft Exchange 2010 log copier
+      cpes:
+        - a:microsoft:exchange_server:2010
+    - name: modbus
+      pattern:
+        regex: ^\x16\x03\0\0[\0S]\x03[\0\x01]\x80[\x01-\x03]
+      product: Modbus TCP
+    - name: modbus
+      pattern:
+        regex: ^\x16\x03\0\0[\0S]\x03[\0\x01]\x80[\x0a-\x0b]
+      product: Modbus TCP
+      info: gateway
+    - name: modbus
+      pattern:
+        regex: ^\x16\x03\0\0\0\xfd[\0\x01]\x80[\x01-\x03]\0+$
+      product: Modbus TCP
+    - name: modbus
+      pattern:
+        regex: ^\x16\x03\0\0S\x03\0\x93\x01
+      product: Modbus TCP
+    - name: netbios-ssn
+      pattern:
+        regex: ^\0\0\0%G\xd7\xf7\xba,\xff\xea\xff\xff~\xf3\0\xfd\x82{\xb9\xd5\x96\xc8w\x9b\xe6\xc4\xdb<=\xdbo\xef\x10n\0\0\0\0\x16\0$
+      product: Konica Minolta bixhub 350 printer smbd
+      device-type: printer
+      cpes:
+        - h:konicaminolta:bixhub_350
+    - name: pbx-alarm
+      pattern:
+        regex: ^1\x0c5\x0c9\x0c\x0b\x03$
+      product: Aastra Open Interfaces Platform PBX alarm server
+      device-type: PBX
+      cpes:
+        - a:aastra:oip
+    - name: pop3-proxy
+      pattern:
+        regex: ^ERR concurrent connection limit in avast! exceeded\(pass:\d+, processes:([\w._-]+)\[\d+\]\)\r\n
+      product: Avast! anti-virus pop3 proxy
+      info: connection limit exceeded by $1
+      os: Windows
+      cpes:
+        - a:avast:antivirus
+        - o:microsoft:windows
+    - name: postx-reporting
+      pattern:
+        regex: ^OPTIONS / RTSP/1\.0
+      product: PostX IP Reporting alarm system
+    - name: progress
+      pattern:
+        regex: ^\0\0\0\x01\0\x17\0\x14\0\x06\0\0\0.\0\0\0\0\0\0
+        options: s
+      product: Progress Database
+      cpes:
+        - a:progress:database
+    - name: ptcp
+      pattern:
+        regex: ^\0.\x02\0\0\x02\0CClient /[\d.]+:\d+ has requested unsupported pTCP version 0\x02\0\0\0\0
+      product: Axway SecureTransport PeSIT over pTCP
+      cpes:
+        - a:axway:securetransport
+    - name: ptp-ip
+      pattern:
+        regex: ^\x0c\0\0\0\x05\0\0\0\x03\0\0\0
+      product: Picture Transport Protocol over IP
+    - name: remoting
+      pattern:
+        regex: '^\.NET\x01\0\x02\0\0\0\0\0\0\0\x02\0\x03\x01\0\x03\0\x01\x01..\0\0System\.Runtime\.Remoting\.RemotingException: '
+        options: s
+      product: MS .NET Remoting services
+      cpes:
+        - a:microsoft:.net_framework
+    - name: siebel
+      pattern:
+        regex: ^\0\0\0\x40\0\0\0\0\0\0\0\x01\0\0\0\0\0\0..\0\0\0\x05\0\0\0\0\0\0\0\0\x4e...\0...\0\0\0\0\0\0\0\0\0\0\0\x05\0\0\0\x0c\0\0\0\x08\0\x12\0\x68\0\0\0\0$
+      product: Siebel Gateway Name Server
+      cpes:
+        - a:oracle:siebel_suite
+    - name: xtel
+      pattern:
+        regex: ^\x15Annuaire \xe9lectronique
+      product: xteld
+      info: French
+    - name: tor
+      pattern:
+        regex: ^\x16\x03\0\0\*\x02\0\0&\x03\0.*T[oO][rR]1.*[\x00-\x20]([-\w_.]+) <identity>
+        options: s
+      product: Tor node
+      info: 'Node name: $1'
+      cpes:
+        - a:torproject:tor
+    - name: storagecraft-image
+      pattern:
+        regex: ^\x15\x01\0\0\x08\0\0\0\0\x80\t\x03\x08\.NET\x01\0\x02\0\0\0\0\0\0\0\x02\0\x03\x01\0\x03\0\x01\x01 \0\0\0Authentication failure on server\x05\0\0\0\0$
+      product: StorageCraft Image Manager
+    - name: vmware-print
+      pattern:
+        regex: ^\r\0\0+$
+      product: VMware virtual printing service
+    - name: unknown-camera
+      pattern:
+        regex: ^\x9c\xff\xff\xff\0{408}
+      product: V308 camera service
+      device-type: webcam
+    - name: xamarin
+      pattern:
+        regex: '^ERROR: Another instance is running\n'
+      product: Xamarin MonoTouch
+fallback-services:
+    - name: echo
+      pattern:
+        regex: ^\x16\x03\0\0S\x01\0\0O\x03\0\?G\xd7\xf7\xba,\xee\xea\xb2`~\xf3\0\xfd\x82\{\xb9\xd5\x96\xc8w\x9b\xe6\xc4\xdb<=\xdbo\xef\x10n\0\0\(\0\x16\0\x13\0\n
+    - name: afp
+      pattern:
+        regex: ^\x01\x03\0\0........\0\0\0\0.*AFP
+        options: s
+    - name: ftp
+      pattern:
+        regex: ^220 .*\r\n451 The parameter is incorrect\. \r\n
+      product: IIS ftpd
+      os: Windows
+      cpes:
+        - a:microsoft:internet_information_services
+        - o:microsoft:windows

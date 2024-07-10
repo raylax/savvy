@@ -1,0 +1,13 @@
+name: NoMachine
+protocol: tcp
+rarity: 9
+payload: NXSH-5.6.7\n
+ports: "4000"
+services:
+    - name: nomachine-nx
+      pattern:
+        regex: ^NXD-([\d.]+)\n
+      product: NoMachine NX Server remote desktop
+      version: $1
+      cpes:
+        - a:nomachine:nx_server:$1

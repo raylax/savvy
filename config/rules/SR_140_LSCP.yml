@@ -1,0 +1,14 @@
+name: LSCP
+protocol: tcp
+rarity: 9
+payload: GET SERVER INFO\r\n
+ports: "8888"
+services:
+    - name: lscp
+      pattern:
+        regex: '^DESCRIPTION: LinuxSampler - modular, streaming capable sampler\r\nVERSION: ([\d.]+)\r\nPROTOCOL_VERSION: ([\d.]+)\r\n'
+      product: LinuxSampler
+      version: $1
+      info: LSCP $2
+      cpes:
+        - a:linuxsampler:linuxsampler:$1

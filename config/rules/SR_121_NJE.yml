@@ -1,0 +1,15 @@
+name: NJE
+protocol: tcp
+rarity: 9
+payload: \xd6\xd7\xc5\xd5@@@@\xc6\xc1\xd2\xc5@@@@\0\0\0\0\xc6\xc1\xd2\xc5@@@@\0\0\0\0\0
+ports: "175"
+ssl-ports: "2252"
+services:
+    - name: nje
+      pattern:
+        regex: ^\xd5\xc1\xd2
+      product: IBM Network Job Entry (JES)
+    - name: nje
+      pattern:
+        regex: ^\xc1\xc3\xd2
+      product: IBM Network Job Entry (JES)

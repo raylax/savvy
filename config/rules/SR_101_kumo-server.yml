@@ -1,0 +1,39 @@
+name: kumo-server
+protocol: tcp
+rarity: 8
+payload: \x94\0\xcd\xef\xd1\x61\x91\x03
+ports: 3333,19700,19800,59100
+services:
+    - name: kumo-server
+      pattern:
+        regex: ^\x94\x01\xcd\xef\xd1\xc0\xda\0.([^\s]+)
+        options: s
+      product: Kumofs
+      version: $1
+    - name: kumo-manager
+      pattern:
+        regex: ^\x94\x01\xcd\xef\xd1\x05\xc0$
+      product: Kumofs
+    - name: dec-notes
+      pattern:
+        regex: ^\x7c\0\0\0\x01\0\x1f\x83\x01\x80\x1f\x86\x013%NOTES-E-SRV_INVSEQ, invalid sequence of operations\0\0\x1f\x83\x01\x80\x1f\x86\x013%NOTES-E-SRV_INVSEQ, invalid sequence of operations\0\0
+      product: DEC Notes
+      os: VMS
+    - name: directfb
+      pattern:
+        regex: ^\x1c\0\0\0\0\0\0\0\x02\0\0\0\xd1a\x91\x03\x05\0\0\0\0\0\0\0\0\0\0\0
+    - name: rhpp
+      pattern:
+        regex: ^\0\0\0\x80\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\xc0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x80j\x81n0\x81k\xa1\x03\x02\x01\x05\xa2\x03\x02\x01\n\xa4\x81\^0\\\xa0\x07\x03\x05\0P\x80\0\x10\xa2\x04\0\x80\xc8\x10\xa3\x170\x15\xa0\x03\x02\x01\0\xa1\x0e0\x0c\x1b\x06k\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x1f\x1e\xb9\xd9\xa8\x170\x15\x02\x01\x12\x02\x01\x11\x02\x01\x10\x02\x01\x17\x02\x01\x01\x02\x03\x01\xff\0\0\0\0\0\0\0\0\0\0\0\0\0
+      product: Ricoh Reliability Host Printing Protocol
+      device-type: printer
+    - name: upnp
+      pattern:
+        regex: '^HTTP/0\.0 \d\d\d (?:[^\r\n]*\r\n(?!\r\n))*?SERVER: Linux/([-+\w_.]+), UPnP/([\d.]+), Intel SDK for UPnP devices ?/([\w._~-]+)\r\n'
+        options: s
+      product: Intel UPnP reference SDK
+      version: $3
+      info: Linux $1; UPnP $2
+      os: Linux
+      cpes:
+        - o:linux:linux_kernel:$1

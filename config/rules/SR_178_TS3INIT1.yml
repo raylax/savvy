@@ -1,0 +1,5 @@
+name: TS3INIT1
+protocol: udp
+rarity: 9
+payload: TS3INIT1\0\x65\0\0\x88\x0a\x39\x7b\x0f\0\x5b\x55\x72\xef\xdc\x78\x32\x6b\0\0\0\0\0\0\0\0
+ports: "9987"

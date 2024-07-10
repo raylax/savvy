@@ -1,0 +1,5 @@
+name: STD_DISCOVER
+protocol: udp
+rarity: 8
+payload: '[PROBE] 0000'
+ports: "6481"

@@ -1,0 +1,11 @@
+name: AirHID
+protocol: udp
+rarity: 9
+payload: from:airhid
+ports: "13246"
+services:
+    - name: AirHID
+      pattern:
+        regex: ^andReceiver-\d+\.\d+\.\d+$
+        options: s
+      product: AirHID Andrioid remote mouse server

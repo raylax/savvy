@@ -1,0 +1,137 @@
+name: DNSStatusRequest
+protocol: udp
+rarity: 5
+payload: \0\0\x10\0\0\0\0\0\0\0\0\0
+ports: 53,69,135,1761,26198
+services:
+    - name: domain
+      pattern:
+        regex: ^.{4,6}\x84\0\0\x01\0\x01\0\0\0\0[^\0]+\0\0\x01\0\x01[^\0]+\0\0\x01\0\x01\0\0\0\x1e\0\x04....$
+        options: s
+      product: Incapsula WAF DNS
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x17)?\0\0\x90\x84\0\0\0\0\0\0\0\x01\0\0\)\x02\0\0\0\x80\0\0\0
+      product: pi-hole FTLDNS
+      cpes:
+        - a:pi-hole:ftldns
+    - name: iodine
+      pattern:
+        regex: ^\x80\xa7\x84\0\0\x01\0\x01\0\0\0\0.*\0\0\x0a\0\x01\xc0\x0c\0\n\0\x01\0\0\0\0\0\x05BADIP$
+      product: iodine IP-over-DNS tunnel
+      cpes:
+        - a:kryo:iodine
+    - name: msrpc
+      pattern:
+        regex: ^\x04\x06\0\0\x10\0\0\0\0\0\0\0
+    - name: netprobe
+      pattern:
+        regex: ^\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0$
+      product: Mega System Technologies NetProbe Lite environmental sensor
+      device-type: specialized
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x02\0The IP address is not in the range of allowable addresses\.\0
+      product: SolarWinds tftpd
+      info: IP disallowed
+      os: Windows
+      cpes:
+        - a:solarwinds:tftp_server
+        - o:microsoft:windows
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\0Invalid TFTP Opcode
+      product: Cisco tftpd
+      cpes:
+        - a:cisco:tftp_server
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x04Illegal TFTP operation\0
+      product: Plan 9 tftpd
+      os: Plan 9
+      cpes:
+        - o:belllabs:plan_9
+    - name: tftp
+      pattern:
+        regex: '^\0\x05\0\x04Error: Illegal TFTP Operation\0\0\0\0\0'
+      product: Zoom X5 ADSL modem tftpd
+      device-type: broadband router
+      cpes:
+        - h:zoom:x5
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x04Illegal operation\0$
+      product: Cisco router tftpd
+      os: IOS
+      device-type: router
+      cpes:
+        - a:cisco:tftp_server
+        - o:cisco:ios
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x04Illegal operation error\.\0$
+      product: Microsoft Windows Deployment Services tftpd
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+    - name: tftp
+      pattern:
+        regex: '^\0\x05\0\x04Unknown operatation code: 0 received from [\d.]+:\d+\0'
+      product: SolarWinds Free tftpd
+      cpes:
+        - a:solarwinds:tftp_server
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x04illegal \(unrecognized\) tftp operation\0$
+      product: Brother printer tftpd
+      device-type: printer
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\0Not defined, see error message\(if any\)\.\0
+      product: HP Intelligent Management Center tftpd
+      cpes:
+        - a:hp:intelligent_management_center
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0\x05Unknown transfer ID\0
+      product: TFTP Server SP
+      os: Windows
+      cpes:
+        - a:tftp:tftp_server_sp
+        - o:microsoft:windows
+    - name: landesk-rc
+      pattern:
+        regex: ^\0\0\0\0USER\x01\0\x10\0\x08\0:\xd0\x08\0:\xd0\x01\x01\.\0O\0\x03\0T\0\xff\xff\0\0\0\xfd\0\0\0\0\0\0\x02\0\0\0LANDeskWorkgroup Manager ver ([\d.]+)\0
+      product: LANDesk Workgroup Manager
+      version: $1
+      os: Windows
+      cpes:
+        - o:microsoft:windows
+fallback-services:
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x0c)?..[\x80\x90][\x01\x81\x91]\0\0\0\0\0.\0.
+        options: s
+      info: 'generic dns response: FORMERR'
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x0c)?..[\x80\x90][\x02\x82\x92]\0\0\0\0\0.\0.
+        options: s
+      info: 'generic dns response: SERVFAIL'
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x0c)?..[\x80\x90][\x04\x84\x94]\0\0\0\0\0.\0.
+        options: s
+      info: 'generic dns response: NOTIMP'
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x0c)?..[\x80\x90][\x05\x85\x95]\0\0\0\0\0.\0.
+        options: s
+      info: 'generic dns response: REFUSED'
+    - name: domain
+      pattern:
+        regex: ^(?:\0\x0c)?..[\x80\x90][\x00\x80\x90]\0\0\0\0\0.\0.
+        options: s
+    - name: tftp
+      pattern:
+        regex: ^\0\x05\0[\0-\x07][^\0]+\0$

@@ -1,0 +1,17 @@
+name: erlang-node
+protocol: tcp
+rarity: 9
+payload: \0\x0bn\0\0\0\0\x01\x04nm@p
+services:
+    - name: erlang-node
+      pattern:
+        regex: ^\0\x03sok\0.n\0\0.{8}(.+).
+        options: s
+      product: Erlang Distribution Node
+      info: 'Node name: $1'
+    - name: erlang-node
+      pattern:
+        regex: ^\0[^\x03]s(.+)
+        options: s
+      product: Erlang Distribution Node
+      info: 'Status: $1'

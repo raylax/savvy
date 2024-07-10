@@ -1,0 +1,39 @@
+name: Memcache
+protocol: tcp
+rarity: 8
+payload: stats\r\n
+ports: 2181,11211
+services:
+    - name: memcached
+      pattern:
+        regex: ^STAT pid \d+\r\nSTAT uptime (\d+)\r\nSTAT time \d+\r\nSTAT version ([.\d]+)\r\n
+        options: s
+      product: Memcached
+      version: $2
+      info: uptime $1 seconds
+      cpes:
+        - a:memcached:memcached:$2
+    - name: memcached
+      pattern:
+        regex: ^STAT pid \d+\r\nSTAT uptime (\d+)\r\nSTAT time \d+\r\nSTAT version ([.\d]+) \(?Ubuntu\)?\r\n
+        options: s
+      product: Memcached
+      version: $2
+      info: uptime $1 seconds; Ubuntu
+      os: Linux
+      cpes:
+        - a:memcached:memcached:$2
+        - o:canonical:ubuntu_linux
+        - o:linux:linux_kernel
+    - name: zookeeper
+      pattern:
+        regex: '^Zookeeper version: ([\w.-]+), built on ([\w./]+)'
+      product: Zookeeper
+      version: $1
+      info: Built on $2
+      cpes:
+        - a:zookeeper:zookeeper:$1
+fallback-services:
+    - name: memcached
+      pattern:
+        regex: ^STAT pid \d+\r\n

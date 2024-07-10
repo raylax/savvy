@@ -1,0 +1,7 @@
+name: DNS-SD-TCP
+protocol: tcp
+rarity: 8
+payload: \0\x2e\0\0\0\0\0\x01\0\0\0\0\0\0\x09_services\x07_dns-sd\x04_udp\x05local\0\0\x0c\0\x01
+ports: 53,5353
+ssl-ports: "853"
+fallbacks: DNS-SD

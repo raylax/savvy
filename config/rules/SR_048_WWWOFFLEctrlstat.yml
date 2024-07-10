@@ -1,0 +1,21 @@
+name: WWWOFFLEctrlstat
+protocol: tcp
+rarity: 9
+payload: WWWOFFLE STATUS\r\n
+ports: 706,8081
+services:
+    - name: http-proxy-ctrl
+      pattern:
+        regex: '^WWWOFFLE Server Status\n-*\nVersion *: (\d.*)\n'
+      product: WWWOFFLE proxy control
+      version: $1
+    - name: http-proxy-ctrl
+      pattern:
+        regex: ^WWWOFFLE Incorrect Password\n
+      product: WWWOFFLE proxy control
+      info: Unauthorized
+    - name: silc
+      pattern:
+        regex: ^\0\x13\0\x01\r\0\x08\0\x01S\x96Rz\xc2\x02\0\xff\0.............4$
+        options: s
+      product: SILCd conferencing service

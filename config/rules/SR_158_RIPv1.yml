@@ -1,0 +1,5 @@
+name: RIPv1
+protocol: udp
+rarity: 8
+payload: \x01\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\x10
+ports: "520"
